@@ -1,0 +1,78 @@
+c:\users\felipe.almeida1\documents\visual studio 2010\Projects\GraficosRedeNeural\GraficosRedeNeural\bin\Debug\GraficosRedeNeural.exe
+c:\users\felipe.almeida1\documents\visual studio 2010\Projects\GraficosRedeNeural\GraficosRedeNeural\bin\Debug\GraficosRedeNeural.pdb
+c:\users\felipe.almeida1\documents\visual studio 2010\Projects\GraficosRedeNeural\GraficosRedeNeural\obj\x86\Debug\ResolveAssemblyReference.cache
+c:\users\felipe.almeida1\documents\visual studio 2010\Projects\GraficosRedeNeural\GraficosRedeNeural\obj\x86\Debug\GraficosRedeNeural.Form1.resources
+c:\users\felipe.almeida1\documents\visual studio 2010\Projects\GraficosRedeNeural\GraficosRedeNeural\obj\x86\Debug\GraficosRedeNeural.Properties.Resources.resources
+c:\users\felipe.almeida1\documents\visual studio 2010\Projects\GraficosRedeNeural\GraficosRedeNeural\obj\x86\Debug\GenerateResource.read.1.tlog
+c:\users\felipe.almeida1\documents\visual studio 2010\Projects\GraficosRedeNeural\GraficosRedeNeural\obj\x86\Debug\GenerateResource.write.1.tlog
+c:\users\felipe.almeida1\documents\visual studio 2010\Projects\GraficosRedeNeural\GraficosRedeNeural\obj\x86\Debug\GraficosRedeNeural.exe
+c:\users\felipe.almeida1\documents\visual studio 2010\Projects\GraficosRedeNeural\GraficosRedeNeural\obj\x86\Debug\GraficosRedeNeural.pdb
+c:\users\felipe.almeida1\documents\visual studio 2010\Projects\GraficosRedeNeural\GraficosRedeNeural\bin\Debug\RedeNeural_PrevisaoFinanceira.exe
+c:\users\felipe.almeida1\documents\visual studio 2010\Projects\GraficosRedeNeural\GraficosRedeNeural\bin\Debug\NeuronDotNet.Core.dll
+c:\users\felipe.almeida1\documents\visual studio 2010\Projects\GraficosRedeNeural\GraficosRedeNeural\bin\Debug\HelloWorld.exe
+c:\users\felipe.almeida1\documents\visual studio 2010\Projects\GraficosRedeNeural\GraficosRedeNeural\bin\Debug\RedeNeural_PrevisaoFinanceira.pdb
+c:\users\felipe.almeida1\documents\visual studio 2010\Projects\GraficosRedeNeural\GraficosRedeNeural\bin\Debug\HelloWorld.pdb
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira\GraficosRedeNeural\GraficosRedeNeural\bin\Debug\RedeNeural_PrevisaoFinanceira.exe
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira\GraficosRedeNeural\GraficosRedeNeural\bin\Debug\HelloWorld.exe
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira\GraficosRedeNeural\GraficosRedeNeural\bin\Debug\GraficosRedeNeural.exe
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira\GraficosRedeNeural\GraficosRedeNeural\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira\GraficosRedeNeural\GraficosRedeNeural\obj\x86\Debug\GraficosRedeNeural.Form1.resources
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira\GraficosRedeNeural\GraficosRedeNeural\obj\x86\Debug\GraficosRedeNeural.Properties.Resources.resources
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira\GraficosRedeNeural\GraficosRedeNeural\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira\GraficosRedeNeural\GraficosRedeNeural\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira\GraficosRedeNeural\GraficosRedeNeural\obj\x86\Debug\GraficosRedeNeural.exe
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira\GraficosRedeNeural\GraficosRedeNeural\obj\x86\Debug\GraficosRedeNeural.pdb
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira - Cópia\GraficosRedeNeural\GraficosRedeNeural\bin\Debug\GraficosRedeNeural.exe
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira - Cópia\GraficosRedeNeural\GraficosRedeNeural\bin\Debug\GraficosRedeNeural.pdb
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira - Cópia\GraficosRedeNeural\GraficosRedeNeural\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira - Cópia\GraficosRedeNeural\GraficosRedeNeural\obj\x86\Debug\GraficosRedeNeural.Form1.resources
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira - Cópia\GraficosRedeNeural\GraficosRedeNeural\obj\x86\Debug\GraficosRedeNeural.Properties.Resources.resources
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira - Cópia\GraficosRedeNeural\GraficosRedeNeural\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira - Cópia\GraficosRedeNeural\GraficosRedeNeural\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira - Cópia\GraficosRedeNeural\GraficosRedeNeural\obj\x86\Debug\GraficosRedeNeural.exe
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira - Cópia\GraficosRedeNeural\GraficosRedeNeural\obj\x86\Debug\GraficosRedeNeural.pdb
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira - Cópia - Cópia\GraficosRedeNeural\GraficosRedeNeural\obj\x86\Debug\GraficosRedeNeural.exe
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira - Cópia - Cópia\GraficosRedeNeural\GraficosRedeNeural\obj\x86\Debug\GraficosRedeNeural.pdb
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira - Cópia - Cópia\GraficosRedeNeural\GraficosRedeNeural\bin\Debug\GraficosRedeNeural.exe
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira - Cópia - Cópia\GraficosRedeNeural\GraficosRedeNeural\bin\Debug\GraficosRedeNeural.pdb
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira - Cópia - Cópia\GraficosRedeNeural\GraficosRedeNeural\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira - Cópia - Cópia\GraficosRedeNeural\GraficosRedeNeural\obj\x86\Debug\GraficosRedeNeural.Form1.resources
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira - Cópia - Cópia\GraficosRedeNeural\GraficosRedeNeural\obj\x86\Debug\GraficosRedeNeural.Properties.Resources.resources
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira - Cópia - Cópia\GraficosRedeNeural\GraficosRedeNeural\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira - Cópia - Cópia\GraficosRedeNeural\GraficosRedeNeural\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira - Cópia - Cópia - Cópia\GraficosRedeNeural\GraficosRedeNeural\obj\x86\Debug\GraficosRedeNeural.exe
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira - Cópia - Cópia - Cópia\GraficosRedeNeural\GraficosRedeNeural\obj\x86\Debug\GraficosRedeNeural.pdb
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira - Cópia - Cópia - Cópia\GraficosRedeNeural\GraficosRedeNeural\bin\Debug\GraficosRedeNeural.exe
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira - Cópia - Cópia - Cópia\GraficosRedeNeural\GraficosRedeNeural\bin\Debug\GraficosRedeNeural.pdb
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira - Cópia - Cópia - Cópia\GraficosRedeNeural\GraficosRedeNeural\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira - Cópia - Cópia - Cópia\GraficosRedeNeural\GraficosRedeNeural\obj\x86\Debug\GraficosRedeNeural.Form1.resources
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira - Cópia - Cópia - Cópia\GraficosRedeNeural\GraficosRedeNeural\obj\x86\Debug\GraficosRedeNeural.Properties.Resources.resources
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira - Cópia - Cópia - Cópia\GraficosRedeNeural\GraficosRedeNeural\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira - Cópia - Cópia - Cópia\GraficosRedeNeural\GraficosRedeNeural\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira - Cópia - Cópia - Cópia - Cópia\GraficosRedeNeural\GraficosRedeNeural\obj\x86\Debug\GraficosRedeNeural.exe
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira - Cópia - Cópia - Cópia - Cópia\GraficosRedeNeural\GraficosRedeNeural\obj\x86\Debug\GraficosRedeNeural.pdb
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira - Cópia - Cópia - Cópia - Cópia\GraficosRedeNeural\GraficosRedeNeural\bin\Debug\GraficosRedeNeural.exe
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira - Cópia - Cópia - Cópia - Cópia\GraficosRedeNeural\GraficosRedeNeural\bin\Debug\GraficosRedeNeural.pdb
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira - Cópia - Cópia - Cópia - Cópia\GraficosRedeNeural\GraficosRedeNeural\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira - Cópia - Cópia - Cópia - Cópia\GraficosRedeNeural\GraficosRedeNeural\obj\x86\Debug\GraficosRedeNeural.Form1.resources
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira - Cópia - Cópia - Cópia - Cópia\GraficosRedeNeural\GraficosRedeNeural\obj\x86\Debug\GraficosRedeNeural.Properties.Resources.resources
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira - Cópia - Cópia - Cópia - Cópia\GraficosRedeNeural\GraficosRedeNeural\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira - Cópia - Cópia - Cópia - Cópia\GraficosRedeNeural\GraficosRedeNeural\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira - Cópia - Cópia - Cópia - Cópia - Cópia\GraficosRedeNeural\GraficosRedeNeural\obj\x86\Debug\GraficosRedeNeural.exe
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira - Cópia - Cópia - Cópia - Cópia - Cópia\GraficosRedeNeural\GraficosRedeNeural\obj\x86\Debug\GraficosRedeNeural.pdb
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira - Cópia - Cópia - Cópia - Cópia - Cópia\GraficosRedeNeural\GraficosRedeNeural\bin\Debug\GraficosRedeNeural.exe
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira - Cópia - Cópia - Cópia - Cópia - Cópia\GraficosRedeNeural\GraficosRedeNeural\bin\Debug\GraficosRedeNeural.pdb
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira - Cópia - Cópia - Cópia - Cópia - Cópia\GraficosRedeNeural\GraficosRedeNeural\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira - Cópia - Cópia - Cópia - Cópia - Cópia\GraficosRedeNeural\GraficosRedeNeural\obj\x86\Debug\GraficosRedeNeural.Form1.resources
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira - Cópia - Cópia - Cópia - Cópia - Cópia\GraficosRedeNeural\GraficosRedeNeural\obj\x86\Debug\GraficosRedeNeural.Properties.Resources.resources
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira - Cópia - Cópia - Cópia - Cópia - Cópia\GraficosRedeNeural\GraficosRedeNeural\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira - Cópia - Cópia - Cópia - Cópia - Cópia\GraficosRedeNeural\GraficosRedeNeural\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira - Cópia - Cópia - Cópia - Cópia - Cópia - Cópia\GraficosRedeNeural\GraficosRedeNeural\obj\x86\Debug\GraficosRedeNeural.exe
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira - Cópia - Cópia - Cópia - Cópia - Cópia - Cópia\GraficosRedeNeural\GraficosRedeNeural\obj\x86\Debug\GraficosRedeNeural.pdb
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira - Cópia - Cópia - Cópia - Cópia - Cópia - Cópia\GraficosRedeNeural\GraficosRedeNeural\bin\Debug\GraficosRedeNeural.exe
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira - Cópia - Cópia - Cópia - Cópia - Cópia - Cópia\GraficosRedeNeural\GraficosRedeNeural\bin\Debug\GraficosRedeNeural.pdb
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira - Cópia - Cópia - Cópia - Cópia - Cópia - Cópia\GraficosRedeNeural\GraficosRedeNeural\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira - Cópia - Cópia - Cópia - Cópia - Cópia - Cópia\GraficosRedeNeural\GraficosRedeNeural\obj\x86\Debug\GraficosRedeNeural.Form1.resources
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira - Cópia - Cópia - Cópia - Cópia - Cópia - Cópia\GraficosRedeNeural\GraficosRedeNeural\obj\x86\Debug\GraficosRedeNeural.Properties.Resources.resources
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira - Cópia - Cópia - Cópia - Cópia - Cópia - Cópia\GraficosRedeNeural\GraficosRedeNeural\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira - Cópia - Cópia - Cópia - Cópia - Cópia - Cópia\GraficosRedeNeural\GraficosRedeNeural\obj\x86\Debug\GenerateResource.write.1.tlog

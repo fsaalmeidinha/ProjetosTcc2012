@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CotacoesBDModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
+  <EntityContainer Name="CotacoesBDEntities">
+    <EntitySet Name="Cotacoes" EntityType="CotacoesBDModel.Cotacao" />
+  </EntityContainer>
+  <EntityType Name="Cotacao">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Codigo" Type="String" MaxLength="6" Unicode="true" FixedLength="false" />
+    <Property Name="Valor" Type="Single" Nullable="false" />
+    <Property Name="Data" Type="DateTime" Nullable="false" />
+  </EntityType>
+</Schema>
