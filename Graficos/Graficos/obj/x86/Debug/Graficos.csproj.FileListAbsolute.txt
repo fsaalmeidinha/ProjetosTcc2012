@@ -1,0 +1,27 @@
+c:\users\felipe.almeida1.senacedu\documents\visual studio 2010\Projects\Graficos\Graficos\bin\Debug\Graficos.exe
+c:\users\felipe.almeida1.senacedu\documents\visual studio 2010\Projects\Graficos\Graficos\bin\Debug\Graficos.pdb
+c:\users\felipe.almeida1.senacedu\documents\visual studio 2010\Projects\Graficos\Graficos\obj\x86\Debug\ResolveAssemblyReference.cache
+c:\users\felipe.almeida1.senacedu\documents\visual studio 2010\Projects\Graficos\Graficos\obj\x86\Debug\Graficos.Form1.resources
+c:\users\felipe.almeida1.senacedu\documents\visual studio 2010\Projects\Graficos\Graficos\obj\x86\Debug\Graficos.Properties.Resources.resources
+c:\users\felipe.almeida1.senacedu\documents\visual studio 2010\Projects\Graficos\Graficos\obj\x86\Debug\GenerateResource.read.1.tlog
+c:\users\felipe.almeida1.senacedu\documents\visual studio 2010\Projects\Graficos\Graficos\obj\x86\Debug\GenerateResource.write.1.tlog
+c:\users\felipe.almeida1.senacedu\documents\visual studio 2010\Projects\Graficos\Graficos\obj\x86\Debug\Graficos.exe
+c:\users\felipe.almeida1.senacedu\documents\visual studio 2010\Projects\Graficos\Graficos\obj\x86\Debug\Graficos.pdb
+C:\Users\felipe.almeida1.SENACEDU\Desktop\Graficos\Graficos\obj\x86\Debug\Graficos.exe
+C:\Users\felipe.almeida1.SENACEDU\Desktop\Graficos\Graficos\obj\x86\Debug\Graficos.pdb
+C:\Users\felipe.almeida1.SENACEDU\Desktop\Graficos\Graficos\bin\Debug\Graficos.exe
+C:\Users\felipe.almeida1.SENACEDU\Desktop\Graficos\Graficos\bin\Debug\Graficos.pdb
+C:\Users\felipe.almeida1.SENACEDU\Desktop\Graficos\Graficos\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\felipe.almeida1.SENACEDU\Desktop\Graficos\Graficos\obj\x86\Debug\Graficos.Form1.resources
+C:\Users\felipe.almeida1.SENACEDU\Desktop\Graficos\Graficos\obj\x86\Debug\Graficos.Properties.Resources.resources
+C:\Users\felipe.almeida1.SENACEDU\Desktop\Graficos\Graficos\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\felipe.almeida1.SENACEDU\Desktop\Graficos\Graficos\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\felipe.almeida1.SENACEDU.000\Desktop\TCC_2012\Redes\Graficos\Graficos\obj\x86\Debug\Graficos.exe
+C:\Users\felipe.almeida1.SENACEDU.000\Desktop\TCC_2012\Redes\Graficos\Graficos\obj\x86\Debug\Graficos.pdb
+C:\Users\felipe.almeida1.SENACEDU.000\Desktop\TCC_2012\Redes\Graficos\Graficos\bin\Debug\Graficos.exe
+C:\Users\felipe.almeida1.SENACEDU.000\Desktop\TCC_2012\Redes\Graficos\Graficos\bin\Debug\Graficos.pdb
+C:\Users\felipe.almeida1.SENACEDU.000\Desktop\TCC_2012\Redes\Graficos\Graficos\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\felipe.almeida1.SENACEDU.000\Desktop\TCC_2012\Redes\Graficos\Graficos\obj\x86\Debug\Graficos.Form1.resources
+C:\Users\felipe.almeida1.SENACEDU.000\Desktop\TCC_2012\Redes\Graficos\Graficos\obj\x86\Debug\Graficos.Properties.Resources.resources
+C:\Users\felipe.almeida1.SENACEDU.000\Desktop\TCC_2012\Redes\Graficos\Graficos\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\felipe.almeida1.SENACEDU.000\Desktop\TCC_2012\Redes\Graficos\Graficos\obj\x86\Debug\GenerateResource.write.1.tlog
