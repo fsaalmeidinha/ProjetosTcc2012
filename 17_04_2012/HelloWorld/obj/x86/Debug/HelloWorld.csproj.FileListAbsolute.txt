@@ -1,0 +1,21 @@
+D:\Suporte\felipe.almeida\Documentos\Visual Studio 2010\Projects\HelloWorld\bin\Debug\HelloWorld.exe
+D:\Suporte\felipe.almeida\Documentos\Visual Studio 2010\Projects\HelloWorld\bin\Debug\HelloWorld.pdb
+D:\Suporte\felipe.almeida\Documentos\Visual Studio 2010\Projects\HelloWorld\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\Suporte\felipe.almeida\Documentos\Visual Studio 2010\Projects\HelloWorld\obj\x86\Debug\HelloWorld.exe
+D:\Suporte\felipe.almeida\Documentos\Visual Studio 2010\Projects\HelloWorld\obj\x86\Debug\HelloWorld.pdb
+D:\Suporte\felipe.almeida\Documentos\Visual Studio 2010\Projects\HelloWorld\bin\Debug\CotacoesBD.sdf
+D:\Suporte\felipe.almeida\Documentos\Visual Studio 2010\Projects\HelloWorld\bin\Debug\HelloWorld.exe.config
+C:\Users\felipe.almeida1\Desktop\RedeNeural_PrevisaoFinanceira\HelloWorld\bin\Debug\CotacoesBD.sdf
+C:\Users\felipe.almeida1\Desktop\RedeNeural_PrevisaoFinanceira\HelloWorld\bin\Debug\HelloWorld.exe.config
+C:\Users\felipe.almeida1\Desktop\RedeNeural_PrevisaoFinanceira\HelloWorld\bin\Debug\HelloWorld.exe
+C:\Users\felipe.almeida1\Desktop\RedeNeural_PrevisaoFinanceira\HelloWorld\bin\Debug\HelloWorld.pdb
+C:\Users\felipe.almeida1\Desktop\RedeNeural_PrevisaoFinanceira\HelloWorld\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\felipe.almeida1\Desktop\RedeNeural_PrevisaoFinanceira\HelloWorld\obj\x86\Debug\HelloWorld.exe
+C:\Users\felipe.almeida1\Desktop\RedeNeural_PrevisaoFinanceira\HelloWorld\obj\x86\Debug\HelloWorld.pdb
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira\HelloWorld\bin\Debug\CotacoesBD.sdf
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira\HelloWorld\bin\Debug\HelloWorld.exe.config
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira\HelloWorld\bin\Debug\HelloWorld.exe
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira\HelloWorld\bin\Debug\HelloWorld.pdb
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira\HelloWorld\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira\HelloWorld\obj\x86\Debug\HelloWorld.exe
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira\HelloWorld\obj\x86\Debug\HelloWorld.pdb

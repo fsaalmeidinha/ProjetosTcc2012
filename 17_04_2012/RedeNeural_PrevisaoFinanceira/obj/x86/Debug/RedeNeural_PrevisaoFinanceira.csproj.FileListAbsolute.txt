@@ -1,0 +1,27 @@
+D:\Suporte\felipe.almeida\Documentos\Visual Studio 2010\Projects\RedeNeural_PrevisaoFinanceira\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\Suporte\felipe.almeida\Documentos\Visual Studio 2010\Projects\RedeNeural_PrevisaoFinanceira\bin\Debug\CotacoesBD.sdf
+D:\Suporte\felipe.almeida\Documentos\Visual Studio 2010\Projects\RedeNeural_PrevisaoFinanceira\bin\Debug\RedeNeural_PrevisaoFinanceira.exe
+D:\Suporte\felipe.almeida\Documentos\Visual Studio 2010\Projects\RedeNeural_PrevisaoFinanceira\bin\Debug\RedeNeural_PrevisaoFinanceira.pdb
+D:\Suporte\felipe.almeida\Documentos\Visual Studio 2010\Projects\RedeNeural_PrevisaoFinanceira\bin\Debug\HelloWorld.exe
+D:\Suporte\felipe.almeida\Documentos\Visual Studio 2010\Projects\RedeNeural_PrevisaoFinanceira\bin\Debug\NeuronDotNet.Core.dll
+D:\Suporte\felipe.almeida\Documentos\Visual Studio 2010\Projects\RedeNeural_PrevisaoFinanceira\bin\Debug\HelloWorld.pdb
+D:\Suporte\felipe.almeida\Documentos\Visual Studio 2010\Projects\RedeNeural_PrevisaoFinanceira\bin\Debug\NeuronDotNet.Core.xml
+D:\Suporte\felipe.almeida\Documentos\Visual Studio 2010\Projects\RedeNeural_PrevisaoFinanceira\obj\x86\Debug\RedeNeural_PrevisaoFinanceira.exe
+D:\Suporte\felipe.almeida\Documentos\Visual Studio 2010\Projects\RedeNeural_PrevisaoFinanceira\obj\x86\Debug\RedeNeural_PrevisaoFinanceira.pdb
+C:\Users\felipe.almeida1\Desktop\RedeNeural_PrevisaoFinanceira\RedeNeural_PrevisaoFinanceira\obj\x86\Debug\RedeNeural_PrevisaoFinanceira.exe
+C:\Users\felipe.almeida1\Desktop\RedeNeural_PrevisaoFinanceira\RedeNeural_PrevisaoFinanceira\obj\x86\Debug\RedeNeural_PrevisaoFinanceira.pdb
+C:\Users\felipe.almeida1\Desktop\RedeNeural_PrevisaoFinanceira\RedeNeural_PrevisaoFinanceira\bin\Debug\CotacoesBD.sdf
+C:\Users\felipe.almeida1\Desktop\RedeNeural_PrevisaoFinanceira\RedeNeural_PrevisaoFinanceira\bin\Debug\RedeNeural_PrevisaoFinanceira.exe
+C:\Users\felipe.almeida1\Desktop\RedeNeural_PrevisaoFinanceira\RedeNeural_PrevisaoFinanceira\bin\Debug\RedeNeural_PrevisaoFinanceira.pdb
+C:\Users\felipe.almeida1\Desktop\RedeNeural_PrevisaoFinanceira\RedeNeural_PrevisaoFinanceira\bin\Debug\HelloWorld.exe
+C:\Users\felipe.almeida1\Desktop\RedeNeural_PrevisaoFinanceira\RedeNeural_PrevisaoFinanceira\bin\Debug\HelloWorld.pdb
+C:\Users\felipe.almeida1\Desktop\RedeNeural_PrevisaoFinanceira\RedeNeural_PrevisaoFinanceira\bin\Debug\NeuronDotNet.Core.xml
+C:\Users\felipe.almeida1\Desktop\RedeNeural_PrevisaoFinanceira\RedeNeural_PrevisaoFinanceira\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira\RedeNeural_PrevisaoFinanceira\bin\Debug\CotacoesBD.sdf
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira\RedeNeural_PrevisaoFinanceira\bin\Debug\RedeNeural_PrevisaoFinanceira.exe
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira\RedeNeural_PrevisaoFinanceira\bin\Debug\RedeNeural_PrevisaoFinanceira.pdb
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira\RedeNeural_PrevisaoFinanceira\bin\Debug\HelloWorld.exe
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira\RedeNeural_PrevisaoFinanceira\bin\Debug\HelloWorld.pdb
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira\RedeNeural_PrevisaoFinanceira\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira\RedeNeural_PrevisaoFinanceira\obj\x86\Debug\RedeNeural_PrevisaoFinanceira.exe
+C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira\RedeNeural_PrevisaoFinanceira\obj\x86\Debug\RedeNeural_PrevisaoFinanceira.pdb

@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraficosRedeNeural", "GraficosRedeNeural\GraficosRedeNeural.csproj", "{A825114E-D8C3-4803-AD67-EBB62F4DE061}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloWorld", "..\HelloWorld\HelloWorld.csproj", "{1790E14E-7379-4817-8CEF-2402F1C9518A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedeNeural_PrevisaoFinanceira", "..\RedeNeural_PrevisaoFinanceira\RedeNeural_PrevisaoFinanceira.csproj", "{EE060142-1529-4241-B30D-1E0796E9D51C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A825114E-D8C3-4803-AD67-EBB62F4DE061}.Debug|x86.ActiveCfg = Debug|x86
+		{A825114E-D8C3-4803-AD67-EBB62F4DE061}.Debug|x86.Build.0 = Debug|x86
+		{A825114E-D8C3-4803-AD67-EBB62F4DE061}.Release|x86.ActiveCfg = Release|x86
+		{A825114E-D8C3-4803-AD67-EBB62F4DE061}.Release|x86.Build.0 = Release|x86
+		{1790E14E-7379-4817-8CEF-2402F1C9518A}.Debug|x86.ActiveCfg = Debug|x86
+		{1790E14E-7379-4817-8CEF-2402F1C9518A}.Debug|x86.Build.0 = Debug|x86
+		{1790E14E-7379-4817-8CEF-2402F1C9518A}.Release|x86.ActiveCfg = Release|x86
+		{1790E14E-7379-4817-8CEF-2402F1C9518A}.Release|x86.Build.0 = Release|x86
+		{EE060142-1529-4241-B30D-1E0796E9D51C}.Debug|x86.ActiveCfg = Debug|x86
+		{EE060142-1529-4241-B30D-1E0796E9D51C}.Debug|x86.Build.0 = Debug|x86
+		{EE060142-1529-4241-B30D-1E0796E9D51C}.Release|x86.ActiveCfg = Release|x86
+		{EE060142-1529-4241-B30D-1E0796E9D51C}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
