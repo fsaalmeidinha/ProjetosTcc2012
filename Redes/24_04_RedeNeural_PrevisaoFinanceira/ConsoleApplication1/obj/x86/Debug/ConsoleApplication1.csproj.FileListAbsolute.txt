@@ -1,0 +1,11 @@
+c:\users\felipe.almeida1.senacedu.000\documents\visual studio 2010\Projects\RedeNeural_PrevisaoFinanceira\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+c:\users\felipe.almeida1.senacedu.000\documents\visual studio 2010\Projects\RedeNeural_PrevisaoFinanceira\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+c:\users\felipe.almeida1.senacedu.000\documents\visual studio 2010\Projects\RedeNeural_PrevisaoFinanceira\ConsoleApplication1\bin\Debug\RedeNeural_PrevisaoFinanceira.dll
+c:\users\felipe.almeida1.senacedu.000\documents\visual studio 2010\Projects\RedeNeural_PrevisaoFinanceira\ConsoleApplication1\bin\Debug\NeuronDotNet.Core.dll
+c:\users\felipe.almeida1.senacedu.000\documents\visual studio 2010\Projects\RedeNeural_PrevisaoFinanceira\ConsoleApplication1\bin\Debug\HelloWorld.exe
+c:\users\felipe.almeida1.senacedu.000\documents\visual studio 2010\Projects\RedeNeural_PrevisaoFinanceira\ConsoleApplication1\bin\Debug\RedeNeural_PrevisaoFinanceira.pdb
+c:\users\felipe.almeida1.senacedu.000\documents\visual studio 2010\Projects\RedeNeural_PrevisaoFinanceira\ConsoleApplication1\bin\Debug\NeuronDotNet.Core.xml
+c:\users\felipe.almeida1.senacedu.000\documents\visual studio 2010\Projects\RedeNeural_PrevisaoFinanceira\ConsoleApplication1\bin\Debug\HelloWorld.pdb
+c:\users\felipe.almeida1.senacedu.000\documents\visual studio 2010\Projects\RedeNeural_PrevisaoFinanceira\ConsoleApplication1\obj\x86\Debug\ResolveAssemblyReference.cache
+c:\users\felipe.almeida1.senacedu.000\documents\visual studio 2010\Projects\RedeNeural_PrevisaoFinanceira\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.exe
+c:\users\felipe.almeida1.senacedu.000\documents\visual studio 2010\Projects\RedeNeural_PrevisaoFinanceira\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.pdb
