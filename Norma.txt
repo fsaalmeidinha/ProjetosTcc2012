@@ -1,8 +1,16 @@
 Criaremos uma solução e cada rede neural será representada por um projeto (csproj).
+
 Especificaremos um README dentro do projeto para descrever a rede neural.
+
 Antes de commitar um arquivo sempre dar update. Lembrando que trabalharemos em um ambiente apartado do repositório original.
+
 Após o commit fazer o merge com o repositório principal.
+
 
 Quanto a nomenclatura:
 
+
 Projeto: RedeNeural[i] (i int).
+
+
+teste
