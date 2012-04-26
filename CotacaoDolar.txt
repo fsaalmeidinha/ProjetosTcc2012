@@ -1,0 +1,6 @@
+Conversao de dolar para real
+temos que pegar mes a mes se nao o web service começa a cortar alguns dias...
+                    
+
+ 
+http://currencies.apps.grandtrunk.net/getrange/2006-01-01/2006-01-31/usd/brl
