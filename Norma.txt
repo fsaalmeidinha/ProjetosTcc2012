@@ -13,3 +13,5 @@ Quanto a nomenclatura:
 Projeto: RedeNeural[i] (i int).
 
          Todo dia em que mexermos em alguma coisa do projeto, devemos incluir na planilha do projeto um descritivo do que fizemos.
+
+                 testando conflito
