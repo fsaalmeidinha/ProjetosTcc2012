@@ -14,3 +14,5 @@ Projeto: RedeNeural[i] (i int).
 
 
                                 testando conflito3 MERGED
+
+1234567890-=
