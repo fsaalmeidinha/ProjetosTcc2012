@@ -13,6 +13,3 @@ Quanto a nomenclatura:
 Projeto: RedeNeural[i] (i int).
 
 
-                                testando conflito3 MERGED
-                                testando conflito3 MERGEDsa
-1234567890-=
