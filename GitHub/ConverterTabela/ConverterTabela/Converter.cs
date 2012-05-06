@@ -18,9 +18,9 @@ namespace ConverterTabela
         /// </summary>
         /// <param name="nomePapel"></param>
         /// <returns></returns>
-        public ICollection<object>/*List<object>*/ DePara(String nomePapel)
+        public List<DadosBE> DePara(String nomePapel)
         {
-            List<object> listCotacoes = new List<object>();
+            List<DadosBE> listCotacoes = new List<DadosBE>();
             DadosBE Cotacao = null;
             DataTableReader dtr = null;
 
@@ -40,6 +40,7 @@ namespace ConverterTabela
 
                     listCotacoes.Add(Cotacao);
                 }
+                TratarDesdobramento(listCotacoes);
             }
             catch (Exception ex)
             {
@@ -51,6 +52,27 @@ namespace ConverterTabela
             }
 
             return listCotacoes;
+        }
+
+        /// <summary>
+        /// Trata os desdobramentos (verifica alterações de 50% no valor de um dia para o outro)
+        /// </summary>
+        /// <param name="listCotacoes"></param>
+        private void TratarDesdobramento(List<DadosBE> listCotacoes)
+        {
+            //Tratando desdobramento
+            for (int i = 1; i < listCotacoes.Count; i++)
+            {
+                if (listCotacoes[i].PrecoAbertura >= listCotacoes[i - 1].PrecoAbertura * (decimal)1.5 || listCotacoes[i].PrecoAbertura <= listCotacoes[i - 1].PrecoAbertura / (decimal)1.5)
+                {
+                    decimal desdobramento = listCotacoes[i].PrecoAbertura / listCotacoes[i - 1].PrecoAbertura;
+                    //Caso haja um desdobramento, tratar todos os dados seguintes
+                    for (int j = i; j < listCotacoes.Count; j++)
+                    {
+                        listCotacoes[j].PrecoAbertura /= desdobramento;
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -94,7 +116,7 @@ namespace ConverterTabela
     /// <summary>
     /// 
     /// </summary>
-    internal class DadosBE
+    public class DadosBE
     {
         public int Id { get; set; }
         public string NomeReduzido { get; set; }

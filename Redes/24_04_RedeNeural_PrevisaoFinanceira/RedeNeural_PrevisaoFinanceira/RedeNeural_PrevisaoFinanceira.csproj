@@ -31,8 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HelloWorld">
-      <HintPath>..\..\..\..\..\Desktop\TCC_2012\Redes\RedeNeural_PrevisaoFinanceira\RedeNeural_PrevisaoFinanceira\bin\Debug\HelloWorld.exe</HintPath>
+    <Reference Include="ConverterTabela, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\GitHub\ConverterTabela\ConverterTabela\bin\Debug\ConverterTabela.dll</HintPath>
     </Reference>
     <Reference Include="NeuronDotNet.Core">
       <HintPath>..\..\..\..\..\Desktop\TCC_2012\Redes\RedeNeural_PrevisaoFinanceira\RedeNeural_PrevisaoFinanceira\bin\Debug\NeuronDotNet.Core.dll</HintPath>

@@ -9,3 +9,15 @@ c:\users\felipe.almeida1.senacedu.000\documents\visual studio 2010\Projects\Rede
 c:\users\felipe.almeida1.senacedu.000\documents\visual studio 2010\Projects\RedeNeural_PrevisaoFinanceira\ConsoleApplication1\obj\x86\Debug\ResolveAssemblyReference.cache
 c:\users\felipe.almeida1.senacedu.000\documents\visual studio 2010\Projects\RedeNeural_PrevisaoFinanceira\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.exe
 c:\users\felipe.almeida1.senacedu.000\documents\visual studio 2010\Projects\RedeNeural_PrevisaoFinanceira\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.pdb
+C:\Users\Felipe\Desktop\Tcc\Redes\24_04_RedeNeural_PrevisaoFinanceira\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+C:\Users\Felipe\Desktop\Tcc\Redes\24_04_RedeNeural_PrevisaoFinanceira\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+C:\Users\Felipe\Desktop\Tcc\Redes\24_04_RedeNeural_PrevisaoFinanceira\ConsoleApplication1\bin\Debug\RedeNeural_PrevisaoFinanceira.dll
+C:\Users\Felipe\Desktop\Tcc\Redes\24_04_RedeNeural_PrevisaoFinanceira\ConsoleApplication1\bin\Debug\NeuronDotNet.Core.dll
+C:\Users\Felipe\Desktop\Tcc\Redes\24_04_RedeNeural_PrevisaoFinanceira\ConsoleApplication1\bin\Debug\RedeNeural_PrevisaoFinanceira.pdb
+C:\Users\Felipe\Desktop\Tcc\Redes\24_04_RedeNeural_PrevisaoFinanceira\ConsoleApplication1\bin\Debug\NeuronDotNet.Core.xml
+C:\Users\Felipe\Desktop\Tcc\Redes\24_04_RedeNeural_PrevisaoFinanceira\ConsoleApplication1\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Felipe\Desktop\Tcc\Redes\24_04_RedeNeural_PrevisaoFinanceira\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.exe
+C:\Users\Felipe\Desktop\Tcc\Redes\24_04_RedeNeural_PrevisaoFinanceira\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.pdb
+C:\Users\Felipe\Desktop\Tcc\Redes\24_04_RedeNeural_PrevisaoFinanceira\ConsoleApplication1\bin\Debug\ConverterTabela.dll
+C:\Users\Felipe\Desktop\Tcc\Redes\24_04_RedeNeural_PrevisaoFinanceira\ConsoleApplication1\bin\Debug\ConverterTabela.pdb
+C:\Users\Felipe\Desktop\Tcc\Redes\24_04_RedeNeural_PrevisaoFinanceira\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config

@@ -7,3 +7,11 @@ c:\users\felipe.almeida1.senacedu.000\documents\visual studio 2010\Projects\Rede
 c:\users\felipe.almeida1.senacedu.000\documents\visual studio 2010\Projects\RedeNeural_PrevisaoFinanceira\RedeNeural_PrevisaoFinanceira\obj\Debug\ResolveAssemblyReference.cache
 c:\users\felipe.almeida1.senacedu.000\documents\visual studio 2010\Projects\RedeNeural_PrevisaoFinanceira\RedeNeural_PrevisaoFinanceira\obj\Debug\RedeNeural_PrevisaoFinanceira.dll
 c:\users\felipe.almeida1.senacedu.000\documents\visual studio 2010\Projects\RedeNeural_PrevisaoFinanceira\RedeNeural_PrevisaoFinanceira\obj\Debug\RedeNeural_PrevisaoFinanceira.pdb
+C:\Users\Felipe\Desktop\Tcc\Redes\24_04_RedeNeural_PrevisaoFinanceira\RedeNeural_PrevisaoFinanceira\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Felipe\Desktop\Tcc\Redes\24_04_RedeNeural_PrevisaoFinanceira\RedeNeural_PrevisaoFinanceira\obj\Debug\RedeNeural_PrevisaoFinanceira.dll
+C:\Users\Felipe\Desktop\Tcc\Redes\24_04_RedeNeural_PrevisaoFinanceira\RedeNeural_PrevisaoFinanceira\obj\Debug\RedeNeural_PrevisaoFinanceira.pdb
+C:\Users\Felipe\Desktop\Tcc\Redes\24_04_RedeNeural_PrevisaoFinanceira\RedeNeural_PrevisaoFinanceira\bin\Debug\RedeNeural_PrevisaoFinanceira.dll
+C:\Users\Felipe\Desktop\Tcc\Redes\24_04_RedeNeural_PrevisaoFinanceira\RedeNeural_PrevisaoFinanceira\bin\Debug\RedeNeural_PrevisaoFinanceira.pdb
+C:\Users\Felipe\Desktop\Tcc\Redes\24_04_RedeNeural_PrevisaoFinanceira\RedeNeural_PrevisaoFinanceira\bin\Debug\ConverterTabela.dll
+C:\Users\Felipe\Desktop\Tcc\Redes\24_04_RedeNeural_PrevisaoFinanceira\RedeNeural_PrevisaoFinanceira\bin\Debug\ConverterTabela.pdb
+C:\Users\Felipe\Desktop\Tcc\Redes\24_04_RedeNeural_PrevisaoFinanceira\RedeNeural_PrevisaoFinanceira\bin\Debug\NeuronDotNet.Core.xml
