@@ -6,3 +6,11 @@ c:\users\wagner\documents\visual studio 2010\Projects\TesteDePara\TesteDePara\ob
 c:\users\wagner\documents\visual studio 2010\Projects\TesteDePara\TesteDePara\obj\x86\Debug\TesteDePara.exe
 c:\users\wagner\documents\visual studio 2010\Projects\TesteDePara\TesteDePara\obj\x86\Debug\TesteDePara.pdb
 c:\users\wagner\documents\visual studio 2010\Projects\TesteDePara\TesteDePara\bin\Debug\TesteDePara.exe.config
+C:\Users\Felipe\Desktop\Tcc\GitHub\TesteDePara\TesteDePara\bin\Debug\TesteDePara.exe.config
+C:\Users\Felipe\Desktop\Tcc\GitHub\TesteDePara\TesteDePara\obj\x86\Debug\TesteDePara.exe
+C:\Users\Felipe\Desktop\Tcc\GitHub\TesteDePara\TesteDePara\obj\x86\Debug\TesteDePara.pdb
+C:\Users\Felipe\Desktop\Tcc\GitHub\TesteDePara\TesteDePara\bin\Debug\TesteDePara.exe
+C:\Users\Felipe\Desktop\Tcc\GitHub\TesteDePara\TesteDePara\bin\Debug\TesteDePara.pdb
+C:\Users\Felipe\Desktop\Tcc\GitHub\TesteDePara\TesteDePara\bin\Debug\ConverterTabela.pdb
+C:\Users\Felipe\Desktop\Tcc\GitHub\TesteDePara\TesteDePara\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Felipe\Desktop\Tcc\GitHub\TesteDePara\TesteDePara\bin\Debug\ConverterTabela.dll

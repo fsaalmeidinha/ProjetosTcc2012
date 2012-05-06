@@ -14,7 +14,7 @@ namespace TesteDePara
             Converter dePara = new Converter();
             ICollection<object> list = new List<object>();
 
-            list = dePara.DePara("petr4");
+            list = dePara.DePara("PETR4"); 
 
             Console.Read();
 

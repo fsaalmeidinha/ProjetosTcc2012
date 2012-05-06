@@ -8,3 +8,8 @@ C:\Users\Wagner\Desktop\TCC\ConverterTabela\ConverterTabela\bin\Debug\ConverterT
 C:\Users\Wagner\Desktop\TCC\ConverterTabela\ConverterTabela\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\Wagner\Desktop\TCC\ConverterTabela\ConverterTabela\obj\Debug\ConverterTabela.dll
 C:\Users\Wagner\Desktop\TCC\ConverterTabela\ConverterTabela\obj\Debug\ConverterTabela.pdb
+C:\Users\Felipe\Desktop\Tcc\GitHub\ConverterTabela\ConverterTabela\bin\Debug\ConverterTabela.dll
+C:\Users\Felipe\Desktop\Tcc\GitHub\ConverterTabela\ConverterTabela\bin\Debug\ConverterTabela.pdb
+C:\Users\Felipe\Desktop\Tcc\GitHub\ConverterTabela\ConverterTabela\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Felipe\Desktop\Tcc\GitHub\ConverterTabela\ConverterTabela\obj\Debug\ConverterTabela.dll
+C:\Users\Felipe\Desktop\Tcc\GitHub\ConverterTabela\ConverterTabela\obj\Debug\ConverterTabela.pdb
