@@ -25,3 +25,11 @@ C:\Users\felipe.almeida1.SENACEDU.000\Desktop\TCC_2012\Redes\Graficos\Graficos\o
 C:\Users\felipe.almeida1.SENACEDU.000\Desktop\TCC_2012\Redes\Graficos\Graficos\obj\x86\Debug\Graficos.Properties.Resources.resources
 C:\Users\felipe.almeida1.SENACEDU.000\Desktop\TCC_2012\Redes\Graficos\Graficos\obj\x86\Debug\GenerateResource.read.1.tlog
 C:\Users\felipe.almeida1.SENACEDU.000\Desktop\TCC_2012\Redes\Graficos\Graficos\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\felipe.almeida1.SENACEDU\Desktop\proj2\Graficos\Graficos\bin\Debug\Graficos.exe
+C:\Users\felipe.almeida1.SENACEDU\Desktop\proj2\Graficos\Graficos\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\felipe.almeida1.SENACEDU\Desktop\proj2\Graficos\Graficos\obj\x86\Debug\Graficos.Form1.resources
+C:\Users\felipe.almeida1.SENACEDU\Desktop\proj2\Graficos\Graficos\obj\x86\Debug\Graficos.Properties.Resources.resources
+C:\Users\felipe.almeida1.SENACEDU\Desktop\proj2\Graficos\Graficos\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\felipe.almeida1.SENACEDU\Desktop\proj2\Graficos\Graficos\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\felipe.almeida1.SENACEDU\Desktop\proj2\Graficos\Graficos\obj\x86\Debug\Graficos.exe
+C:\Users\felipe.almeida1.SENACEDU\Desktop\proj2\Graficos\Graficos\obj\x86\Debug\Graficos.pdb

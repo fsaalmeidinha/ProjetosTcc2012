@@ -32,3 +32,13 @@ C:\Users\felipe.almeida1.SENACEDU.001\Desktop\Projetos\Redes\24_04_RedeNeural_Pr
 C:\Users\felipe.almeida1.SENACEDU.001\Desktop\Projetos\Redes\24_04_RedeNeural_PrevisaoFinanceira\ConsoleApplication1\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\Users\felipe.almeida1.SENACEDU.001\Desktop\Projetos\Redes\24_04_RedeNeural_PrevisaoFinanceira\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.exe
 C:\Users\felipe.almeida1.SENACEDU.001\Desktop\Projetos\Redes\24_04_RedeNeural_PrevisaoFinanceira\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.pdb
+C:\Users\felipe.almeida1.SENACEDU\Desktop\proj2\Redes\24_04_RedeNeural_PrevisaoFinanceira\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
+C:\Users\felipe.almeida1.SENACEDU\Desktop\proj2\Redes\24_04_RedeNeural_PrevisaoFinanceira\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+C:\Users\felipe.almeida1.SENACEDU\Desktop\proj2\Redes\24_04_RedeNeural_PrevisaoFinanceira\ConsoleApplication1\bin\Debug\RedeNeural_PrevisaoFinanceira.dll
+C:\Users\felipe.almeida1.SENACEDU\Desktop\proj2\Redes\24_04_RedeNeural_PrevisaoFinanceira\ConsoleApplication1\bin\Debug\NeuronDotNet.Core.dll
+C:\Users\felipe.almeida1.SENACEDU\Desktop\proj2\Redes\24_04_RedeNeural_PrevisaoFinanceira\ConsoleApplication1\bin\Debug\ConverterTabela.dll
+C:\Users\felipe.almeida1.SENACEDU\Desktop\proj2\Redes\24_04_RedeNeural_PrevisaoFinanceira\ConsoleApplication1\bin\Debug\RedeNeural_PrevisaoFinanceira.pdb
+C:\Users\felipe.almeida1.SENACEDU\Desktop\proj2\Redes\24_04_RedeNeural_PrevisaoFinanceira\ConsoleApplication1\bin\Debug\ConverterTabela.pdb
+C:\Users\felipe.almeida1.SENACEDU\Desktop\proj2\Redes\24_04_RedeNeural_PrevisaoFinanceira\ConsoleApplication1\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\felipe.almeida1.SENACEDU\Desktop\proj2\Redes\24_04_RedeNeural_PrevisaoFinanceira\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.exe
+C:\Users\felipe.almeida1.SENACEDU\Desktop\proj2\Redes\24_04_RedeNeural_PrevisaoFinanceira\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.pdb

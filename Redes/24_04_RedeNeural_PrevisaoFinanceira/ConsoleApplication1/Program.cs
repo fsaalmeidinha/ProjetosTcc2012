@@ -11,7 +11,7 @@ namespace ConsoleApplication1
         static void Main(string[] args)
         {
             RNAssessor rnAssessor = new RNAssessor();
-            rnAssessor.ExecutarRedeNeural("PETR4");
+            List<string> nomeRedes = rnAssessor.TreinarRedes();
         }
     }
 }
