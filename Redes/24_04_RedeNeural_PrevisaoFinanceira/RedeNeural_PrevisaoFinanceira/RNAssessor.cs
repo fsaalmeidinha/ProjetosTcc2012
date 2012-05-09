@@ -7,6 +7,7 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using ConverterTabela;
+using System.Configuration;
 
 namespace RedeNeural_PrevisaoFinanceira
 {
@@ -18,6 +19,17 @@ namespace RedeNeural_PrevisaoFinanceira
         //public double TaxaAprendizado = 0.25;
         //public int CiclosTreinamento = 5000;
         private int versao = 1;
+        private static string diretorioRedes
+        {
+            get
+            {
+                if (!String.IsNullOrEmpty(ConfigurationManager.AppSettings["DiretorioRedes"]))
+                    return ConfigurationManager.AppSettings["DiretorioRedes"];
+                else
+                    return System.IO.Directory.GetCurrentDirectory() + "\\Redes\\";
+
+            }
+        }
 
         private string TreinarRedeNeural(string papel, int je, int js, int nn, double ta, int ct, List<double> dados)
         {
@@ -72,16 +84,18 @@ namespace RedeNeural_PrevisaoFinanceira
             return nomeRedes;
         }
 
-
+        public static List<string> ListarRedes()
+        {
+            return System.IO.Directory.GetFiles(diretorioRedes, "*.ndn").ToList();
+        }
 
         private Network RecuperarRedeNeural(string nomeRede)
         {
-            using (Stream stream = File.Open(System.IO.Directory.GetCurrentDirectory() + "\\Redes\\" + nomeRede + ".ndn", FileMode.Open))
+            using (Stream stream = File.Open(diretorioRedes + nomeRede + ".ndn", FileMode.Open))
             {
                 IFormatter formatter = new BinaryFormatter();
                 return (Network)formatter.Deserialize(stream);
             }
         }
-
     }
 }

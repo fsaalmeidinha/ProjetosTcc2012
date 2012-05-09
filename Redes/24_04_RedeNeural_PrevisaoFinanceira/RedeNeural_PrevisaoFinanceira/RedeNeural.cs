@@ -8,11 +8,24 @@ using NeuronDotNet.Core;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Configuration;
 
 namespace RedeNeural_PrevisaoFinanceira
 {
     internal class RedeNeural
     {
+        private static string diretorioRedes
+        {
+            get
+            {
+                if (!String.IsNullOrEmpty(ConfigurationManager.AppSettings["DiretorioRedes"]))
+                    return ConfigurationManager.AppSettings["DiretorioRedes"];
+                else
+                    return System.IO.Directory.GetCurrentDirectory() + "\\Redes\\";
+
+            }
+        }
+
         public static void Treinar(string nomeRedeNeural, List<double> dadosTreinamento, int janelaEntrada, int janelaSaida, int numeroNeuronios, double taxaAprendizado, int ciclos)
         {
             if (dadosTreinamento.Count < janelaEntrada)
@@ -73,8 +86,7 @@ namespace RedeNeural_PrevisaoFinanceira
                 cicloAtual += ciclos / 5;
             }
 
-            //using (Stream stream = File.Open(System.IO.Directory.GetCurrentDirectory() + "\\" + nomeRedeNeural + ".ndn", FileMode.Create))
-            using (Stream stream = File.Open(System.IO.Directory.GetCurrentDirectory() + "\\Redes\\" + nomeRedeNeural + ".ndn", FileMode.Create))
+            using (Stream stream = File.Open(diretorioRedes + nomeRedeNeural + ".ndn", FileMode.Create))
             {
                 IFormatter formatter = new BinaryFormatter();
                 formatter.Serialize(stream, network);

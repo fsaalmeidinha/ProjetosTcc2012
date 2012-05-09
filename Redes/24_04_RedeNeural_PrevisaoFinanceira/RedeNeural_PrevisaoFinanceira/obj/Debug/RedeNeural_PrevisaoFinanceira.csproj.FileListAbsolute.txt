@@ -29,3 +29,11 @@ C:\Users\felipe.almeida1.SENACEDU\Desktop\proj2\Redes\24_04_RedeNeural_PrevisaoF
 C:\Users\felipe.almeida1.SENACEDU\Desktop\proj2\Redes\24_04_RedeNeural_PrevisaoFinanceira\RedeNeural_PrevisaoFinanceira\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\felipe.almeida1.SENACEDU\Desktop\proj2\Redes\24_04_RedeNeural_PrevisaoFinanceira\RedeNeural_PrevisaoFinanceira\obj\Debug\RedeNeural_PrevisaoFinanceira.dll
 C:\Users\felipe.almeida1.SENACEDU\Desktop\proj2\Redes\24_04_RedeNeural_PrevisaoFinanceira\RedeNeural_PrevisaoFinanceira\obj\Debug\RedeNeural_PrevisaoFinanceira.pdb
+Z:\Tcc2012\Redes\24_04_RedeNeural_PrevisaoFinanceira\RedeNeural_PrevisaoFinanceira\bin\Debug\RedeNeural_PrevisaoFinanceira.dll
+Z:\Tcc2012\Redes\24_04_RedeNeural_PrevisaoFinanceira\RedeNeural_PrevisaoFinanceira\bin\Debug\RedeNeural_PrevisaoFinanceira.pdb
+Z:\Tcc2012\Redes\24_04_RedeNeural_PrevisaoFinanceira\RedeNeural_PrevisaoFinanceira\bin\Debug\ConverterTabela.dll
+Z:\Tcc2012\Redes\24_04_RedeNeural_PrevisaoFinanceira\RedeNeural_PrevisaoFinanceira\bin\Debug\ConverterTabela.pdb
+Z:\Tcc2012\Redes\24_04_RedeNeural_PrevisaoFinanceira\RedeNeural_PrevisaoFinanceira\bin\Debug\NeuronDotNet.Core.xml
+Z:\Tcc2012\Redes\24_04_RedeNeural_PrevisaoFinanceira\RedeNeural_PrevisaoFinanceira\obj\Debug\ResolveAssemblyReference.cache
+Z:\Tcc2012\Redes\24_04_RedeNeural_PrevisaoFinanceira\RedeNeural_PrevisaoFinanceira\obj\Debug\RedeNeural_PrevisaoFinanceira.dll
+Z:\Tcc2012\Redes\24_04_RedeNeural_PrevisaoFinanceira\RedeNeural_PrevisaoFinanceira\obj\Debug\RedeNeural_PrevisaoFinanceira.pdb

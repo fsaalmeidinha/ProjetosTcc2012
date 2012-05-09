@@ -1,0 +1,28 @@
+c:\users\felipe.almeida1.senacedu\documents\visual studio 2010\Projects\CaptacaoMelhoresRedes\Testes\bin\Debug\Testes.exe
+c:\users\felipe.almeida1.senacedu\documents\visual studio 2010\Projects\CaptacaoMelhoresRedes\Testes\bin\Debug\Testes.pdb
+c:\users\felipe.almeida1.senacedu\documents\visual studio 2010\Projects\CaptacaoMelhoresRedes\Testes\bin\Debug\CaptacaoMelhoresRedes.dll
+c:\users\felipe.almeida1.senacedu\documents\visual studio 2010\Projects\CaptacaoMelhoresRedes\Testes\bin\Debug\NeuronDotNet.Core.dll
+c:\users\felipe.almeida1.senacedu\documents\visual studio 2010\Projects\CaptacaoMelhoresRedes\Testes\bin\Debug\CaptacaoMelhoresRedes.pdb
+c:\users\felipe.almeida1.senacedu\documents\visual studio 2010\Projects\CaptacaoMelhoresRedes\Testes\bin\Debug\NeuronDotNet.Core.xml
+c:\users\felipe.almeida1.senacedu\documents\visual studio 2010\Projects\CaptacaoMelhoresRedes\Testes\obj\x86\Debug\ResolveAssemblyReference.cache
+c:\users\felipe.almeida1.senacedu\documents\visual studio 2010\Projects\CaptacaoMelhoresRedes\Testes\obj\x86\Debug\Testes.exe
+c:\users\felipe.almeida1.senacedu\documents\visual studio 2010\Projects\CaptacaoMelhoresRedes\Testes\obj\x86\Debug\Testes.pdb
+c:\users\felipe.almeida1.senacedu\documents\visual studio 2010\Projects\CaptacaoMelhoresRedes\Testes\bin\Debug\RedeNeural_PrevisaoFinanceira.dll
+c:\users\felipe.almeida1.senacedu\documents\visual studio 2010\Projects\CaptacaoMelhoresRedes\Testes\bin\Debug\ConverterTabela.dll
+c:\users\felipe.almeida1.senacedu\documents\visual studio 2010\Projects\CaptacaoMelhoresRedes\Testes\bin\Debug\RedeNeural_PrevisaoFinanceira.pdb
+c:\users\felipe.almeida1.senacedu\documents\visual studio 2010\Projects\CaptacaoMelhoresRedes\Testes\bin\Debug\ConverterTabela.pdb
+c:\users\felipe.almeida1.senacedu\documents\visual studio 2010\Projects\CaptacaoMelhoresRedes\Testes\bin\Debug\Testes.exe.config
+C:\Users\felipe.almeida1.SENACEDU\Documents\Visual Studio 2010\Projects\CaptacaoMelhoresRedes - Cópia\Testes\bin\Debug\Testes.exe.config
+C:\Users\felipe.almeida1.SENACEDU\Documents\Visual Studio 2010\Projects\CaptacaoMelhoresRedes - Cópia\Testes\obj\x86\Debug\Testes.exe
+C:\Users\felipe.almeida1.SENACEDU\Documents\Visual Studio 2010\Projects\CaptacaoMelhoresRedes - Cópia\Testes\obj\x86\Debug\Testes.pdb
+C:\Users\felipe.almeida1.SENACEDU\Documents\Visual Studio 2010\Projects\CaptacaoMelhoresRedes - Cópia\Testes\bin\Debug\Testes.exe
+C:\Users\felipe.almeida1.SENACEDU\Documents\Visual Studio 2010\Projects\CaptacaoMelhoresRedes - Cópia\Testes\bin\Debug\Testes.pdb
+C:\Users\felipe.almeida1.SENACEDU\Documents\Visual Studio 2010\Projects\CaptacaoMelhoresRedes - Cópia\Testes\bin\Debug\CaptacaoMelhoresRedes.dll
+C:\Users\felipe.almeida1.SENACEDU\Documents\Visual Studio 2010\Projects\CaptacaoMelhoresRedes - Cópia\Testes\bin\Debug\NeuronDotNet.Core.dll
+C:\Users\felipe.almeida1.SENACEDU\Documents\Visual Studio 2010\Projects\CaptacaoMelhoresRedes - Cópia\Testes\bin\Debug\RedeNeural_PrevisaoFinanceira.dll
+C:\Users\felipe.almeida1.SENACEDU\Documents\Visual Studio 2010\Projects\CaptacaoMelhoresRedes - Cópia\Testes\bin\Debug\ConverterTabela.dll
+C:\Users\felipe.almeida1.SENACEDU\Documents\Visual Studio 2010\Projects\CaptacaoMelhoresRedes - Cópia\Testes\bin\Debug\CaptacaoMelhoresRedes.pdb
+C:\Users\felipe.almeida1.SENACEDU\Documents\Visual Studio 2010\Projects\CaptacaoMelhoresRedes - Cópia\Testes\bin\Debug\NeuronDotNet.Core.xml
+C:\Users\felipe.almeida1.SENACEDU\Documents\Visual Studio 2010\Projects\CaptacaoMelhoresRedes - Cópia\Testes\bin\Debug\RedeNeural_PrevisaoFinanceira.pdb
+C:\Users\felipe.almeida1.SENACEDU\Documents\Visual Studio 2010\Projects\CaptacaoMelhoresRedes - Cópia\Testes\bin\Debug\ConverterTabela.pdb
+C:\Users\felipe.almeida1.SENACEDU\Documents\Visual Studio 2010\Projects\CaptacaoMelhoresRedes - Cópia\Testes\obj\x86\Debug\ResolveAssemblyReference.cache
