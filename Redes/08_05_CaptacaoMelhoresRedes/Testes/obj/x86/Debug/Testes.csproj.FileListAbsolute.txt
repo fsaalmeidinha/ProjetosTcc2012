@@ -38,3 +38,4 @@ C:\Users\Felipe\Desktop\Tcc\Redes\08_05_CaptacaoMelhoresRedes\Testes\obj\x86\Deb
 C:\Users\Felipe\Desktop\Tcc\Redes\08_05_CaptacaoMelhoresRedes\Testes\obj\x86\Debug\Testes.exe
 C:\Users\Felipe\Desktop\Tcc\Redes\08_05_CaptacaoMelhoresRedes\Testes\obj\x86\Debug\Testes.pdb
 C:\Users\Felipe\Desktop\Tcc\Redes\08_05_CaptacaoMelhoresRedes\Testes\bin\Debug\RedeNeural_PrevisaoFinanceira.pdb
+C:\Users\Felipe\Desktop\Tcc\Redes\08_05_CaptacaoMelhoresRedes\Testes\obj\x86\Debug\Testes.csproj.ResolveComReference.cache

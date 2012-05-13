@@ -84,9 +84,9 @@ namespace RedeNeural_PrevisaoFinanceira
             return nomeRedes;
         }
 
-        public static List<string> ListarRedes()
+        public static List<string> ListarRedes(string papel)
         {
-            return System.IO.Directory.GetFiles(diretorioRedes, "*.ndn").ToList().ConvertAll(rede => rede = rede.Split('\\').Last().Replace(".ndn", "")).OrderBy(nome => nome).ToList();
+            return System.IO.Directory.GetFiles(diretorioRedes, "*.ndn").ToList().ConvertAll(rede => rede = rede.Split('\\').Last().Replace(".ndn", "")).Where(n => n.ToUpper().StartsWith(papel.ToUpper() + "_")).OrderBy(nome => nome).ToList();
         }
 
         public static Network RecuperarRedeNeural(string nomeRede)

@@ -10,8 +10,14 @@ namespace ConsoleApplication1
     {
         static void Main(string[] args)
         {
+            DateTime dtNow = DateTime.Now;
+            System.Diagnostics.Debug.WriteLine("Inicio: " + dtNow);
             RNAssessor rnAssessor = new RNAssessor();
             List<string> nomeRedes = rnAssessor.TreinarRedes();
+
+            TimeSpan ts = DateTime.Now.Subtract(dtNow);
+            System.Diagnostics.Debug.WriteLine("Fim: " + DateTime.Now);
+            System.Diagnostics.Debug.WriteLine("Tempo gasto : " + ts);
         }
     }
 }

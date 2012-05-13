@@ -11,15 +11,16 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Configuration;
 using ConverterTabela;
+using CaptacaoMelhoresRedes.Model;
 
 namespace CaptacaoMelhoresRedes
 {
     public class CaptacaoMelhoresRedesRN
     {
         //Número de dias de previsão permitidas
-        private int totalDiasPrevisao = 30;
-        private int versao = 1;
-        private int ciclos = 10000;
+        private static int totalDiasPrevisao = 30;
+        private static int versao = 1;
+        private static int ciclos = 10000;
         private static string diretorioRedesCaptacao
         {
             get
@@ -31,32 +32,24 @@ namespace CaptacaoMelhoresRedes
 
             }
         }
-
-        public List<string> Teste()
+        private static string diretorioRelatorioCrossOver
         {
-            List<string> redes = RNAssessor.ListarRedes();
-            ConfiguracaoCaptacaoRedes configuracaoCaptacao = new ConfiguracaoCaptacaoRedes();
-
-            List<DadosBE> dadosBE = new ConverterTabela.Converter().DePara("PETR4").ToList().ConvertAll(dado => (DadosBE)dado);
-            configuracaoCaptacao.Dados = Utils.NormalizarDados(dadosBE.Select(dadoBE => (double)dadoBE.PrecoAbertura).ToList());
-            configuracaoCaptacao.Papel = "PETR4";
-            foreach (string nomeRede in redes)
+            get
             {
-                Network redeNeuralPrevisaoFinanceira = RNAssessor.RecuperarRedeNeural(nomeRede);
-                RedePrevisaoFinanceira rpf = new RedePrevisaoFinanceira();
-                rpf.JanelaEntrada = Convert.ToInt32(nomeRede.Split(new string[] { "_je", "_js" }, StringSplitOptions.RemoveEmptyEntries)[1]);
-                rpf.JanelaSaida = Convert.ToInt32(nomeRede.Split(new string[] { "_js", "_nn" }, StringSplitOptions.RemoveEmptyEntries)[1]);
-                rpf.RedeNeuralPrevisaoFinanceira = redeNeuralPrevisaoFinanceira;
+                if (!String.IsNullOrEmpty(ConfigurationManager.AppSettings["DiretorioRelatorioCrossOver"]))
+                    return ConfigurationManager.AppSettings["DiretorioRelatorioCrossOver"];
+                else
+                    return System.IO.Directory.GetCurrentDirectory() + "\\DiretorioRelatorioCrossOver\\";
 
-                configuracaoCaptacao.RedesPrevisao.Add(rpf);
             }
-
-            TreinarRedes(configuracaoCaptacao);
-
-            return redes;
         }
 
-        private void TreinarRedes(ConfiguracaoCaptacaoRedes configuracaoCaptacao)
+        /// <summary>
+        /// Treina as redes de captação necessárias para identificar a melhor rede para cada um dos dias de previsao
+        /// Por exemplo: se forem permitidos 30 dias de previsao, teremos 30 redes para cada papel
+        /// </summary>
+        /// <param name="configuracaoCaptacao"></param>
+        internal static void Treinar(ConfiguracaoCaptacaoRedes configuracaoCaptacao)
         {
             //Seleção dos dados para o treinamento
             Dictionary<List<double>, List<double>> dadosTreinamento = SelecionarInput_Output(configuracaoCaptacao.Dados, configuracaoCaptacao.RedesPrevisao.Max(rp => rp.JanelaEntrada));
@@ -70,17 +63,26 @@ namespace CaptacaoMelhoresRedes
                 }
             }
 
-            //Seleciona os treinamentos por dia de previsao
+            //Seleciona os treinamentos por dia de previsao, sendo o input os dados de entrada da rede de previsao financeira e como saida,
+            //a taxa de acerto de cada uma das redes executadas em cada dia de previsao
+            //OBS: A taxa de acerto da rede por dia é alimentada
             Dictionary<int, TrainingSet> treinamentosPorDia = SelecionarTreinamentosPorDia(dadosTreinamento, configuracaoCaptacao.RedesPrevisao);//new Dictionary<int, TrainingSet>();
+
+            GerarRelatorioCrossOver(String.Format("{0}_{1}_{2}", Directory.GetFiles(diretorioRelatorioCrossOver).Count() + 1, configuracaoCaptacao.Papel, DateTime.Now.ToString().Replace("/", "_").Replace(":", "_".Replace(" ", ""))), configuracaoCaptacao.RedesPrevisao);
 
             foreach (KeyValuePair<int, TrainingSet> treinamento in treinamentosPorDia)
             {
-                string nomeRede = string.Format("captacaoMelhorRede_{0}_{1}", treinamento.Key, versao);
-                TreinarRede(nomeRede, treinamento.Value);
+                string nomeRede = string.Format("CaptacaoMelhorRede_papel{0}_dia{1}_v{2}", configuracaoCaptacao.Papel, treinamento.Key, versao);
+                TreinarRedeDiaria(nomeRede, treinamento.Value);
             }
         }
 
-        private void TreinarRede(string nomeRede, TrainingSet trainingSet)
+        /// <summary>
+        /// Treina a rede que diz qual é a melhor configuração de rede para um papel em um dia
+        /// </summary>
+        /// <param name="nomeRede"></param>
+        /// <param name="trainingSet"></param>
+        private static void TreinarRedeDiaria(string nomeRede, TrainingSet trainingSet)
         {
             BackpropagationNetwork network;
             int numeroNeuronios = 4;
@@ -140,7 +142,14 @@ namespace CaptacaoMelhoresRedes
             }
         }
 
-        private Dictionary<int, TrainingSet> SelecionarTreinamentosPorDia(Dictionary<List<double>, List<double>> dadosTreinamento, List<RedePrevisaoFinanceira> redesPrevisaoFinanceira)
+        /// <summary>
+        /// Roda as redes para cada um dos treinamentos, separando os treinamentos por dia
+        /// Calcula também a taxa média de acerto de cada rede neural por dia
+        /// </summary>
+        /// <param name="dadosTreinamento"></param>
+        /// <param name="redesPrevisaoFinanceira"></param>
+        /// <returns></returns>
+        private static Dictionary<int, TrainingSet> SelecionarTreinamentosPorDia(Dictionary<List<double>, List<double>> dadosTreinamento, List<RedePrevisaoFinanceira> redesPrevisaoFinanceira)
         {
             Dictionary<int, TrainingSet> treinamentosPorDia = new Dictionary<int, TrainingSet>();
             for (int dia = 0; dia < totalDiasPrevisao; dia++)
@@ -151,11 +160,15 @@ namespace CaptacaoMelhoresRedes
             //Roda as redes para cada um dos dados de treinamento selecionados
             foreach (KeyValuePair<List<double>, List<double>> dadoTreinamento in dadosTreinamento)
             {
+                //Guarda um historico dos outputs das redes para tratar as redes que tem output menor do que o tamanho da previsao
+                List<List<double>> outputsRedes = new List<List<double>>();
                 List<double[]> taxaAcertoPorDiaParaTreinamento = new List<double[]>();
                 foreach (RedePrevisaoFinanceira redePrevisao in redesPrevisaoFinanceira)
                 {
                     //Roda a rede neural, gerando a previsao
-                    double[] outputPrevisao = redePrevisao.RedeNeuralPrevisaoFinanceira.Run(dadoTreinamento.Key.Take(redePrevisao.JanelaEntrada).ToArray());
+                    double[] outputPrevisao = redePrevisao.RedeNeuralPrevisaoFinanceira.Run(dadoTreinamento.Key.Skip(dadoTreinamento.Key.Count - redePrevisao.JanelaEntrada).Take(redePrevisao.JanelaEntrada).ToArray());
+                    //Alimenta o historico de previsoes de cada rede
+                    outputsRedes.Add(outputPrevisao.ToList());
                     double[] taxaAcertoPorDia = new double[totalDiasPrevisao];
                     for (int diasPrevistosRN = 0; diasPrevistosRN < outputPrevisao.Length; diasPrevistosRN++)
                     {
@@ -165,6 +178,35 @@ namespace CaptacaoMelhoresRedes
                         redePrevisao.TaxaMediaAcertoPorDia[diasPrevistosRN] += ta;
                     }
                     taxaAcertoPorDiaParaTreinamento.Add(taxaAcertoPorDia);
+                }
+
+                //Lista com o melhor desultado de cada dia (cada item da lista corresponde um dia..)
+                List<double> melhoresResultadosDia = new List<double>(dadoTreinamento.Key);
+                //Trata as taxas de acerto que não foram calculadas pois a rede tem output menor do que a quantidade de dias da previsao
+                for (int dia = 1; dia < totalDiasPrevisao; dia++)
+                {
+                    //Recupera o indice da rede que tem a melhor taxa de acerto para o dia anterior
+                    int indMelhorRedeParaODiaAnterior = taxaAcertoPorDiaParaTreinamento.IndexOf(taxaAcertoPorDiaParaTreinamento.OrderByDescending(taxasAcertoRede => taxasAcertoRede[dia - 1]).First());
+                    //Adiciona o melhor resultado a lista de melhores resultados
+                    melhoresResultadosDia.Add(outputsRedes[indMelhorRedeParaODiaAnterior][dia - 1]);
+                    for (int indRede = 0; indRede < taxaAcertoPorDiaParaTreinamento.Count; indRede++)
+                    {
+                        //Verifica se a taxa de acerto do dia para a rede ja foi calculada
+                        if (taxaAcertoPorDiaParaTreinamento[indRede][dia] == 0)
+                        {
+                            //Ultiliza os ultimos melhores dados para fazer uma nova previsao
+                            double[] inputRede = melhoresResultadosDia.Skip(melhoresResultadosDia.Count - redesPrevisaoFinanceira[indRede].JanelaEntrada).Take(redesPrevisaoFinanceira[indRede].JanelaEntrada).ToArray();
+                            double[] outputRede = redesPrevisaoFinanceira[indRede].RedeNeuralPrevisaoFinanceira.Run(inputRede);
+                            //Adiciona o dia previsto na lista de outputs
+                            outputsRedes[indRede].Add(outputRede.Last());
+                            //Calcula a taxa de acerto da previsao
+                            double ta = Math.Min(outputRede.Last(), dadoTreinamento.Value[dia]) / Math.Max(outputRede.Last(), dadoTreinamento.Value[dia]);
+                            //Adiciona a taxa de acerto da rede para o dia
+                            taxaAcertoPorDiaParaTreinamento[indRede][dia] = ta;
+                            //Atualiza a taxa de acerto da rede
+                            redesPrevisaoFinanceira[indRede].TaxaMediaAcertoPorDia[dia] += ta;
+                        }
+                    }
                 }
 
                 for (int dia = 0; dia < totalDiasPrevisao; dia++)
@@ -191,7 +233,13 @@ namespace CaptacaoMelhoresRedes
             return treinamentosPorDia;
         }
 
-        private Dictionary<List<double>, List<double>> SelecionarInput_Output(List<double> dados, int tamanhoInput)
+        /// <summary>
+        /// Quebra os dados da cotação do ativo em vários treinamentos para a rede neural de captação de dados
+        /// </summary>
+        /// <param name="dados"></param>
+        /// <param name="tamanhoInput"></param>
+        /// <returns></returns>
+        private static Dictionary<List<double>, List<double>> SelecionarInput_Output(List<double> dados, int tamanhoInput)
         {
             Dictionary<List<double>, List<double>> dadosTreinamento = new Dictionary<List<double>, List<double>>();
             for (int i = 0; i < dados.Count - (tamanhoInput + totalDiasPrevisao); i += 3)
@@ -201,96 +249,51 @@ namespace CaptacaoMelhoresRedes
             return dadosTreinamento;
         }
 
-        internal class ConfiguracaoCaptacaoRedes
+        /// <summary>
+        /// Gera o relatório que diz qual que é a taxa de acerto de cada rede neural para cada um dos dias
+        /// </summary>
+        /// <param name="redesNeurais"></param>
+        private static void GerarRelatorioCrossOver(string nomePlanilha, List<RedePrevisaoFinanceira> redesNeurais)
         {
-            public ConfiguracaoCaptacaoRedes()
+            //Cria o arquivo do excel
+            Microsoft.Office.Interop.Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();
+            excelApp.Workbooks.Add(1);
+            Microsoft.Office.Interop.Excel.Workbook arq_de_trab = (Microsoft.Office.Interop.Excel.Workbook)excelApp.Workbooks.Add(1);
+            Microsoft.Office.Interop.Excel.Worksheet planilha = (Microsoft.Office.Interop.Excel.Worksheet)excelApp.Worksheets.Add(Type.Missing, Type.Missing, Type.Missing, Type.Missing);
+            planilha.Cells[1, 1] = DateTime.Now.ToString();
+            //Cabeçalho
+            planilha.Cells[2, 1] = "Nome da Rede";
+            planilha.Cells[2, 2] = "Janela Entrada";
+            planilha.Cells[2, 3] = "Janela Saida";
+            planilha.Cells[2, 4] = "Num Neurônios";
+            planilha.Cells[2, 5] = "Taxa Aprendizado";
+            planilha.Cells[2, 6] = "Ciclos Treinamento";
+            for (int colDia = 1; colDia <= totalDiasPrevisao; colDia++)
             {
-                RedesPrevisao = new List<RedePrevisaoFinanceira>();
+                planilha.Cells[2, colDia + 6] = "Dia " + colDia;
             }
 
-            public string Papel { get; set; }
-            public List<double> Dados { get; set; }
-            public List<RedePrevisaoFinanceira> RedesPrevisao { get; set; }
-        }
-
-        internal class RedePrevisaoFinanceira
-        {
-            public RedePrevisaoFinanceira()
+            int linha = 3;
+            //Linhas da coluna
+            foreach (RedePrevisaoFinanceira redePrevisao in redesNeurais)
             {
-                TaxaMediaAcertoPorDia = new Dictionary<int, double>();
+                planilha.Cells[linha, 1] = redePrevisao.NomeRede;
+                planilha.Cells[linha, 2] = redePrevisao.JanelaEntrada;
+                planilha.Cells[linha, 3] = redePrevisao.JanelaSaida;
+                planilha.Cells[linha, 4] = redePrevisao.NomeRede.Split(new string[] { "_nn", "_ta" }, StringSplitOptions.RemoveEmptyEntries)[1];
+                planilha.Cells[linha, 5] = redePrevisao.NomeRede.Split(new string[] { "_ta", "_ct" }, StringSplitOptions.RemoveEmptyEntries)[1];
+                planilha.Cells[linha, 6] = redePrevisao.NomeRede.Split(new string[] { "_ct", "_v" }, StringSplitOptions.RemoveEmptyEntries)[1];
+                for (int dia = 1; dia <= totalDiasPrevisao; dia++)
+                {
+                    planilha.Cells[linha, 6 + dia] = redePrevisao.TaxaMediaAcertoPorDia[dia - 1];
+                }
+                linha++;
             }
 
-            public int JanelaEntrada { get; set; }
-            public int JanelaSaida { get; set; }
-            public Network RedeNeuralPrevisaoFinanceira { get; set; }
-            public Dictionary<int, double> TaxaMediaAcertoPorDia { get; set; }
+            arq_de_trab.SaveAs(diretorioRelatorioCrossOver + nomePlanilha, Microsoft.Office.Interop.Excel.XlFileFormat.xlExcel7, Type.Missing,
+                Type.Missing, false, false, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlNoChange, Type.Missing,
+                Type.Missing, Type.Missing, Type.Missing, Type.Missing);
+            arq_de_trab.Close();
         }
-        //public static void Treinar(string nomeRedeNeural, List<double> dadosTreinamento, int janelaEntrada, int janelaSaida, int numeroNeuronios, double taxaAprendizado, int ciclos)
-        //{
-        //    if (dadosTreinamento.Count < janelaEntrada)
-        //        return;
-
-        //    /*Cria um mapeamento de entradas para saida com o janelamento informado*/
-        //    List<KeyValuePair<double[], double[]>> dadosPorJanelamento = Utils.SelecionarCotacoesPorJanelamento(Utils.NormalizarDados(dadosTreinamento), janelaEntrada, janelaSaida, true);
-        //    /*Cria um mapeamento de entradas para saida com o janelamento informado*/
-
-        //    BackpropagationNetwork network;
-        //    //int numeroNeuronios = 4;
-        //    //double taxaAprendizado = 0.25d;
-
-        //    ActivationLayer inputLayer = new LinearLayer(janelaEntrada);
-        //    ActivationLayer hiddenLayer = new SigmoidLayer(numeroNeuronios);
-        //    ActivationLayer outputLayer = new SigmoidLayer(janelaSaida);
-        //    new BackpropagationConnector(inputLayer, hiddenLayer).Initializer = new RandomFunction(0d, 0.3d);
-        //    new BackpropagationConnector(hiddenLayer, outputLayer).Initializer = new RandomFunction(0d, 0.3d);
-        //    network = new BackpropagationNetwork(inputLayer, outputLayer);
-        //    network.SetLearningRate(taxaAprendizado);
-
-        //    TrainingSet trainingSet = new TrainingSet(janelaEntrada, janelaSaida);
-        //    foreach (KeyValuePair<double[], double[]> kvp in dadosPorJanelamento)
-        //    {
-        //        trainingSet.Add(new TrainingSample(kvp.Key, kvp.Value));
-        //    }
-
-        //    network.EndEpochEvent += new TrainingEpochEventHandler(
-        //        delegate(object senderNetwork, TrainingEpochEventArgs argsNw)
-        //        {
-        //            //trainingProgressBar.Value = (int)(argsNw.TrainingIteration * 100d / cycles);
-        //            //Application.DoEvents();
-        //        });
-
-        //    bool erroAceito = false;
-        //    int cicloAtual = ciclos / 5;
-        //    while (erroAceito == false && cicloAtual <= ciclos)
-        //    {
-        //        network.Learn(trainingSet, cicloAtual);
-        //        foreach (KeyValuePair<double[], double[]> kvp in dadosPorJanelamento)
-        //        {
-        //            double[] previsao = network.Run(kvp.Key);
-        //            double erroAcumulado = 0;
-        //            for (int i = 0; i < janelaSaida; i++)
-        //            {
-        //                erroAcumulado += Math.Abs(100 - previsao[i] * 100 / kvp.Value[i]);
-        //            }
-        //            double erroMedio = erroAcumulado / janelaSaida;
-
-        //            if (erroMedio > 1.0)//Verifica se houve mais de 1% de erro
-        //            {
-        //                erroAceito = false;
-        //                trainingSet.Add(new TrainingSample(kvp.Key, kvp.Value));
-        //            }
-        //            else
-        //                erroAceito = true;
-        //        }
-        //        cicloAtual += ciclos / 5;
-        //    }
-
-        //    //using (Stream stream = File.Open(System.IO.Directory.GetCurrentDirectory() + "\\" + nomeRedeNeural + ".ndn", FileMode.Create))
-        //    using (Stream stream = File.Open(System.IO.Directory.GetCurrentDirectory() + "\\Redes\\" + nomeRedeNeural + ".ndn", FileMode.Create))
-        //    {
-        //        IFormatter formatter = new BinaryFormatter();
-        //        formatter.Serialize(stream, network);
-        //    }
-        //}
     }
 }

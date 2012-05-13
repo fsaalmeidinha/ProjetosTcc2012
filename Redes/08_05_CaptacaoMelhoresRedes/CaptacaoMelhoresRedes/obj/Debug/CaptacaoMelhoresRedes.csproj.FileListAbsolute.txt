@@ -30,3 +30,4 @@ C:\Users\Felipe\Desktop\Tcc\Redes\08_05_CaptacaoMelhoresRedes\CaptacaoMelhoresRe
 C:\Users\Felipe\Desktop\Tcc\Redes\08_05_CaptacaoMelhoresRedes\CaptacaoMelhoresRedes\obj\Debug\CaptacaoMelhoresRedes.pdb
 C:\Users\Felipe\Desktop\Tcc\Redes\08_05_CaptacaoMelhoresRedes\CaptacaoMelhoresRedes\bin\Debug\RedeNeural_PrevisaoFinanceira.dll
 C:\Users\Felipe\Desktop\Tcc\Redes\08_05_CaptacaoMelhoresRedes\CaptacaoMelhoresRedes\bin\Debug\RedeNeural_PrevisaoFinanceira.pdb
+C:\Users\Felipe\Desktop\Tcc\Redes\08_05_CaptacaoMelhoresRedes\CaptacaoMelhoresRedes\obj\Debug\CaptacaoMelhoresRedes.csproj.ResolveComReference.cache
