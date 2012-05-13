@@ -71,17 +71,18 @@ namespace RedeNeural_PrevisaoFinanceira
                     double erroAcumulado = 0;
                     for (int i = 0; i < janelaSaida; i++)
                     {
-                        erroAcumulado += Math.Abs(100 - previsao[i] * 100 / kvp.Value[i]);
+                        erroAcumulado += 1 - Math.Min(previsao[i], kvp.Value[i]) / Math.Max(previsao[i], kvp.Value[i]);
+                        //erroAcumulado += Math.Abs(100 - previsao[i] * 100 / kvp.Value[i]);
                     }
                     double erroMedio = erroAcumulado / janelaSaida;
 
-                    if (erroMedio > 1.0)//Verifica se houve mais de 1% de erro
+                    if (erroMedio > 0.01)//Verifica se houve mais de 1% de erro
                     {
                         erroAceito = false;
                         trainingSet.Add(new TrainingSample(kvp.Key, kvp.Value));
                     }
                     else
-                        erroAceito = true;
+                        erroAceito = erroAceito &&  true;
                 }
                 cicloAtual += ciclos / 5;
             }

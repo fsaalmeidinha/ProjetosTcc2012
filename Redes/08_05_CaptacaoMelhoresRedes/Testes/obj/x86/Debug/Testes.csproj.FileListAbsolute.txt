@@ -26,3 +26,15 @@ C:\Users\felipe.almeida1.SENACEDU\Documents\Visual Studio 2010\Projects\Captacao
 C:\Users\felipe.almeida1.SENACEDU\Documents\Visual Studio 2010\Projects\CaptacaoMelhoresRedes - Cópia\Testes\bin\Debug\RedeNeural_PrevisaoFinanceira.pdb
 C:\Users\felipe.almeida1.SENACEDU\Documents\Visual Studio 2010\Projects\CaptacaoMelhoresRedes - Cópia\Testes\bin\Debug\ConverterTabela.pdb
 C:\Users\felipe.almeida1.SENACEDU\Documents\Visual Studio 2010\Projects\CaptacaoMelhoresRedes - Cópia\Testes\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Felipe\Desktop\Tcc\Redes\08_05_CaptacaoMelhoresRedes\Testes\bin\Debug\Testes.exe.config
+C:\Users\Felipe\Desktop\Tcc\Redes\08_05_CaptacaoMelhoresRedes\Testes\bin\Debug\Testes.exe
+C:\Users\Felipe\Desktop\Tcc\Redes\08_05_CaptacaoMelhoresRedes\Testes\bin\Debug\Testes.pdb
+C:\Users\Felipe\Desktop\Tcc\Redes\08_05_CaptacaoMelhoresRedes\Testes\bin\Debug\CaptacaoMelhoresRedes.dll
+C:\Users\Felipe\Desktop\Tcc\Redes\08_05_CaptacaoMelhoresRedes\Testes\bin\Debug\NeuronDotNet.Core.dll
+C:\Users\Felipe\Desktop\Tcc\Redes\08_05_CaptacaoMelhoresRedes\Testes\bin\Debug\RedeNeural_PrevisaoFinanceira.dll
+C:\Users\Felipe\Desktop\Tcc\Redes\08_05_CaptacaoMelhoresRedes\Testes\bin\Debug\ConverterTabela.dll
+C:\Users\Felipe\Desktop\Tcc\Redes\08_05_CaptacaoMelhoresRedes\Testes\bin\Debug\CaptacaoMelhoresRedes.pdb
+C:\Users\Felipe\Desktop\Tcc\Redes\08_05_CaptacaoMelhoresRedes\Testes\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Felipe\Desktop\Tcc\Redes\08_05_CaptacaoMelhoresRedes\Testes\obj\x86\Debug\Testes.exe
+C:\Users\Felipe\Desktop\Tcc\Redes\08_05_CaptacaoMelhoresRedes\Testes\obj\x86\Debug\Testes.pdb
+C:\Users\Felipe\Desktop\Tcc\Redes\08_05_CaptacaoMelhoresRedes\Testes\bin\Debug\RedeNeural_PrevisaoFinanceira.pdb

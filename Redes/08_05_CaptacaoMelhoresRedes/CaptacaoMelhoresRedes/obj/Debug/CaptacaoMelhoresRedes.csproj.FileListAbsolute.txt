@@ -22,3 +22,11 @@ C:\Users\felipe.almeida1.SENACEDU\Documents\Visual Studio 2010\Projects\Captacao
 C:\Users\felipe.almeida1.SENACEDU\Documents\Visual Studio 2010\Projects\CaptacaoMelhoresRedes - Cópia\CaptacaoMelhoresRedes\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\felipe.almeida1.SENACEDU\Documents\Visual Studio 2010\Projects\CaptacaoMelhoresRedes - Cópia\CaptacaoMelhoresRedes\obj\Debug\CaptacaoMelhoresRedes.dll
 C:\Users\felipe.almeida1.SENACEDU\Documents\Visual Studio 2010\Projects\CaptacaoMelhoresRedes - Cópia\CaptacaoMelhoresRedes\obj\Debug\CaptacaoMelhoresRedes.pdb
+C:\Users\Felipe\Desktop\Tcc\Redes\08_05_CaptacaoMelhoresRedes\CaptacaoMelhoresRedes\bin\Debug\CaptacaoMelhoresRedes.dll.config
+C:\Users\Felipe\Desktop\Tcc\Redes\08_05_CaptacaoMelhoresRedes\CaptacaoMelhoresRedes\bin\Debug\CaptacaoMelhoresRedes.dll
+C:\Users\Felipe\Desktop\Tcc\Redes\08_05_CaptacaoMelhoresRedes\CaptacaoMelhoresRedes\bin\Debug\CaptacaoMelhoresRedes.pdb
+C:\Users\Felipe\Desktop\Tcc\Redes\08_05_CaptacaoMelhoresRedes\CaptacaoMelhoresRedes\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Felipe\Desktop\Tcc\Redes\08_05_CaptacaoMelhoresRedes\CaptacaoMelhoresRedes\obj\Debug\CaptacaoMelhoresRedes.dll
+C:\Users\Felipe\Desktop\Tcc\Redes\08_05_CaptacaoMelhoresRedes\CaptacaoMelhoresRedes\obj\Debug\CaptacaoMelhoresRedes.pdb
+C:\Users\Felipe\Desktop\Tcc\Redes\08_05_CaptacaoMelhoresRedes\CaptacaoMelhoresRedes\bin\Debug\RedeNeural_PrevisaoFinanceira.dll
+C:\Users\Felipe\Desktop\Tcc\Redes\08_05_CaptacaoMelhoresRedes\CaptacaoMelhoresRedes\bin\Debug\RedeNeural_PrevisaoFinanceira.pdb

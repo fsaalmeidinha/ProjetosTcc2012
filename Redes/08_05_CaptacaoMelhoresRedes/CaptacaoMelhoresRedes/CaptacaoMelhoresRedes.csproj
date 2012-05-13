@@ -35,13 +35,15 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Z:\Tcc2012\Redes\24_04_RedeNeural_PrevisaoFinanceira\RedeNeural_PrevisaoFinanceira\bin\Debug\ConverterTabela.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Build.Framework" />
     <Reference Include="NeuronDotNet.Core">
       <HintPath>Z:\Tcc2012\Redes\24_04_RedeNeural_PrevisaoFinanceira\RedeNeural_PrevisaoFinanceira\bin\Debug\NeuronDotNet.Core.dll</HintPath>
     </Reference>
-    <Reference Include="RedeNeural_PrevisaoFinanceira">
-      <HintPath>Z:\Tcc2012\Redes\24_04_RedeNeural_PrevisaoFinanceira\RedeNeural_PrevisaoFinanceira\bin\Debug\RedeNeural_PrevisaoFinanceira.dll</HintPath>
+    <Reference Include="RedeNeural_PrevisaoFinanceira, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\24_04_RedeNeural_PrevisaoFinanceira\RedeNeural_PrevisaoFinanceira\bin\Debug\RedeNeural_PrevisaoFinanceira.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />

@@ -86,10 +86,10 @@ namespace RedeNeural_PrevisaoFinanceira
 
         public static List<string> ListarRedes()
         {
-            return System.IO.Directory.GetFiles(diretorioRedes, "*.ndn").ToList();
+            return System.IO.Directory.GetFiles(diretorioRedes, "*.ndn").ToList().ConvertAll(rede => rede = rede.Split('\\').Last().Replace(".ndn", "")).OrderBy(nome => nome).ToList();
         }
 
-        private Network RecuperarRedeNeural(string nomeRede)
+        public static Network RecuperarRedeNeural(string nomeRede)
         {
             using (Stream stream = File.Open(diretorioRedes + nomeRede + ".ndn", FileMode.Open))
             {
