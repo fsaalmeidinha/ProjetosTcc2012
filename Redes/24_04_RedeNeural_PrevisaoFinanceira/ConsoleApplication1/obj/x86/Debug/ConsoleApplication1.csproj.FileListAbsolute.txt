@@ -54,3 +54,4 @@ Z:\Tcc2012\Redes\24_04_RedeNeural_PrevisaoFinanceira\ConsoleApplication1\bin\Deb
 Z:\Tcc2012\Redes\24_04_RedeNeural_PrevisaoFinanceira\ConsoleApplication1\bin\Debug\NeuronDotNet.Core.xml
 Z:\Tcc2012\Redes\24_04_RedeNeural_PrevisaoFinanceira\ConsoleApplication1\bin\Debug\ConverterTabela.pdb
 Z:\Tcc2012\Redes\24_04_RedeNeural_PrevisaoFinanceira\ConsoleApplication1\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Felipe\Desktop\Tcc\Lib-Geral\ConsoleApplication1.exe.config

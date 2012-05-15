@@ -1,0 +1,5 @@
+C:\Users\Felipe\Desktop\Tcc\Redes\PrevisaoFinanceira\PrevisaoFinanceira\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Felipe\Desktop\Tcc\Redes\Lib-Geral\PrevisaoFinanceira.dll
+C:\Users\Felipe\Desktop\Tcc\Redes\Lib-Geral\PrevisaoFinanceira.pdb
+C:\Users\Felipe\Desktop\Tcc\Redes\PrevisaoFinanceira\PrevisaoFinanceira\obj\Debug\PrevisaoFinanceira.dll
+C:\Users\Felipe\Desktop\Tcc\Redes\PrevisaoFinanceira\PrevisaoFinanceira\obj\Debug\PrevisaoFinanceira.pdb
