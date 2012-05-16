@@ -64,6 +64,7 @@ namespace RedeNeural_PrevisaoFinanceira
             int cicloAtual = ciclos / 5;
             while (erroAceito == false && cicloAtual <= ciclos)
             {
+                erroAceito = true;
                 network.Learn(trainingSet, cicloAtual);
                 foreach (KeyValuePair<double[], double[]> kvp in dadosPorJanelamento)
                 {
@@ -81,8 +82,6 @@ namespace RedeNeural_PrevisaoFinanceira
                         erroAceito = false;
                         trainingSet.Add(new TrainingSample(kvp.Key, kvp.Value));
                     }
-                    else
-                        erroAceito = erroAceito && true;
                 }
                 cicloAtual += ciclos / 5;
             }
