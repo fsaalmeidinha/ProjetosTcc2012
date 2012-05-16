@@ -32,7 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CaptacaoMelhoresRedes, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
-    <Reference Include="ConverterTabela, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="DataBaseUtils, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="RedeNeural_PrevisaoFinanceira, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />

@@ -31,10 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ConverterTabela, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Z:\Tcc2012\Redes\24_04_RedeNeural_PrevisaoFinanceira\RedeNeural_PrevisaoFinanceira\bin\Debug\ConverterTabela.dll</HintPath>
-    </Reference>
+    <Reference Include="DataBaseUtils, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Build.Framework" />
     <Reference Include="NeuronDotNet.Core">
       <HintPath>Z:\Tcc2012\Redes\24_04_RedeNeural_PrevisaoFinanceira\RedeNeural_PrevisaoFinanceira\bin\Debug\NeuronDotNet.Core.dll</HintPath>

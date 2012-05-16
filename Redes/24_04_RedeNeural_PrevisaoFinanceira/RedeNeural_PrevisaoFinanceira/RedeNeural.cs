@@ -26,13 +26,13 @@ namespace RedeNeural_PrevisaoFinanceira
             }
         }
 
-        public static void Treinar(string nomeRedeNeural, List<double> dadosTreinamento, int janelaEntrada, int janelaSaida, int numeroNeuronios, double taxaAprendizado, int ciclos)
+        public static void Treinar(string papel, string nomeRedeNeural, List<double> dadosTreinamento, int janelaEntrada, int janelaSaida, int numeroNeuronios, double taxaAprendizado, int ciclos)
         {
             if (dadosTreinamento.Count < janelaEntrada)
                 return;
 
             /*Cria um mapeamento de entradas para saida com o janelamento informado*/
-            List<KeyValuePair<double[], double[]>> dadosPorJanelamento = Utils.SelecionarCotacoesPorJanelamento(Utils.NormalizarDados(dadosTreinamento), janelaEntrada, janelaSaida, true);
+            List<KeyValuePair<double[], double[]>> dadosPorJanelamento = DataBaseUtils.DataBaseUtils.SelecionarCotacoesPorJanelamento(DataBaseUtils.DataBaseUtils.NormalizarDados(dadosTreinamento, papel), janelaEntrada, janelaSaida, true);
             /*Cria um mapeamento de entradas para saida com o janelamento informado*/
 
             BackpropagationNetwork network;
@@ -82,7 +82,7 @@ namespace RedeNeural_PrevisaoFinanceira
                         trainingSet.Add(new TrainingSample(kvp.Key, kvp.Value));
                     }
                     else
-                        erroAceito = erroAceito &&  true;
+                        erroAceito = erroAceito && true;
                 }
                 cicloAtual += ciclos / 5;
             }

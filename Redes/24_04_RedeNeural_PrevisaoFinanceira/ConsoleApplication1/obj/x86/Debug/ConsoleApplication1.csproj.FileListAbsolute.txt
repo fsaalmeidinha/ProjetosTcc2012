@@ -18,8 +18,6 @@ C:\Users\Felipe\Desktop\Tcc\Redes\24_04_RedeNeural_PrevisaoFinanceira\ConsoleApp
 C:\Users\Felipe\Desktop\Tcc\Redes\24_04_RedeNeural_PrevisaoFinanceira\ConsoleApplication1\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\Users\Felipe\Desktop\Tcc\Redes\24_04_RedeNeural_PrevisaoFinanceira\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.exe
 C:\Users\Felipe\Desktop\Tcc\Redes\24_04_RedeNeural_PrevisaoFinanceira\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.pdb
-C:\Users\Felipe\Desktop\Tcc\Redes\24_04_RedeNeural_PrevisaoFinanceira\ConsoleApplication1\bin\Debug\ConverterTabela.dll
-C:\Users\Felipe\Desktop\Tcc\Redes\24_04_RedeNeural_PrevisaoFinanceira\ConsoleApplication1\bin\Debug\ConverterTabela.pdb
 C:\Users\Felipe\Desktop\Tcc\Redes\24_04_RedeNeural_PrevisaoFinanceira\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
 C:\Users\felipe.almeida1.SENACEDU.001\Desktop\Projetos\Redes\24_04_RedeNeural_PrevisaoFinanceira\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
 C:\Users\felipe.almeida1.SENACEDU.001\Desktop\Projetos\Redes\24_04_RedeNeural_PrevisaoFinanceira\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
@@ -55,3 +53,5 @@ Z:\Tcc2012\Redes\24_04_RedeNeural_PrevisaoFinanceira\ConsoleApplication1\bin\Deb
 Z:\Tcc2012\Redes\24_04_RedeNeural_PrevisaoFinanceira\ConsoleApplication1\bin\Debug\ConverterTabela.pdb
 Z:\Tcc2012\Redes\24_04_RedeNeural_PrevisaoFinanceira\ConsoleApplication1\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\Users\Felipe\Desktop\Tcc\Lib-Geral\ConsoleApplication1.exe.config
+C:\Users\Felipe\Desktop\Tcc\Redes\24_04_RedeNeural_PrevisaoFinanceira\ConsoleApplication1\bin\Debug\DataBaseUtils.dll
+C:\Users\Felipe\Desktop\Tcc\Redes\24_04_RedeNeural_PrevisaoFinanceira\ConsoleApplication1\bin\Debug\DataBaseUtils.pdb

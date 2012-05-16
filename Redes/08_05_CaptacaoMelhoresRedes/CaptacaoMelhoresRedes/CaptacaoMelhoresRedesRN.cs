@@ -10,7 +10,6 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Configuration;
-using ConverterTabela;
 using CaptacaoMelhoresRedes.Model;
 
 namespace CaptacaoMelhoresRedes

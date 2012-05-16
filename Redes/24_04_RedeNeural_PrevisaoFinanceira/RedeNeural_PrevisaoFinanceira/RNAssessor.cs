@@ -6,7 +6,7 @@ using NeuronDotNet.Core;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
-using ConverterTabela;
+using DataBaseUtils;
 using System.Configuration;
 
 namespace RedeNeural_PrevisaoFinanceira
@@ -34,12 +34,11 @@ namespace RedeNeural_PrevisaoFinanceira
         private string TreinarRedeNeural(string papel, int je, int js, int nn, double ta, int ct, List<double> dados)
         {
             string nomeRede = String.Format("{0}_je{1}_js{2}_nn{3}_ta{4}_ct{5}_v{6}", papel, je, js, nn, ta.ToString().Replace('.', ','), ct, versao);
-            ConverterTabela.Converter c = new ConverterTabela.Converter();
 
             double min = dados.Min();
             double max = dados.Max();
 
-            RedeNeural.Treinar(nomeRede, dados, je, js, nn, ta, ct);
+            RedeNeural.Treinar(papel, nomeRede, dados, je, js, nn, ta, ct);
             return nomeRede;
             //TreinarRedeNeural(nomeRede, dados);
             //Network nw = RecuperarRedeNeural(nomeRede);
@@ -48,7 +47,7 @@ namespace RedeNeural_PrevisaoFinanceira
         public List<string> TreinarRedes()
         {
             string papel = "PETR4";
-            List<DadosBE> dadosBE = new ConverterTabela.Converter().DePara(papel).ToList().ConvertAll(dado => (DadosBE)dado);
+            List<DadosBE> dadosBE = DataBaseUtils.DataBaseUtils.RecuperarCotacoesAtivo(papel);
             List<double> dados = dadosBE.ConvertAll(cot => (double)cot.PrecoAbertura);
             List<int> listNumeroNeuronios = new List<int>() { 2, 4, 8, 12 };
             List<double> listTaxasAprendizado = new List<double>() { 0.1, 0.25, 0.5 };

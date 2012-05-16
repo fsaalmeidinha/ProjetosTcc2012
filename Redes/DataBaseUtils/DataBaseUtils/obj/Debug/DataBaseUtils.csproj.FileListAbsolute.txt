@@ -1,0 +1,13 @@
+c:\users\felipe\documents\visual studio 2010\Projects\DataBaseUtils\DataBaseUtils\obj\Debug\ResolveAssemblyReference.cache
+c:\users\felipe\documents\visual studio 2010\Projects\DataBaseUtils\DataBaseUtils\bin\Debug\DataBaseUtils.dll
+c:\users\felipe\documents\visual studio 2010\Projects\DataBaseUtils\DataBaseUtils\bin\Debug\DataBaseUtils.pdb
+c:\users\felipe\documents\visual studio 2010\Projects\DataBaseUtils\DataBaseUtils\obj\Debug\DataBaseUtils.dll
+c:\users\felipe\documents\visual studio 2010\Projects\DataBaseUtils\DataBaseUtils\obj\Debug\DataBaseUtils.pdb
+C:\Users\Felipe\Desktop\Tcc\Redes\Lib-Geral\DataBaseUtils.dll
+C:\Users\Felipe\Desktop\Tcc\Redes\Lib-Geral\DataBaseUtils.pdb
+C:\Users\Felipe\Desktop\Tcc\Redes\DataBaseUtils\DataBaseUtils\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Felipe\Desktop\Tcc\Redes\DataBaseUtils\DataBaseUtils\obj\Debug\DataBaseUtils.dll
+C:\Users\Felipe\Desktop\Tcc\Redes\DataBaseUtils\DataBaseUtils\obj\Debug\DataBaseUtils.pdb
+C:\Users\Felipe\Desktop\Tcc\Redes\DataBaseUtils\DataBaseUtils\obj\Debug\DataBaseUtils.Resources.resources
+C:\Users\Felipe\Desktop\Tcc\Redes\DataBaseUtils\DataBaseUtils\obj\Debug\GenerateResource.read.1.tlog
+C:\Users\Felipe\Desktop\Tcc\Redes\DataBaseUtils\DataBaseUtils\obj\Debug\GenerateResource.write.1.tlog

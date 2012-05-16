@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using ConverterTabela;
 using RedeNeural_PrevisaoFinanceira;
 using NeuronDotNet.Core;
 using CaptacaoMelhoresRedes.Model;
+using DataBaseUtils;
 
 namespace CaptacaoMelhoresRedes
 {
@@ -20,8 +20,8 @@ namespace CaptacaoMelhoresRedes
             ConfiguracaoCaptacaoRedes configuracaoCaptacao = new ConfiguracaoCaptacaoRedes();
 
             //Recupera os dados do papel
-            List<DadosBE> dadosBE = new ConverterTabela.Converter().DePara(papel).ToList().ConvertAll(dado => (DadosBE)dado);
-            configuracaoCaptacao.Dados = Utils.NormalizarDados(dadosBE.Select(dadoBE => (double)dadoBE.PrecoAbertura).ToList());
+            List<DadosBE> dadosBE = DataBaseUtils.DataBaseUtils.RecuperarCotacoesAtivo(papel);
+            configuracaoCaptacao.Dados = DataBaseUtils.DataBaseUtils.NormalizarDados(dadosBE.Select(dadoBE => (double)dadoBE.PrecoAbertura).ToList(), papel);
             configuracaoCaptacao.Papel = papel;
 
             //Adicionar cada uma das redes ao treinamento de captação
@@ -40,5 +40,10 @@ namespace CaptacaoMelhoresRedes
             //Treina a rede de captação para a identificação da melhor dere por dia para o papel
             CaptacaoMelhoresRedesRN.Treinar(configuracaoCaptacao);
         }
+
+        //public Dictionary<int,string> SelecionarRedePorDia(string papel, List<>)
+        //{
+
+        //}
     }
 }
