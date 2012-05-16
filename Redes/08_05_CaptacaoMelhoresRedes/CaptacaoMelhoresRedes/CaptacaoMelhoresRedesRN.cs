@@ -18,7 +18,7 @@ namespace CaptacaoMelhoresRedes
     {
         //Número de dias de previsão permitidas
         private static int totalDiasPrevisao = 30;
-        private static int versao = 1;
+        internal static int Versao = 1;
         private static int ciclos = 10000;
         private static string diretorioRedesCaptacao
         {
@@ -71,9 +71,14 @@ namespace CaptacaoMelhoresRedes
 
             foreach (KeyValuePair<int, TrainingSet> treinamento in treinamentosPorDia)
             {
-                string nomeRede = string.Format("CaptacaoMelhorRede_papel{0}_dia{1}_v{2}", configuracaoCaptacao.Papel, treinamento.Key, versao);
+                string nomeRede = CaptacaoMelhoresRedesRN.RecuperarNomeRede(configuracaoCaptacao.Papel, treinamento.Key);
                 TreinarRedeDiaria(nomeRede, treinamento.Value);
             }
+        }
+
+        internal static string RecuperarNomeRede(string papel, int dia)
+        {
+            return string.Format("CaptacaoMelhorRede_papel{0}_dia{1}_v{2}", papel, dia, CaptacaoMelhoresRedesRN.Versao);
         }
 
         /// <summary>

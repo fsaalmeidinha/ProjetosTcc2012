@@ -6,11 +6,26 @@ using RedeNeural_PrevisaoFinanceira;
 using NeuronDotNet.Core;
 using CaptacaoMelhoresRedes.Model;
 using DataBaseUtils;
+using System.Configuration;
+using System.IO;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace CaptacaoMelhoresRedes
 {
     public class RNAssessor
     {
+        private static string diretorioRedesCaptacao
+        {
+            get
+            {
+                if (!String.IsNullOrEmpty(ConfigurationManager.AppSettings["DiretorioRedesCaptacao"]))
+                    return ConfigurationManager.AppSettings["DiretorioRedesCaptacao"];
+                else
+                    return System.IO.Directory.GetCurrentDirectory() + "\\RedesCaptacao\\";
+            }
+        }
+
         public void TreinarRedesCaptacao()
         {
             string papel = "PETR4";
@@ -41,9 +56,37 @@ namespace CaptacaoMelhoresRedes
             CaptacaoMelhoresRedesRN.Treinar(configuracaoCaptacao);
         }
 
-        //public Dictionary<int,string> SelecionarRedePorDia(string papel, List<>)
-        //{
+        /// <summary>
+        /// Diz para cada dia de previsão qual a rede neural que deve ser utilizada
+        /// </summary>
+        /// <param name="papel"></param>
+        /// <param name="dadosNormalizados"></param>
+        /// <returns></returns>
+        public static Dictionary<int, string> SelecionarRedePorDia(string papel, List<double> dadosNormalizados)
+        {
+            //Lista todas as configurações de rede para o papel
+            List<string> redes = RedeNeural_PrevisaoFinanceira.RNAssessor.ListarRedes(papel);
 
-        //}
+            Dictionary<int, string> redePorDia = new Dictionary<int, string>();
+
+            for (int dia = 0; dia <= 29; dia++)
+            {
+                string nomeRede = CaptacaoMelhoresRedesRN.RecuperarNomeRede(papel, dia);
+                Network rede = RecuperarRedeNeural(nomeRede);
+                double[] output = rede.Run(dadosNormalizados.ToArray());
+                redePorDia.Add(dia, redes[output.ToList().IndexOf(output.Max())]);
+            }
+
+            return redePorDia;
+        }
+
+        public static Network RecuperarRedeNeural(string nomeRede)
+        {
+            using (Stream stream = File.Open(diretorioRedesCaptacao + nomeRede + ".ndn", FileMode.Open))
+            {
+                IFormatter formatter = new BinaryFormatter();
+                return (Network)formatter.Deserialize(stream);
+            }
+        }
     }
 }

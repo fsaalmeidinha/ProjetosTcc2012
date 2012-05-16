@@ -67,3 +67,15 @@ C:\Users\Felipe\Desktop\tcc2\Redes\24_04_RedeNeural_PrevisaoFinanceira\ConsoleAp
 C:\Users\Felipe\Desktop\tcc2\Redes\24_04_RedeNeural_PrevisaoFinanceira\ConsoleApplication1\bin\Debug\NeuronDotNet.Core.xml
 C:\Users\Felipe\Desktop\tcc2\Redes\24_04_RedeNeural_PrevisaoFinanceira\ConsoleApplication1\bin\Debug\DataBaseUtils.pdb
 C:\Users\Felipe\Desktop\tcc2\Redes\24_04_RedeNeural_PrevisaoFinanceira\ConsoleApplication1\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Felipe\Desktop\tcc3\Redes\24_04_RedeNeural_PrevisaoFinanceira\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
+C:\Users\Felipe\Desktop\tcc3\Redes\24_04_RedeNeural_PrevisaoFinanceira\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.exe
+C:\Users\Felipe\Desktop\tcc3\Redes\24_04_RedeNeural_PrevisaoFinanceira\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.pdb
+C:\Users\Felipe\Desktop\tcc3\Redes\24_04_RedeNeural_PrevisaoFinanceira\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+C:\Users\Felipe\Desktop\tcc3\Redes\24_04_RedeNeural_PrevisaoFinanceira\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+C:\Users\Felipe\Desktop\tcc3\Redes\24_04_RedeNeural_PrevisaoFinanceira\ConsoleApplication1\bin\Debug\RedeNeural_PrevisaoFinanceira.dll
+C:\Users\Felipe\Desktop\tcc3\Redes\24_04_RedeNeural_PrevisaoFinanceira\ConsoleApplication1\bin\Debug\NeuronDotNet.Core.dll
+C:\Users\Felipe\Desktop\tcc3\Redes\24_04_RedeNeural_PrevisaoFinanceira\ConsoleApplication1\bin\Debug\DataBaseUtils.dll
+C:\Users\Felipe\Desktop\tcc3\Redes\24_04_RedeNeural_PrevisaoFinanceira\ConsoleApplication1\bin\Debug\RedeNeural_PrevisaoFinanceira.pdb
+C:\Users\Felipe\Desktop\tcc3\Redes\24_04_RedeNeural_PrevisaoFinanceira\ConsoleApplication1\bin\Debug\NeuronDotNet.Core.xml
+C:\Users\Felipe\Desktop\tcc3\Redes\24_04_RedeNeural_PrevisaoFinanceira\ConsoleApplication1\bin\Debug\DataBaseUtils.pdb
+C:\Users\Felipe\Desktop\tcc3\Redes\24_04_RedeNeural_PrevisaoFinanceira\ConsoleApplication1\obj\x86\Debug\ResolveAssemblyReference.cache
