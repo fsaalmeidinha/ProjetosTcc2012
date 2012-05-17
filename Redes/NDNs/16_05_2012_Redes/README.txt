@@ -1,0 +1,1 @@
+Primeiro teste com 168 configurações variando numero de entradas, saidas, neuronios na camada intermediária e taxa de aprendizado. Notamos que o numero de neuronios e a taxa de aprendizado não aprensentou diferença significativa de uma tentativa para a outra.

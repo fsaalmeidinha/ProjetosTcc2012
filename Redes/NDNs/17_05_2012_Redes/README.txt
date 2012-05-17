@@ -1,0 +1,1 @@
+Redes com diferentes configurações de entrada e saida e 60000 ciclos de treinamento. Não executamos as redes de captação pois não lembramos de remover os dados para teste do treinamento das RedesNeuraisPrevisaoFinanceira.
