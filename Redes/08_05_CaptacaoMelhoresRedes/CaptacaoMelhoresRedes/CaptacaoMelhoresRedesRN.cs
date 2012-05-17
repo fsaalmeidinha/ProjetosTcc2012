@@ -11,6 +11,7 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Configuration;
 using CaptacaoMelhoresRedes.Model;
+using OfficeOpenXml;
 
 namespace CaptacaoMelhoresRedes
 {
@@ -259,6 +260,45 @@ namespace CaptacaoMelhoresRedes
         /// <param name="redesNeurais"></param>
         private static void GerarRelatorioCrossOver(string nomePlanilha, List<RedePrevisaoFinanceira> redesNeurais)
         {
+            /*
+             * //Referencias
+             * //http://excelpackage.codeplex.com/wikipage?title=Creating%20an%20Excel%20spreadsheet%20from%20scratch&referringTitle=Home
+             * 
+             * FileInfo newFile = new FileInfo(diretorioRelatorioCrossOver + nomePlanilha + ".xlsx");
+            using (ExcelPackage xlPackage = new ExcelPackage(newFile))
+            {
+                ExcelWorksheet worksheet = xlPackage.Workbook.Worksheets.Add("RelatorioCrossValidation");
+                worksheet.Cell(1, 1).Value = DateTime.Now.ToString();
+                //Cabeçalho
+                worksheet.Cell(2, 1).Value = "Nome da Rede";
+                worksheet.Cell(2, 2).Value = "Janela Entrada";
+                worksheet.Cell(2, 3).Value = "Janela Saida";
+                worksheet.Cell(2, 4).Value = "Num Neurônios";
+                worksheet.Cell(2, 5).Value = "Taxa Aprendizado";
+                worksheet.Cell(2, 6).Value = "Ciclos Treinamento";
+                for (int colDia = 1; colDia <= totalDiasPrevisao; colDia++)
+                {
+                    worksheet.Cell(2, colDia + 6).Value = "Dia " + colDia;
+                }
+
+                int linha = 3;
+                //Linhas da coluna
+                foreach (RedePrevisaoFinanceira redePrevisao in redesNeurais)
+                {
+                    worksheet.Cell(linha, 1).Value = redePrevisao.NomeRede;
+                    worksheet.Cell(linha, 2).Value = redePrevisao.JanelaEntrada.ToString();
+                    worksheet.Cell(linha, 3).Value = redePrevisao.JanelaSaida.ToString();
+                    worksheet.Cell(linha, 4).Value = redePrevisao.NomeRede.Split(new string[] { "_nn", "_ta" }, StringSplitOptions.RemoveEmptyEntries)[1];
+                    worksheet.Cell(linha, 5).Value = redePrevisao.NomeRede.Split(new string[] { "_ta", "_ct" }, StringSplitOptions.RemoveEmptyEntries)[1];
+                    worksheet.Cell(linha, 6).Value = redePrevisao.NomeRede.Split(new string[] { "_ct", "_v" }, StringSplitOptions.RemoveEmptyEntries)[1];
+                    for (int dia = 1; dia <= totalDiasPrevisao; dia++)
+                    {
+                        worksheet.Cell(linha, 6 + dia).Value = redePrevisao.TaxaMediaAcertoPorDia[dia - 1].ToString();
+                    }
+                    linha++;
+                }
+                xlPackage.Save();
+            }*/
             //Cria o arquivo do excel
             Microsoft.Office.Interop.Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();
             excelApp.Workbooks.Add(1);

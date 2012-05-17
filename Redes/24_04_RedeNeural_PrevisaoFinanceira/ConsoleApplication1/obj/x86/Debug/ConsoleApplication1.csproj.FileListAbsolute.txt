@@ -82,3 +82,6 @@ C:\Users\Felipe\Desktop\tcc3\Redes\24_04_RedeNeural_PrevisaoFinanceira\ConsoleAp
 D:\Suporte\felipe.almeida\Desktop\Tcc\Redes\24_04_RedeNeural_PrevisaoFinanceira\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
 D:\Suporte\felipe.almeida\Desktop\Tcc\Redes\24_04_RedeNeural_PrevisaoFinanceira\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.exe
 D:\Suporte\felipe.almeida\Desktop\Tcc\Redes\24_04_RedeNeural_PrevisaoFinanceira\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.pdb
+D:\Suporte\felipe.almeida\Desktop\Tcc2\Redes\24_04_RedeNeural_PrevisaoFinanceira\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
+D:\Suporte\felipe.almeida\Desktop\Tcc2\Redes\24_04_RedeNeural_PrevisaoFinanceira\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.exe
+D:\Suporte\felipe.almeida\Desktop\Tcc2\Redes\24_04_RedeNeural_PrevisaoFinanceira\ConsoleApplication1\obj\x86\Debug\ConsoleApplication1.pdb
