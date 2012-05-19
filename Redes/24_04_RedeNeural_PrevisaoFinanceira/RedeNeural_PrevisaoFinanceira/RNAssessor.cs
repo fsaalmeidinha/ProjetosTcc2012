@@ -8,6 +8,7 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using DataBaseUtils;
 using System.Configuration;
+using System.Threading;
 
 namespace RedeNeural_PrevisaoFinanceira
 {
@@ -19,6 +20,7 @@ namespace RedeNeural_PrevisaoFinanceira
         //public double TaxaAprendizado = 0.25;
         //public int CiclosTreinamento = 5000;
         private int versao = 1;
+        static int numeroDivisoesCrossValidation = 8;
         private static string diretorioRedes
         {
             get
@@ -31,14 +33,14 @@ namespace RedeNeural_PrevisaoFinanceira
             }
         }
 
-        private string TreinarRedeNeural(string papel, int je, int js, int nn, double ta, int ct, List<double> dados)
+        private string TreinarRedeNeural(string papel, int je, int js, int nn, double ta, int ct, List<double> dados, int shift)
         {
-            string nomeRede = String.Format("{0}_je{1}_js{2}_nn{3}_ta{4}_ct{5}_v{6}", papel, je, js, nn, ta.ToString().Replace('.', ','), ct, versao);
+            string nomeRede = String.Format("{0}_je{1}_js{2}_nn{3}_ta{4}_ct{5}_dcv{6}_shift{7}_v{8}", papel, je, js, nn, ta.ToString().Replace('.', ','), ct, numeroDivisoesCrossValidation, shift, versao);
 
             double min = dados.Min();
             double max = dados.Max();
 
-            RedeNeural.Treinar(papel, nomeRede, dados, je, js, nn, ta, ct);
+            RedeNeural.Treinar(papel, nomeRede, dados, je, js, nn, ta, ct, numeroDivisoesCrossValidation, shift);
             return nomeRede;
             //TreinarRedeNeural(nomeRede, dados);
             //Network nw = RecuperarRedeNeural(nomeRede);
@@ -48,31 +50,31 @@ namespace RedeNeural_PrevisaoFinanceira
         {
             string papel = "PETR4";
             List<DadosBE> dadosBE = DataBaseUtils.DataBaseUtils.RecuperarCotacoesAtivo(papel);
-            dadosBE = dadosBE.Take(dadosBE.Count - 120).ToList();
+            //dadosBE = dadosBE.Take(dadosBE.Count - 120).ToList();
             List<double> dados = dadosBE.ConvertAll(cot => (double)cot.PrecoAbertura);
             List<int> listNumeroNeuronios = new List<int>() { 2, 4, 8, 12 };
             List<double> listTaxasAprendizado = new List<double>() { 0.1, 0.25, 0.5 };
-            int ciclosTreinamento = 60000;
+            int ciclosTreinamento = 40000;
             List<KeyValuePair<int, int>> listInput_Output = new List<KeyValuePair<int, int>>();
-            listInput_Output.Add(new KeyValuePair<int, int>(5, 1));
-            listInput_Output.Add(new KeyValuePair<int, int>(10, 1));
-            listInput_Output.Add(new KeyValuePair<int, int>(20, 1));
-            listInput_Output.Add(new KeyValuePair<int, int>(30, 1));
-            listInput_Output.Add(new KeyValuePair<int, int>(40, 1));
-            listInput_Output.Add(new KeyValuePair<int, int>(50, 1));
-            listInput_Output.Add(new KeyValuePair<int, int>(60, 1));
-            listInput_Output.Add(new KeyValuePair<int, int>(10, 2));
-            listInput_Output.Add(new KeyValuePair<int, int>(20, 2));
-            listInput_Output.Add(new KeyValuePair<int, int>(30, 2));
-            listInput_Output.Add(new KeyValuePair<int, int>(40, 2));
-            listInput_Output.Add(new KeyValuePair<int, int>(50, 2));
-            listInput_Output.Add(new KeyValuePair<int, int>(60, 2));
-            listInput_Output.Add(new KeyValuePair<int, int>(10, 5));
-            listInput_Output.Add(new KeyValuePair<int, int>(20, 5));
-            listInput_Output.Add(new KeyValuePair<int, int>(30, 5));
-            listInput_Output.Add(new KeyValuePair<int, int>(40, 5));
-            listInput_Output.Add(new KeyValuePair<int, int>(50, 5));
-            listInput_Output.Add(new KeyValuePair<int, int>(60, 5));
+            //listInput_Output.Add(new KeyValuePair<int, int>(5, 1));
+            //listInput_Output.Add(new KeyValuePair<int, int>(10, 1));
+            //listInput_Output.Add(new KeyValuePair<int, int>(20, 1));
+            //listInput_Output.Add(new KeyValuePair<int, int>(30, 1));
+            //listInput_Output.Add(new KeyValuePair<int, int>(40, 1));
+            //listInput_Output.Add(new KeyValuePair<int, int>(50, 1));
+            //listInput_Output.Add(new KeyValuePair<int, int>(60, 1));
+            //listInput_Output.Add(new KeyValuePair<int, int>(10, 2));
+            //listInput_Output.Add(new KeyValuePair<int, int>(20, 2));
+            //listInput_Output.Add(new KeyValuePair<int, int>(30, 2));
+            //listInput_Output.Add(new KeyValuePair<int, int>(40, 2));
+            //listInput_Output.Add(new KeyValuePair<int, int>(50, 2));
+            //listInput_Output.Add(new KeyValuePair<int, int>(60, 2));
+            //listInput_Output.Add(new KeyValuePair<int, int>(10, 5));
+            //listInput_Output.Add(new KeyValuePair<int, int>(20, 5));
+            //listInput_Output.Add(new KeyValuePair<int, int>(30, 5));
+            //listInput_Output.Add(new KeyValuePair<int, int>(40, 5));
+            //listInput_Output.Add(new KeyValuePair<int, int>(50, 5));
+            //listInput_Output.Add(new KeyValuePair<int, int>(60, 5));
             listInput_Output.Add(new KeyValuePair<int, int>(20, 10));
             listInput_Output.Add(new KeyValuePair<int, int>(30, 10));
             listInput_Output.Add(new KeyValuePair<int, int>(40, 10));
@@ -99,7 +101,34 @@ namespace RedeNeural_PrevisaoFinanceira
             //    {
             foreach (KeyValuePair<int, int> input_output in listInput_Output)
             {
-                nomeRedes.Add(TreinarRedeNeural(papel, input_output.Key, input_output.Value, 4, 0.25, ciclosTreinamento, dados));
+                //Apagar
+                DateTime dtNow = DateTime.Now;
+
+                //for (int i = 0; i < numeroDivisoesCrossValidation; i++)
+                //{
+                //    List<double> dadosTreino = dados.Take(dados.Count / numeroDivisoesCrossValidation * i).ToList();
+                //    dadosTreino.AddRange(dados.Skip(dados.Count / numeroDivisoesCrossValidation * (i + 1)));
+                //    TreinarRedeNeural(papel, input_output.Key, input_output.Value, 4, 0.25, ciclosTreinamento, dadosTreino, i);
+                //    Console.WriteLine(i + " -  " + DateTime.Now.Subtract(dtNow).ToString());
+                //}
+                Thread[] workerThreads = new Thread[numeroDivisoesCrossValidation];//(workerObject.DoWork);
+                for (int i = 0; i < numeroDivisoesCrossValidation; i++)
+                {
+                    //Atribui o valor do i para não ser alterado nas iterações do for antes de ser passado para a thread
+                    int iFixThread = i;
+                    List<double> dadosTreino = dados.Take(dados.Count / numeroDivisoesCrossValidation * i).ToList();
+                    dadosTreino.AddRange(dados.Skip(dados.Count / numeroDivisoesCrossValidation * (i + 1)));
+                    workerThreads[i] = new Thread(() => TreinarRedeNeural(papel, input_output.Key, input_output.Value, 4, 0.25, ciclosTreinamento, dadosTreino, iFixThread));//TreinarRedeNeural(papel, input_output.Key, input_output.Value, 4, 0.25, ciclosTreinamento, dadosTreino, i));
+                    workerThreads[i].Start();
+                    //nomeRedes.Add(TreinarRedeNeural(papel, input_output.Key, input_output.Value, 4, 0.25, ciclosTreinamento, dadosTreino, i));
+                }
+                for (int i = 0; i < numeroDivisoesCrossValidation; i++)
+                {
+                    workerThreads[i].Join();
+                }
+
+                //Apagar
+                Console.WriteLine(String.Format("Input: {0}, Output: {1}, Tempo: {2}", input_output.Key, input_output.Value, DateTime.Now.Subtract(dtNow).ToString()));
             }
             //    }
             //}

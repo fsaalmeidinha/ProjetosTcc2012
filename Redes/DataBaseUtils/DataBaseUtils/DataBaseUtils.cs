@@ -104,6 +104,29 @@ namespace DataBaseUtils
         }
 
         /// <summary>
+        /// Retorna uma lista de KeyValuePair, onde a chave são os valores de input e o seu valor correspondente são os valores de output
+        /// </summary>
+        /// <param name="dados"></param>
+        /// <param name="janelaEntrada">tamanho do input</param>
+        /// <param name="janelaSaida">tamanho do output</param>
+        /// <param name="considerarSaidasComoEntradas">numero de dias que serao pulados</param>
+        /// <returns></returns>
+        public static List<KeyValuePair<double[], double[]>> SelecionarCotacoesPorJanelamentoPulandoNDias(List<double> dados, int janelaEntrada, int janelaSaida, int n)
+        {
+            if (n <= 0)
+                n = 1;
+            /*Cria um mapeamento de entradas para saida com o janelamento informado*/
+            List<KeyValuePair<double[], double[]>> dadosPorJanelamento = new List<KeyValuePair<double[], double[]>>();
+            for (int i = 0; i < dados.Count - (janelaEntrada + janelaSaida); i += n)
+            {
+                dadosPorJanelamento.Add(new KeyValuePair<double[], double[]>(dados.Skip(i).Take(janelaEntrada).ToArray(), dados.Skip(i + janelaEntrada).Take(janelaSaida).ToArray()));
+            }
+            /*Cria um mapeamento de entradas para saida com o janelamento informado*/
+
+            return dadosPorJanelamento;
+        }
+
+        /// <summary>
         /// Trata os desdobramentos (verifica alterações de 50% no valor de um dia para o outro)
         /// </summary>
         /// <param name="listCotacoes"></param>

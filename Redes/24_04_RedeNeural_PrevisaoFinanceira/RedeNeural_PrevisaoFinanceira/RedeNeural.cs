@@ -26,13 +26,15 @@ namespace RedeNeural_PrevisaoFinanceira
             }
         }
 
-        public static void Treinar(string papel, string nomeRedeNeural, List<double> dadosTreinamento, int janelaEntrada, int janelaSaida, int numeroNeuronios, double taxaAprendizado, int ciclos)
+        public static void Treinar(string papel, string nomeRedeNeural, List<double> dadosTreinamento, int janelaEntrada, int janelaSaida, int numeroNeuronios, double taxaAprendizado, int ciclos, int numeroDivisoesCrossValidation, int shift)
         {
             if (dadosTreinamento.Count < janelaEntrada)
                 return;
 
             /*Cria um mapeamento de entradas para saida com o janelamento informado*/
-            List<KeyValuePair<double[], double[]>> dadosPorJanelamento = DataBaseUtils.DataBaseUtils.SelecionarCotacoesPorJanelamento(DataBaseUtils.DataBaseUtils.NormalizarDados(dadosTreinamento, papel), janelaEntrada, janelaSaida, true);
+            List<KeyValuePair<double[], double[]>> dadosPorJanelamento = DataBaseUtils.DataBaseUtils.SelecionarCotacoesPorJanelamentoPulandoNDias(DataBaseUtils.DataBaseUtils.NormalizarDados(dadosTreinamento.Take((dadosTreinamento.Count / (numeroDivisoesCrossValidation - 1)) * shift).ToList(), papel), janelaEntrada, janelaSaida, 2);
+            //Corta em 2 chamdas de métodos para nao juntar os dados antes da quebra de registros e depois da quebra de registros, pois poderia estar juntando dados de dias muito distantes
+            dadosPorJanelamento.AddRange(DataBaseUtils.DataBaseUtils.SelecionarCotacoesPorJanelamentoPulandoNDias(DataBaseUtils.DataBaseUtils.NormalizarDados(dadosTreinamento.Skip((dadosTreinamento.Count / (numeroDivisoesCrossValidation - 1)) * shift).ToList(), papel), janelaEntrada, janelaSaida, 2));
             /*Cria um mapeamento de entradas para saida com o janelamento informado*/
 
             BackpropagationNetwork network;
@@ -61,11 +63,12 @@ namespace RedeNeural_PrevisaoFinanceira
                 });
 
             bool erroAceito = false;
-            int cicloAtual = ciclos / 5;
+            int cicloAtual = ciclos / 4;
             while (erroAceito == false && cicloAtual <= ciclos)
             {
                 erroAceito = true;
                 network.Learn(trainingSet, cicloAtual);
+                double erroGeralRede = 0;
                 foreach (KeyValuePair<double[], double[]> kvp in dadosPorJanelamento)
                 {
                     double[] previsao = network.Run(kvp.Key);
@@ -76,14 +79,16 @@ namespace RedeNeural_PrevisaoFinanceira
                         //erroAcumulado += Math.Abs(100 - previsao[i] * 100 / kvp.Value[i]);
                     }
                     double erroMedio = erroAcumulado / janelaSaida;
-
+                    erroGeralRede += erroMedio;
                     if (erroMedio > 0.01)//Verifica se houve mais de 1% de erro
                     {
-                        erroAceito = false;
                         trainingSet.Add(new TrainingSample(kvp.Key, kvp.Value));
                     }
                 }
-                cicloAtual += ciclos / 5;
+                erroGeralRede = erroGeralRede / dadosPorJanelamento.Count;
+                if (erroGeralRede > 0.01)
+                    erroAceito = false;
+                cicloAtual += ciclos / 4;
             }
 
             using (Stream stream = File.Open(diretorioRedes + nomeRedeNeural + ".ndn", FileMode.Create))
