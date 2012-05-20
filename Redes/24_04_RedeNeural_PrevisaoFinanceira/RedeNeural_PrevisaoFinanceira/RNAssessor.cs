@@ -75,7 +75,7 @@ namespace RedeNeural_PrevisaoFinanceira
             //listInput_Output.Add(new KeyValuePair<int, int>(40, 5));
             //listInput_Output.Add(new KeyValuePair<int, int>(50, 5));
             //listInput_Output.Add(new KeyValuePair<int, int>(60, 5));
-            listInput_Output.Add(new KeyValuePair<int, int>(20, 10));
+            /*listInput_Output.Add(new KeyValuePair<int, int>(20, 10));
             listInput_Output.Add(new KeyValuePair<int, int>(30, 10));
             listInput_Output.Add(new KeyValuePair<int, int>(40, 10));
             listInput_Output.Add(new KeyValuePair<int, int>(50, 10));
@@ -92,7 +92,14 @@ namespace RedeNeural_PrevisaoFinanceira
             listInput_Output.Add(new KeyValuePair<int, int>(50, 25));
             listInput_Output.Add(new KeyValuePair<int, int>(60, 25));
             listInput_Output.Add(new KeyValuePair<int, int>(50, 30));
+            listInput_Output.Add(new KeyValuePair<int, int>(60, 30));*/
+
             listInput_Output.Add(new KeyValuePair<int, int>(60, 30));
+            listInput_Output.Add(new KeyValuePair<int, int>(50, 30));
+            listInput_Output.Add(new KeyValuePair<int, int>(60, 25));
+            listInput_Output.Add(new KeyValuePair<int, int>(50, 25));
+            listInput_Output.Add(new KeyValuePair<int, int>(40, 25));
+            listInput_Output.Add(new KeyValuePair<int, int>(60, 20));
 
             List<string> nomeRedes = new List<string>();
             //foreach (int numeroNeuronios in listNumeroNeuronios)

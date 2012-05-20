@@ -89,6 +89,8 @@ namespace RedeNeural_PrevisaoFinanceira
                 if (erroGeralRede > 0.01)
                     erroAceito = false;
                 cicloAtual += ciclos / 4;
+
+                Console.WriteLine(cicloAtual);
             }
 
             using (Stream stream = File.Open(diretorioRedes + nomeRedeNeural + ".ndn", FileMode.Create))
