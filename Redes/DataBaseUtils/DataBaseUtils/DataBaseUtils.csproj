@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Model\DadosBE.cs" />
     <Compile Include="DataBaseUtils.cs" />
+    <Compile Include="Model\Treinamento.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources.Designer.cs">
       <AutoGen>True</AutoGen>

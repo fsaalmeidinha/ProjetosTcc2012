@@ -5,11 +5,14 @@ using System.Text;
 using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
+using DataBaseUtils.Model;
 
 namespace DataBaseUtils
 {
     public class DataBaseUtils
     {
+        static int numeroDivisoesCrossValidation = 8;
+
         public static List<DadosBE> RecuperarCotacoesAtivo(string papel)
         {
             List<DadosBE> listCotacoes = new List<DadosBE>();
@@ -82,25 +85,55 @@ namespace DataBaseUtils
             return dadosList;
         }
 
+        ///// <summary>
+        ///// Retorna uma lista de KeyValuePair, onde a chave são os valores de input e o seu valor correspondente são os valores de output
+        ///// </summary>
+        ///// <param name="dados"></param>
+        ///// <param name="janelaEntrada">tamanho do input</param>
+        ///// <param name="janelaSaida">tamanho do output</param>
+        ///// <param name="considerarSaidasComoEntradas">se verdadeiro, teremos 'dados.Count / janelaEntrada' registros como saida, caso contrario, 'dados.Count / (janelaEntrada + janelaSaida)' </param>
+        ///// <returns></returns>
+        //public static List<KeyValuePair<double[], double[]>> SelecionarCotacoesPorJanelamento(List<double> dados, int janelaEntrada, int janelaSaida, bool considerarSaidasComoEntradas)
+        //{
+        //    /*Cria um mapeamento de entradas para saida com o janelamento informado*/
+        //    List<KeyValuePair<double[], double[]>> dadosPorJanelamento = new List<KeyValuePair<double[], double[]>>();
+        //    for (int i = 0; i < dados.Count - (janelaEntrada + janelaSaida); i += janelaEntrada + (considerarSaidasComoEntradas ? 0 : janelaSaida))
+        //    {
+        //        dadosPorJanelamento.Add(new KeyValuePair<double[], double[]>(dados.Skip(i).Take(janelaEntrada).ToArray(), dados.Skip(i + janelaEntrada).Take(janelaSaida).ToArray()));
+        //    }
+        //    /*Cria um mapeamento de entradas para saida com o janelamento informado*/
+
+        //    return dadosPorJanelamento;
+        //}
+
         /// <summary>
-        /// Retorna uma lista de KeyValuePair, onde a chave são os valores de input e o seu valor correspondente são os valores de output
+        /// Retorna uma lista de Treinamento com seus devidos inputs e outputs e o seu shift correspondente
         /// </summary>
         /// <param name="dados"></param>
         /// <param name="janelaEntrada">tamanho do input</param>
         /// <param name="janelaSaida">tamanho do output</param>
-        /// <param name="considerarSaidasComoEntradas">se verdadeiro, teremos 'dados.Count / janelaEntrada' registros como saida, caso contrario, 'dados.Count / (janelaEntrada + janelaSaida)' </param>
+        /// <param name="n">quantidade de dados que serão pulados para cada iteração de treinamento (minimo 1)</param>
         /// <returns></returns>
-        public static List<KeyValuePair<double[], double[]>> SelecionarCotacoesPorJanelamento(List<double> dados, int janelaEntrada, int janelaSaida, bool considerarSaidasComoEntradas)
+        public static List<Treinamento> SelecionarTreinamentos(List<double> dados, int janelaEntrada, int janelaSaida, int n)
         {
-            /*Cria um mapeamento de entradas para saida com o janelamento informado*/
-            List<KeyValuePair<double[], double[]>> dadosPorJanelamento = new List<KeyValuePair<double[], double[]>>();
-            for (int i = 0; i < dados.Count - (janelaEntrada + janelaSaida); i += janelaEntrada + (considerarSaidasComoEntradas ? 0 : janelaSaida))
-            {
-                dadosPorJanelamento.Add(new KeyValuePair<double[], double[]>(dados.Skip(i).Take(janelaEntrada).ToArray(), dados.Skip(i + janelaEntrada).Take(janelaSaida).ToArray()));
-            }
-            /*Cria um mapeamento de entradas para saida com o janelamento informado*/
+            if (n <= 0)
+                n = 1;
 
-            return dadosPorJanelamento;
+            List<Treinamento> treinamentos = new List<Treinamento>();
+            for (int divisao = 0; divisao < numeroDivisoesCrossValidation; divisao++)
+            {
+                for (int i = dados.Count / numeroDivisoesCrossValidation * divisao; i < dados.Count / numeroDivisoesCrossValidation * (divisao + 1); i += n)
+                {
+                    Treinamento treinamento = new Treinamento();
+                    treinamento.DivisaoCrossValidation = divisao;
+                    treinamento.Input = dados.Skip(i).Take(janelaEntrada).ToList();
+                    treinamento.Output = dados.Skip(i + janelaEntrada).Take(janelaSaida).ToList();
+                    treinamentos.Add(treinamento);
+                }
+            }
+
+            //Pode não haver dados suficientes para terminar de preencher o output, gerando um output com menos dados do que o solicitado
+            return treinamentos.Where(trein => trein.Output.Count == janelaSaida).ToList();
         }
 
         /// <summary>
