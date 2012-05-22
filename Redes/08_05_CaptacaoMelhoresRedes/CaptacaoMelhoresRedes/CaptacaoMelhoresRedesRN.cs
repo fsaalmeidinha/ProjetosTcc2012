@@ -13,6 +13,7 @@ using System.Configuration;
 using CaptacaoMelhoresRedes.Model;
 using OfficeOpenXml;
 using DataBaseUtils.Model;
+using System.Threading;
 
 namespace CaptacaoMelhoresRedes
 {
@@ -60,10 +61,29 @@ namespace CaptacaoMelhoresRedes
 
             GerarRelatorioCrossOver(String.Format("{0}_{1}_{2}", Directory.GetFiles(diretorioRelatorioCrossOver).Count() + 1, configuracaoCaptacao.Papel, DateTime.Now.ToString().Replace("/", "_").Replace(":", "_".Replace(" ", ""))), configuracaoCaptacao.RedesPrevisao);
 
-            foreach (KeyValuePair<int, TrainingSet> treinamento in treinamentosPorDia)
+            //foreach (KeyValuePair<int, TrainingSet> treinamento in treinamentosPorDia)
+            //{
+            //    string nomeRede = CaptacaoMelhoresRedesRN.RecuperarNomeRede(configuracaoCaptacao.Papel, treinamento.Key);
+            //    TreinarRedeDiaria(nomeRede, treinamento.Value);
+            //}
+            int numeroProcessadores = 4;
+            for (int indTrein = 0; indTrein < treinamentosPorDia.Count; indTrein += numeroProcessadores)
             {
-                string nomeRede = CaptacaoMelhoresRedesRN.RecuperarNomeRede(configuracaoCaptacao.Papel, treinamento.Key);
-                TreinarRedeDiaria(nomeRede, treinamento.Value);
+                Thread[] threads = new Thread[numeroProcessadores];
+                for (int indProcessador = 0; indProcessador < numeroProcessadores; indProcessador++)
+                {
+                    if (treinamentosPorDia.Count - (indTrein + indProcessador) <= 0)
+                        continue;
+                    string nomeRede = CaptacaoMelhoresRedesRN.RecuperarNomeRede(configuracaoCaptacao.Papel, indTrein + indProcessador);
+                    TrainingSet ts = treinamentosPorDia[indTrein + indProcessador];
+                    threads[indProcessador] = new Thread(() => TreinarRedeDiaria(nomeRede, ts));//[indTrein + indProcessador];
+                    threads[indProcessador].Start();
+                }
+                for (int indProcessador = 0; indProcessador < numeroProcessadores; indProcessador++)
+                {
+                    if (threads[indProcessador] != null)
+                        threads[indProcessador].Join();
+                }
             }
         }
 
@@ -244,7 +264,7 @@ namespace CaptacaoMelhoresRedes
             {
                 for (int i = 0; i < totalDiasPrevisao; i++)
                 {
-                    redePrevisao.TaxaMediaAcertoPorDia[i] /= configuracaoCaptacao.Dados.Count;
+                    redePrevisao.TaxaMediaAcertoPorDia[i] /= treinamentos.Count;
                 }
             }
 

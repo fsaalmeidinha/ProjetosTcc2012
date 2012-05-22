@@ -10,7 +10,7 @@ namespace ConsoleApplication1
     {
         static void Main(string[] args)
         {
-            List<string> redes = RNAssessor.ListarRedes("PETR4");
+            //List<string> redes = RNAssessor.ListarRedes("PETR4");
 
             DateTime dtNow = DateTime.Now;
             System.Diagnostics.Debug.WriteLine("Inicio: " + dtNow);
