@@ -54,7 +54,7 @@ namespace RedeNeural_PrevisaoFinanceira
             List<double> dados = dadosBE.ConvertAll(cot => (double)cot.PrecoAbertura);
             List<int> listNumeroNeuronios = new List<int>() { 2, 4, 8, 12 };
             List<double> listTaxasAprendizado = new List<double>() { 0.1, 0.25, 0.5 };
-            int ciclosTreinamento = 40000;
+            int ciclosTreinamento = 10000;
             List<KeyValuePair<int, int>> listInput_Output = new List<KeyValuePair<int, int>>();
             listInput_Output.Add(new KeyValuePair<int, int>(5, 1));
             listInput_Output.Add(new KeyValuePair<int, int>(10, 1));
@@ -88,13 +88,11 @@ namespace RedeNeural_PrevisaoFinanceira
             listInput_Output.Add(new KeyValuePair<int, int>(40, 20));
             listInput_Output.Add(new KeyValuePair<int, int>(50, 20));
             listInput_Output.Add(new KeyValuePair<int, int>(60, 20));
-            /*Já rodei
             listInput_Output.Add(new KeyValuePair<int, int>(40, 25));
             listInput_Output.Add(new KeyValuePair<int, int>(50, 25));
             listInput_Output.Add(new KeyValuePair<int, int>(60, 25));
             listInput_Output.Add(new KeyValuePair<int, int>(50, 30));
             listInput_Output.Add(new KeyValuePair<int, int>(60, 30));
-            */
             List<string> nomeRedes = new List<string>();
             //foreach (int numeroNeuronios in listNumeroNeuronios)
             //{
@@ -139,7 +137,16 @@ namespace RedeNeural_PrevisaoFinanceira
 
         public static List<string> ListarRedes(string papel)
         {
-            return System.IO.Directory.GetFiles(diretorioRedes, "*.ndn").ToList().ConvertAll(rede => rede = rede.Split('\\').Last().Replace(".ndn", "")).Where(n => n.ToUpper().StartsWith(papel.ToUpper() + "_")).OrderBy(nome => nome).ToList();
+            //Lista os nomes das redes com seu diretorio completo
+            List<string> nomesRedes = System.IO.Directory.GetFiles(diretorioRedes, "*.ndn").ToList();
+            //Elimina o diretorio completo deixando apenas o nome sem a extensao
+            nomesRedes = nomesRedes.ConvertAll(rede => rede = rede.Split('\\').Last().Replace(".ndn", ""));
+            //Filtra apenas as redes do papel solicitado
+            nomesRedes = nomesRedes.Where(n => n.ToUpper().StartsWith(papel.ToUpper() + "_")).OrderBy(nome => nome).ToList();
+            //Remove o shift e o numero de divisoes  cross validation do nome da rede
+            nomesRedes = nomesRedes.Select(nmRede => nmRede.Remove(nmRede.IndexOf("_v") - 12, 12)).Distinct().ToList();
+            return nomesRedes;
+            //return System.IO.Directory.GetFiles(diretorioRedes, "*.ndn").ToList().ConvertAll(rede => rede = rede.Split('\\').Last().Replace(".ndn", "")).Where(n => n.ToUpper().StartsWith(papel.ToUpper() + "_")).OrderBy(nome => nome).ToList();
         }
 
         public static Network RecuperarRedeNeural(string nomeRede)
@@ -149,6 +156,22 @@ namespace RedeNeural_PrevisaoFinanceira
                 IFormatter formatter = new BinaryFormatter();
                 return (Network)formatter.Deserialize(stream);
             }
+        }
+
+        public static Dictionary<int, Network> RecuperarRedesNeuraisAgrupadasPorConfiguracao(string nomeRede)
+        {
+            Dictionary<int, Network> redes = new Dictionary<int, Network>();
+            IFormatter formatter = new BinaryFormatter();
+            for (int numShift = 0; numShift < numeroDivisoesCrossValidation; numShift++)
+            {
+                string nomeCompletoRede = nomeRede.Insert(nomeRede.IndexOf("_v"), String.Format("_dcv{0}_shift{1}", numeroDivisoesCrossValidation, numShift));
+                using (Stream stream = File.Open(diretorioRedes + nomeCompletoRede + ".ndn", FileMode.Open))
+                {
+                    redes.Add(numShift, (Network)formatter.Deserialize(stream));
+                }
+            }
+
+            return redes;
         }
     }
 }

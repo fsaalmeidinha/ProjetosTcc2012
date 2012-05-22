@@ -12,6 +12,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Configuration;
 using CaptacaoMelhoresRedes.Model;
 using OfficeOpenXml;
+using DataBaseUtils.Model;
 
 namespace CaptacaoMelhoresRedes
 {
@@ -21,6 +22,7 @@ namespace CaptacaoMelhoresRedes
         private static int totalDiasPrevisao = 30;
         internal static int Versao = 1;
         private static int ciclos = 10000;
+        private static int quantidadeShifts = 8;
         private static string diretorioRedesCaptacao
         {
             get
@@ -51,22 +53,10 @@ namespace CaptacaoMelhoresRedes
         /// <param name="configuracaoCaptacao"></param>
         internal static void Treinar(ConfiguracaoCaptacaoRedes configuracaoCaptacao)
         {
-            //Seleção dos dados para o treinamento
-            Dictionary<List<double>, List<double>> dadosTreinamento = SelecionarInput_Output(configuracaoCaptacao.Dados, configuracaoCaptacao.RedesPrevisao.Max(rp => rp.JanelaEntrada));
-
-            //Inicializa todos os dias da previsao
-            for (int diaTreinamento = 0; diaTreinamento < totalDiasPrevisao; diaTreinamento++)
-            {
-                foreach (RedePrevisaoFinanceira redePrevisao in configuracaoCaptacao.RedesPrevisao)
-                {
-                    redePrevisao.TaxaMediaAcertoPorDia.Add(diaTreinamento, 0);
-                }
-            }
-
             //Seleciona os treinamentos por dia de previsao, sendo o input os dados de entrada da rede de previsao financeira e como saida,
             //a taxa de acerto de cada uma das redes executadas em cada dia de previsao
             //OBS: A taxa de acerto da rede por dia é alimentada
-            Dictionary<int, TrainingSet> treinamentosPorDia = SelecionarTreinamentosPorDia(dadosTreinamento, configuracaoCaptacao.RedesPrevisao);//new Dictionary<int, TrainingSet>();
+            Dictionary<int, TrainingSet> treinamentosPorDia = SelecionarTreinamentosPorDia(configuracaoCaptacao);//dadosTreinamentoPorShift, configuracaoCaptacao.RedesPrevisao);
 
             GerarRelatorioCrossOver(String.Format("{0}_{1}_{2}", Directory.GetFiles(diretorioRelatorioCrossOver).Count() + 1, configuracaoCaptacao.Papel, DateTime.Now.ToString().Replace("/", "_").Replace(":", "_".Replace(" ", ""))), configuracaoCaptacao.RedesPrevisao);
 
@@ -154,84 +144,107 @@ namespace CaptacaoMelhoresRedes
         /// <param name="dadosTreinamento"></param>
         /// <param name="redesPrevisaoFinanceira"></param>
         /// <returns></returns>
-        private static Dictionary<int, TrainingSet> SelecionarTreinamentosPorDia(Dictionary<List<double>, List<double>> dadosTreinamento, List<RedePrevisaoFinanceira> redesPrevisaoFinanceira)
+        private static Dictionary<int, TrainingSet> SelecionarTreinamentosPorDia(ConfiguracaoCaptacaoRedes configuracaoCaptacao)
         {
+            int tamanhoEntrada = configuracaoCaptacao.RedesPrevisao.Max(rp => rp.JanelaEntrada);
+            List<Treinamento> treinamentos = DataBaseUtils.DataBaseUtils.SelecionarTreinamentos(configuracaoCaptacao.Dados, tamanhoEntrada, totalDiasPrevisao, 2);
+            //Dictionary<int, Dictionary<List<double>, List<double>>> dadosTreinamentoPorShift = new Dictionary<int, Dictionary<List<double>, List<double>>>();
+            ////Resgata o maior tamanho das entradas das redes neurais
+            ////Cria o dicionario de input output por shift
+            //for (int numShift = 0; numShift < quantidadeShifts; numShift++)
+            //{
+            //    //Seleciona oa dados antes do shift
+            //    dadosTreinamentoPorShift.Add(numShift, SelecionarInput_Output(configuracaoCaptacao.Dados.Take((configuracaoCaptacao.Dados.Count / (quantidadeShifts - 1)) * numShift).ToList(), tamanhoEntrada));
+            //    //Seleciona os dados depois do shift
+            //    dadosTreinamentoPorShift[numShift].ToList().AddRange(SelecionarInput_Output(configuracaoCaptacao.Dados.Skip((configuracaoCaptacao.Dados.Count / (quantidadeShifts - 1)) * (numShift + 1)).ToList(), tamanhoEntrada));
+            //}
+
+            //Inicializa todos os dias da previsao
+            for (int diaTreinamento = 0; diaTreinamento < totalDiasPrevisao; diaTreinamento++)
+            {
+                foreach (RedePrevisaoFinanceira redePrevisao in configuracaoCaptacao.RedesPrevisao)
+                {
+                    redePrevisao.TaxaMediaAcertoPorDia.Add(diaTreinamento, 0);
+                }
+            }
+
             Dictionary<int, TrainingSet> treinamentosPorDia = new Dictionary<int, TrainingSet>();
             for (int dia = 0; dia < totalDiasPrevisao; dia++)
             {
-                treinamentosPorDia.Add(dia, new TrainingSet(dadosTreinamento.First().Key.Count, redesPrevisaoFinanceira.Count));
+                treinamentosPorDia.Add(dia, new TrainingSet(tamanhoEntrada, configuracaoCaptacao.RedesPrevisao.Count));
             }
 
             //Roda as redes para cada um dos dados de treinamento selecionados
-            foreach (KeyValuePair<List<double>, List<double>> dadoTreinamento in dadosTreinamento)
+            foreach (Treinamento treinamento in treinamentos)
             {
                 //Guarda um historico dos outputs das redes para tratar as redes que tem output menor do que o tamanho da previsao
                 List<List<double>> outputsRedes = new List<List<double>>();
-                List<double[]> taxaAcertoPorDiaParaTreinamento = new List<double[]>();
-                foreach (RedePrevisaoFinanceira redePrevisao in redesPrevisaoFinanceira)
+                List<double[]> taxasAcertoRedes = new List<double[]>();
+                foreach (RedePrevisaoFinanceira redePrevisao in configuracaoCaptacao.RedesPrevisao)
                 {
-                    //Roda a rede neural, gerando a previsao
-                    double[] outputPrevisao = redePrevisao.RedeNeuralPrevisaoFinanceira.Run(dadoTreinamento.Key.Skip(dadoTreinamento.Key.Count - redePrevisao.JanelaEntrada).Take(redePrevisao.JanelaEntrada).ToArray());
+                    Network redeNeural = redePrevisao.RedeNeuralPrevisaoFinanceiraPorDivisaoCrossValidation[treinamento.DivisaoCrossValidation];
+                    //Roda a rede neural, gerando a previsao                             \/ como a rede pode receber um input menor do que os treinamentos, pegamos apenas os ultimos registros do mesmo
+                    double[] outputPrevisao = redeNeural.Run(treinamento.Input.Skip(treinamento.Input.Count - redePrevisao.JanelaEntrada).Take(redePrevisao.JanelaEntrada).ToArray());
                     //Alimenta o historico de previsoes de cada rede
                     outputsRedes.Add(outputPrevisao.ToList());
                     double[] taxaAcertoPorDia = new double[totalDiasPrevisao];
                     for (int diasPrevistosRN = 0; diasPrevistosRN < outputPrevisao.Length; diasPrevistosRN++)
                     {
                         //Calcula a taxa de acerto da previsao
-                        double ta = Math.Min(outputPrevisao[diasPrevistosRN], dadoTreinamento.Value[diasPrevistosRN]) / Math.Max(outputPrevisao[diasPrevistosRN], dadoTreinamento.Value[diasPrevistosRN]);
+                        double ta = Math.Min(outputPrevisao[diasPrevistosRN], treinamento.Output[diasPrevistosRN]) / Math.Max(outputPrevisao[diasPrevistosRN], treinamento.Output[diasPrevistosRN]);
                         taxaAcertoPorDia[diasPrevistosRN] = ta;
                         redePrevisao.TaxaMediaAcertoPorDia[diasPrevistosRN] += ta;
                     }
-                    taxaAcertoPorDiaParaTreinamento.Add(taxaAcertoPorDia);
+                    taxasAcertoRedes.Add(taxaAcertoPorDia);
                 }
 
-                //Lista com o melhor desultado de cada dia (cada item da lista corresponde um dia..)
-                List<double> melhoresResultadosDia = new List<double>(dadoTreinamento.Key);
+                //Lista com o melhor desultado de cada dia (cada item da lista corresponde a um dia..)
+                List<double> melhoresResultadosDia = new List<double>(treinamento.Input);
                 //Trata as taxas de acerto que não foram calculadas pois a rede tem output menor do que a quantidade de dias da previsao
                 for (int dia = 1; dia < totalDiasPrevisao; dia++)
                 {
                     //Recupera o indice da rede que tem a melhor taxa de acerto para o dia anterior
-                    int indMelhorRedeParaODiaAnterior = taxaAcertoPorDiaParaTreinamento.IndexOf(taxaAcertoPorDiaParaTreinamento.OrderByDescending(taxasAcertoRede => taxasAcertoRede[dia - 1]).First());
+                    int indMelhorRedeParaODiaAnterior = taxasAcertoRedes.IndexOf(taxasAcertoRedes.OrderByDescending(taxasAcertoRede => taxasAcertoRede[dia - 1]).First());
                     //Adiciona o melhor resultado a lista de melhores resultados
                     melhoresResultadosDia.Add(outputsRedes[indMelhorRedeParaODiaAnterior][dia - 1]);
-                    for (int indRede = 0; indRede < taxaAcertoPorDiaParaTreinamento.Count; indRede++)
+                    for (int indRede = 0; indRede < configuracaoCaptacao.RedesPrevisao.Count; indRede++)
                     {
                         //Verifica se a taxa de acerto do dia para a rede ja foi calculada
-                        if (taxaAcertoPorDiaParaTreinamento[indRede][dia] == 0)
+                        if (taxasAcertoRedes[indRede][dia] == 0)
                         {
                             //Ultiliza os ultimos melhores dados para fazer uma nova previsao
-                            double[] inputRede = melhoresResultadosDia.Skip(melhoresResultadosDia.Count - redesPrevisaoFinanceira[indRede].JanelaEntrada).Take(redesPrevisaoFinanceira[indRede].JanelaEntrada).ToArray();
-                            double[] outputRede = redesPrevisaoFinanceira[indRede].RedeNeuralPrevisaoFinanceira.Run(inputRede);
+                            double[] inputRede = melhoresResultadosDia.Skip(melhoresResultadosDia.Count - configuracaoCaptacao.RedesPrevisao[indRede].JanelaEntrada).Take(configuracaoCaptacao.RedesPrevisao[indRede].JanelaEntrada).ToArray();
+                            double[] outputRede = configuracaoCaptacao.RedesPrevisao[indRede].RedeNeuralPrevisaoFinanceiraPorDivisaoCrossValidation[treinamento.DivisaoCrossValidation].Run(inputRede);
                             //Adiciona o dia previsto na lista de outputs
                             outputsRedes[indRede].Add(outputRede.Last());
                             //Calcula a taxa de acerto da previsao
-                            double ta = Math.Min(outputRede.Last(), dadoTreinamento.Value[dia]) / Math.Max(outputRede.Last(), dadoTreinamento.Value[dia]);
+                            double ta = Math.Min(outputRede.Last(), treinamento.Output[dia]) / Math.Max(outputRede.Last(), treinamento.Output[dia]);
                             //Adiciona a taxa de acerto da rede para o dia
-                            taxaAcertoPorDiaParaTreinamento[indRede][dia] = ta;
+                            taxasAcertoRedes[indRede][dia] = ta;
                             //Atualiza a taxa de acerto da rede
-                            redesPrevisaoFinanceira[indRede].TaxaMediaAcertoPorDia[dia] += ta;
+                            configuracaoCaptacao.RedesPrevisao[indRede].TaxaMediaAcertoPorDia[dia] += ta;
                         }
                     }
                 }
 
                 for (int dia = 0; dia < totalDiasPrevisao; dia++)
                 {
-                    double[] outputCaptacao = new double[redesPrevisaoFinanceira.Count];
-                    for (int indRede = 0; indRede < redesPrevisaoFinanceira.Count; indRede++)
+                    double[] outputCaptacao = new double[configuracaoCaptacao.RedesPrevisao.Count];
+                    for (int indRede = 0; indRede < configuracaoCaptacao.RedesPrevisao.Count; indRede++)
                     {
-                        outputCaptacao[indRede] = taxaAcertoPorDiaParaTreinamento[indRede][dia];
+                        outputCaptacao[indRede] = taxasAcertoRedes[indRede][dia];
                     }
-                    TrainingSample ts = new TrainingSample(dadoTreinamento.Key.ToArray(), outputCaptacao);
+                    TrainingSample ts = new TrainingSample(treinamento.Input.ToArray(), outputCaptacao);
                     treinamentosPorDia[dia].Add(ts);
                 }
             }
 
             //Divide a taxa de acerto pela quantidade de treinamentos para saber a taxa média
-            foreach (RedePrevisaoFinanceira redePrevisao in redesPrevisaoFinanceira)
+            foreach (RedePrevisaoFinanceira redePrevisao in configuracaoCaptacao.RedesPrevisao)
             {
                 for (int i = 0; i < totalDiasPrevisao; i++)
                 {
-                    redePrevisao.TaxaMediaAcertoPorDia[i] /= dadosTreinamento.Count;
+                    redePrevisao.TaxaMediaAcertoPorDia[i] /= configuracaoCaptacao.Dados.Count;
                 }
             }
 

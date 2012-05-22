@@ -35,9 +35,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CaptacaoMelhoresRedes">
-      <HintPath>..\CaptacaoMelhoresRedes\bin\Debug\CaptacaoMelhoresRedes.dll</HintPath>
-    </Reference>
     <Reference Include="NeuronDotNet.Core">
       <HintPath>..\CaptacaoMelhoresRedes\bin\Debug\NeuronDotNet.Core.dll</HintPath>
     </Reference>
@@ -54,7 +51,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="Microsoft.Office.Core">
@@ -84,6 +83,12 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CaptacaoMelhoresRedes\CaptacaoMelhoresRedes.csproj">
+      <Project>{85F0E026-2B69-42CB-90FE-81982F700DAB}</Project>
+      <Name>CaptacaoMelhoresRedes</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

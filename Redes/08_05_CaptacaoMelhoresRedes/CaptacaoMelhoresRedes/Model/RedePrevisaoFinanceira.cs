@@ -16,7 +16,8 @@ namespace CaptacaoMelhoresRedes.Model
         public string NomeRede { get; set; }
         public int JanelaEntrada { get; set; }
         public int JanelaSaida { get; set; }
-        public Network RedeNeuralPrevisaoFinanceira { get; set; }
+        public Dictionary<int, Network> RedeNeuralPrevisaoFinanceiraPorDivisaoCrossValidation { get; set; }
+        //public Network RedeNeuralPrevisaoFinanceira { get; set; }
         public Dictionary<int, double> TaxaMediaAcertoPorDia { get; set; }
     }
 }

@@ -42,12 +42,12 @@ namespace CaptacaoMelhoresRedes
             //Adicionar cada uma das redes ao treinamento de captação
             foreach (string nomeRede in redes)
             {
-                Network redeNeuralPrevisaoFinanceira = RedeNeural_PrevisaoFinanceira.RNAssessor.RecuperarRedeNeural(nomeRede);
+                //Network redeNeuralPrevisaoFinanceira = RedeNeural_PrevisaoFinanceira.RNAssessor.RecuperarRedeNeural(nomeRede);
                 RedePrevisaoFinanceira rpf = new RedePrevisaoFinanceira();
                 rpf.NomeRede = nomeRede;
                 rpf.JanelaEntrada = Convert.ToInt32(nomeRede.Split(new string[] { "_je", "_js" }, StringSplitOptions.RemoveEmptyEntries)[1]);
                 rpf.JanelaSaida = Convert.ToInt32(nomeRede.Split(new string[] { "_js", "_nn" }, StringSplitOptions.RemoveEmptyEntries)[1]);
-                rpf.RedeNeuralPrevisaoFinanceira = redeNeuralPrevisaoFinanceira;
+                rpf.RedeNeuralPrevisaoFinanceiraPorDivisaoCrossValidation = RedeNeural_PrevisaoFinanceira.RNAssessor.RecuperarRedesNeuraisAgrupadasPorConfiguracao(nomeRede); ;
 
                 configuracaoCaptacao.RedesPrevisao.Add(rpf);
             }

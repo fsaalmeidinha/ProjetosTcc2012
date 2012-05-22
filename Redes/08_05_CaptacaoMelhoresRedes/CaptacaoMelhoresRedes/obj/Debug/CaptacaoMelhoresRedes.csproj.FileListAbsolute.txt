@@ -60,3 +60,15 @@ C:\Users\Felipe\Desktop\tcc4\Redes\08_05_CaptacaoMelhoresRedes\CaptacaoMelhoresR
 C:\Users\Felipe\Desktop\tcc4\Redes\08_05_CaptacaoMelhoresRedes\CaptacaoMelhoresRedes\obj\Debug\CaptacaoMelhoresRedes.csproj.ResolveComReference.cache
 C:\Users\Felipe\Desktop\tcc4\Redes\08_05_CaptacaoMelhoresRedes\CaptacaoMelhoresRedes\obj\Debug\CaptacaoMelhoresRedes.dll
 C:\Users\Felipe\Desktop\tcc4\Redes\08_05_CaptacaoMelhoresRedes\CaptacaoMelhoresRedes\obj\Debug\CaptacaoMelhoresRedes.pdb
+D:\Suporte\felipe.almeida\Desktop\tcc\Redes\08_05_CaptacaoMelhoresRedes\CaptacaoMelhoresRedes\obj\Debug\ResolveAssemblyReference.cache
+D:\Suporte\felipe.almeida\Desktop\tcc\Redes\08_05_CaptacaoMelhoresRedes\CaptacaoMelhoresRedes\obj\Debug\CaptacaoMelhoresRedes.csproj.ResolveComReference.cache
+D:\Suporte\felipe.almeida\Desktop\tcc\Redes\08_05_CaptacaoMelhoresRedes\CaptacaoMelhoresRedes\obj\Debug\CaptacaoMelhoresRedes.dll
+D:\Suporte\felipe.almeida\Desktop\tcc\Redes\Lib-Geral\CaptacaoMelhoresRedes.dll
+D:\Suporte\felipe.almeida\Desktop\tcc\Redes\Lib-Geral\CaptacaoMelhoresRedes.pdb
+D:\Suporte\felipe.almeida\Desktop\tcc\Redes\08_05_CaptacaoMelhoresRedes\CaptacaoMelhoresRedes\obj\Debug\CaptacaoMelhoresRedes.pdb
+C:\Users\Felipe\Desktop\tcc_penDrive_Ultimo\Redes\Lib-Geral\CaptacaoMelhoresRedes.dll
+C:\Users\Felipe\Desktop\tcc_penDrive_Ultimo\Redes\Lib-Geral\CaptacaoMelhoresRedes.pdb
+C:\Users\Felipe\Desktop\tcc_penDrive_Ultimo\Redes\08_05_CaptacaoMelhoresRedes\CaptacaoMelhoresRedes\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Felipe\Desktop\tcc_penDrive_Ultimo\Redes\08_05_CaptacaoMelhoresRedes\CaptacaoMelhoresRedes\obj\Debug\CaptacaoMelhoresRedes.csproj.ResolveComReference.cache
+C:\Users\Felipe\Desktop\tcc_penDrive_Ultimo\Redes\08_05_CaptacaoMelhoresRedes\CaptacaoMelhoresRedes\obj\Debug\CaptacaoMelhoresRedes.dll
+C:\Users\Felipe\Desktop\tcc_penDrive_Ultimo\Redes\08_05_CaptacaoMelhoresRedes\CaptacaoMelhoresRedes\obj\Debug\CaptacaoMelhoresRedes.pdb

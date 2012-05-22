@@ -31,15 +31,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DataBaseUtils, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="ExcelPackage, Version=1.0.0.1, Culture=neutral, PublicKeyToken=f8bb63aa9d6969e8, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Build.Framework" />
     <Reference Include="NeuronDotNet.Core">
       <HintPath>Z:\Tcc2012\Redes\24_04_RedeNeural_PrevisaoFinanceira\RedeNeural_PrevisaoFinanceira\bin\Debug\NeuronDotNet.Core.dll</HintPath>
     </Reference>
-    <Reference Include="RedeNeural_PrevisaoFinanceira, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\24_04_RedeNeural_PrevisaoFinanceira\RedeNeural_PrevisaoFinanceira\bin\Debug\RedeNeural_PrevisaoFinanceira.dll</HintPath>
-    </Reference>
+    <Reference Include="RedeNeural_PrevisaoFinanceira, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -84,6 +81,12 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\DataBaseUtils\DataBaseUtils\DataBaseUtils.csproj">
+      <Project>{3667363A-6B3D-4C1E-AC3B-D3D3E32F3CD9}</Project>
+      <Name>DataBaseUtils</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
