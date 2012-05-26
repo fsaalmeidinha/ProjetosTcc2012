@@ -18,7 +18,7 @@ namespace Graficos
         public Form1()
         {
             InitializeComponent();
-            previsao = PrevisaoFinanceiraHelper.PrevisaoFinanceira.PreverCotacaoAtivo("PETR4", 120);
+            previsao = PrevisaoFinanceiraHelper.PrevisaoFinanceira.PreverCotacaoAtivo("PETR4", 240);
             DesenharGrafico();
             AlimentarGridTaxasAcerto();
         }
