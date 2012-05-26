@@ -30,6 +30,7 @@
         {
             this.grafico = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.gvTaxaAcerto = new System.Windows.Forms.DataGridView();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -39,15 +40,17 @@
             this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grafico)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gvTaxaAcerto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // grafico
             // 
-            this.grafico.Location = new System.Drawing.Point(11, 3);
+            this.grafico.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.grafico.Location = new System.Drawing.Point(14, 3);
             this.grafico.Name = "grafico";
-            this.grafico.Size = new System.Drawing.Size(20092, 689);
+            this.grafico.Size = new System.Drawing.Size(20089, 565);
             this.grafico.TabIndex = 0;
             this.grafico.TabStop = false;
             // 
@@ -55,12 +58,25 @@
             // 
             this.panel1.AutoScroll = true;
             this.panel1.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.panel1.Controls.Add(this.gvTaxaAcerto);
             this.panel1.Controls.Add(this.grafico);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 63);
+            this.panel1.Location = new System.Drawing.Point(0, 43);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(763, 710);
             this.panel1.TabIndex = 1;
+            // 
+            // gvTaxaAcerto
+            // 
+            this.gvTaxaAcerto.AllowUserToAddRows = false;
+            this.gvTaxaAcerto.AllowUserToDeleteRows = false;
+            this.gvTaxaAcerto.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gvTaxaAcerto.Location = new System.Drawing.Point(14, 574);
+            this.gvTaxaAcerto.Name = "gvTaxaAcerto";
+            this.gvTaxaAcerto.ReadOnly = true;
+            this.gvTaxaAcerto.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
+            this.gvTaxaAcerto.Size = new System.Drawing.Size(738, 104);
+            this.gvTaxaAcerto.TabIndex = 1;
             // 
             // pictureBox1
             // 
@@ -129,7 +145,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(763, 773);
+            this.ClientSize = new System.Drawing.Size(763, 753);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtEscalaX);
@@ -142,6 +158,7 @@
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.grafico)).EndInit();
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gvTaxaAcerto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
@@ -160,6 +177,7 @@
         private System.Windows.Forms.TextBox txtEscalaX;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.DataGridView gvTaxaAcerto;
     }
 }
 

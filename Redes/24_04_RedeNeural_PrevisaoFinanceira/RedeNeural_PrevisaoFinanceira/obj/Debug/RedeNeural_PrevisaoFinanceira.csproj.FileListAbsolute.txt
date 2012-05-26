@@ -69,3 +69,8 @@ C:\Users\Felipe\Desktop\tcc_penDrive_Ultimo\Redes\24_04_RedeNeural_PrevisaoFinan
 C:\Users\Felipe\Desktop\tcc_penDrive_Ultimo\Redes\Lib-Geral\RedeNeural_PrevisaoFinanceira.dll
 C:\Users\Felipe\Desktop\tcc_penDrive_Ultimo\Redes\Lib-Geral\RedeNeural_PrevisaoFinanceira.pdb
 C:\Users\Felipe\Desktop\tcc_penDrive_Ultimo\Redes\24_04_RedeNeural_PrevisaoFinanceira\RedeNeural_PrevisaoFinanceira\obj\Debug\RedeNeural_PrevisaoFinanceira.pdb
+C:\Users\Felipe\Desktop\tcc_old\Redes\Lib-Geral\RedeNeural_PrevisaoFinanceira.dll
+C:\Users\Felipe\Desktop\tcc_old\Redes\Lib-Geral\RedeNeural_PrevisaoFinanceira.pdb
+C:\Users\Felipe\Desktop\tcc_old\Redes\24_04_RedeNeural_PrevisaoFinanceira\RedeNeural_PrevisaoFinanceira\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Felipe\Desktop\tcc_old\Redes\24_04_RedeNeural_PrevisaoFinanceira\RedeNeural_PrevisaoFinanceira\obj\Debug\RedeNeural_PrevisaoFinanceira.dll
+C:\Users\Felipe\Desktop\tcc_old\Redes\24_04_RedeNeural_PrevisaoFinanceira\RedeNeural_PrevisaoFinanceira\obj\Debug\RedeNeural_PrevisaoFinanceira.pdb

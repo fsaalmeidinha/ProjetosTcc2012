@@ -43,3 +43,11 @@ C:\Users\Felipe\Desktop\tcc_penDrive_Ultimo\Redes\DataBaseUtils\DataBaseUtils\ob
 C:\Users\Felipe\Desktop\tcc_penDrive_Ultimo\Redes\DataBaseUtils\DataBaseUtils\obj\Debug\GenerateResource.write.1.tlog
 C:\Users\Felipe\Desktop\tcc_penDrive_Ultimo\Redes\DataBaseUtils\DataBaseUtils\obj\Debug\DataBaseUtils.dll
 C:\Users\Felipe\Desktop\tcc_penDrive_Ultimo\Redes\DataBaseUtils\DataBaseUtils\obj\Debug\DataBaseUtils.pdb
+C:\Users\Felipe\Desktop\tcc_old\Redes\Lib-Geral\DataBaseUtils.dll
+C:\Users\Felipe\Desktop\tcc_old\Redes\Lib-Geral\DataBaseUtils.pdb
+C:\Users\Felipe\Desktop\tcc_old\Redes\DataBaseUtils\DataBaseUtils\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Felipe\Desktop\tcc_old\Redes\DataBaseUtils\DataBaseUtils\obj\Debug\DataBaseUtils.Resources.resources
+C:\Users\Felipe\Desktop\tcc_old\Redes\DataBaseUtils\DataBaseUtils\obj\Debug\GenerateResource.read.1.tlog
+C:\Users\Felipe\Desktop\tcc_old\Redes\DataBaseUtils\DataBaseUtils\obj\Debug\GenerateResource.write.1.tlog
+C:\Users\Felipe\Desktop\tcc_old\Redes\DataBaseUtils\DataBaseUtils\obj\Debug\DataBaseUtils.dll
+C:\Users\Felipe\Desktop\tcc_old\Redes\DataBaseUtils\DataBaseUtils\obj\Debug\DataBaseUtils.pdb

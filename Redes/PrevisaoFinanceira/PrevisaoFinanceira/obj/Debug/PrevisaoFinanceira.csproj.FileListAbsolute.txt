@@ -8,3 +8,8 @@ C:\Users\Felipe\Desktop\tcc3\Redes\Lib-Geral\PrevisaoFinanceira.pdb
 C:\Users\Felipe\Desktop\tcc3\Redes\PrevisaoFinanceira\PrevisaoFinanceira\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\Felipe\Desktop\tcc3\Redes\PrevisaoFinanceira\PrevisaoFinanceira\obj\Debug\PrevisaoFinanceira.dll
 C:\Users\Felipe\Desktop\tcc3\Redes\PrevisaoFinanceira\PrevisaoFinanceira\obj\Debug\PrevisaoFinanceira.pdb
+C:\Users\Felipe\Desktop\tcc_old\Redes\Lib-Geral\PrevisaoFinanceira.dll
+C:\Users\Felipe\Desktop\tcc_old\Redes\Lib-Geral\PrevisaoFinanceira.pdb
+C:\Users\Felipe\Desktop\tcc_old\Redes\PrevisaoFinanceira\PrevisaoFinanceira\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Felipe\Desktop\tcc_old\Redes\PrevisaoFinanceira\PrevisaoFinanceira\obj\Debug\PrevisaoFinanceira.dll
+C:\Users\Felipe\Desktop\tcc_old\Redes\PrevisaoFinanceira\PrevisaoFinanceira\obj\Debug\PrevisaoFinanceira.pdb
