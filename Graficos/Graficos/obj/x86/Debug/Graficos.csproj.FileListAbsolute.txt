@@ -53,3 +53,63 @@ C:\Users\Felipe\Desktop\tcc_old\Graficos\Graficos\obj\x86\Debug\Graficos.Propert
 C:\Users\Felipe\Desktop\tcc_old\Graficos\Graficos\obj\x86\Debug\GenerateResource.read.1.tlog
 C:\Users\Felipe\Desktop\tcc_old\Graficos\Graficos\obj\x86\Debug\GenerateResource.write.1.tlog
 C:\Users\Felipe\Desktop\tcc_old\Graficos\Graficos\bin\Debug\Graficos.exe.config
+C:\Users\felipe.almeida1\Desktop\tcc\Graficos\Graficos\bin\Debug\Graficos.exe.config
+C:\Users\felipe.almeida1\Desktop\tcc\Graficos\Graficos\obj\x86\Debug\Graficos.exe
+C:\Users\felipe.almeida1\Desktop\tcc\Graficos\Graficos\obj\x86\Debug\Graficos.pdb
+C:\Users\felipe.almeida1\Desktop\tcc\Graficos\Graficos\bin\Debug\Graficos.exe
+C:\Users\felipe.almeida1\Desktop\tcc\Graficos\Graficos\bin\Debug\Graficos.pdb
+C:\Users\felipe.almeida1\Desktop\tcc\Graficos\Graficos\bin\Debug\PrevisaoFinanceira.dll
+C:\Users\felipe.almeida1\Desktop\tcc\Graficos\Graficos\bin\Debug\DataBaseUtils.dll
+C:\Users\felipe.almeida1\Desktop\tcc\Graficos\Graficos\bin\Debug\CaptacaoMelhoresRedes.dll
+C:\Users\felipe.almeida1\Desktop\tcc\Graficos\Graficos\bin\Debug\RedeNeural_PrevisaoFinanceira.dll
+C:\Users\felipe.almeida1\Desktop\tcc\Graficos\Graficos\bin\Debug\NeuronDotNet.Core.dll
+C:\Users\felipe.almeida1\Desktop\tcc\Graficos\Graficos\bin\Debug\PrevisaoFinanceira.pdb
+C:\Users\felipe.almeida1\Desktop\tcc\Graficos\Graficos\bin\Debug\DataBaseUtils.pdb
+C:\Users\felipe.almeida1\Desktop\tcc\Graficos\Graficos\bin\Debug\CaptacaoMelhoresRedes.pdb
+C:\Users\felipe.almeida1\Desktop\tcc\Graficos\Graficos\bin\Debug\RedeNeural_PrevisaoFinanceira.pdb
+C:\Users\felipe.almeida1\Desktop\tcc\Graficos\Graficos\bin\Debug\NeuronDotNet.Core.xml
+C:\Users\felipe.almeida1\Desktop\tcc\Graficos\Graficos\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\felipe.almeida1\Desktop\tcc\Graficos\Graficos\obj\x86\Debug\Graficos.Form1.resources
+C:\Users\felipe.almeida1\Desktop\tcc\Graficos\Graficos\obj\x86\Debug\Graficos.Properties.Resources.resources
+C:\Users\felipe.almeida1\Desktop\tcc\Graficos\Graficos\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\felipe.almeida1\Desktop\tcc\Graficos\Graficos\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\felipe.almeida1\Desktop\tcc - Cópia\Graficos\Graficos\bin\Debug\Graficos.exe.config
+C:\Users\felipe.almeida1\Desktop\tcc - Cópia\Graficos\Graficos\obj\x86\Debug\Graficos.exe
+C:\Users\felipe.almeida1\Desktop\tcc - Cópia\Graficos\Graficos\obj\x86\Debug\Graficos.pdb
+C:\Users\felipe.almeida1\Desktop\tcc - Cópia\Graficos\Graficos\bin\Debug\Graficos.exe
+C:\Users\felipe.almeida1\Desktop\tcc - Cópia\Graficos\Graficos\bin\Debug\Graficos.pdb
+C:\Users\felipe.almeida1\Desktop\tcc - Cópia\Graficos\Graficos\bin\Debug\PrevisaoFinanceira.dll
+C:\Users\felipe.almeida1\Desktop\tcc - Cópia\Graficos\Graficos\bin\Debug\DataBaseUtils.dll
+C:\Users\felipe.almeida1\Desktop\tcc - Cópia\Graficos\Graficos\bin\Debug\CaptacaoMelhoresRedes.dll
+C:\Users\felipe.almeida1\Desktop\tcc - Cópia\Graficos\Graficos\bin\Debug\RedeNeural_PrevisaoFinanceira.dll
+C:\Users\felipe.almeida1\Desktop\tcc - Cópia\Graficos\Graficos\bin\Debug\NeuronDotNet.Core.dll
+C:\Users\felipe.almeida1\Desktop\tcc - Cópia\Graficos\Graficos\bin\Debug\PrevisaoFinanceira.pdb
+C:\Users\felipe.almeida1\Desktop\tcc - Cópia\Graficos\Graficos\bin\Debug\DataBaseUtils.pdb
+C:\Users\felipe.almeida1\Desktop\tcc - Cópia\Graficos\Graficos\bin\Debug\CaptacaoMelhoresRedes.pdb
+C:\Users\felipe.almeida1\Desktop\tcc - Cópia\Graficos\Graficos\bin\Debug\RedeNeural_PrevisaoFinanceira.pdb
+C:\Users\felipe.almeida1\Desktop\tcc - Cópia\Graficos\Graficos\bin\Debug\NeuronDotNet.Core.xml
+C:\Users\felipe.almeida1\Desktop\tcc - Cópia\Graficos\Graficos\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\felipe.almeida1\Desktop\tcc - Cópia\Graficos\Graficos\obj\x86\Debug\Graficos.Form1.resources
+C:\Users\felipe.almeida1\Desktop\tcc - Cópia\Graficos\Graficos\obj\x86\Debug\Graficos.Properties.Resources.resources
+C:\Users\felipe.almeida1\Desktop\tcc - Cópia\Graficos\Graficos\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\felipe.almeida1\Desktop\tcc - Cópia\Graficos\Graficos\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\felipe.almeida1\Desktop\tcc2\Graficos\Graficos\bin\Debug\Graficos.exe.config
+C:\Users\felipe.almeida1\Desktop\tcc2\Graficos\Graficos\obj\x86\Debug\Graficos.exe
+C:\Users\felipe.almeida1\Desktop\tcc2\Graficos\Graficos\obj\x86\Debug\Graficos.pdb
+C:\Users\felipe.almeida1\Desktop\tcc2\Graficos\Graficos\bin\Debug\Graficos.exe
+C:\Users\felipe.almeida1\Desktop\tcc2\Graficos\Graficos\bin\Debug\Graficos.pdb
+C:\Users\felipe.almeida1\Desktop\tcc2\Graficos\Graficos\bin\Debug\PrevisaoFinanceira.dll
+C:\Users\felipe.almeida1\Desktop\tcc2\Graficos\Graficos\bin\Debug\DataBaseUtils.dll
+C:\Users\felipe.almeida1\Desktop\tcc2\Graficos\Graficos\bin\Debug\CaptacaoMelhoresRedes.dll
+C:\Users\felipe.almeida1\Desktop\tcc2\Graficos\Graficos\bin\Debug\RedeNeural_PrevisaoFinanceira.dll
+C:\Users\felipe.almeida1\Desktop\tcc2\Graficos\Graficos\bin\Debug\NeuronDotNet.Core.dll
+C:\Users\felipe.almeida1\Desktop\tcc2\Graficos\Graficos\bin\Debug\PrevisaoFinanceira.pdb
+C:\Users\felipe.almeida1\Desktop\tcc2\Graficos\Graficos\bin\Debug\DataBaseUtils.pdb
+C:\Users\felipe.almeida1\Desktop\tcc2\Graficos\Graficos\bin\Debug\CaptacaoMelhoresRedes.pdb
+C:\Users\felipe.almeida1\Desktop\tcc2\Graficos\Graficos\bin\Debug\RedeNeural_PrevisaoFinanceira.pdb
+C:\Users\felipe.almeida1\Desktop\tcc2\Graficos\Graficos\bin\Debug\NeuronDotNet.Core.xml
+C:\Users\felipe.almeida1\Desktop\tcc2\Graficos\Graficos\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\felipe.almeida1\Desktop\tcc2\Graficos\Graficos\obj\x86\Debug\Graficos.Form1.resources
+C:\Users\felipe.almeida1\Desktop\tcc2\Graficos\Graficos\obj\x86\Debug\Graficos.Properties.Resources.resources
+C:\Users\felipe.almeida1\Desktop\tcc2\Graficos\Graficos\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\felipe.almeida1\Desktop\tcc2\Graficos\Graficos\obj\x86\Debug\GenerateResource.write.1.tlog

@@ -19,3 +19,6 @@ C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinan
 C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira\HelloWorld\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira\HelloWorld\obj\x86\Debug\HelloWorld.exe
 C:\Users\felipe.almeida1\Desktop\MODIFICADO_COM_GRAFICO_RedeNeural_PrevisaoFinanceira\HelloWorld\obj\x86\Debug\HelloWorld.pdb
+C:\Users\felipe.almeida1\Desktop\tcc2\17_04_2012\HelloWorld\bin\Debug\HelloWorld.exe.config
+C:\Users\felipe.almeida1\Desktop\tcc2\17_04_2012\HelloWorld\obj\x86\Debug\HelloWorld.exe
+C:\Users\felipe.almeida1\Desktop\tcc2\17_04_2012\HelloWorld\obj\x86\Debug\HelloWorld.pdb

@@ -34,7 +34,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="PrevisaoFinanceira">
+    <Reference Include="PrevisaoFinanceira, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Redes\Lib-Geral\PrevisaoFinanceira.dll</HintPath>
     </Reference>
     <Reference Include="System" />

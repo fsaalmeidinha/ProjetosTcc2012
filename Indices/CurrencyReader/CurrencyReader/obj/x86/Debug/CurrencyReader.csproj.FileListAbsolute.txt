@@ -1,0 +1,5 @@
+c:\users\felipe.almeida1\documents\visual studio 2010\Projects\CurrencyReader\CurrencyReader\bin\Debug\CurrencyReader.exe
+c:\users\felipe.almeida1\documents\visual studio 2010\Projects\CurrencyReader\CurrencyReader\bin\Debug\CurrencyReader.pdb
+c:\users\felipe.almeida1\documents\visual studio 2010\Projects\CurrencyReader\CurrencyReader\obj\x86\Debug\ResolveAssemblyReference.cache
+c:\users\felipe.almeida1\documents\visual studio 2010\Projects\CurrencyReader\CurrencyReader\obj\x86\Debug\CurrencyReader.exe
+c:\users\felipe.almeida1\documents\visual studio 2010\Projects\CurrencyReader\CurrencyReader\obj\x86\Debug\CurrencyReader.pdb
