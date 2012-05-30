@@ -16,7 +16,7 @@ namespace DataBaseUtils
         public static List<DadosBE> RecuperarCotacoesAtivo(string papel)
         {
             List<DadosBE> listCotacoes = new List<DadosBE>();
-            DadosBE Cotacao = null;
+            DadosBE cotacao = null;
             DataTableReader dtr = null;
 
             try
@@ -25,17 +25,24 @@ namespace DataBaseUtils
 
                 while (dtr.Read())
                 {
-                    Cotacao = new DadosBE();
+                    cotacao = new DadosBE();
 
-                    Cotacao.Id = (int)dtr["id"];
-                    Cotacao.NomeReduzido = dtr["nomeresumido"].ToString();
-                    Cotacao.DataGeracao = (DateTime)dtr["datageracao"];
-                    Cotacao.PrecoAbertura = (decimal)dtr["precoabertura"];
-                    Cotacao.PrecoAberturaNormalizado = (decimal)dtr["precoaberturaNormalizado"];
+                    cotacao.Id = (int)dtr["id"];
+                    cotacao.NomeReduzido = dtr["nomeresumido"].ToString();
+                    cotacao.DataGeracao = (DateTime)dtr["datageracao"];
+                    cotacao.PrecoAbertura = (decimal)dtr["precoabertura"];
+                    cotacao.PrecoAberturaNormalizado = (decimal)dtr["precoaberturaNormalizado"];
+                    //cotacao.EstacaoDoAno = RecuperaEstacaoDoAno(cotacao.DataGeracao);
 
-                    listCotacoes.Add(Cotacao);
+                    listCotacoes.Add(cotacao);
                 }
                 TratarDesdobramento(listCotacoes);
+
+                //Adiciona os valores normalizados
+                listCotacoes.ForEach(cot => cot.ValorNormalizado = NormalizarDado(Convert.ToDouble(cot.PrecoAbertura), papel));
+
+                //Atribui um valor bollinger de 0 a 1 para a cotação
+                PreencherValorBollinger(listCotacoes);
             }
             catch (Exception ex)
             {
@@ -47,6 +54,33 @@ namespace DataBaseUtils
             }
 
             return listCotacoes;
+        }
+
+        private static void PreencherValorBollinger(List<DadosBE> listCotacoes)
+        {
+            //Analisaremos periodos de 20 dias
+            for (int i = 19; i < listCotacoes.Count; i++)
+            {
+                //Calcula a média dos 19 dias anteriores mais o dia atual e alimenta a propriedade "MediaMovel" do dado
+                listCotacoes[i].MediaMovel = Convert.ToDouble(listCotacoes.Skip(i - 19).Take(20).Sum(cot => cot.PrecoAbertura) / 20);
+                //Temos que calcular o desvio padrao da BandaCentral (MediaMovel), portanto isso só é possivel quando tivermos ao menos 20 médias móveis calculadas
+                if (i >= 39)
+                {
+                    //Calculo das bandas http://www.investmax.com.br/iM/content.asp?contentid=660 PS: Fizemos * 2.2 para dar uma margem a mais
+                    double bandaSuperior = listCotacoes[i].MediaMovel + 2.3 * Math.Sqrt(Math.Pow(listCotacoes.Skip(i - 19).Take(20).Sum(cot => (double)cot.PrecoAbertura - cot.MediaMovel), 2) / 20);
+                    double bandaInferior = listCotacoes[i].MediaMovel - 2.3 * Math.Sqrt(Math.Pow(listCotacoes.Skip(i - 19).Take(20).Sum(cot => (double)cot.PrecoAbertura - cot.MediaMovel), 2) / 20);
+
+                    //Ex: bandaSuperior = 10, bandaInferior = 2, cotacao = 4.8567, temos: (4.8567 - 2) * 1 / (10-2) = 0.3570875
+                    listCotacoes[i].ValorBollinger = 1 / (bandaSuperior - bandaInferior) * ((double)listCotacoes[i].PrecoAbertura - bandaInferior);
+                }
+
+
+                //Desvio Padrao - http://pt.wikipedia.org/wiki/Desvio_padr%C3%A3o
+            }
+
+            //Seta o valor médio para as cotações em que não foi possivel fazer a analise bollinger
+            listCotacoes.Take(40).ToList().ForEach(cot => cot.ValorBollinger = 0.5);
+
         }
 
         public static double NormalizarDado(double dado, string papel)

@@ -7,10 +7,19 @@ namespace DataBaseUtils
 {
     public class DadosBE
     {
+        internal double MediaMovel;
+
         public int Id { get; set; }
         public string NomeReduzido { get; set; }
         public DateTime DataGeracao { get; set; }
         public decimal PrecoAbertura { get; set; }
         public decimal PrecoAberturaNormalizado { get; set; }
+
+        //A partir da versao 2
+        public double ValorNormalizado { get; set; }
+        public double ValorBollinger { get; set; }
+        public double CotacaoDolar { get; set; }
+        public double CotacaoDolarNormalizado { get; set; }
+        public double EstacaoDoAno { get; set; }
     }
 }

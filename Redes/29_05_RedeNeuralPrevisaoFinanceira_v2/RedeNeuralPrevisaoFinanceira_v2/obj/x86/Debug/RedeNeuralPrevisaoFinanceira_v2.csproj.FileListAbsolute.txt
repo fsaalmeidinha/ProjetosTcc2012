@@ -1,0 +1,8 @@
+c:\users\felipe\documents\visual studio 2010\Projects\RedeNeuralPrevisaoFinanceira_v2\RedeNeuralPrevisaoFinanceira_v2\bin\Debug\RedeNeuralPrevisaoFinanceira_v2.exe.config
+c:\users\felipe\documents\visual studio 2010\Projects\RedeNeuralPrevisaoFinanceira_v2\RedeNeuralPrevisaoFinanceira_v2\bin\Debug\RedeNeuralPrevisaoFinanceira_v2.exe
+c:\users\felipe\documents\visual studio 2010\Projects\RedeNeuralPrevisaoFinanceira_v2\RedeNeuralPrevisaoFinanceira_v2\bin\Debug\RedeNeuralPrevisaoFinanceira_v2.pdb
+c:\users\felipe\documents\visual studio 2010\Projects\RedeNeuralPrevisaoFinanceira_v2\RedeNeuralPrevisaoFinanceira_v2\obj\x86\Debug\ResolveAssemblyReference.cache
+c:\users\felipe\documents\visual studio 2010\Projects\RedeNeuralPrevisaoFinanceira_v2\RedeNeuralPrevisaoFinanceira_v2\obj\x86\Debug\RedeNeuralPrevisaoFinanceira_v2.exe
+c:\users\felipe\documents\visual studio 2010\Projects\RedeNeuralPrevisaoFinanceira_v2\RedeNeuralPrevisaoFinanceira_v2\obj\x86\Debug\RedeNeuralPrevisaoFinanceira_v2.pdb
+c:\users\felipe\documents\visual studio 2010\Projects\RedeNeuralPrevisaoFinanceira_v2\RedeNeuralPrevisaoFinanceira_v2\bin\Debug\DataBaseUtils.dll
+c:\users\felipe\documents\visual studio 2010\Projects\RedeNeuralPrevisaoFinanceira_v2\RedeNeuralPrevisaoFinanceira_v2\bin\Debug\DataBaseUtils.pdb

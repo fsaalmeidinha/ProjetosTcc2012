@@ -8,3 +8,5 @@ C:\Users\Wagner\Desktop\CurrencyReader\CurrencyReader\bin\Debug\CurrencyReader.p
 C:\Users\Wagner\Desktop\CurrencyReader\CurrencyReader\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\Users\Wagner\Desktop\CurrencyReader\CurrencyReader\obj\x86\Debug\CurrencyReader.exe
 C:\Users\Wagner\Desktop\CurrencyReader\CurrencyReader\obj\x86\Debug\CurrencyReader.pdb
+C:\Users\Felipe\Desktop\tcc_old\Indices\CurrencyReader\CurrencyReader\obj\x86\Debug\CurrencyReader.exe
+C:\Users\Felipe\Desktop\tcc_old\Indices\CurrencyReader\CurrencyReader\obj\x86\Debug\CurrencyReader.pdb
