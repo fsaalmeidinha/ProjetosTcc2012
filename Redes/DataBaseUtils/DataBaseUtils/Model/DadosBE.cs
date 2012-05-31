@@ -18,8 +18,8 @@ namespace DataBaseUtils
         //A partir da versao 2
         public double ValorNormalizado { get; set; }
         public double ValorBollinger { get; set; }
-        public double CotacaoDolar { get; set; }
-        public double CotacaoDolarNormalizado { get; set; }
+        public decimal CotacaoDolar { get; set; }
+        public decimal CotacaoDolarNormalizado { get; set; }
         public double EstacaoDoAno { get; set; }
     }
 }

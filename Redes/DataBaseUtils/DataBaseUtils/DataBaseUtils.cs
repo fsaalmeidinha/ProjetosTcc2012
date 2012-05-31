@@ -32,6 +32,7 @@ namespace DataBaseUtils
                     cotacao.DataGeracao = (DateTime)dtr["datageracao"];
                     cotacao.PrecoAbertura = (decimal)dtr["precoabertura"];
                     cotacao.PrecoAberturaNormalizado = (decimal)dtr["precoaberturaNormalizado"];
+                    cotacao.CotacaoDolar = (decimal)dtr["valorDolar"];
                     //cotacao.EstacaoDoAno = RecuperaEstacaoDoAno(cotacao.DataGeracao);
 
                     listCotacoes.Add(cotacao);

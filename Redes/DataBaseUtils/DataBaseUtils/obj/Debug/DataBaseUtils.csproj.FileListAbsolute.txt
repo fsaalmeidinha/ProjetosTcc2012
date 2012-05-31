@@ -51,3 +51,11 @@ C:\Users\Felipe\Desktop\tcc_old\Redes\DataBaseUtils\DataBaseUtils\obj\Debug\Gene
 C:\Users\Felipe\Desktop\tcc_old\Redes\DataBaseUtils\DataBaseUtils\obj\Debug\GenerateResource.write.1.tlog
 C:\Users\Felipe\Desktop\tcc_old\Redes\DataBaseUtils\DataBaseUtils\obj\Debug\DataBaseUtils.dll
 C:\Users\Felipe\Desktop\tcc_old\Redes\DataBaseUtils\DataBaseUtils\obj\Debug\DataBaseUtils.pdb
+C:\Users\Wagner\Desktop\Lib-Geral\DataBaseUtils.dll
+C:\Users\Wagner\Desktop\Lib-Geral\DataBaseUtils.pdb
+C:\Users\Wagner\Desktop\DataBaseUtils\DataBaseUtils\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Wagner\Desktop\DataBaseUtils\DataBaseUtils\obj\Debug\DataBaseUtils.Resources.resources
+C:\Users\Wagner\Desktop\DataBaseUtils\DataBaseUtils\obj\Debug\GenerateResource.read.1.tlog
+C:\Users\Wagner\Desktop\DataBaseUtils\DataBaseUtils\obj\Debug\GenerateResource.write.1.tlog
+C:\Users\Wagner\Desktop\DataBaseUtils\DataBaseUtils\obj\Debug\DataBaseUtils.dll
+C:\Users\Wagner\Desktop\DataBaseUtils\DataBaseUtils\obj\Debug\DataBaseUtils.pdb
