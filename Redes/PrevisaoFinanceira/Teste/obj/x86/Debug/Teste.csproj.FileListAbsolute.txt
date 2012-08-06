@@ -30,3 +30,6 @@ C:\Users\Felipe\Desktop\tcc_old\Redes\PrevisaoFinanceira\Teste\bin\Debug\RedeNeu
 C:\Users\Felipe\Desktop\tcc_old\Redes\PrevisaoFinanceira\Teste\bin\Debug\CaptacaoMelhoresRedes.pdb
 C:\Users\Felipe\Desktop\tcc_old\Redes\PrevisaoFinanceira\Teste\bin\Debug\NeuronDotNet.Core.xml
 C:\Users\Felipe\Desktop\tcc_old\Redes\PrevisaoFinanceira\Teste\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\felipe.almeida1\Desktop\TCC\Redes\PrevisaoFinanceira\Teste\bin\Debug\Teste.exe.config
+C:\Users\felipe.almeida1\Desktop\TCC\Redes\PrevisaoFinanceira\Teste\obj\x86\Debug\Teste.exe
+C:\Users\felipe.almeida1\Desktop\TCC\Redes\PrevisaoFinanceira\Teste\obj\x86\Debug\Teste.pdb
