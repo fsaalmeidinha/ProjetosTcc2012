@@ -33,6 +33,7 @@ namespace DataBaseUtils
                     cotacao.PrecoAbertura = (decimal)dtr["precoabertura"];
                     cotacao.PrecoAberturaNormalizado = (decimal)dtr["precoaberturaNormalizado"];
                     cotacao.CotacaoDolar = (decimal)dtr["valorDolar"];
+                    cotacao.CotacaoDolarNormalizado = (decimal)NormalizarDado(Convert.ToDouble(cotacao.CotacaoDolar), "Dolar");
                     cotacao.EstacaoDoAno = RecuperarEstacaoDoAno(cotacao.DataGeracao);
 
                     listCotacoes.Add(cotacao);
@@ -81,7 +82,6 @@ namespace DataBaseUtils
 
             //Seta o valor médio para as cotações em que não foi possivel fazer a analise bollinger
             listCotacoes.Take(40).ToList().ForEach(cot => cot.ValorBollinger = 0.5);
-
         }
 
         private static double RecuperarEstacaoDoAno(DateTime data)
@@ -123,6 +123,48 @@ namespace DataBaseUtils
 
         #region METODOS DE SELECAO DE DADOS
 
+        public static List<Treinamento> SelecionarTreinamentos_V2(List<DadosBE> dadosBE, int janelaEntrada, int n)
+        {
+            if (n <= 0)
+                n = 1;
+
+            List<Treinamento> treinamentos = new List<Treinamento>();
+            for (int divisao = 0; divisao < numeroDivisoesCrossValidation; divisao++)
+            {
+                for (int i = dadosBE.Count / numeroDivisoesCrossValidation * divisao; i < dadosBE.Count / numeroDivisoesCrossValidation * (divisao + 1); i += n)
+                {
+                    //i deve ter valor menor que o numero de elementos de dadosBE - a quantidade de elementos que serão selecionados (janelaentrada + 1[janela saida])
+                    if (i >= dadosBE.Count - janelaEntrada)
+                        break;
+                    Treinamento treinamento = new Treinamento();
+                    treinamento.DivisaoCrossValidation = divisao;
+                    List<DadosBE> dadosBEInput = dadosBE.Skip(i).Take(janelaEntrada).ToList();
+
+                    //Adiciona as cotações do ativo
+                    treinamento.Input = dadosBEInput.Select(dadoBE => (double)dadoBE.ValorNormalizado).ToList();
+                    //Adiciona a cotação do dolar
+                    treinamento.Input.Add(dadosBEInput.Last().EstacaoDoAno);
+                    //Adiciona o valor bollinger
+                    treinamento.Input.Add(dadosBEInput.Last().ValorBollinger);
+                    //Adiciona as cotações do dolar
+                    treinamento.Input.Add((double)dadosBEInput.First().CotacaoDolarNormalizado);
+                    //A primeira cotação ja foi adicionada e a ultima será adicionada em seguida, por isso começamos em 5 e terminamos em COUNT() - 5
+                    for (int indDadoBE = 5; indDadoBE < dadosBEInput.Count - 5; indDadoBE++)
+                    {
+                        treinamento.Input.Add((double)dadosBEInput[indDadoBE].CotacaoDolarNormalizado);
+                    }
+                    treinamento.Input.Add((double)dadosBEInput.Last().CotacaoDolarNormalizado);
+
+                    DadosBE dadoBEOutput = dadosBE.Skip(i + janelaEntrada).First();
+                    treinamento.Output = new List<double>() { dadoBEOutput.ValorNormalizado, (double)dadoBEOutput.CotacaoDolarNormalizado };
+                    treinamentos.Add(treinamento);
+                }
+            }
+
+            //Comentado por enquanto //Pode não haver dados suficientes para terminar de preencher o output, gerando um output com menos dados do que o solicitado
+            return treinamentos;     //.Where(trein => trein.Output.Count == janelaSaida).ToList();
+        }
+
         /// <summary>
         /// Retorna uma lista de Treinamento com seus devidos inputs e outputs e o seu shift correspondente
         /// </summary>
@@ -131,6 +173,7 @@ namespace DataBaseUtils
         /// <param name="janelaSaida">tamanho do output</param>
         /// <param name="n">quantidade de dados que serão pulados para cada iteração de treinamento (minimo 1)</param>
         /// <returns></returns>
+        [Obsolete("É utilizado pela versao 1")]
         public static List<Treinamento> SelecionarTreinamentos(List<double> dados, int janelaEntrada, int janelaSaida, int n)
         {
             if (n <= 0)
@@ -161,6 +204,7 @@ namespace DataBaseUtils
         /// <param name="janelaSaida">tamanho do output</param>
         /// <param name="considerarSaidasComoEntradas">numero de dias que serao pulados</param>
         /// <returns></returns>
+        [Obsolete("É utilizado pela versao 1")]
         public static List<KeyValuePair<double[], double[]>> SelecionarCotacoesPorJanelamentoPulandoNDias(List<double> dados, int janelaEntrada, int janelaSaida, int n)
         {
             if (n <= 0)

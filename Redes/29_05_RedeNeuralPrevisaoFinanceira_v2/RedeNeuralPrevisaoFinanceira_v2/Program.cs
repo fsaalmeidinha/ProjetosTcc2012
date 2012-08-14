@@ -10,7 +10,7 @@ namespace RedeNeuralPrevisaoFinanceira_v2
     {
         static void Main(string[] args)
         {
-            List<DadosBE> dadosBE = DataBaseUtils.DataBaseUtils.RecuperarCotacoesAtivo("PETR4");
+            new RNAssessor().TreinarRedes();
         }
     }
 }
