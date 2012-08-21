@@ -1,0 +1,10 @@
+C:\Users\wagner.nakamura\Desktop\TCC\Previsoes Burras\MediaPonderada\TestePrevisaoBurra\bin\Debug\TestePrevisaoBurra.exe
+C:\Users\wagner.nakamura\Desktop\TCC\Previsoes Burras\MediaPonderada\TestePrevisaoBurra\bin\Debug\TestePrevisaoBurra.pdb
+C:\Users\wagner.nakamura\Desktop\TCC\Previsoes Burras\MediaPonderada\TestePrevisaoBurra\bin\Debug\MediaPonderada.dll
+C:\Users\wagner.nakamura\Desktop\TCC\Previsoes Burras\MediaPonderada\TestePrevisaoBurra\bin\Debug\DataBaseUtils.dll
+C:\Users\wagner.nakamura\Desktop\TCC\Previsoes Burras\MediaPonderada\TestePrevisaoBurra\bin\Debug\MediaPonderada.pdb
+C:\Users\wagner.nakamura\Desktop\TCC\Previsoes Burras\MediaPonderada\TestePrevisaoBurra\bin\Debug\DataBaseUtils.pdb
+C:\Users\wagner.nakamura\Desktop\TCC\Previsoes Burras\MediaPonderada\TestePrevisaoBurra\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\wagner.nakamura\Desktop\TCC\Previsoes Burras\MediaPonderada\TestePrevisaoBurra\obj\x86\Debug\TestePrevisaoBurra.exe
+C:\Users\wagner.nakamura\Desktop\TCC\Previsoes Burras\MediaPonderada\TestePrevisaoBurra\obj\x86\Debug\TestePrevisaoBurra.pdb
+C:\Users\wagner.nakamura\Desktop\TCC\Previsoes Burras\MediaPonderada\TestePrevisaoBurra\bin\Debug\TestePrevisaoBurra.exe.config
