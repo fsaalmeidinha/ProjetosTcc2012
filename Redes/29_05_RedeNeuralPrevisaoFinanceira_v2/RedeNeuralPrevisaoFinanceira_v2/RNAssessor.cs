@@ -60,7 +60,7 @@ namespace RedeNeuralPrevisaoFinanceira_v2
                 //    TreinarRedeNeural(papel, input_output.Key, input_output.Value, 4, 0.25, ciclosTreinamento, dadosTreino, i);
                 //    Console.WriteLine(i + " -  " + DateTime.Now.Subtract(dtNow).ToString());
                 //}
-                //--Thread[] workerThreads = new Thread[numeroDivisoesCrossValidation];//(workerObject.DoWork);
+                Thread[] workerThreads = new Thread[numeroDivisoesCrossValidation];//(workerObject.DoWork);
                 for (int i = 0; i < numeroDivisoesCrossValidation; i++)
                 {
                     //Atribui o valor do i para não ser alterado nas iterações do for antes de ser passado para a thread
@@ -68,13 +68,13 @@ namespace RedeNeuralPrevisaoFinanceira_v2
                     List<DadosBE> dadosTreino = dadosBE.Take(dadosBE.Count / numeroDivisoesCrossValidation * i).ToList();
                     dadosTreino.AddRange(dadosBE.Skip(dadosBE.Count / numeroDivisoesCrossValidation * (i + 1)));
                     TreinarRedeNeural(papel, input_output.Key, 4, 0.25, ciclosTreinamento, dadosTreino, iFixThread);
-                    //--workerThreads[i] = new Thread(() => TreinarRedeNeural(papel, input_output.Key, 4, 0.25, ciclosTreinamento, dadosTreino, iFixThread));//TreinarRedeNeural(papel, input_output.Key, input_output.Value, 4, 0.25, ciclosTreinamento, dadosTreino, i));
-                    //--workerThreads[i].Start();
+                    workerThreads[i] = new Thread(() => TreinarRedeNeural(papel, input_output.Key, 4, 0.25, ciclosTreinamento, dadosTreino, iFixThread));//TreinarRedeNeural(papel, input_output.Key, input_output.Value, 4, 0.25, ciclosTreinamento, dadosTreino, i));
+                    workerThreads[i].Start();
                 }
-                //--for (int i = 0; i < numeroDivisoesCrossValidation; i++)
-                //--{
-                //--    workerThreads[i].Join();
-                //--}
+                for (int i = 0; i < numeroDivisoesCrossValidation; i++)
+                {
+                    workerThreads[i].Join();
+                }
 
                 //Apagar
                 //Console.WriteLine(String.Format("Input: {0}, Output: {1}, Tempo: {2}", input_output.Key, input_output.Value, DateTime.Now.Subtract(dtNow).ToString()));
