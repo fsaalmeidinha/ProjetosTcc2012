@@ -58,7 +58,7 @@ namespace DataBaseUtils
             return listCotacoes;
         }
 
-        private static void PreencherValorBollinger(List<DadosBE> listCotacoes)
+        public static void PreencherValorBollinger(List<DadosBE> listCotacoes)
         {
             //Analisaremos periodos de 20 dias
             for (int i = 19; i < listCotacoes.Count; i++)
@@ -84,7 +84,7 @@ namespace DataBaseUtils
             listCotacoes.Take(40).ToList().ForEach(cot => cot.ValorBollinger = 0.5);
         }
 
-        private static double RecuperarEstacaoDoAno(DateTime data)
+        public static double RecuperarEstacaoDoAno(DateTime data)
         {
             return data.Subtract(new DateTime(data.Year, 1, 1)).TotalDays / 365.0;
             //dynamic datasEstacoes = new
