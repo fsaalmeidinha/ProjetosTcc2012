@@ -1,0 +1,7 @@
+R:\Users\spl0156\Desktop\WNakamura\TCC\Previsoes Burras\PrevisoesBurras\AlisamentoExponencialSimples\bin\Debug\AlisamentoExponencialSimples.dll
+R:\Users\spl0156\Desktop\WNakamura\TCC\Previsoes Burras\PrevisoesBurras\AlisamentoExponencialSimples\bin\Debug\AlisamentoExponencialSimples.pdb
+R:\Users\spl0156\Desktop\WNakamura\TCC\Previsoes Burras\PrevisoesBurras\AlisamentoExponencialSimples\bin\Debug\DataBaseUtils.dll
+R:\Users\spl0156\Desktop\WNakamura\TCC\Previsoes Burras\PrevisoesBurras\AlisamentoExponencialSimples\bin\Debug\DataBaseUtils.pdb
+R:\Users\spl0156\Desktop\WNakamura\TCC\Previsoes Burras\PrevisoesBurras\AlisamentoExponencialSimples\obj\Debug\ResolveAssemblyReference.cache
+R:\Users\spl0156\Desktop\WNakamura\TCC\Previsoes Burras\PrevisoesBurras\AlisamentoExponencialSimples\obj\Debug\AlisamentoExponencialSimples.dll
+R:\Users\spl0156\Desktop\WNakamura\TCC\Previsoes Burras\PrevisoesBurras\AlisamentoExponencialSimples\obj\Debug\AlisamentoExponencialSimples.pdb
