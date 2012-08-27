@@ -1,8 +1,0 @@
-C:\Users\wagner.nakamura\Desktop\TCC\Previsoes Burras\MediaPonderada\MediaPonderada\bin\Debug\MediaPonderada.dll
-C:\Users\wagner.nakamura\Desktop\TCC\Previsoes Burras\MediaPonderada\MediaPonderada\bin\Debug\MediaPonderada.pdb
-C:\Users\wagner.nakamura\Desktop\TCC\Previsoes Burras\MediaPonderada\MediaPonderada\bin\Debug\DataBaseUtils.dll
-C:\Users\wagner.nakamura\Desktop\TCC\Previsoes Burras\MediaPonderada\MediaPonderada\bin\Debug\DataBaseUtils.pdb
-C:\Users\wagner.nakamura\Desktop\TCC\Previsoes Burras\MediaPonderada\MediaPonderada\obj\Debug\ResolveAssemblyReference.cache
-C:\Users\wagner.nakamura\Desktop\TCC\Previsoes Burras\MediaPonderada\MediaPonderada\obj\Debug\MediaPonderada.dll
-C:\Users\wagner.nakamura\Desktop\TCC\Previsoes Burras\MediaPonderada\MediaPonderada\obj\Debug\MediaPonderada.pdb
-C:\Users\wagner.nakamura\Desktop\TCC\Previsoes Burras\MediaPonderada\MediaPonderada\bin\Debug\MediaPonderada.dll.config
