@@ -42,6 +42,10 @@ namespace DataBaseUtils
 
                 //Adiciona os valores normalizados
                 listCotacoes.ForEach(cot => cot.ValorNormalizado = NormalizarDado(Convert.ToDouble(cot.PrecoAbertura), papel));
+                //Valor para uso interno
+                listCotacoes.ForEach(cot => cot.ValorNormalizadoPrevisto = cot.ValorNormalizado);
+                //Valor para uso interno
+                listCotacoes.ForEach(cot => cot.CotacaoDolarNormalizadoPrevisto = cot.CotacaoDolarNormalizado);
 
                 //Atribui um valor bollinger de 0 a 1 para a cotação
                 PreencherValorBollinger(listCotacoes);
@@ -123,6 +127,12 @@ namespace DataBaseUtils
 
         #region METODOS DE SELECAO DE DADOS
 
+        public static List<DadosBE> SelecionarUltimosNDadosAntesDaDataDaPrevisao(List<DadosBE> dadosBE, DateTime dtPrevisao, int n)
+        {
+            List<DadosBE> dadosFiltradosDataInicial = dadosBE.Where(dado => dado.DataGeracao < dtPrevisao.Date).ToList();
+            return dadosFiltradosDataInicial.Skip(dadosFiltradosDataInicial.Count - n).ToList();
+        }
+
         public static List<Treinamento> SelecionarTreinamentos_V2(List<DadosBE> dadosBE, int janelaEntrada, int n)
         {
             if (n <= 0)
@@ -140,20 +150,7 @@ namespace DataBaseUtils
                     treinamento.DivisaoCrossValidation = divisao;
                     List<DadosBE> dadosBEInput = dadosBE.Skip(i).Take(janelaEntrada).ToList();
 
-                    //Adiciona as cotações do ativo
-                    treinamento.Input = dadosBEInput.Select(dadoBE => (double)dadoBE.ValorNormalizado).ToList();
-                    //Adiciona a cotação do dolar
-                    treinamento.Input.Add(dadosBEInput.Last().EstacaoDoAno);
-                    //Adiciona o valor bollinger
-                    treinamento.Input.Add(dadosBEInput.Last().ValorBollinger);
-                    //Adiciona as cotações do dolar
-                    treinamento.Input.Add((double)dadosBEInput.First().CotacaoDolarNormalizado);
-                    //A primeira cotação ja foi adicionada e a ultima será adicionada em seguida, por isso começamos em 5 e terminamos em COUNT() - 5
-                    for (int indDadoBE = 5; indDadoBE < dadosBEInput.Count - 5; indDadoBE++)
-                    {
-                        treinamento.Input.Add((double)dadosBEInput[indDadoBE].CotacaoDolarNormalizado);
-                    }
-                    treinamento.Input.Add((double)dadosBEInput.Last().CotacaoDolarNormalizado);
+                    treinamento.Input = SelecionarInput_V2(dadosBEInput);
 
                     DadosBE dadoBEOutput = dadosBE.Skip(i + janelaEntrada).First();
                     treinamento.Output = new List<double>() { dadoBEOutput.ValorNormalizado, (double)dadoBEOutput.CotacaoDolarNormalizado };
@@ -163,6 +160,50 @@ namespace DataBaseUtils
 
             //Comentado por enquanto //Pode não haver dados suficientes para terminar de preencher o output, gerando um output com menos dados do que o solicitado
             return treinamentos;     //.Where(trein => trein.Output.Count == janelaSaida).ToList();
+        }
+
+        /// <summary>
+        /// Através dos dados BE que serão utilizados no INPUT, monta o array de double que será passado para a rede neural
+        /// </summary>
+        /// <param name="dadosBEInput"></param>
+        /// <param name="selecionarDosDadosPrevistos">true se os dados do input devem ser selecionados dos valores previstos</param>
+        /// <returns></returns>
+        public static List<double> SelecionarInput_V2(List<DadosBE> dadosBEInput, bool selecionarDosDadosPrevistos = false)
+        {
+            //Adiciona as cotações do ativo
+            List<double> input = null;
+
+            if (selecionarDosDadosPrevistos)
+                input = dadosBEInput.Select(dadoBE => (double)dadoBE.ValorNormalizadoPrevisto).ToList();
+            else
+                input = dadosBEInput.Select(dadoBE => (double)dadoBE.ValorNormalizado).ToList();
+
+            //Adiciona a estação do ano
+            input.Add(dadosBEInput.Last().EstacaoDoAno);
+            //Adiciona o valor bollinger
+            input.Add(dadosBEInput.Last().ValorBollinger);
+
+            //Adiciona as cotações do dolar
+            if (selecionarDosDadosPrevistos)
+                input.Add((double)dadosBEInput.First().CotacaoDolarNormalizadoPrevisto);
+            else
+                input.Add((double)dadosBEInput.First().CotacaoDolarNormalizado);
+
+            //A primeira cotação ja foi adicionada e a ultima será adicionada em seguida, por isso começamos em 5 e terminamos em COUNT() - 5
+            for (int indDadoBE = 5; indDadoBE < dadosBEInput.Count - 5; indDadoBE++)
+            {
+                if (selecionarDosDadosPrevistos)
+                    input.Add((double)dadosBEInput[indDadoBE].CotacaoDolarNormalizadoPrevisto);
+                else
+                    input.Add((double)dadosBEInput[indDadoBE].CotacaoDolarNormalizado);
+            }
+
+            if (selecionarDosDadosPrevistos)
+                input.Add((double)dadosBEInput.Last().CotacaoDolarNormalizadoPrevisto);
+            else
+                input.Add((double)dadosBEInput.Last().CotacaoDolarNormalizado);
+
+            return input;
         }
 
         /// <summary>

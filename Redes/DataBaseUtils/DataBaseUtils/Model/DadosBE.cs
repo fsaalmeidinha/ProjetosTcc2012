@@ -21,5 +21,10 @@ namespace DataBaseUtils
         public decimal CotacaoDolar { get; set; }
         public decimal CotacaoDolarNormalizado { get; set; }
         public double EstacaoDoAno { get; set; }
+        //Propriedade para uso interno
+        public double ValorNormalizadoPrevisto { get; set; }
+        public decimal CotacaoDolarNormalizadoPrevisto { get; set; }
+        public double ValorPrevisto { get; set; }
+        public decimal CotacaoDolarPrevisto { get; set; }
     }
 }

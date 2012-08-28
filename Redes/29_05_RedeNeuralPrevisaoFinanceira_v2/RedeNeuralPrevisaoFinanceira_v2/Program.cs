@@ -10,7 +10,8 @@ namespace RedeNeuralPrevisaoFinanceira_v2
     {
         static void Main(string[] args)
         {
-            new RNAssessor().TreinarRedes();
+            //new RNAssessor().TreinarRedes();
+            RNAssessor.PreverCotacao(new DateTime(2011, 1, 1), 5);
         }
     }
 }

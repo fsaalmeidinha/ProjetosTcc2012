@@ -49,12 +49,12 @@ namespace RedeNeuralPrevisaoFinanceira_v2
             int ciclosTreinamento = 50000;
             List<KeyValuePair<int, int>> listInput_Output = new List<KeyValuePair<int, int>>();
             listInput_Output.Add(new KeyValuePair<int, int>(5, 1));
-            listInput_Output.Add(new KeyValuePair<int, int>(10, 1));
-            listInput_Output.Add(new KeyValuePair<int, int>(20, 1));
-            listInput_Output.Add(new KeyValuePair<int, int>(30, 1));
-            listInput_Output.Add(new KeyValuePair<int, int>(40, 1));
-            listInput_Output.Add(new KeyValuePair<int, int>(50, 1));
-            listInput_Output.Add(new KeyValuePair<int, int>(60, 1));
+            //listInput_Output.Add(new KeyValuePair<int, int>(10, 1));
+            //listInput_Output.Add(new KeyValuePair<int, int>(20, 1));
+            //listInput_Output.Add(new KeyValuePair<int, int>(30, 1));
+            //listInput_Output.Add(new KeyValuePair<int, int>(40, 1));
+            //listInput_Output.Add(new KeyValuePair<int, int>(50, 1));
+            //listInput_Output.Add(new KeyValuePair<int, int>(60, 1));
             List<string> nomeRedes = new List<string>();
             foreach (KeyValuePair<int, int> input_output in listInput_Output)
             {
@@ -91,7 +91,7 @@ namespace RedeNeuralPrevisaoFinanceira_v2
             return nomeRedes;
         }
 
-        public List<double[]> PreverCotacao(DateTime dtInicial, int qtdDiasPrevisao, string papel = "PETR4")
+        public static List<double[]> PreverCotacao(DateTime dtInicial, int qtdDiasPrevisao, string papel = "PETR4")
         {
             List<DadosBE> dadosBE = DataBaseUtils.DataBaseUtils.RecuperarCotacoesAtivo(papel);
             //Verifica se a data informada não pertence aos shifts anteriores, pois assim a rede estaria prevendo em cima de dados conhecidos...
@@ -100,10 +100,28 @@ namespace RedeNeuralPrevisaoFinanceira_v2
             {
                 throw new Exception("Data inválida: data deve ser menor do que " + dtLimite.ToShortDateString());
             }
+            DateTime dtFinal = dtInicial.Date.AddDays(qtdDiasPrevisao);
 
             Network network = RecuperarRedeNeural(papel);
 
-            //Foi feita a validação dos dados, agora precisamos criar o método de realimentar a RN, prevendo os dias solicitados.
+            DateTime dtPrevisao = dtInicial.Date;
+            for (int diasPrevistos = 0; diasPrevistos < qtdDiasPrevisao; diasPrevistos++)
+            {
+                DadosBE dadoBEPrever = dadosBE.First(dado => dado.DataGeracao >= dtPrevisao);//Dado que iremos prever...
+                List<DadosBE> dadosBERun = DataBaseUtils.DataBaseUtils.SelecionarUltimosNDadosAntesDaDataDaPrevisao(dadosBE, dtPrevisao, jeRNP);
+
+                List<double> input = DataBaseUtils.DataBaseUtils.SelecionarInput_V2(dadosBERun, true);
+                double[] output = network.Run(input.ToArray());
+
+                //Atualiza os valores
+                dadoBEPrever.ValorNormalizadoPrevisto = output[0];
+                dadoBEPrever.CotacaoDolarNormalizadoPrevisto = (decimal)output[1];
+
+                dtPrevisao = dadoBEPrever.DataGeracao.AddDays(1);
+            }
+
+            //Retorna os dados solicitados
+            return dadosBE.Where(dado => dado.DataGeracao >= dtInicial).Take(qtdDiasPrevisao).Select(dado => new double[] { (double)dado.PrecoAbertura, DataBaseUtils.DataBaseUtils.DesnormalizarDado(dado.ValorNormalizadoPrevisto, papel) }).ToList();
         }
 
         public void GerarRelatorioCrossValidation()

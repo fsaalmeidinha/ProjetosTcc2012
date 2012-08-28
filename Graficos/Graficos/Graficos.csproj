@@ -38,6 +38,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Redes\Lib-Geral\PrevisaoFinanceira.dll</HintPath>
     </Reference>
+    <Reference Include="RedeNeuralPrevisaoFinanceira_v2">
+      <HintPath>..\..\Redes\Lib-Geral\RedeNeuralPrevisaoFinanceira_v2.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Windows.Forms.DataVisualization" />

@@ -21,7 +21,22 @@ namespace Graficos
             Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
             Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en-US");
             InitializeComponent();
-            previsao = PrevisaoFinanceiraHelper.PrevisaoFinanceira.PreverCotacaoAtivo("PETR4", 240);
+
+            //V1
+            //previsao = PrevisaoFinanceiraHelper.PrevisaoFinanceira.PreverCotacaoAtivo("PETR4", 240);
+
+            //V2
+            previsao = RedeNeuralPrevisaoFinanceira_v2.RNAssessor.PreverCotacao(new DateTime(2011, 10, 1), 10);
+
+            //Media ponderada
+            //previsao = MediaPonderada.MetodoMediaPonderada.PreverMediasPonderada("PETR4", new DateTime(2011, 7, 1), new DateTime(2011, 8, 1));
+
+            //Media aritmetica
+            //previsao = MediaAritmetica.MetodoMediaAritmetica.PreverMediasAritmetica("PETR4", new DateTime(2011, 7, 1), new DateTime(2011, 8, 1));
+
+            //AlisamentoExponencialSimples
+            //previsao = AlisamentoExponencialSimples.MetodoAlisamentoExpSimples.PreverAlisamentoExponencialSimples("PETR4", new DateTime(2011, 7, 1), new DateTime(2011, 8, 1));
+
             DesenharGrafico();
             AlimentarGridTaxasAcerto();
         }

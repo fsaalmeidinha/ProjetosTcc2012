@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedeNeuralPrevisaoFinanceira_v2", "RedeNeuralPrevisaoFinanceira_v2\RedeNeuralPrevisaoFinanceira_v2.csproj", "{68FFCD74-F7A5-44A9-8416-F3A7FB7C9D27}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TesteRN_V2", "TesteRN_V2\TesteRN_V2.csproj", "{7A8D96C9-7215-4157-9AE1-FCD110426287}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -13,6 +15,10 @@ Global
 		{68FFCD74-F7A5-44A9-8416-F3A7FB7C9D27}.Debug|x86.Build.0 = Debug|x86
 		{68FFCD74-F7A5-44A9-8416-F3A7FB7C9D27}.Release|x86.ActiveCfg = Release|x86
 		{68FFCD74-F7A5-44A9-8416-F3A7FB7C9D27}.Release|x86.Build.0 = Release|x86
+		{7A8D96C9-7215-4157-9AE1-FCD110426287}.Debug|x86.ActiveCfg = Debug|x86
+		{7A8D96C9-7215-4157-9AE1-FCD110426287}.Debug|x86.Build.0 = Debug|x86
+		{7A8D96C9-7215-4157-9AE1-FCD110426287}.Release|x86.ActiveCfg = Release|x86
+		{7A8D96C9-7215-4157-9AE1-FCD110426287}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
