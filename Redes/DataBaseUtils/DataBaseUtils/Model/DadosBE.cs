@@ -13,7 +13,8 @@ namespace DataBaseUtils
         public string NomeReduzido { get; set; }
         public DateTime DataGeracao { get; set; }
         public decimal PrecoAbertura { get; set; }
-        public decimal PrecoAberturaNormalizado { get; set; }
+        //Removido
+        //public decimal PrecoAberturaNormalizado { get; set; }
 
         //A partir da versao 2
         public double ValorNormalizado { get; set; }
@@ -26,5 +27,27 @@ namespace DataBaseUtils
         public decimal CotacaoDolarNormalizadoPrevisto { get; set; }
         public double ValorPrevisto { get; set; }
         public decimal CotacaoDolarPrevisto { get; set; }
+
+        //A partir da versao 3
+        /// <summary>
+        /// RN_V3
+        /// </summary>
+        public double Minimo { get; set; }
+        /// <summary>
+        /// RN_V3
+        /// </summary>
+        public double Maximo { get; set; }
+        /// <summary>
+        /// RN_V3
+        /// </summary>
+        public int TotalNegociacoes { get; set; }
+        /// <summary>
+        /// RN_V3, Explicação em: Redes\03_09_RedeNeural_PrevisaoFinanceira_v3\Metodos_Indices\Medias_Moveis.txt
+        /// </summary>
+        public double PontuacaoMediasMoveis { get; set; }
+        /// <summary>
+        /// RN_V3, Explicação em: Redes\03_09_RedeNeural_PrevisaoFinanceira_v3\Metodos_Indices\Percentual_Volume_Negociacoes.txt
+        /// </summary>
+        public double PercentualTotalNegociacoes { get; set; }
     }
 }

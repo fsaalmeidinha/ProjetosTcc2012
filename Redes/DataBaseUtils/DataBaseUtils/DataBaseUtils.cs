@@ -31,7 +31,8 @@ namespace DataBaseUtils
                     cotacao.NomeReduzido = dtr["nomeresumido"].ToString();
                     cotacao.DataGeracao = (DateTime)dtr["datageracao"];
                     cotacao.PrecoAbertura = (decimal)dtr["precoabertura"];
-                    cotacao.PrecoAberturaNormalizado = (decimal)dtr["precoaberturaNormalizado"];
+                    //Removido
+                    //cotacao.PrecoAberturaNormalizado = (decimal)dtr["precoaberturaNormalizado"];
                     cotacao.CotacaoDolar = (decimal)dtr["valorDolar"];
                     cotacao.CotacaoDolarNormalizado = (decimal)NormalizarDado(Convert.ToDouble(cotacao.CotacaoDolar), "Dolar");
                     cotacao.EstacaoDoAno = RecuperarEstacaoDoAno(cotacao.DataGeracao);
@@ -382,5 +383,116 @@ namespace DataBaseUtils
         }
 
         #endregion Métodos para o acesso ao BD(Wagner)
+
+        #region RN_V3
+
+        /// <summary>
+        /// Explicação em: Redes\03_09_RedeNeural_PrevisaoFinanceira_v3\Metodos_Indices\Percentual_Volume_Negociacoes.txt
+        /// </summary>
+        /// <param name="listCotacoes"></param>
+        /// <returns></returns>
+        public static void PreencherPercentualTotalNegociacoes(List<DadosBE> listCotacoes)
+        {
+            //Deve ser maior do que 20
+            int nDiasAnalisePercentual = 30;
+            //Alimenta os 29 primeiro dias com o valor intermediário, que não deve influenciar muito a rede neural
+            listCotacoes.Take(nDiasAnalisePercentual - 1).ToList().ForEach(cot => cot.PercentualTotalNegociacoes = 0.5);
+            for (int i = 0; i < listCotacoes.Count - nDiasAnalisePercentual; i++)
+            {
+                List<DadosBE> cotacoesAnaliseAtual = listCotacoes.Skip(i).Take(nDiasAnalisePercentual).ToList();
+
+                double min = Convert.ToDouble(cotacoesAnaliseAtual.OrderBy(cot => cot.TotalNegociacoes).Take(3).Average(cot => cot.TotalNegociacoes));
+                double max = Convert.ToDouble(cotacoesAnaliseAtual.OrderByDescending(cot => cot.TotalNegociacoes).Take(3).Average(cot => cot.TotalNegociacoes));
+                double med = Convert.ToDouble(cotacoesAnaliseAtual.Average(cot => cot.TotalNegociacoes));
+                double hoje = Convert.ToDouble(cotacoesAnaliseAtual.Last().TotalNegociacoes);
+
+                if (hoje < med)
+                {
+                    double aux = 0.5 / (med - min);
+                    cotacoesAnaliseAtual.Last().PercentualTotalNegociacoes = 0.5 - ((med - hoje) * aux);
+                }
+                else if (hoje > med)
+                {
+                    double aux = 0.5 / (max - med);
+                    cotacoesAnaliseAtual.Last().PercentualTotalNegociacoes = 0.5 + ((hoje - med) * aux);
+                }
+                else
+                    cotacoesAnaliseAtual.Last().PercentualTotalNegociacoes = 0.5;
+            }
+        }
+
+        /// <summary>
+        /// Explicação em: Redes\03_09_RedeNeural_PrevisaoFinanceira_v3\Metodos_Indices\Medias_Moveis.txt
+        /// </summary>
+        /// <param name="listCotacoes"></param>
+        /// <returns></returns>
+        public static void PreencherPontuacaoMediaMovel(List<DadosBE> listCotacoes)
+        {
+            List<double> cotacoes = listCotacoes.Select(cot => cot.ValorNormalizado).ToList();
+            int m20 = 20;
+            int m10 = 10;
+            int m5 = 5;
+            for (int indAtual = m20; indAtual < listCotacoes.Count; indAtual++)
+            {
+                List<double> medM20 = new List<double>();
+                List<double> medM10 = new List<double>();
+                List<double> medM5 = new List<double>();
+
+                //preenche m20
+                for (int contadorMedMovel = 0; contadorMedMovel < m20; contadorMedMovel++)
+                {
+                    int skip = indAtual - m20;
+                    List<DadosBE> cotacoesAnaliseAtual = listCotacoes.Skip(skip).Take(m20).ToList();
+                    medM20.Add(cotacoes.Average());
+                }
+
+                //preenche m10
+                for (int contadorMedMovel = 0; contadorMedMovel < m10; contadorMedMovel++)
+                {
+                    int skip = indAtual - m10;
+                    List<DadosBE> cotacoesAnaliseAtual = listCotacoes.Skip(skip).Take(m10).ToList();
+                    medM10.Add(cotacoes.Average());
+                }
+
+                //preenche m50
+                for (int contadorMedMovel = 0; contadorMedMovel < m5; contadorMedMovel++)
+                {
+                    int skip = indAtual - m5;
+                    List<DadosBE> cotacoesAnaliseAtual = listCotacoes.Skip(skip).Take(m5).ToList();
+                    medM5.Add(cotacoes.Average());
+                }
+
+                //Seleciona apenas o tamanho de m5 (o menor)
+                medM20 = medM20.Skip(m20 - m5).ToList();
+                //Seleciona apenas o tamanho de m5 (o menor)
+                medM10 = medM10.Skip(m10 - m5).ToList();
+
+                //Para verificar todos os casos, utilizaremos o primeiro e o ultimo dado de cada média móvel
+                double pontuacaoMediasMoveis = 0;
+
+                //Verifica o caso 1: (0.5 pontos) - M5 deve cruzar M10 para cima
+                if (medM5.First() < medM10.First() && medM5.Last() > medM10.Last())
+                {
+                    pontuacaoMediasMoveis += 0.5;
+                }
+                //Verifica o caso 2: (0.25 pontos) - M5 deve cruzar M20
+                if ((medM5.First() < medM20.First() && medM5.Last() > medM20.Last())
+                || (medM5.First() > medM20.First() && medM5.Last() < medM20.Last()))
+                {
+                    pontuacaoMediasMoveis += 0.25;
+                }
+                //Verifica o caso 3: (0.25 pontos) - M10 deve cruzar M20
+                if ((medM10.First() < medM20.First() && medM10.Last() > medM20.Last())
+                || (medM10.First() > medM20.First() && medM10.Last() < medM20.Last()))
+                {
+                    pontuacaoMediasMoveis += 0.25;
+                }
+
+                //Atualiza o valor da pontuação da média móvel
+                listCotacoes[indAtual].PontuacaoMediasMoveis = pontuacaoMediasMoveis;
+            }
+        }
+
+        #endregion RN_V3
     }
 }

@@ -1,0 +1,24 @@
+FONTE: http://www.infomoney.com.br/mercados/noticia/365152
+
+Utilizaremos a análise da média móvel da seguinte forma:
+- Utilizaremos 3 médias, uma de 5 dias M5, outra de 10 dias M10 e outra de 20 dias M20.
+
+"Já para a utilização de três médias móveis, por exemplo 5 dias, 10 dias e 20 dias, a confirmação de uma tendência é feita em três etapas: quando a média de 5 dias cruzar a média de 10 dias para cima, no caso de uma tendência de queda, temos então uma sinalização de reversão, quando a média de 5 dias então cruza a média de 20 dias temos a confirmação da tendência e por fim, quando a média de 10 dias cruza a de 20 dias, temos a ratificação deste movimento."
+
+- Seguindo o texto acima, daremos pesos para cada uma das 3 fases. Quando M5 cruzar a M10 para cima, daremos 0.5 pontos a rede, se M5 cruzar M20, somaremos 0.25 pontos ao valor anterior e por final, se M10 cruzar M20, somaremos mais 0.25 pontos.
+Portanto:
+
+1:M5  cruza M10 p cima = 0.5
+2:M5  cruza M20        = 0.25
+3:M10 cruza M20        = 0.25
+
+tendo: 1, informaremos a rede 0.5
+tendo: 2, informaremos a rede 0.25
+tendo: 3, informaremos a rede 0.25
+tendo: 1,2, informaremos a rede 0.75
+tendo: 1,3, informaremos a rede 0.75
+tendo: 1,2,3, informaremos a rede 1.0
+tendo: 2,3, informaremos a rede 0.5
+.
+.
+.
