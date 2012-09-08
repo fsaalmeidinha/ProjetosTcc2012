@@ -12,7 +12,8 @@ namespace DataBaseUtils
     public class DataBaseUtils
     {
         static int numeroDivisoesCrossValidation = 8;
-
+        
+        /*
         public static List<DadosBE> RecuperarCotacoesAtivo(string papel)
         {
             List<DadosBE> listCotacoes = new List<DadosBE>();
@@ -34,6 +35,64 @@ namespace DataBaseUtils
                     //Removido
                     //cotacao.PrecoAberturaNormalizado = (decimal)dtr["precoaberturaNormalizado"];
                     cotacao.CotacaoDolar = (decimal)dtr["valorDolar"];
+                    cotacao.CotacaoDolarNormalizado = (decimal)NormalizarDado(Convert.ToDouble(cotacao.CotacaoDolar), "Dolar");
+                    cotacao.EstacaoDoAno = RecuperarEstacaoDoAno(cotacao.DataGeracao);
+
+                    listCotacoes.Add(cotacao);
+                }
+                TratarDesdobramento(listCotacoes);
+
+                //Adiciona os valores normalizados
+                listCotacoes.ForEach(cot => cot.ValorNormalizado = NormalizarDado(Convert.ToDouble(cot.PrecoAbertura), papel));
+                //Valor para uso interno
+                listCotacoes.ForEach(cot => cot.ValorNormalizadoPrevisto = cot.ValorNormalizado);
+                //Valor para uso interno
+                listCotacoes.ForEach(cot => cot.CotacaoDolarNormalizadoPrevisto = cot.CotacaoDolarNormalizado);
+
+                //Atribui um valor bollinger de 0 a 1 para a cotação
+                PreencherValorBollinger(listCotacoes);
+            }
+            catch (Exception ex)
+            {
+            }
+            finally
+            {
+                if (dtr != null)
+                    dtr.Dispose();
+            }
+
+            return listCotacoes;
+        }
+        */
+        
+        public static List<DadosBE> RecuperarCotacoesAtivo(string papel)
+        {
+            List<DadosBE> listCotacoes = new List<DadosBE>();
+            DadosBE cotacao = null;
+            DataTableReader dtr = null;
+
+            try
+            {
+                dtr = RetornaDados(papel);
+
+                while (dtr.Read())
+                {
+                    cotacao = new DadosBE();
+
+                    cotacao.Id = (int)dtr["id"];
+                    cotacao.NomeReduzido = dtr["nomeresumido"].ToString();
+                    cotacao.PrecoAbertura = (decimal)dtr["precoabertura"];
+                    cotacao.DataGeracao = (DateTime)dtr["datageracao"];
+                    cotacao.CotacaoDolar = (decimal)dtr["valorDolar"];
+                    cotacao.PrecoMaximo = (decimal)dtr["PRECOMAX"];
+                    cotacao.PrecoMinimo = (decimal)dtr["PRECOMIN"];
+                    cotacao.PrecoMedio = (decimal)dtr["PRECOMED"];
+                    cotacao.TotalNegociacoes = (int)dtr["TOTALNEGO"];
+                    cotacao.QuantidadeTotalNegociacoes = (int)dtr["QUANTIDADETOTALNEGO"];
+                    cotacao.ValorTotalNegociacoes = (decimal)dtr["VALORTOTALNEGO"];
+
+                    //Removido
+                    //cotacao.PrecoAberturaNormalizado = (decimal)dtr["precoaberturaNormalizado"];
                     cotacao.CotacaoDolarNormalizado = (decimal)NormalizarDado(Convert.ToDouble(cotacao.CotacaoDolar), "Dolar");
                     cotacao.EstacaoDoAno = RecuperarEstacaoDoAno(cotacao.DataGeracao);
 
