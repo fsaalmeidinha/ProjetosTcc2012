@@ -23,7 +23,7 @@ namespace Graficos
             InitializeComponent();
 
             //V1
-            //previsao = PrevisaoFinanceiraHelper.PrevisaoFinanceira.PreverCotacaoAtivo("PETR4", 240);
+            previsao = PrevisaoFinanceiraHelper.PrevisaoFinanceira.PreverCotacaoAtivo("PETR4", 240);
 
             //V2
             previsao = RedeNeuralPrevisaoFinanceira_v2.RNAssessor.PreverCotacao(new DateTime(2011, 10, 1), 10);

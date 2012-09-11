@@ -34,10 +34,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="PrevisaoFinanceira, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Redes\Lib-Geral\PrevisaoFinanceira.dll</HintPath>
-    </Reference>
     <Reference Include="RedeNeuralPrevisaoFinanceira_v2">
       <HintPath>..\..\Redes\Lib-Geral\RedeNeuralPrevisaoFinanceira_v2.dll</HintPath>
     </Reference>
@@ -86,6 +82,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Redes\PrevisaoFinanceira\PrevisaoFinanceira\PrevisaoFinanceira.csproj">
+      <Project>{F3CAD835-4B08-42F9-996F-F9F1770FCBF3}</Project>
+      <Name>PrevisaoFinanceira</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

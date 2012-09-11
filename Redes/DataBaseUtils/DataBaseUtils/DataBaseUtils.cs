@@ -6,13 +6,14 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
 using DataBaseUtils.Model;
+using System.Reflection;
 
 namespace DataBaseUtils
 {
     public class DataBaseUtils
     {
         static int numeroDivisoesCrossValidation = 8;
-        
+
         /*
         public static List<DadosBE> RecuperarCotacoesAtivo(string papel)
         {
@@ -64,7 +65,7 @@ namespace DataBaseUtils
             return listCotacoes;
         }
         */
-        
+
         public static List<DadosBE> RecuperarCotacoesAtivo(string papel)
         {
             List<DadosBE> listCotacoes = new List<DadosBE>();
@@ -446,46 +447,27 @@ namespace DataBaseUtils
         #region RN_V3
 
         /// <summary>
-        /// Explicação em: Redes\03_09_RedeNeural_PrevisaoFinanceira_v3\Metodos_Indices\Percentual_Volume_Negociacoes.txt
+        /// Preenche os indices que alimentarão a RN_V3
         /// </summary>
         /// <param name="listCotacoes"></param>
-        /// <returns></returns>
-        public static void PreencherPercentualTotalNegociacoes(List<DadosBE> listCotacoes)
+        public static void PreencherIndicesRN_V3(List<DadosBE> listCotacoes)
         {
-            //Deve ser maior do que 20
-            int nDiasAnalisePercentual = 30;
-            //Alimenta os 29 primeiro dias com o valor intermediário, que não deve influenciar muito a rede neural
-            listCotacoes.Take(nDiasAnalisePercentual - 1).ToList().ForEach(cot => cot.PercentualTotalNegociacoes = 0.5);
-            for (int i = 0; i < listCotacoes.Count - nDiasAnalisePercentual; i++)
-            {
-                List<DadosBE> cotacoesAnaliseAtual = listCotacoes.Skip(i).Take(nDiasAnalisePercentual).ToList();
-
-                double min = Convert.ToDouble(cotacoesAnaliseAtual.OrderBy(cot => cot.TotalNegociacoes).Take(3).Average(cot => cot.TotalNegociacoes));
-                double max = Convert.ToDouble(cotacoesAnaliseAtual.OrderByDescending(cot => cot.TotalNegociacoes).Take(3).Average(cot => cot.TotalNegociacoes));
-                double med = Convert.ToDouble(cotacoesAnaliseAtual.Average(cot => cot.TotalNegociacoes));
-                double hoje = Convert.ToDouble(cotacoesAnaliseAtual.Last().TotalNegociacoes);
-
-                if (hoje < med)
-                {
-                    double aux = 0.5 / (med - min);
-                    cotacoesAnaliseAtual.Last().PercentualTotalNegociacoes = 0.5 - ((med - hoje) * aux);
-                }
-                else if (hoje > med)
-                {
-                    double aux = 0.5 / (max - med);
-                    cotacoesAnaliseAtual.Last().PercentualTotalNegociacoes = 0.5 + ((hoje - med) * aux);
-                }
-                else
-                    cotacoesAnaliseAtual.Last().PercentualTotalNegociacoes = 0.5;
-            }
+            PreencherPontuacao3MediasMoveis(listCotacoes);
+            PreencherPercentualTotalNegociacoesMediaNDias(listCotacoes);
+            PreencherPercentualTotalNegociacoes(listCotacoes);
+            PreencherPercentualCrescimentoDolar(listCotacoes);
+            PreencherPercentualCrescimentoValorAtivoMediaNDias(listCotacoes);
+            PreencherPercentualCrescimentoValorAtivo(listCotacoes);
+            PreencherPercentualDesviosPadroesEmRelacaoNDias(listCotacoes);
+            PreencherDiaSemana(listCotacoes);
         }
 
         /// <summary>
-        /// Explicação em: Redes\03_09_RedeNeural_PrevisaoFinanceira_v3\Metodos_Indices\Medias_Moveis.txt
+        /// Explicação em: Redes\03_09_RedeNeural_PrevisaoFinanceira_v3\Metodos_Indices\Pontuacao3MediasMoveis.doc
         /// </summary>
         /// <param name="listCotacoes"></param>
         /// <returns></returns>
-        public static void PreencherPontuacaoMediaMovel(List<DadosBE> listCotacoes)
+        public static void PreencherPontuacao3MediasMoveis(List<DadosBE> listCotacoes)
         {
             List<double> cotacoes = listCotacoes.Select(cot => cot.ValorNormalizado).ToList();
             int m20 = 20;
@@ -548,8 +530,251 @@ namespace DataBaseUtils
                 }
 
                 //Atualiza o valor da pontuação da média móvel
-                listCotacoes[indAtual].PontuacaoMediasMoveis = pontuacaoMediasMoveis;
+                listCotacoes[indAtual].Pontuacao3MediasMoveis = pontuacaoMediasMoveis;
             }
+        }
+
+        /// <summary>
+        /// Explicação em: Redes\03_09_RedeNeural_PrevisaoFinanceira_v3\Metodos_Indices\PercentualTotalNegociacoesMediaNDias.doc
+        /// </summary>
+        /// <param name="listCotacoes"></param>
+        /// <returns></returns>
+        public static void PreencherPercentualTotalNegociacoesMediaNDias(List<DadosBE> listCotacoes)
+        {
+            //Deve ser maior do que 10
+            int nDiasAnalisePercentual = 15;
+            //Alimenta os 14 primeiro dias com o valor intermediário, que não deve influenciar muito a rede neural (os 14 primeiros dias não podem ser calculados)
+            listCotacoes.Take(nDiasAnalisePercentual - 1).ToList().ForEach(cot => cot.PercentualTotalNegociacoesMediaNDias = 0.5);
+            for (int i = 0; i < listCotacoes.Count - nDiasAnalisePercentual; i++)
+            {
+                List<DadosBE> cotacoesAnaliseAtual = listCotacoes.Skip(i).Take(nDiasAnalisePercentual).ToList();
+
+                double min = Convert.ToDouble(cotacoesAnaliseAtual.OrderBy(cot => cot.TotalNegociacoes).Take(3).Average(cot => cot.TotalNegociacoes));
+                double max = Convert.ToDouble(cotacoesAnaliseAtual.OrderByDescending(cot => cot.TotalNegociacoes).Take(3).Average(cot => cot.TotalNegociacoes));
+                double med = Convert.ToDouble(cotacoesAnaliseAtual.Average(cot => cot.TotalNegociacoes));
+                double hoje = Convert.ToDouble(cotacoesAnaliseAtual.Last().TotalNegociacoes);
+
+                if (hoje < med)
+                {
+                    //0.3 ao invés de 0.5 para caso o valor atual seja maior do que a média
+                    double aux = 0.3 / (med - min);
+                    cotacoesAnaliseAtual.Last().PercentualTotalNegociacoesMediaNDias = 0.5 - ((med - hoje) * aux);
+                }
+                else if (hoje > med)
+                {
+                    //0.3 ao invés de 0.5 para caso o valor atual seja maior do que a média
+                    double aux = 0.3 / (max - med);
+                    cotacoesAnaliseAtual.Last().PercentualTotalNegociacoesMediaNDias = 0.5 + ((hoje - med) * aux);
+                }
+                else
+                    cotacoesAnaliseAtual.Last().PercentualTotalNegociacoesMediaNDias = 0.5;
+            }
+        }
+
+        /// <summary>
+        /// Explicação em: Redes\03_09_RedeNeural_PrevisaoFinanceira_v3\Metodos_Indices\PercentualTotalNegociacoes.doc
+        /// </summary>
+        /// <param name="listCotacoes"></param>
+        /// <returns></returns>
+        public static void PreencherPercentualTotalNegociacoes(List<DadosBE> listCotacoes)
+        {
+            if (listCotacoes.Count == 0)
+                return;
+
+            //Numero maximo de vezes que o dia anterior pode ser maior ou menor do que o dia de hoje. Por ex: ontem: 100, hoje: 250. Portanto hoje é 1.5 vezes maior do que ontem..
+            int maxVezes = 10;
+
+            //Alimenta o primeiro dia com 0.5 que não deve influenciar muito na RN (o primeiro dia nao pode ser calculado)
+            listCotacoes.First().PercentualTotalNegociacoes = 0.5;
+            for (int i = 1; i < listCotacoes.Count; i++)
+            {
+                if (listCotacoes[i].TotalNegociacoes == 0 || listCotacoes[i - 1].TotalNegociacoes == 0)
+                    continue;
+
+                //Verifica qual é maior
+                if (listCotacoes[i].TotalNegociacoes > listCotacoes[i - 1].TotalNegociacoes)
+                {
+                    double mult = listCotacoes[i].TotalNegociacoes / listCotacoes[i - 1].TotalNegociacoes;
+                    mult -= 1;//Calcula quantas vezes hoje é maior do que ontem
+                    //Multiplica 0.5 dividido pela quantidade de vezes que um valor pode ser maior do que o outro ('maxVezes') pela quantidade de vezes que hoje realmente é maior do que ontem. Soma esse valor a 0.5.
+                    listCotacoes[i].PercentualTotalNegociacoes = 0.5 + (0.5 / maxVezes * mult);
+                }
+                else
+                {
+                    double mult = listCotacoes[i - 1].TotalNegociacoes / listCotacoes[i].TotalNegociacoes;
+                    mult -= 1;//Calcula quantas vezes ontem é maior do que hoje
+                    //Multiplica 0.5 dividido pela quantidade de vezes que um valor pode ser maior do que o outro ('maxVezes') pela quantidade de vezes que hoje realmente é maior do que ontem. Subtrai esse valor de 0.5.
+                    listCotacoes[i].PercentualTotalNegociacoes = 0.5 - (0.5 / maxVezes * mult);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Explicação em: Redes\03_09_RedeNeural_PrevisaoFinanceira_v3\Metodos_Indices\PercentualCrescimentoDolar.doc
+        /// </summary>
+        /// <param name="listCotacoes"></param>
+        public static void PreencherPercentualCrescimentoDolar(List<DadosBE> listCotacoes)
+        {
+            if (listCotacoes.Count == 0)
+                return;
+
+            //Valor máximo que o dólar pode destoar do dia anterior, 1.3 vezes maior ou 1.3 vezes menor
+            double maxCrescimento = 0.3;
+
+            //O primeiro valor não pode ser preenchido, portanto é setado como 0.5
+            listCotacoes.First().PercentualCrescimentoDolar = 0.5;
+            for (int indDolar = 1; indDolar < listCotacoes.Count; indDolar++)
+            {
+                if (listCotacoes[indDolar].CotacaoDolarNormalizado == 0 || listCotacoes[indDolar - 1].CotacaoDolarNormalizado == 0)
+                    continue;
+
+                if (listCotacoes[indDolar].CotacaoDolarNormalizado > listCotacoes[indDolar - 1].CotacaoDolarNormalizado)
+                {
+                    double valCresc = Convert.ToDouble(listCotacoes[indDolar].CotacaoDolarNormalizado / listCotacoes[indDolar - 1].CotacaoDolarNormalizado);
+                    valCresc -= 1;
+                    listCotacoes[indDolar].PercentualCrescimentoDolar = 0.5 + (valCresc / maxCrescimento * 0.5);
+                }
+                else
+                {
+                    double valCresc = Convert.ToDouble(listCotacoes[indDolar - 1].CotacaoDolarNormalizado / listCotacoes[indDolar].CotacaoDolarNormalizado);
+                    valCresc -= 1;
+                    listCotacoes[indDolar].PercentualCrescimentoDolar = 0.5 - (valCresc / maxCrescimento * 0.5);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Explicação em: Redes\03_09_RedeNeural_PrevisaoFinanceira_v3\Metodos_Indices\PercentualCrescimentoValorAtivoMediaNDias.doc
+        /// </summary>
+        /// <param name="listCotacoes"></param>
+        /// <returns></returns>
+        public static void PreencherPercentualCrescimentoValorAtivoMediaNDias(List<DadosBE> listCotacoes)
+        {
+            //Deve ser maior do que 10
+            int nDiasAnalisePercentual = 15;
+            //Alimenta os n-1 primeiro dias com o valor intermediário, que não deve influenciar muito a rede neural (os n-1 primeiros dias não podem ser calculados)
+            listCotacoes.Take(nDiasAnalisePercentual - 1).ToList().ForEach(cot => cot.PercentualCrescimentoValorAtivoMediaNDias = 0.5);
+            for (int i = 0; i < listCotacoes.Count - nDiasAnalisePercentual; i++)
+            {
+                List<DadosBE> cotacoesAnaliseAtual = listCotacoes.Skip(i).Take(nDiasAnalisePercentual).ToList();
+
+                double min = Convert.ToDouble(cotacoesAnaliseAtual.OrderBy(cot => cot.ValorNormalizado).Take(3).Average(cot => cot.ValorNormalizado));
+                double max = Convert.ToDouble(cotacoesAnaliseAtual.OrderByDescending(cot => cot.ValorNormalizado).Take(3).Average(cot => cot.ValorNormalizado));
+                double med = Convert.ToDouble(cotacoesAnaliseAtual.Average(cot => cot.ValorNormalizado));
+                double hoje = Convert.ToDouble(cotacoesAnaliseAtual.Last().ValorNormalizado);
+
+                if (hoje < med)
+                {
+                    //0.3 ao invés de 0.5 para caso o valor atual seja maior do que a média
+                    double aux = 0.3 / (med - min);
+                    cotacoesAnaliseAtual.Last().PercentualCrescimentoValorAtivoMediaNDias = 0.5 - ((med - hoje) * aux);
+                }
+                else if (hoje > med)
+                {
+                    //0.3 ao invés de 0.5 para caso o valor atual seja maior do que a média
+                    double aux = 0.3 / (max - med);
+                    cotacoesAnaliseAtual.Last().PercentualCrescimentoValorAtivoMediaNDias = 0.5 + ((hoje - med) * aux);
+                }
+                else
+                    cotacoesAnaliseAtual.Last().PercentualCrescimentoValorAtivoMediaNDias = 0.5;
+            }
+        }
+
+        /// <summary>
+        /// Explicação em: Redes\03_09_RedeNeural_PrevisaoFinanceira_v3\Metodos_Indices\PercentualCrescimentoValorAtivo.doc
+        /// </summary>
+        /// <param name="listCotacoes"></param>
+        /// <returns></returns>
+        public static void PreencherPercentualCrescimentoValorAtivo(List<DadosBE> listCotacoes)
+        {
+            if (listCotacoes.Count == 0)
+                return;
+
+            //Valor máximo que a cotação do ativo pode destoar do dia anterior, 1.5 vezes maior ou 1.3 vezes menor
+            double maxCrescimento = 0.5;
+
+            //O primeiro valor não pode ser preenchido, portanto é setado como 0.5
+            listCotacoes.First().PercentualCrescimentoValorAtivo = 0.5;
+            for (int indAtivo = 1; indAtivo < listCotacoes.Count; indAtivo++)
+            {
+                if (listCotacoes[indAtivo].ValorNormalizado == 0 || listCotacoes[indAtivo - 1].ValorNormalizado == 0)
+                    continue;
+
+                if (listCotacoes[indAtivo].ValorNormalizado > listCotacoes[indAtivo - 1].ValorNormalizado)
+                {
+                    double valCresc = Convert.ToDouble(listCotacoes[indAtivo].ValorNormalizado / listCotacoes[indAtivo - 1].ValorNormalizado);
+                    valCresc -= 1;
+                    listCotacoes[indAtivo].PercentualCrescimentoValorAtivo = 0.5 + (valCresc / maxCrescimento * 0.5);
+                }
+                else
+                {
+                    double valCresc = Convert.ToDouble(listCotacoes[indAtivo - 1].ValorNormalizado / listCotacoes[indAtivo].ValorNormalizado);
+                    valCresc -= 1;
+                    listCotacoes[indAtivo].PercentualCrescimentoValorAtivo = 0.5 - (valCresc / maxCrescimento * 0.5);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Explicação em: Redes\03_09_RedeNeural_PrevisaoFinanceira_v3\Metodos_Indices\PercentualDesviosPadroesEmRelacaoNDias.doc
+        /// </summary>
+        /// <param name="listCotacoes"></param>
+        /// <returns></returns>
+        public static void PreencherPercentualDesviosPadroesEmRelacaoNDias(List<DadosBE> listCotacoes)
+        {
+            //Deve ser maior do que 10
+            int nDiasAnaliseDesvio = 15;
+            //Quantidade de vezes que o desvio de ontem para hoje pode ser maior do que o desvio padrao dos N dias
+            int maxDiferencaDesvio = 10;
+
+            //Alimenta os n-1 primeiro dias com o valor intermediário, que não deve influenciar muito a rede neural (os n-1 primeiros dias não podem ser calculados)
+            listCotacoes.Take(nDiasAnaliseDesvio - 1).ToList().ForEach(cot => cot.PercentualCrescimentoValorAtivoMediaNDias = 0.5);
+            for (int i = 0; i < listCotacoes.Count - nDiasAnaliseDesvio; i++)
+            {
+                List<DadosBE> cotacoesAnaliseAtual = listCotacoes.Skip(i).Take(nDiasAnaliseDesvio).ToList();
+
+                double desvioPadrao = 0;
+                for (int indCotAtual = 1; indCotAtual < cotacoesAnaliseAtual.Count; indCotAtual++)
+                {
+                    desvioPadrao += Convert.ToDouble(Math.Abs(cotacoesAnaliseAtual[indCotAtual].ValorNormalizado - cotacoesAnaliseAtual[indCotAtual - 1].ValorNormalizado));
+                }
+
+                //Divide por 'nDiasAnaliseDesvio -1' pq só conseguimos calcular o desvio de n-1 dias ('d2' - 'd1', 'd3' - 'd2',...'dn' - 'dn-1')
+                desvioPadrao /= (nDiasAnaliseDesvio - 1);
+
+                double desvioHoje_Relacao_Ontem = Convert.ToDouble(Math.Abs(cotacoesAnaliseAtual[nDiasAnaliseDesvio - 1].ValorNormalizado - cotacoesAnaliseAtual[nDiasAnaliseDesvio - 2].ValorNormalizado));
+
+                if (desvioHoje_Relacao_Ontem > desvioPadrao)
+                {
+                    cotacoesAnaliseAtual.Last().PercentualDesviosPadroesEmRelacaoNDias =
+                        0.5 + ((desvioHoje_Relacao_Ontem / desvioPadrao - 1) * 0.5 / maxDiferencaDesvio);
+                }
+                else
+                {
+                    cotacoesAnaliseAtual.Last().PercentualDesviosPadroesEmRelacaoNDias =
+                        0.5 - ((desvioPadrao / desvioHoje_Relacao_Ontem - 1) * 0.5 / maxDiferencaDesvio);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Preenche o dia da semana do DadoBE
+        /// </summary>
+        /// <param name="listCotacoes"></param>
+        public static void PreencherDiaSemana(List<DadosBE> listCotacoes)
+        {
+            Func<int, double> value = indDia => Convert.ToDouble(1.0 / 6.0 * indDia);
+
+            Dictionary<DayOfWeek, double> dic = new Dictionary<DayOfWeek, double>();
+            dic.Add(DayOfWeek.Friday, value(0));
+            dic.Add(DayOfWeek.Monday, value(1));
+            dic.Add(DayOfWeek.Saturday, value(2));
+            dic.Add(DayOfWeek.Sunday, value(3));
+            dic.Add(DayOfWeek.Thursday, value(4));
+            dic.Add(DayOfWeek.Tuesday, value(5));
+            dic.Add(DayOfWeek.Wednesday, value(6));
+
+            listCotacoes.ForEach(cot => cot.DiaSemana = dic[cot.DataGeracao.DayOfWeek]);
         }
 
         #endregion RN_V3

@@ -22,10 +22,10 @@ namespace DataBaseUtils
         public int TotalNegociacoes { get; set; }
         public int QuantidadeTotalNegociacoes { get; set; }
         public decimal ValorTotalNegociacoes { get; set; }
-        
+
         //Removido
         //public decimal PrecoAberturaNormalizado { get; set; }
-        
+
         //A partir da versao 2
         public double ValorNormalizado { get; set; }
         public double ValorBollinger { get; set; }
@@ -37,17 +37,41 @@ namespace DataBaseUtils
         public double ValorPrevisto { get; set; }
         public decimal CotacaoDolarPrevisto { get; set; }
 
-        
+
 
 
 
         /// <summary>
-        /// RN_V3, Explicação em: Redes\03_09_RedeNeural_PrevisaoFinanceira_v3\Metodos_Indices\Medias_Moveis.txt
+        /// INDICE- RN_V3, Explicação em: Redes\03_09_RedeNeural_PrevisaoFinanceira_v3\Metodos_Indices\3_Medias_Moveis.doc
         /// </summary>
-        public double PontuacaoMediasMoveis { get; set; }
+        public double Pontuacao3MediasMoveis { get; set; }
         /// <summary>
-        /// RN_V3, Explicação em: Redes\03_09_RedeNeural_PrevisaoFinanceira_v3\Metodos_Indices\Percentual_Volume_Negociacoes.txt
+        /// INDICE- RN_V3, Explicação em: Redes\03_09_RedeNeural_PrevisaoFinanceira_v3\Metodos_Indices\PercentualTotalNegociacoesMediaNDias.doc
+        /// </summary>
+        public double PercentualTotalNegociacoesMediaNDias { get; set; }
+        /// <summary>
+        /// INDICE- RN_V3, Explicação em: Redes\03_09_RedeNeural_PrevisaoFinanceira_v3\Metodos_Indices\PercentualTotalNegociacoes.doc
         /// </summary>
         public double PercentualTotalNegociacoes { get; set; }
+        /// <summary>
+        /// INDICE- RN_V3, Explicação em: Redes\03_09_RedeNeural_PrevisaoFinanceira_v3\Metodos_Indices\PercentualCrescimentoDolar.doc
+        /// </summary>
+        public double PercentualCrescimentoDolar { get; set; }
+        /// <summary>
+        /// INDICE- RN_V3, Explicação em: Redes\03_09_RedeNeural_PrevisaoFinanceira_v3\Metodos_Indices\PercentualCrescimentoAtivoMediaNDias.doc
+        /// </summary>
+        public double PercentualCrescimentoValorAtivoMediaNDias { get; set; }
+        /// <summary>
+        /// INDICE- RN_V3, Explicação em: Redes\03_09_RedeNeural_PrevisaoFinanceira_v3\Metodos_Indices\PercentualCrescimentoValorAtivo.doc
+        /// </summary>
+        public double PercentualCrescimentoValorAtivo { get; set; }
+        /// <summary>
+        /// INDICE- RN_V3, Explicação em: Redes\03_09_RedeNeural_PrevisaoFinanceira_v3\Metodos_Indices\PercentualDesviosPadroesEmRelacaoNDias.doc
+        /// </summary>
+        public double PercentualDesviosPadroesEmRelacaoNDias { get; set; }
+        /// <summary>
+        /// INDICE- RN_V3, Dia da semana da cotação do ativo
+        /// </summary>
+        public double DiaSemana { get; set; }
     }
 }
