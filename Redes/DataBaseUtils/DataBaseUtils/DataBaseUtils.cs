@@ -98,6 +98,8 @@ namespace DataBaseUtils
 
                     listCotacoes.Add(cotacao);
                 }
+                //Ordena pela data
+                listCotacoes = listCotacoes.OrderBy(cot => cot.DataGeracao).ToList();
                 TratarDesdobramento(listCotacoes);
 
                 //Adiciona os valores normalizados
@@ -111,12 +113,13 @@ namespace DataBaseUtils
                 for (int i = 0; i < listCotacoes.Count - 1; i++)
                 {
                     listCotacoes[i].PrecoFechamento = Convert.ToDouble(listCotacoes[i + 1].PrecoAbertura);
-                    listCotacoes[i].PrecoFechamentoNormalizadoDiaSeguinte = listCotacoes[i + 1].ValorNormalizado;
+                    listCotacoes[i].PrecoFechamentoNormalizado = Convert.ToDouble(listCotacoes[i + 1].ValorNormalizado);
                 }
                 //Preenche os valores dos dias seguintes
                 for (int i = 0; i < listCotacoes.Count - 1; i++)
                 {
                     listCotacoes[i].PrecoFechamentoDiaSeguinte = Convert.ToDouble(listCotacoes[i + 1].PrecoFechamento);
+                    listCotacoes[i].PrecoFechamentoNormalizadoDiaSeguinte = Convert.ToDouble(listCotacoes[i + 1].PrecoFechamentoNormalizado);
                 }
 
                 //Atribui um valor bollinger de 0 a 1 para a cotação
@@ -144,9 +147,9 @@ namespace DataBaseUtils
                 //Temos que calcular o desvio padrao da BandaCentral (MediaMovel), portanto isso só é possivel quando tivermos ao menos 20 médias móveis calculadas
                 if (i >= 39)
                 {
-                    //Calculo das bandas http://www.investmax.com.br/iM/content.asp?contentid=660 PS: Fizemos * 2.2 para dar uma margem a mais
-                    double bandaSuperior = listCotacoes[i].MediaMovel + 2.3 * Math.Sqrt(Math.Pow(listCotacoes.Skip(i - 19).Take(20).Sum(cot => (double)cot.PrecoFechamento - cot.MediaMovel), 2) / 20);
-                    double bandaInferior = listCotacoes[i].MediaMovel - 2.3 * Math.Sqrt(Math.Pow(listCotacoes.Skip(i - 19).Take(20).Sum(cot => (double)cot.PrecoFechamento - cot.MediaMovel), 2) / 20);
+                    //Calculo das bandas http://www.investmax.com.br/iM/content.asp?contentid=660 PS: Fizemos * 5.0 para dar uma margem a mais
+                    double bandaSuperior = listCotacoes[i].MediaMovel + 5 * Math.Sqrt(Math.Pow(listCotacoes.Skip(i - 19).Take(20).Sum(cot => (double)cot.PrecoFechamento - cot.MediaMovel), 2) / 20);
+                    double bandaInferior = listCotacoes[i].MediaMovel - 5 * Math.Sqrt(Math.Pow(listCotacoes.Skip(i - 19).Take(20).Sum(cot => (double)cot.PrecoFechamento - cot.MediaMovel), 2) / 20);
 
                     //Ex: bandaSuperior = 10, bandaInferior = 2, cotacao = 4.8567, temos: (4.8567 - 2) * 1 / (10-2) = 0.3570875
                     listCotacoes[i].ValorBollinger = 1 / (bandaSuperior - bandaInferior) * ((double)listCotacoes[i].PrecoFechamento - bandaInferior);
@@ -467,7 +470,7 @@ namespace DataBaseUtils
         /// <returns></returns>
         public static void PreencherPontuacao3MediasMoveis(List<DadosBE> listCotacoes)
         {
-            List<double> cotacoes = listCotacoes.Select(cot => cot.ValorNormalizado).ToList();
+            List<double> cotacoes = listCotacoes.Select(cot => cot.PrecoFechamentoNormalizado).ToList();
             int m20 = 20;
             int m10 = 10;
             int m5 = 5;
@@ -480,25 +483,25 @@ namespace DataBaseUtils
                 //preenche m20
                 for (int contadorMedMovel = 0; contadorMedMovel < m20; contadorMedMovel++)
                 {
-                    int skip = indAtual - m20;
-                    List<DadosBE> cotacoesAnaliseAtual = listCotacoes.Skip(skip).Take(m20).ToList();
-                    medM20.Add(cotacoes.Average());
+                    int skip = (indAtual + contadorMedMovel) - m20;
+                    List<double> cotacoesAnaliseAtual = cotacoes.Skip(skip).Take(m20).ToList();
+                    medM20.Add(cotacoesAnaliseAtual.Average());
                 }
 
                 //preenche m10
                 for (int contadorMedMovel = 0; contadorMedMovel < m10; contadorMedMovel++)
                 {
-                    int skip = indAtual - m10;
-                    List<DadosBE> cotacoesAnaliseAtual = listCotacoes.Skip(skip).Take(m10).ToList();
-                    medM10.Add(cotacoes.Average());
+                    int skip = (indAtual + contadorMedMovel) - m10;
+                    List<double> cotacoesAnaliseAtual = cotacoes.Skip(skip).Take(m10).ToList();
+                    medM10.Add(cotacoesAnaliseAtual.Average());
                 }
 
                 //preenche m50
                 for (int contadorMedMovel = 0; contadorMedMovel < m5; contadorMedMovel++)
                 {
-                    int skip = indAtual - m5;
-                    List<DadosBE> cotacoesAnaliseAtual = listCotacoes.Skip(skip).Take(m5).ToList();
-                    medM5.Add(cotacoes.Average());
+                    int skip = (indAtual + contadorMedMovel) - m5;
+                    List<double> cotacoesAnaliseAtual = cotacoes.Skip(skip).Take(m5).ToList();
+                    medM5.Add(cotacoesAnaliseAtual.Average());
                 }
 
                 //Seleciona apenas o tamanho de m5 (o menor)
@@ -547,10 +550,10 @@ namespace DataBaseUtils
             {
                 List<DadosBE> cotacoesAnaliseAtual = listCotacoes.Skip(i).Take(nDiasAnalisePercentual).ToList();
 
-                double min = Convert.ToDouble(cotacoesAnaliseAtual.OrderBy(cot => cot.TotalNegociacoes).Take(3).Average(cot => cot.TotalNegociacoes));
-                double max = Convert.ToDouble(cotacoesAnaliseAtual.OrderByDescending(cot => cot.TotalNegociacoes).Take(3).Average(cot => cot.TotalNegociacoes));
-                double med = Convert.ToDouble(cotacoesAnaliseAtual.Average(cot => cot.TotalNegociacoes));
-                double hoje = Convert.ToDouble(cotacoesAnaliseAtual.Last().TotalNegociacoes);
+                double min = Convert.ToDouble(cotacoesAnaliseAtual.OrderBy(cot => cot.QuantidadeTotalNegociacoes).Take(3).Average(cot => cot.QuantidadeTotalNegociacoes));
+                double max = Convert.ToDouble(cotacoesAnaliseAtual.OrderByDescending(cot => cot.QuantidadeTotalNegociacoes).Take(3).Average(cot => cot.QuantidadeTotalNegociacoes));
+                double med = Convert.ToDouble(cotacoesAnaliseAtual.Average(cot => cot.QuantidadeTotalNegociacoes));
+                double hoje = Convert.ToDouble(cotacoesAnaliseAtual.Last().QuantidadeTotalNegociacoes);
 
                 if (hoje < med)
                 {
@@ -586,20 +589,20 @@ namespace DataBaseUtils
             listCotacoes.First().PercentualTotalNegociacoes = 0.5;
             for (int i = 1; i < listCotacoes.Count; i++)
             {
-                if (listCotacoes[i].TotalNegociacoes == 0 || listCotacoes[i - 1].TotalNegociacoes == 0)
+                if (listCotacoes[i].QuantidadeTotalNegociacoes == 0 || listCotacoes[i - 1].QuantidadeTotalNegociacoes == 0)
                     continue;
 
                 //Verifica qual é maior
-                if (listCotacoes[i].TotalNegociacoes > listCotacoes[i - 1].TotalNegociacoes)
+                if (listCotacoes[i].QuantidadeTotalNegociacoes > listCotacoes[i - 1].QuantidadeTotalNegociacoes)
                 {
-                    double mult = listCotacoes[i].TotalNegociacoes / listCotacoes[i - 1].TotalNegociacoes;
+                    double mult = (double)listCotacoes[i].QuantidadeTotalNegociacoes / (double)listCotacoes[i - 1].QuantidadeTotalNegociacoes;
                     mult -= 1;//Calcula quantas vezes hoje é maior do que ontem
                     //Multiplica 0.5 dividido pela quantidade de vezes que um valor pode ser maior do que o outro ('maxVezes') pela quantidade de vezes que hoje realmente é maior do que ontem. Soma esse valor a 0.5.
                     listCotacoes[i].PercentualTotalNegociacoes = 0.5 + (0.5 / maxVezes * mult);
                 }
                 else
                 {
-                    double mult = listCotacoes[i - 1].TotalNegociacoes / listCotacoes[i].TotalNegociacoes;
+                    double mult = (double)listCotacoes[i - 1].QuantidadeTotalNegociacoes / (double)listCotacoes[i].QuantidadeTotalNegociacoes;
                     mult -= 1;//Calcula quantas vezes ontem é maior do que hoje
                     //Multiplica 0.5 dividido pela quantidade de vezes que um valor pode ser maior do que o outro ('maxVezes') pela quantidade de vezes que hoje realmente é maior do que ontem. Subtrai esse valor de 0.5.
                     listCotacoes[i].PercentualTotalNegociacoes = 0.5 - (0.5 / maxVezes * mult);
@@ -656,10 +659,10 @@ namespace DataBaseUtils
             {
                 List<DadosBE> cotacoesAnaliseAtual = listCotacoes.Skip(i).Take(nDiasAnalisePercentual).ToList();
 
-                double min = Convert.ToDouble(cotacoesAnaliseAtual.OrderBy(cot => cot.ValorNormalizado).Take(3).Average(cot => cot.ValorNormalizado));
-                double max = Convert.ToDouble(cotacoesAnaliseAtual.OrderByDescending(cot => cot.ValorNormalizado).Take(3).Average(cot => cot.ValorNormalizado));
-                double med = Convert.ToDouble(cotacoesAnaliseAtual.Average(cot => cot.ValorNormalizado));
-                double hoje = Convert.ToDouble(cotacoesAnaliseAtual.Last().ValorNormalizado);
+                double min = Convert.ToDouble(cotacoesAnaliseAtual.OrderBy(cot => cot.PrecoFechamentoNormalizado).Take(3).Average(cot => cot.PrecoFechamentoNormalizado));
+                double max = Convert.ToDouble(cotacoesAnaliseAtual.OrderByDescending(cot => cot.PrecoFechamentoNormalizado).Take(3).Average(cot => cot.PrecoFechamentoNormalizado));
+                double med = Convert.ToDouble(cotacoesAnaliseAtual.Average(cot => cot.PrecoFechamentoNormalizado));
+                double hoje = Convert.ToDouble(cotacoesAnaliseAtual.Last().PrecoFechamentoNormalizado);
 
                 if (hoje < med)
                 {
@@ -701,18 +704,18 @@ namespace DataBaseUtils
 
             for (int indAtivo = 1; indAtivo < listCotacoes.Count; indAtivo++)
             {
-                if (listCotacoes[indAtivo].ValorNormalizado == 0 || listCotacoes[indAtivo - 1].ValorNormalizado == 0)
+                if (listCotacoes[indAtivo].PrecoFechamentoNormalizado == 0 || listCotacoes[indAtivo - 1].PrecoFechamentoNormalizado == 0)
                     continue;
 
-                if (listCotacoes[indAtivo].ValorNormalizado > listCotacoes[indAtivo - 1].ValorNormalizado)
+                if (listCotacoes[indAtivo].PrecoFechamentoNormalizado > listCotacoes[indAtivo - 1].PrecoFechamentoNormalizado)
                 {
-                    double valCresc = Convert.ToDouble(listCotacoes[indAtivo].ValorNormalizado / listCotacoes[indAtivo - 1].ValorNormalizado);
+                    double valCresc = Convert.ToDouble(listCotacoes[indAtivo].PrecoFechamentoNormalizado / listCotacoes[indAtivo - 1].PrecoFechamentoNormalizado);
                     valCresc -= 1;
                     listCotacoes[indAtivo].PercentualCrescimentoValorAtivo[qtdPercentuaisAtivo - 1] = 0.5 + (valCresc / maxCrescimento * 0.5);
                 }
                 else
                 {
-                    double valCresc = Convert.ToDouble(listCotacoes[indAtivo - 1].ValorNormalizado / listCotacoes[indAtivo].ValorNormalizado);
+                    double valCresc = Convert.ToDouble(listCotacoes[indAtivo - 1].PrecoFechamentoNormalizado / listCotacoes[indAtivo].PrecoFechamentoNormalizado);
                     valCresc -= 1;
                     listCotacoes[indAtivo].PercentualCrescimentoValorAtivo[qtdPercentuaisAtivo - 1] = 0.5 - (valCresc / maxCrescimento * 0.5);
                 }
@@ -746,7 +749,7 @@ namespace DataBaseUtils
             //Deve ser maior do que 10
             int nDiasAnaliseDesvio = 15;
             //Quantidade de vezes que o desvio de ontem para hoje pode ser maior do que o desvio padrao dos N dias
-            int maxDiferencaDesvio = 10;
+            int maxDiferencaDesvio = 15;
 
             //Alimenta os n-1 primeiro dias com o valor intermediário, que não deve influenciar muito a rede neural (os n-1 primeiros dias não podem ser calculados)
             listCotacoes.Take(nDiasAnaliseDesvio - 1).ToList().ForEach(cot => cot.PercentualCrescimentoValorAtivoMediaNDias = 0.5);
@@ -757,13 +760,18 @@ namespace DataBaseUtils
                 double desvioPadrao = 0;
                 for (int indCotAtual = 1; indCotAtual < cotacoesAnaliseAtual.Count; indCotAtual++)
                 {
-                    desvioPadrao += Convert.ToDouble(Math.Abs(cotacoesAnaliseAtual[indCotAtual].ValorNormalizado - cotacoesAnaliseAtual[indCotAtual - 1].ValorNormalizado));
+                    desvioPadrao += Convert.ToDouble(Math.Abs(cotacoesAnaliseAtual[indCotAtual].PrecoFechamentoNormalizado - cotacoesAnaliseAtual[indCotAtual - 1].PrecoFechamentoNormalizado));
                 }
 
                 //Divide por 'nDiasAnaliseDesvio -1' pq só conseguimos calcular o desvio de n-1 dias ('d2' - 'd1', 'd3' - 'd2',...'dn' - 'dn-1')
                 desvioPadrao /= (nDiasAnaliseDesvio - 1);
 
-                double desvioHoje_Relacao_Ontem = Convert.ToDouble(Math.Abs(cotacoesAnaliseAtual[nDiasAnaliseDesvio - 1].ValorNormalizado - cotacoesAnaliseAtual[nDiasAnaliseDesvio - 2].ValorNormalizado));
+                double desvioHoje_Relacao_Ontem = Convert.ToDouble(Math.Abs(cotacoesAnaliseAtual[nDiasAnaliseDesvio - 1].PrecoFechamentoNormalizado - cotacoesAnaliseAtual[nDiasAnaliseDesvio - 2].PrecoFechamentoNormalizado));
+                if (desvioHoje_Relacao_Ontem == 0)
+                {
+                    cotacoesAnaliseAtual.Last().PercentualDesviosPadroesEmRelacaoNDias = 0.5;
+                    continue;
+                }
 
                 if (desvioHoje_Relacao_Ontem > desvioPadrao)
                 {
@@ -805,12 +813,13 @@ namespace DataBaseUtils
         /// <returns></returns>
         public static void PreencherPercentualValorAtivo_Max_Min_Med(List<DadosBE> listCotacoes)
         {
+            //NESTE UTILIZAMOS O PREÇO DE ABERTURA POIS OS VALORES MAX,MIN,MEDIO SAO EM RELAÇÃO AO PREÇO DE ABERTURA
             foreach (DadosBE dadoBE in listCotacoes)
             {
-                double min = NormalizarDado((double)dadoBE.PrecoMinimo, dadoBE.NomeReduzido.ToUpper());
-                double max = NormalizarDado((double)dadoBE.PrecoMaximo, dadoBE.NomeReduzido.ToUpper());
-                double med = NormalizarDado((double)dadoBE.PrecoMedio, dadoBE.NomeReduzido.ToUpper());
-                double valFechamento = dadoBE.ValorNormalizado;
+                double min = Convert.ToDouble(dadoBE.PrecoMinimo);
+                double max = Convert.ToDouble(dadoBE.PrecoMaximo);
+                double med = Convert.ToDouble(dadoBE.PrecoMedio);
+                double valFechamento = Convert.ToDouble(dadoBE.PrecoAbertura);
 
                 if (valFechamento < med)
                 {
@@ -876,6 +885,12 @@ namespace DataBaseUtils
 
                 treinamentos.Add(treinamento);
             }
+
+            int ind = 0;
+            List<double> inputs = treinamentos.Select(trein => trein.Input[ind]).ToList();
+            List<double> acimas = inputs.Where(inp => inp > 1).ToList();
+            List<double> abaixos = inputs.Where(inp => inp < 0).ToList();
+            ind++;
 
             return treinamentos;
         }
