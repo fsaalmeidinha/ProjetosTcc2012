@@ -11,7 +11,9 @@ namespace DataBaseUtils
 
         public int Id { get; set; }
         public string NomeReduzido { get; set; }
+        public double PrecoFechamentoDiaSeguinte { get; set; }
         public decimal PrecoAbertura { get; set; }
+        public double PrecoFechamento { get; set; }
         public DateTime DataGeracao { get; set; }
         public decimal CotacaoDolar { get; set; }
 
@@ -28,6 +30,8 @@ namespace DataBaseUtils
 
         //A partir da versao 2
         public double ValorNormalizado { get; set; }
+        public double PrecoFechamentoNormalizadoDiaSeguinte { get; set; }
+        public double PrecoFechamentoNormalizado { get; set; }
         public double ValorBollinger { get; set; }
         public decimal CotacaoDolarNormalizado { get; set; }
         public double EstacaoDoAno { get; set; }
@@ -63,8 +67,9 @@ namespace DataBaseUtils
         public double PercentualCrescimentoValorAtivoMediaNDias { get; set; }
         /// <summary>
         /// INDICE- RN_V3, Explicação em: Redes\03_09_RedeNeural_PrevisaoFinanceira_v3\Metodos_Indices\PercentualCrescimentoValorAtivo.doc
+        /// O ultimo item da lista é o mais recente, sendo o penultimo o segundo mais recente e assim por diante
         /// </summary>
-        public double PercentualCrescimentoValorAtivo { get; set; }
+        public List<double> PercentualCrescimentoValorAtivo { get; set; }
         /// <summary>
         /// INDICE- RN_V3, Explicação em: Redes\03_09_RedeNeural_PrevisaoFinanceira_v3\Metodos_Indices\PercentualDesviosPadroesEmRelacaoNDias.doc
         /// </summary>
@@ -73,5 +78,9 @@ namespace DataBaseUtils
         /// INDICE- RN_V3, Dia da semana da cotação do ativo
         /// </summary>
         public double DiaSemana { get; set; }
+        /// <summary>
+        /// INDICE- RN_V3, Explicação em: Redes\03_09_RedeNeural_PrevisaoFinanceira_v3\Metodos_Indices\PercentualValorAtivo_Max_Min_Med.doc
+        /// </summary>
+        public double PercentualValorAtivo_Max_Min_Med { get; set; }
     }
 }

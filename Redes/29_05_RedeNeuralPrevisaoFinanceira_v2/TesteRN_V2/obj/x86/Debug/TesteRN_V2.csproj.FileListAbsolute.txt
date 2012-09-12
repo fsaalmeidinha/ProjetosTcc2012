@@ -10,3 +10,15 @@ C:\Users\felipe.almeida1\Desktop\TCC\Redes\29_05_RedeNeuralPrevisaoFinanceira_v2
 C:\Users\felipe.almeida1\Desktop\TCC\Redes\29_05_RedeNeuralPrevisaoFinanceira_v2\TesteRN_V2\obj\x86\Debug\TesteRN_V2.exe
 C:\Users\felipe.almeida1\Desktop\TCC\Redes\29_05_RedeNeuralPrevisaoFinanceira_v2\TesteRN_V2\obj\x86\Debug\TesteRN_V2.pdb
 C:\Users\felipe.almeida1\Desktop\TCC\Redes\29_05_RedeNeuralPrevisaoFinanceira_v2\TesteRN_V2\bin\Debug\TesteRN_V2.exe.config
+C:\Users\Felipe\Desktop\tcc\Redes\29_05_RedeNeuralPrevisaoFinanceira_v2\TesteRN_V2\bin\Debug\TesteRN_V2.exe.config
+C:\Users\Felipe\Desktop\tcc\Redes\29_05_RedeNeuralPrevisaoFinanceira_v2\TesteRN_V2\obj\x86\Debug\TesteRN_V2.exe
+C:\Users\Felipe\Desktop\tcc\Redes\29_05_RedeNeuralPrevisaoFinanceira_v2\TesteRN_V2\obj\x86\Debug\TesteRN_V2.pdb
+C:\Users\Felipe\Desktop\tcc\Redes\29_05_RedeNeuralPrevisaoFinanceira_v2\TesteRN_V2\bin\Debug\TesteRN_V2.exe
+C:\Users\Felipe\Desktop\tcc\Redes\29_05_RedeNeuralPrevisaoFinanceira_v2\TesteRN_V2\bin\Debug\TesteRN_V2.pdb
+C:\Users\Felipe\Desktop\tcc\Redes\29_05_RedeNeuralPrevisaoFinanceira_v2\TesteRN_V2\bin\Debug\RedeNeuralPrevisaoFinanceira_v2.dll
+C:\Users\Felipe\Desktop\tcc\Redes\29_05_RedeNeuralPrevisaoFinanceira_v2\TesteRN_V2\bin\Debug\DataBaseUtils.dll
+C:\Users\Felipe\Desktop\tcc\Redes\29_05_RedeNeuralPrevisaoFinanceira_v2\TesteRN_V2\bin\Debug\NeuronDotNet.Core.dll
+C:\Users\Felipe\Desktop\tcc\Redes\29_05_RedeNeuralPrevisaoFinanceira_v2\TesteRN_V2\bin\Debug\RedeNeuralPrevisaoFinanceira_v2.pdb
+C:\Users\Felipe\Desktop\tcc\Redes\29_05_RedeNeuralPrevisaoFinanceira_v2\TesteRN_V2\bin\Debug\DataBaseUtils.pdb
+C:\Users\Felipe\Desktop\tcc\Redes\29_05_RedeNeuralPrevisaoFinanceira_v2\TesteRN_V2\bin\Debug\NeuronDotNet.Core.xml
+C:\Users\Felipe\Desktop\tcc\Redes\29_05_RedeNeuralPrevisaoFinanceira_v2\TesteRN_V2\obj\x86\Debug\ResolveAssemblyReference.cache

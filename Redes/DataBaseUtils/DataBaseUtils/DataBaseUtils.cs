@@ -69,7 +69,6 @@ namespace DataBaseUtils
         public static List<DadosBE> RecuperarCotacoesAtivo(string papel)
         {
             List<DadosBE> listCotacoes = new List<DadosBE>();
-            DadosBE cotacao = null;
             DataTableReader dtr = null;
 
             try
@@ -78,7 +77,7 @@ namespace DataBaseUtils
 
                 while (dtr.Read())
                 {
-                    cotacao = new DadosBE();
+                    DadosBE cotacao = new DadosBE();
 
                     cotacao.Id = (int)dtr["id"];
                     cotacao.NomeReduzido = dtr["nomeresumido"].ToString();
@@ -108,6 +107,18 @@ namespace DataBaseUtils
                 //Valor para uso interno
                 listCotacoes.ForEach(cot => cot.CotacaoDolarNormalizadoPrevisto = cot.CotacaoDolarNormalizado);
 
+                //Preenche os valores dos dias seguintes
+                for (int i = 0; i < listCotacoes.Count - 1; i++)
+                {
+                    listCotacoes[i].PrecoFechamento = Convert.ToDouble(listCotacoes[i + 1].PrecoAbertura);
+                    listCotacoes[i].PrecoFechamentoNormalizadoDiaSeguinte = listCotacoes[i + 1].ValorNormalizado;
+                }
+                //Preenche os valores dos dias seguintes
+                for (int i = 0; i < listCotacoes.Count - 1; i++)
+                {
+                    listCotacoes[i].PrecoFechamentoDiaSeguinte = Convert.ToDouble(listCotacoes[i + 1].PrecoFechamento);
+                }
+
                 //Atribui um valor bollinger de 0 a 1 para a cotação
                 PreencherValorBollinger(listCotacoes);
             }
@@ -129,16 +140,16 @@ namespace DataBaseUtils
             for (int i = 19; i < listCotacoes.Count; i++)
             {
                 //Calcula a média dos 19 dias anteriores mais o dia atual e alimenta a propriedade "MediaMovel" do dado
-                listCotacoes[i].MediaMovel = Convert.ToDouble(listCotacoes.Skip(i - 19).Take(20).Sum(cot => cot.PrecoAbertura) / 20);
+                listCotacoes[i].MediaMovel = Convert.ToDouble(listCotacoes.Skip(i - 19).Take(20).Sum(cot => cot.PrecoFechamento) / 20);
                 //Temos que calcular o desvio padrao da BandaCentral (MediaMovel), portanto isso só é possivel quando tivermos ao menos 20 médias móveis calculadas
                 if (i >= 39)
                 {
                     //Calculo das bandas http://www.investmax.com.br/iM/content.asp?contentid=660 PS: Fizemos * 2.2 para dar uma margem a mais
-                    double bandaSuperior = listCotacoes[i].MediaMovel + 2.3 * Math.Sqrt(Math.Pow(listCotacoes.Skip(i - 19).Take(20).Sum(cot => (double)cot.PrecoAbertura - cot.MediaMovel), 2) / 20);
-                    double bandaInferior = listCotacoes[i].MediaMovel - 2.3 * Math.Sqrt(Math.Pow(listCotacoes.Skip(i - 19).Take(20).Sum(cot => (double)cot.PrecoAbertura - cot.MediaMovel), 2) / 20);
+                    double bandaSuperior = listCotacoes[i].MediaMovel + 2.3 * Math.Sqrt(Math.Pow(listCotacoes.Skip(i - 19).Take(20).Sum(cot => (double)cot.PrecoFechamento - cot.MediaMovel), 2) / 20);
+                    double bandaInferior = listCotacoes[i].MediaMovel - 2.3 * Math.Sqrt(Math.Pow(listCotacoes.Skip(i - 19).Take(20).Sum(cot => (double)cot.PrecoFechamento - cot.MediaMovel), 2) / 20);
 
                     //Ex: bandaSuperior = 10, bandaInferior = 2, cotacao = 4.8567, temos: (4.8567 - 2) * 1 / (10-2) = 0.3570875
-                    listCotacoes[i].ValorBollinger = 1 / (bandaSuperior - bandaInferior) * ((double)listCotacoes[i].PrecoAbertura - bandaInferior);
+                    listCotacoes[i].ValorBollinger = 1 / (bandaSuperior - bandaInferior) * ((double)listCotacoes[i].PrecoFechamento - bandaInferior);
                 }
 
 
@@ -342,6 +353,9 @@ namespace DataBaseUtils
                     for (int j = i; j < listCotacoes.Count; j++)
                     {
                         listCotacoes[j].PrecoAbertura /= desdobramento;
+                        listCotacoes[j].PrecoMinimo /= desdobramento;
+                        listCotacoes[j].PrecoMaximo /= desdobramento;
+                        listCotacoes[j].PrecoMedio /= desdobramento;
                     }
                 }
             }
@@ -445,22 +459,6 @@ namespace DataBaseUtils
         #endregion Métodos para o acesso ao BD(Wagner)
 
         #region RN_V3
-
-        /// <summary>
-        /// Preenche os indices que alimentarão a RN_V3
-        /// </summary>
-        /// <param name="listCotacoes"></param>
-        public static void PreencherIndicesRN_V3(List<DadosBE> listCotacoes)
-        {
-            PreencherPontuacao3MediasMoveis(listCotacoes);
-            PreencherPercentualTotalNegociacoesMediaNDias(listCotacoes);
-            PreencherPercentualTotalNegociacoes(listCotacoes);
-            PreencherPercentualCrescimentoDolar(listCotacoes);
-            PreencherPercentualCrescimentoValorAtivoMediaNDias(listCotacoes);
-            PreencherPercentualCrescimentoValorAtivo(listCotacoes);
-            PreencherPercentualDesviosPadroesEmRelacaoNDias(listCotacoes);
-            PreencherDiaSemana(listCotacoes);
-        }
 
         /// <summary>
         /// Explicação em: Redes\03_09_RedeNeural_PrevisaoFinanceira_v3\Metodos_Indices\Pontuacao3MediasMoveis.doc
@@ -690,11 +688,17 @@ namespace DataBaseUtils
             if (listCotacoes.Count == 0)
                 return;
 
+            int qtdPercentuaisAtivo = 4;
+
             //Valor máximo que a cotação do ativo pode destoar do dia anterior, 1.5 vezes maior ou 1.3 vezes menor
             double maxCrescimento = 0.5;
 
-            //O primeiro valor não pode ser preenchido, portanto é setado como 0.5
-            listCotacoes.First().PercentualCrescimentoValorAtivo = 0.5;
+            foreach (DadosBE dadoBE in listCotacoes)
+            {
+                //Instancia os 'qtdPercentuaisAtivo' valores
+                dadoBE.PercentualCrescimentoValorAtivo = new List<double>(new double[qtdPercentuaisAtivo]);
+            }
+
             for (int indAtivo = 1; indAtivo < listCotacoes.Count; indAtivo++)
             {
                 if (listCotacoes[indAtivo].ValorNormalizado == 0 || listCotacoes[indAtivo - 1].ValorNormalizado == 0)
@@ -704,13 +708,30 @@ namespace DataBaseUtils
                 {
                     double valCresc = Convert.ToDouble(listCotacoes[indAtivo].ValorNormalizado / listCotacoes[indAtivo - 1].ValorNormalizado);
                     valCresc -= 1;
-                    listCotacoes[indAtivo].PercentualCrescimentoValorAtivo = 0.5 + (valCresc / maxCrescimento * 0.5);
+                    listCotacoes[indAtivo].PercentualCrescimentoValorAtivo[qtdPercentuaisAtivo - 1] = 0.5 + (valCresc / maxCrescimento * 0.5);
                 }
                 else
                 {
                     double valCresc = Convert.ToDouble(listCotacoes[indAtivo - 1].ValorNormalizado / listCotacoes[indAtivo].ValorNormalizado);
                     valCresc -= 1;
-                    listCotacoes[indAtivo].PercentualCrescimentoValorAtivo = 0.5 - (valCresc / maxCrescimento * 0.5);
+                    listCotacoes[indAtivo].PercentualCrescimentoValorAtivo[qtdPercentuaisAtivo - 1] = 0.5 - (valCresc / maxCrescimento * 0.5);
+                }
+            }
+
+            //Preenche os 'qtdPercentuaisAtivo' valores anteriores
+            for (int indAtivo = 0; indAtivo < listCotacoes.Count; indAtivo++)
+            {
+                //Os 'qtdPercentuaisAtivo -1' primeiros dados não podem ser preenchidos com os valores dos dias anteriores, pq não tem os 'qtdPercentuaisAtivo - 1' dias anteriores 
+                if (indAtivo < qtdPercentuaisAtivo - 1)
+                {
+                    listCotacoes[indAtivo].PercentualCrescimentoValorAtivo.ForEach(percent => percent = 0.5);
+                }
+                else
+                {
+                    for (int indAtivoAnterior = 1; indAtivoAnterior < qtdPercentuaisAtivo; indAtivoAnterior++)
+                    {
+                        listCotacoes[indAtivo].PercentualCrescimentoValorAtivo[(qtdPercentuaisAtivo - indAtivoAnterior) - 1] = listCotacoes[indAtivo - indAtivoAnterior].PercentualCrescimentoValorAtivo.Last();
+                    }
                 }
             }
         }
@@ -775,6 +796,110 @@ namespace DataBaseUtils
             dic.Add(DayOfWeek.Wednesday, value(6));
 
             listCotacoes.ForEach(cot => cot.DiaSemana = dic[cot.DataGeracao.DayOfWeek]);
+        }
+
+        /// <summary>
+        /// Explicação em: Redes\03_09_RedeNeural_PrevisaoFinanceira_v3\Metodos_Indices\PercentualValorAtivo_Max_Min_Med.doc
+        /// </summary>
+        /// <param name="listCotacoes"></param>
+        /// <returns></returns>
+        public static void PreencherPercentualValorAtivo_Max_Min_Med(List<DadosBE> listCotacoes)
+        {
+            foreach (DadosBE dadoBE in listCotacoes)
+            {
+                double min = NormalizarDado((double)dadoBE.PrecoMinimo, dadoBE.NomeReduzido.ToUpper());
+                double max = NormalizarDado((double)dadoBE.PrecoMaximo, dadoBE.NomeReduzido.ToUpper());
+                double med = NormalizarDado((double)dadoBE.PrecoMedio, dadoBE.NomeReduzido.ToUpper());
+                double valFechamento = dadoBE.ValorNormalizado;
+
+                if (valFechamento < med)
+                {
+                    //0.3 ao invés de 0.5 para caso o valor atual seja maior do que a média
+                    double aux = 0.3 / (med - min);
+                    dadoBE.PercentualValorAtivo_Max_Min_Med = 0.5 - ((med - valFechamento) * aux);
+                }
+                else if (valFechamento > med)
+                {
+                    //0.3 ao invés de 0.5 para caso o valor atual seja maior do que a média
+                    double aux = 0.3 / (max - med);
+                    dadoBE.PercentualValorAtivo_Max_Min_Med = 0.5 + ((valFechamento - med) * aux);
+                }
+                else
+                    dadoBE.PercentualValorAtivo_Max_Min_Med = 0.5;
+            }
+        }
+
+        /// <summary>
+        /// Preenche os indices que alimentarão a RN_V3
+        /// </summary>
+        /// <param name="listCotacoes"></param>
+        public static void PreencherIndicesRN_V3(List<DadosBE> listCotacoes)
+        {
+            PreencherPontuacao3MediasMoveis(listCotacoes);
+            PreencherPercentualTotalNegociacoesMediaNDias(listCotacoes);
+            PreencherPercentualTotalNegociacoes(listCotacoes);
+            PreencherPercentualCrescimentoDolar(listCotacoes);
+            PreencherPercentualCrescimentoValorAtivoMediaNDias(listCotacoes);
+            PreencherPercentualCrescimentoValorAtivo(listCotacoes);
+            PreencherPercentualDesviosPadroesEmRelacaoNDias(listCotacoes);
+            PreencherDiaSemana(listCotacoes);
+            PreencherPercentualValorAtivo_Max_Min_Med(listCotacoes);
+            //Já está sendo preenchido na recuperação dos dados
+            //PreencherValorBollinger(listCotacoes);
+        }
+
+        /// <summary>
+        /// Seleciona os treinamentos da versão 3
+        /// </summary>
+        /// <param name="dadosBE"></param>
+        /// <returns></returns>
+        public static List<Treinamento> SelecionarTreinamentos_V3(List<DadosBE> dadosBE)
+        {
+            if (dadosBE.Count == 0)
+                return null;
+
+            //Preenche os indices da RN_V3
+            PreencherIndicesRN_V3(dadosBE);
+
+            //A cada 'qtdRegistrosPorDivisao' registros, o numero do cross validation deve ser incrementado de 1
+            int qtdRegistrosPorDivisao = dadosBE.Count / numeroDivisoesCrossValidation;
+
+            List<Treinamento> treinamentos = new List<Treinamento>();
+            for (int indDadoBE = 0; indDadoBE < dadosBE.Count; indDadoBE++)
+            {
+                int valCrossValidation = indDadoBE / qtdRegistrosPorDivisao;
+                //Corrige o numero da divisao cross validation pois os ultimos registros podem estar errados devido ao arredondamento
+                valCrossValidation = valCrossValidation == numeroDivisoesCrossValidation ? numeroDivisoesCrossValidation - 1 : valCrossValidation;
+
+                Treinamento treinamento = TransformarDadoBE_Em_Treinamento_RNV3(dadosBE[indDadoBE]);
+                treinamento.DivisaoCrossValidation = valCrossValidation;
+
+                treinamentos.Add(treinamento);
+            }
+
+            return treinamentos;
+        }
+
+        public static Treinamento TransformarDadoBE_Em_Treinamento_RNV3(DadosBE dadoBE)
+        {
+            Treinamento treinamento = new Treinamento();
+            treinamento.Input = new List<double>();
+
+            //Adiciona cada um dos percentuais dos n dias anteriores e do dia da cotação
+            dadoBE.PercentualCrescimentoValorAtivo.ForEach(percent => treinamento.Input.Add(percent));
+            treinamento.Input.Add(dadoBE.ValorBollinger);
+            treinamento.Input.Add(dadoBE.Pontuacao3MediasMoveis);
+            treinamento.Input.Add(dadoBE.PercentualTotalNegociacoesMediaNDias);
+            treinamento.Input.Add(dadoBE.PercentualTotalNegociacoes);
+            treinamento.Input.Add(dadoBE.PercentualCrescimentoDolar);
+            treinamento.Input.Add(dadoBE.PercentualCrescimentoValorAtivoMediaNDias);
+            treinamento.Input.Add(dadoBE.PercentualDesviosPadroesEmRelacaoNDias);
+            treinamento.Input.Add(dadoBE.DiaSemana);
+            treinamento.Input.Add(dadoBE.PercentualValorAtivo_Max_Min_Med);
+
+            treinamento.Output = new List<double>() { dadoBE.PrecoFechamentoNormalizadoDiaSeguinte };
+
+            return treinamento;
         }
 
         #endregion RN_V3

@@ -14,3 +14,9 @@ C:\Users\felipe.almeida1\Desktop\TCC\Redes\Lib-Geral\RedeNeuralPrevisaoFinanceir
 C:\Users\felipe.almeida1\Desktop\TCC\Redes\Lib-Geral\RedeNeuralPrevisaoFinanceira_v2.dll.config
 C:\Users\felipe.almeida1\Desktop\TCC\Redes\Lib-Geral\RedeNeuralPrevisaoFinanceira_v2.dll
 C:\Users\felipe.almeida1\Desktop\TCC\Redes\29_05_RedeNeuralPrevisaoFinanceira_v2\RedeNeuralPrevisaoFinanceira_v2\obj\x86\Debug\RedeNeuralPrevisaoFinanceira_v2.dll
+C:\Users\Felipe\Desktop\tcc\Redes\Lib-Geral\RedeNeuralPrevisaoFinanceira_v2.dll.config
+C:\Users\Felipe\Desktop\tcc\Redes\Lib-Geral\RedeNeuralPrevisaoFinanceira_v2.dll
+C:\Users\Felipe\Desktop\tcc\Redes\Lib-Geral\RedeNeuralPrevisaoFinanceira_v2.pdb
+C:\Users\Felipe\Desktop\tcc\Redes\29_05_RedeNeuralPrevisaoFinanceira_v2\RedeNeuralPrevisaoFinanceira_v2\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Felipe\Desktop\tcc\Redes\29_05_RedeNeuralPrevisaoFinanceira_v2\RedeNeuralPrevisaoFinanceira_v2\obj\x86\Debug\RedeNeuralPrevisaoFinanceira_v2.dll
+C:\Users\Felipe\Desktop\tcc\Redes\29_05_RedeNeuralPrevisaoFinanceira_v2\RedeNeuralPrevisaoFinanceira_v2\obj\x86\Debug\RedeNeuralPrevisaoFinanceira_v2.pdb
