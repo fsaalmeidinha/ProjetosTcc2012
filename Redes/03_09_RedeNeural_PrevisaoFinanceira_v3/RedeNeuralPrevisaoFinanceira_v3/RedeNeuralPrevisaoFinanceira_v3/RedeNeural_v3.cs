@@ -27,12 +27,12 @@ namespace RedeNeuralPrevisaoFinanceira_v3
             }
         }
 
-        public static void Treinar(string papel, string nomeRedeNeural, List<DadosBE> dadosBE, int numeroNeuronios, double taxaAprendizado, int ciclos, int numeroDivisoesCrossValidation, int shift)
+        public static void Treinar(string papel, string nomeRedeNeural, List<DadosBE> dadosBE, int numeroNeuronios, double taxaAprendizado, int ciclos, int numeroDivisoesCrossValidation, int shift, double versao)
         {
             if (dadosBE.Count == 0)
                 return;
 
-            List<Treinamento> treinamentos = DataBaseUtils.DataBaseUtils.SelecionarTreinamentos_V3(dadosBE);
+            List<Treinamento> treinamentos = DataBaseUtils.DataBaseUtils.SelecionarTreinamentos_V3(dadosBE, versao);
             treinamentos = treinamentos.Where(trein => trein.DivisaoCrossValidation != shift).ToList();
 
             int inputLayerCount = treinamentos.First().Input.Count();

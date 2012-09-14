@@ -862,7 +862,7 @@ namespace DataBaseUtils
         /// </summary>
         /// <param name="dadosBE"></param>
         /// <returns></returns>
-        public static List<Treinamento> SelecionarTreinamentos_V3(List<DadosBE> dadosBE)
+        public static List<Treinamento> SelecionarTreinamentos_V3(List<DadosBE> dadosBE, double versao)
         {
             if (dadosBE.Count == 0)
                 return null;
@@ -870,22 +870,21 @@ namespace DataBaseUtils
             //Preenche os indices da RN_V3
             PreencherIndicesRN_V3(dadosBE);
 
+            List<Treinamento> treinamentos = new List<Treinamento>();
             //A cada 'qtdRegistrosPorDivisao' registros, o numero do cross validation deve ser incrementado de 1
             int qtdRegistrosPorDivisao = dadosBE.Count / numeroDivisoesCrossValidation;
 
-            List<Treinamento> treinamentos = new List<Treinamento>();
             for (int indDadoBE = 0; indDadoBE < dadosBE.Count; indDadoBE++)
             {
                 int valCrossValidation = indDadoBE / qtdRegistrosPorDivisao;
                 //Corrige o numero da divisao cross validation pois os ultimos registros podem estar errados devido ao arredondamento
                 valCrossValidation = valCrossValidation == numeroDivisoesCrossValidation ? numeroDivisoesCrossValidation - 1 : valCrossValidation;
 
-                Treinamento treinamento = TransformarDadoBE_Em_Treinamento_RNV3(dadosBE[indDadoBE]);
+                Treinamento treinamento = TransformarDadoBE_Em_Treinamento_RNV3(dadosBE[indDadoBE], versao);
                 treinamento.DivisaoCrossValidation = valCrossValidation;
 
                 treinamentos.Add(treinamento);
             }
-
             int ind = 0;
             List<double> inputs = treinamentos.Select(trein => trein.Input[ind]).ToList();
             List<double> acimas = inputs.Where(inp => inp > 1).ToList();
@@ -895,23 +894,56 @@ namespace DataBaseUtils
             return treinamentos;
         }
 
-        public static Treinamento TransformarDadoBE_Em_Treinamento_RNV3(DadosBE dadoBE)
+        public static Treinamento TransformarDadoBE_Em_Treinamento_RNV3(DadosBE dadoBE, double versao)
         {
             Treinamento treinamento = new Treinamento();
             treinamento.Input = new List<double>();
 
-            //Adiciona cada um dos percentuais dos n dias anteriores e do dia da cotação
-            dadoBE.PercentualCrescimentoValorAtivo.ForEach(percent => treinamento.Input.Add(percent));
-            treinamento.Input.Add(dadoBE.ValorBollinger);
-            treinamento.Input.Add(dadoBE.Pontuacao3MediasMoveis);
-            treinamento.Input.Add(dadoBE.PercentualTotalNegociacoesMediaNDias);
-            treinamento.Input.Add(dadoBE.PercentualTotalNegociacoes);
-            treinamento.Input.Add(dadoBE.PercentualCrescimentoDolar);
-            treinamento.Input.Add(dadoBE.PercentualCrescimentoValorAtivoMediaNDias);
-            treinamento.Input.Add(dadoBE.PercentualDesviosPadroesEmRelacaoNDias);
-            treinamento.Input.Add(dadoBE.DiaSemana);
-            treinamento.Input.Add(dadoBE.PercentualValorAtivo_Max_Min_Med);
-
+            if (versao == 3)
+            {
+                //Adiciona cada um dos percentuais dos n dias anteriores e do dia da cotação
+                dadoBE.PercentualCrescimentoValorAtivo.ForEach(percent => treinamento.Input.Add(percent));
+                treinamento.Input.Add(dadoBE.PrecoFechamentoNormalizado);
+                treinamento.Input.Add(dadoBE.ValorBollinger);
+                treinamento.Input.Add(dadoBE.Pontuacao3MediasMoveis);
+                treinamento.Input.Add(dadoBE.PercentualTotalNegociacoesMediaNDias);
+                treinamento.Input.Add(dadoBE.PercentualTotalNegociacoes);
+                treinamento.Input.Add(dadoBE.PercentualCrescimentoDolar);
+                treinamento.Input.Add(dadoBE.PercentualCrescimentoValorAtivoMediaNDias);
+                treinamento.Input.Add(dadoBE.PercentualDesviosPadroesEmRelacaoNDias);
+                treinamento.Input.Add(dadoBE.DiaSemana);
+                treinamento.Input.Add(dadoBE.PercentualValorAtivo_Max_Min_Med);
+            }
+            if (versao == 3.2)
+            {
+                //Adiciona cada um dos percentuais dos n dias anteriores e do dia da cotação
+                dadoBE.PercentualCrescimentoValorAtivo.ForEach(percent => treinamento.Input.Add(percent));
+                treinamento.Input.Add(dadoBE.PrecoFechamentoNormalizado);
+                treinamento.Input.Add(dadoBE.ValorBollinger);
+                //treinamento.Input.Add(dadoBE.Pontuacao3MediasMoveis);
+                //treinamento.Input.Add(dadoBE.PercentualTotalNegociacoesMediaNDias);
+                treinamento.Input.Add(dadoBE.PercentualTotalNegociacoes);
+                treinamento.Input.Add(dadoBE.PercentualCrescimentoDolar);
+                //treinamento.Input.Add(dadoBE.PercentualCrescimentoValorAtivoMediaNDias);
+                treinamento.Input.Add(dadoBE.PercentualDesviosPadroesEmRelacaoNDias);
+                //treinamento.Input.Add(dadoBE.DiaSemana);
+                treinamento.Input.Add(dadoBE.PercentualValorAtivo_Max_Min_Med);
+            }
+            if (versao == 3.3)
+            {
+                //Adiciona cada um dos percentuais dos n dias anteriores e do dia da cotação
+                dadoBE.PercentualCrescimentoValorAtivo.ForEach(percent => treinamento.Input.Add(percent));
+                treinamento.Input.Add(dadoBE.PrecoFechamentoNormalizado);
+                treinamento.Input.Add(dadoBE.ValorBollinger);
+                ////treinamento.Input.Add(dadoBE.Pontuacao3MediasMoveis);
+                ////treinamento.Input.Add(dadoBE.PercentualTotalNegociacoesMediaNDias);
+                //treinamento.Input.Add(dadoBE.PercentualTotalNegociacoes);
+                //treinamento.Input.Add(dadoBE.PercentualCrescimentoDolar);
+                ////treinamento.Input.Add(dadoBE.PercentualCrescimentoValorAtivoMediaNDias);
+                treinamento.Input.Add(dadoBE.PercentualDesviosPadroesEmRelacaoNDias);
+                ////treinamento.Input.Add(dadoBE.DiaSemana);
+                treinamento.Input.Add(dadoBE.PercentualValorAtivo_Max_Min_Med);
+            }
             treinamento.Output = new List<double>() { dadoBE.PrecoFechamentoNormalizadoDiaSeguinte };
 
             return treinamento;

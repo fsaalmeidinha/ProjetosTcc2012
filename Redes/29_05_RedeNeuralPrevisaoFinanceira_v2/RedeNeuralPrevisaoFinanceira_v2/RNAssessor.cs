@@ -28,14 +28,14 @@ namespace RedeNeuralPrevisaoFinanceira_v2
         {
             get
             {
-                return ConfigurationManager.AppSettings["DiretorioRedes"] + "\\RedesPrevisaoFinanceira\\";
+                return ConfigurationManager.AppSettings["DiretorioRedes_v2"] + "\\RedesPrevisaoFinanceira\\";
             }
         }
         private static string diretorioCrossValidation
         {
             get
             {
-                return ConfigurationManager.AppSettings["DiretorioRedes"] + "\\RelatorioCrossValidation\\";
+                return ConfigurationManager.AppSettings["DiretorioRedes_v2"] + "\\RelatorioCrossValidation\\";
             }
         }
 

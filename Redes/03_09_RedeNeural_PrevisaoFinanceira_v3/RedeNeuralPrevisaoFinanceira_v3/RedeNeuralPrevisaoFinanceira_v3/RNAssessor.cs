@@ -21,7 +21,9 @@ namespace RedeNeuralPrevisaoFinanceira_v3
 
         #endregion Dados rede principal
 
-        private static int versao = 3;
+        //private static double versao = 3;
+        //private static double versao = 3.2;
+        private static double versao = 3.3;
         static int numeroDivisoesCrossValidation = 8;
         private static string diretorioRedes
         {
@@ -67,9 +69,9 @@ namespace RedeNeuralPrevisaoFinanceira_v3
 
         private string TreinarRedeNeural(string papel, int nn, double ta, int ct, List<DadosBE> dadosBE, int shift)
         {
-            string nomeRede = String.Format("{0}_nn{1}_ta{2}_ct{3}_dcv{4}_shift{5}_v{6}", papel, nn, ta.ToString().Replace('.', ','), ct, numeroDivisoesCrossValidation, shift, versao);
+            string nomeRede = String.Format("{0}_nn{1}_ta{2}_ct{3}_dcv{4}_shift{5}_v{6}", papel, nn, ta.ToString().Replace('.', ','), ct, numeroDivisoesCrossValidation, shift, versao.ToString().Replace('.', ','));
 
-            RedeNeural_v3.Treinar(papel, nomeRede, dadosBE, nn, ta, ct, numeroDivisoesCrossValidation, shift);
+            RedeNeural_v3.Treinar(papel, nomeRede, dadosBE, nn, ta, ct, numeroDivisoesCrossValidation, shift, versao);
             return nomeRede;
         }
 
@@ -91,7 +93,7 @@ namespace RedeNeuralPrevisaoFinanceira_v3
             //DadoBE com os dados do dia anterior a previsao
             DadosBE dadoBE = dadosBE.Last(dado => dado.DataGeracao < dtPrevisao);
 
-            List<double> input = DataBaseUtils.DataBaseUtils.TransformarDadoBE_Em_Treinamento_RNV3(dadoBE).Input;
+            List<double> input = DataBaseUtils.DataBaseUtils.TransformarDadoBE_Em_Treinamento_RNV3(dadoBE, versao).Input;
             double previsao = network.Run(input.ToArray())[0];
 
             //Retorna os dados solicitados
@@ -109,7 +111,7 @@ namespace RedeNeuralPrevisaoFinanceira_v3
 
         private static string RecuperarNomeRNPrincipal(string papel = "PETR4")
         {
-            return String.Format("{0}_nn{1}_ta{2}_ct{3}_dcv{4}_shift{5}_v{6}", papel, nnRNP, taRNP, ctRNP, numeroDivisoesCrossValidationRNP, shiftRNP, versao);
+            return String.Format("{0}_nn{1}_ta{2}_ct{3}_dcv{4}_shift{5}_v{6}", papel, nnRNP, taRNP, ctRNP, numeroDivisoesCrossValidationRNP, shiftRNP, versao.ToString().Replace('.', ','));
         }
 
         private void SetarCultura()
