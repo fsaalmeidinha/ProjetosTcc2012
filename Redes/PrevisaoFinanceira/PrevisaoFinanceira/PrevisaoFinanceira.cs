@@ -9,25 +9,31 @@ namespace PrevisaoFinanceiraHelper
 {
     public class PrevisaoFinanceira
     {
-        public static List<double[]> PreverCotacaoAtivo(string papel, int qtdDias)
+        public static List<double[]> PreverCotacaoAtivo(string papel, DateTime dtInicial, int qtdDias)
         {
             List<double[]> resultado = new List<double[]>();
+            //Dados conhecidos necessários
+            int dcn = 60;
             List<DadosBE> dadosBE = DataBaseUtils.DataBaseUtils.RecuperarCotacoesAtivo(papel);
+
+            //DadoBE com os dados do dia anterior a previsao
+            DadosBE dadoBEAnteriorPrimeiraPrevisao = dadosBE.Last(dado => dado.DataGeracao < dtInicial);
+            int indDiaAnteriorPrimeiraPrevisao = dadosBE.IndexOf(dadoBEAnteriorPrimeiraPrevisao) + 1;//+1 pois este tb deve ser eliminado da lista
+
+            //Seleciona apenas os dados necessários
+            dadosBE = dadosBE.Skip(indDiaAnteriorPrimeiraPrevisao - dcn).Take(dcn + qtdDias).ToList();
 
             for (int indDiaInicioPrevisao = 0; indDiaInicioPrevisao < qtdDias; indDiaInicioPrevisao += 30)//30 é o numero de previsoes das redes
             {
-                //Quantidade de dias que a rede irá prever
-                int qtdDiasPrevisaoAtual = qtdDias - indDiaInicioPrevisao;
-
                 List<double> dadosNormalizados = new List<double>();
 
                 //Quantidade de dados conhecidos necessarios para realizar a previsao
-                int qtdDadosConhecidosNecessarios = 60 - resultado.Count;
+                int qtdDadosConhecidosNecessarios = dcn - resultado.Count;
                 if (qtdDadosConhecidosNecessarios > 0)
-                    dadosNormalizados = DataBaseUtils.DataBaseUtils.NormalizarDados(dadosBE.Skip(dadosBE.Count - 60 - (qtdDias - indDiaInicioPrevisao)).Take(qtdDadosConhecidosNecessarios).Select(dado => (double)dado.PrecoAbertura).ToList(), papel);
+                    dadosNormalizados = DataBaseUtils.DataBaseUtils.NormalizarDados(dadosBE.Skip(dadosBE.Count - dcn - (qtdDias - indDiaInicioPrevisao)).Take(qtdDadosConhecidosNecessarios).Select(dado => (double)dado.PrecoAbertura).ToList(), papel);
 
-                //Pega os ultimos 60 itens, ou os n ultimos itens existentes (onde n é menor ou igual a 60)
-                dadosNormalizados.AddRange(resultado.Select(res => res[1]).Reverse().Take(60).Reverse().ToList());
+                //Pega os ultimos dcn itens, ou os n ultimos itens existentes (onde n é menor ou igual a dcn)
+                dadosNormalizados.AddRange(resultado.Select(res => res[1]).Reverse().Take(dcn).Reverse().ToList());
 
                 Dictionary<int, string> redePorDia = CaptacaoMelhoresRedes.RNAssessor.SelecionarRedePorDia(papel, dadosNormalizados);
                 //for (int i = 0; i < 30; i++)
@@ -66,7 +72,7 @@ namespace PrevisaoFinanceiraHelper
                 //Adiciona os resultados das previsoes e seus valores reais
                 for (int i = 0; i < 30; i++)
                 {
-                    resultado.Add(new double[] { (double)(dadosBE[dadosBE.Count - (qtdDias - indDiaInicioPrevisao) + i - 1].PrecoAbertura), output[i] });
+                    resultado.Add(new double[] { (double)(dadosBE[dadosBE.Count - (qtdDias - indDiaInicioPrevisao) + i].PrecoAbertura), output[i] });
                 }
             }
 

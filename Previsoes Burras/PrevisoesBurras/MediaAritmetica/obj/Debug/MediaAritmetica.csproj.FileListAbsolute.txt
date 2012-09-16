@@ -5,3 +5,10 @@ R:\Users\spl0156\Desktop\WNakamura\TCC\Previsoes Burras\PrevisoesBurras\MediaAri
 R:\Users\spl0156\Desktop\WNakamura\TCC\Previsoes Burras\PrevisoesBurras\MediaAritmetica\obj\Debug\ResolveAssemblyReference.cache
 R:\Users\spl0156\Desktop\WNakamura\TCC\Previsoes Burras\PrevisoesBurras\MediaAritmetica\obj\Debug\MediaAritmetica.dll
 R:\Users\spl0156\Desktop\WNakamura\TCC\Previsoes Burras\PrevisoesBurras\MediaAritmetica\obj\Debug\MediaAritmetica.pdb
+C:\Users\Felipe\Desktop\tcc\Previsoes Burras\PrevisoesBurras\MediaAritmetica\bin\Debug\MediaAritmetica.dll
+C:\Users\Felipe\Desktop\tcc\Previsoes Burras\PrevisoesBurras\MediaAritmetica\bin\Debug\MediaAritmetica.pdb
+C:\Users\Felipe\Desktop\tcc\Previsoes Burras\PrevisoesBurras\MediaAritmetica\bin\Debug\DataBaseUtils.dll
+C:\Users\Felipe\Desktop\tcc\Previsoes Burras\PrevisoesBurras\MediaAritmetica\bin\Debug\DataBaseUtils.pdb
+C:\Users\Felipe\Desktop\tcc\Previsoes Burras\PrevisoesBurras\MediaAritmetica\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Felipe\Desktop\tcc\Previsoes Burras\PrevisoesBurras\MediaAritmetica\obj\Debug\MediaAritmetica.dll
+C:\Users\Felipe\Desktop\tcc\Previsoes Burras\PrevisoesBurras\MediaAritmetica\obj\Debug\MediaAritmetica.pdb

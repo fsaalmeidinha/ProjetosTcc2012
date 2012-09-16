@@ -8,15 +8,14 @@ namespace AlisamentoExponencialSimples
 {
     public class MetodoAlisamentoExpSimples
     {
-        public static List<double[]> PreverAlisamentoExponencialSimples(string nomeAtivo, DateTime dataInicio, DateTime dataTermino, double coeficiente = 0.9)
+        public static List<double[]> PreverAlisamentoExponencialSimples(string nomeAtivo, DateTime dataInicio, int quantDiasPrevisao, double coeficiente = 0.9)
         {
             double previsao, alfa, valorReal, previsaoAnterior;
 
             int quant = 2;
-            int quantDiasPrevisao = (int)dataTermino.Subtract(dataInicio).TotalDays;
 
             alfa = coeficiente;
-            
+
             List<double[]> previsoes;
             List<DadosBE> cotacoes = DataBaseUtils.DataBaseUtils.RecuperarCotacoesAtivo(nomeAtivo);
 

@@ -34,8 +34,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AlisamentoExponencialSimples">
+      <HintPath>..\..\Previsoes Burras\PrevisoesBurras\AlisamentoExponencialSimples\bin\Debug\AlisamentoExponencialSimples.dll</HintPath>
+    </Reference>
+    <Reference Include="MediaAritmetica">
+      <HintPath>..\..\Previsoes Burras\PrevisoesBurras\MediaAritmetica\bin\Debug\MediaAritmetica.dll</HintPath>
+    </Reference>
+    <Reference Include="MediaPonderada">
+      <HintPath>..\..\Previsoes Burras\PrevisoesBurras\MediaPonderada\bin\Debug\MediaPonderada.dll</HintPath>
+    </Reference>
     <Reference Include="RedeNeuralPrevisaoFinanceira_v2">
       <HintPath>..\..\Redes\Lib-Geral\RedeNeuralPrevisaoFinanceira_v2.dll</HintPath>
+    </Reference>
+    <Reference Include="RedeNeuralPrevisaoFinanceira_v3">
+      <HintPath>..\..\Redes\Lib-Geral\RedeNeuralPrevisaoFinanceira_v3.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

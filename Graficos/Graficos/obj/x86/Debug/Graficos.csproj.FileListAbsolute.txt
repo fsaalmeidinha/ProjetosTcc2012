@@ -137,3 +137,11 @@ C:\Users\Felipe\Desktop\tcc\Graficos\Graficos\obj\x86\Debug\Graficos.Form1.resou
 C:\Users\Felipe\Desktop\tcc\Graficos\Graficos\obj\x86\Debug\Graficos.Properties.Resources.resources
 C:\Users\Felipe\Desktop\tcc\Graficos\Graficos\obj\x86\Debug\GenerateResource.read.1.tlog
 C:\Users\Felipe\Desktop\tcc\Graficos\Graficos\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\Felipe\Desktop\tcc\Graficos\Graficos\bin\Debug\RedeNeuralPrevisaoFinanceira_v3.dll
+C:\Users\Felipe\Desktop\tcc\Graficos\Graficos\bin\Debug\RedeNeuralPrevisaoFinanceira_v3.pdb
+C:\Users\Felipe\Desktop\tcc\Graficos\Graficos\bin\Debug\AlisamentoExponencialSimples.dll
+C:\Users\Felipe\Desktop\tcc\Graficos\Graficos\bin\Debug\MediaAritmetica.dll
+C:\Users\Felipe\Desktop\tcc\Graficos\Graficos\bin\Debug\MediaPonderada.dll
+C:\Users\Felipe\Desktop\tcc\Graficos\Graficos\bin\Debug\AlisamentoExponencialSimples.pdb
+C:\Users\Felipe\Desktop\tcc\Graficos\Graficos\bin\Debug\MediaAritmetica.pdb
+C:\Users\Felipe\Desktop\tcc\Graficos\Graficos\bin\Debug\MediaPonderada.pdb

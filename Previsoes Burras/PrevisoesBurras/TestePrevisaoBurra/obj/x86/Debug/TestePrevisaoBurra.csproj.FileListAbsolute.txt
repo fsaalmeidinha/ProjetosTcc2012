@@ -22,3 +22,17 @@ R:\Users\spl0156\Desktop\WNakamura\TCC\Previsoes Burras\PrevisoesBurras\TestePre
 R:\Users\spl0156\Desktop\WNakamura\TCC\Previsoes Burras\PrevisoesBurras\TestePrevisaoBurra\bin\Debug\MediaAritmetica.pdb
 R:\Users\spl0156\Desktop\WNakamura\TCC\Previsoes Burras\PrevisoesBurras\TestePrevisaoBurra\bin\Debug\AlisamentoExponencialSimples.dll
 R:\Users\spl0156\Desktop\WNakamura\TCC\Previsoes Burras\PrevisoesBurras\TestePrevisaoBurra\bin\Debug\AlisamentoExponencialSimples.pdb
+C:\Users\Felipe\Desktop\tcc\Previsoes Burras\PrevisoesBurras\TestePrevisaoBurra\bin\Debug\TestePrevisaoBurra.exe.config
+C:\Users\Felipe\Desktop\tcc\Previsoes Burras\PrevisoesBurras\TestePrevisaoBurra\obj\x86\Debug\TestePrevisaoBurra.exe
+C:\Users\Felipe\Desktop\tcc\Previsoes Burras\PrevisoesBurras\TestePrevisaoBurra\obj\x86\Debug\TestePrevisaoBurra.pdb
+C:\Users\Felipe\Desktop\tcc\Previsoes Burras\PrevisoesBurras\TestePrevisaoBurra\bin\Debug\TestePrevisaoBurra.exe
+C:\Users\Felipe\Desktop\tcc\Previsoes Burras\PrevisoesBurras\TestePrevisaoBurra\bin\Debug\TestePrevisaoBurra.pdb
+C:\Users\Felipe\Desktop\tcc\Previsoes Burras\PrevisoesBurras\TestePrevisaoBurra\bin\Debug\AlisamentoExponencialSimples.dll
+C:\Users\Felipe\Desktop\tcc\Previsoes Burras\PrevisoesBurras\TestePrevisaoBurra\bin\Debug\MediaAritmetica.dll
+C:\Users\Felipe\Desktop\tcc\Previsoes Burras\PrevisoesBurras\TestePrevisaoBurra\bin\Debug\MediaPonderada.dll
+C:\Users\Felipe\Desktop\tcc\Previsoes Burras\PrevisoesBurras\TestePrevisaoBurra\bin\Debug\DataBaseUtils.dll
+C:\Users\Felipe\Desktop\tcc\Previsoes Burras\PrevisoesBurras\TestePrevisaoBurra\bin\Debug\AlisamentoExponencialSimples.pdb
+C:\Users\Felipe\Desktop\tcc\Previsoes Burras\PrevisoesBurras\TestePrevisaoBurra\bin\Debug\MediaAritmetica.pdb
+C:\Users\Felipe\Desktop\tcc\Previsoes Burras\PrevisoesBurras\TestePrevisaoBurra\bin\Debug\MediaPonderada.pdb
+C:\Users\Felipe\Desktop\tcc\Previsoes Burras\PrevisoesBurras\TestePrevisaoBurra\bin\Debug\DataBaseUtils.pdb
+C:\Users\Felipe\Desktop\tcc\Previsoes Burras\PrevisoesBurras\TestePrevisaoBurra\obj\x86\Debug\ResolveAssemblyReference.cache

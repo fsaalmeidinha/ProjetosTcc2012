@@ -16,27 +16,37 @@ namespace RedeNeuralPrevisaoFinanceira_v3
     {
         #region Dados rede principal
 
-        static int nnRNP = 4, ctRNP = 50000, numeroDivisoesCrossValidationRNP = 8, shiftRNP = 7;
+        static int nnRNP = 4, numeroDivisoesCrossValidationRNP = 8, shiftRNP = 7;
+        static int ctRNP
+        {
+            get
+            {
+                return versao == 3 ? 200000 : 50000;
+            }
+        }
         static string taRNP = "0,25";
 
         #endregion Dados rede principal
 
         //private static double versao = 3;
         //private static double versao = 3.2;
-        private static double versao = 3.3;
+        //private static double versao = 3.3;
+        //private static double versao = 3.4;
+        //private static double versao = 3.5;
+        private static double versao = 3.6;
         static int numeroDivisoesCrossValidation = 8;
         private static string diretorioRedes
         {
             get
             {
-                return ConfigurationManager.AppSettings["DiretorioRedes"] + "\\RedesPrevisaoFinanceira\\";
+                return ConfigurationManager.AppSettings["DiretorioRedes_v3"] + "\\RedesPrevisaoFinanceira\\";
             }
         }
         private static string diretorioCrossValidation
         {
             get
             {
-                return ConfigurationManager.AppSettings["DiretorioRedes"] + "\\RelatorioCrossValidation\\";
+                return ConfigurationManager.AppSettings["DiretorioRedes_v3"] + "\\RelatorioCrossValidation\\";
             }
         }
 
@@ -75,14 +85,22 @@ namespace RedeNeuralPrevisaoFinanceira_v3
             return nomeRede;
         }
 
-        public static double[] PreverCotacao(DateTime dtPrevisao, string papel = "PETR4")
+        /// <summary>
+        /// Prever n dados da versao informada
+        /// </summary>
+        /// <param name="dtPrevisao"></param>
+        /// <param name="versaoRN">{3, 3.2, 3.3, 3.4, 3.5}</param>
+        /// <param name="papel"></param>
+        /// <returns></returns>
+        public static List<double[]> PreverCotacao(DateTime dtPrevisao, double versaoRN, int qtdDiasPrevisao, string papel = "PETR4")
         {
+            versao = versaoRN;
             List<DadosBE> dadosBE = DataBaseUtils.DataBaseUtils.RecuperarCotacoesAtivo(papel);
             //Preenche os indices da RN_V3
-            DataBaseUtils.DataBaseUtils.PreencherIndicesRN_V3(dadosBE);
+            DataBaseUtils.DataBaseUtils.PreencherIndicesRN_V3(dadosBE, versao);
 
             //Verifica se a data informada não pertence aos shifts anteriores, pois assim a rede estaria prevendo em cima de dados conhecidos...
-            DateTime dtLimite = dadosBE.Skip(dadosBE.Count() / numeroDivisoesCrossValidation * numeroDivisoesCrossValidationRNP).First().DataGeracao;
+            DateTime dtLimite = dadosBE.Skip(dadosBE.Count() / numeroDivisoesCrossValidation * shiftRNP).First().DataGeracao;
             if (dtPrevisao < dtLimite)
             {
                 throw new Exception("Data inválida: data deve ser menor do que " + dtLimite.ToShortDateString());
@@ -90,14 +108,40 @@ namespace RedeNeuralPrevisaoFinanceira_v3
 
             Network network = RecuperarRedeNeural(papel);
 
-            //DadoBE com os dados do dia anterior a previsao
-            DadosBE dadoBE = dadosBE.Last(dado => dado.DataGeracao < dtPrevisao);
+            //Primeiro dado para a previsao
+            int dadoBEPrevisoesSkip = dadosBE.IndexOf(dadosBE.Last(dado => dado.DataGeracao < dtPrevisao));
+            //dadosBE = dadosBE.Skip(dadoBEPrevisoesSkip).ToList();
 
-            List<double> input = DataBaseUtils.DataBaseUtils.TransformarDadoBE_Em_Treinamento_RNV3(dadoBE, versao).Input;
-            double previsao = network.Run(input.ToArray())[0];
+            List<double[]> previsoes = new List<double[]>();
+            for (int indPrevisao = 0; indPrevisao < qtdDiasPrevisao; indPrevisao++)
+            {
+                //A versão 3.5 é a unica que permite previsao em cima de previsao, pois não utiliza nenhum dado que não é previsto
+                //3, 3.2, 3.3, 3.4, 
+                //3.5
+
+                //DadoBE com os dados do dia anterior a previsao
+                DadosBE dadoBE = dadosBE.Skip(dadoBEPrevisoesSkip + indPrevisao).First();
+                //////////////////PREVISAO EM CIMA DE PREVISAO////////////
+                //////////////////if ((versaoRN == 3.5 || versaoRN == 3.6) && previsoes.Count > 0)
+                //////////////////{
+                //////////////////    //Utiliza os dados previstos para a nova previsao
+                //////////////////    dadoBE.ValorNormalizado = previsoes.Last()[1];
+                //////////////////    dadoBE.PrecoAbertura = Convert.ToDecimal(DataBaseUtils.DataBaseUtils.DesnormalizarDado(dadoBE.ValorNormalizado, papel));
+                //////////////////    //Reatribui os indices com os valores das previsoes anteriores
+                //////////////////    DataBaseUtils.DataBaseUtils.PreencherIndicesRN_V3(dadosBE, versao);
+                //////////////////}
+
+                List<double> input = DataBaseUtils.DataBaseUtils.TransformarDadoBE_Em_Treinamento_RNV3(dadoBE, versao).Input;
+                double previsao = network.Run(input.ToArray())[0];
+                //double previsaoDesnormalizada = DataBaseUtils.DataBaseUtils.DesnormalizarDado(previsao, papel);
+
+                previsoes.Add(new double[] { Convert.ToDouble(dadosBE[dadoBEPrevisoesSkip + indPrevisao + 1].PrecoAbertura), previsao });
+                ////Elimina o elemento ja usado na previsao
+                //dadosBE = dadosBE.Skip(1).ToList();
+            }
 
             //Retorna os dados solicitados
-            return new double[] { dadoBE.PrecoFechamentoDiaSeguinte, DataBaseUtils.DataBaseUtils.DesnormalizarDado(previsao, papel.ToUpper()) };
+            return previsoes.Select(prev => new double[] { prev[0], DataBaseUtils.DataBaseUtils.DesnormalizarDado(prev[1], papel) }).ToList();//new double[] { dadoBE.PrecoFechamentoDiaSeguinte, DataBaseUtils.DataBaseUtils.DesnormalizarDado(previsao, papel.ToUpper()) };
         }
 
         private static Network RecuperarRedeNeural(string nomeRede = "PETR4")

@@ -14,7 +14,7 @@ namespace TestePrevisaoBurra
         static void Main(string[] args)
         {
             DateTime inicio = new DateTime(2009, 06, 01);
-            DateTime termino = new DateTime(2009, 07, 01);
+            int qtdDiasPrever = 30;
 
             /*
             //List<double[]> listaPonderada = MetodoMediaPonderada.PreverMediasPonderada("PETR4", inicio, termino);
@@ -33,9 +33,9 @@ namespace TestePrevisaoBurra
 
             List<double[]> listaAlisamentoExpSimples = null;
 
-            listaAlisamentoExpSimples = MetodoAlisamentoExpSimples.PreverAlisamentoExponencialSimples("PETR4", inicio, termino);
+            listaAlisamentoExpSimples = MetodoAlisamentoExpSimples.PreverAlisamentoExponencialSimples("PETR4", inicio, qtdDiasPrever);
 
-            for (int i = 0; i < (int)termino.Subtract(inicio).TotalDays; i++)
+            for (int i = 0; i < qtdDiasPrever; i++)
             {
 
                 Console.WriteLine("Valor real: {0}; Valor prev MAl. Expo. Simples: {1}", listaAlisamentoExpSimples[i][0], listaAlisamentoExpSimples[i][1]);

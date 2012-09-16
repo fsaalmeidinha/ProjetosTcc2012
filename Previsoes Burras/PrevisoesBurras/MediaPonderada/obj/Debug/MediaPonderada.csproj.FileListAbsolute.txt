@@ -14,3 +14,11 @@ R:\Users\spl0156\Desktop\WNakamura\TCC\Previsoes Burras\PrevisoesBurras\MediaPon
 R:\Users\spl0156\Desktop\WNakamura\TCC\Previsoes Burras\PrevisoesBurras\MediaPonderada\obj\Debug\ResolveAssemblyReference.cache
 R:\Users\spl0156\Desktop\WNakamura\TCC\Previsoes Burras\PrevisoesBurras\MediaPonderada\obj\Debug\MediaPonderada.dll
 R:\Users\spl0156\Desktop\WNakamura\TCC\Previsoes Burras\PrevisoesBurras\MediaPonderada\obj\Debug\MediaPonderada.pdb
+C:\Users\Felipe\Desktop\tcc\Previsoes Burras\PrevisoesBurras\MediaPonderada\bin\Debug\MediaPonderada.dll.config
+C:\Users\Felipe\Desktop\tcc\Previsoes Burras\PrevisoesBurras\MediaPonderada\bin\Debug\MediaPonderada.dll
+C:\Users\Felipe\Desktop\tcc\Previsoes Burras\PrevisoesBurras\MediaPonderada\bin\Debug\MediaPonderada.pdb
+C:\Users\Felipe\Desktop\tcc\Previsoes Burras\PrevisoesBurras\MediaPonderada\bin\Debug\DataBaseUtils.dll
+C:\Users\Felipe\Desktop\tcc\Previsoes Burras\PrevisoesBurras\MediaPonderada\bin\Debug\DataBaseUtils.pdb
+C:\Users\Felipe\Desktop\tcc\Previsoes Burras\PrevisoesBurras\MediaPonderada\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Felipe\Desktop\tcc\Previsoes Burras\PrevisoesBurras\MediaPonderada\obj\Debug\MediaPonderada.dll
+C:\Users\Felipe\Desktop\tcc\Previsoes Burras\PrevisoesBurras\MediaPonderada\obj\Debug\MediaPonderada.pdb

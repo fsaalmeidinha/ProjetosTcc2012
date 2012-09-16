@@ -10,7 +10,7 @@ namespace Teste
     {
         static void Main(string[] args)
         {
-            List<double[]> previsao = PrevisaoFinanceira.PreverCotacaoAtivo("PETR4", 90);
+            List<double[]> previsao = PrevisaoFinanceira.PreverCotacaoAtivo("PETR4", new DateTime(2011, 10, 1), 90);
 
         }
     }

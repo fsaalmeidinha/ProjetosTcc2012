@@ -36,3 +36,16 @@ C:\Users\felipe.almeida1\Desktop\TCC\Redes\PrevisaoFinanceira\Teste\obj\x86\Debu
 C:\Users\Felipe\Desktop\tcc\Redes\PrevisaoFinanceira\Teste\bin\Debug\Teste.exe.config
 C:\Users\Felipe\Desktop\tcc\Redes\PrevisaoFinanceira\Teste\obj\x86\Debug\Teste.exe
 C:\Users\Felipe\Desktop\tcc\Redes\PrevisaoFinanceira\Teste\obj\x86\Debug\Teste.pdb
+C:\Users\Felipe\Desktop\tcc\Redes\PrevisaoFinanceira\Teste\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Felipe\Desktop\tcc\Redes\PrevisaoFinanceira\Teste\bin\Debug\Teste.exe
+C:\Users\Felipe\Desktop\tcc\Redes\PrevisaoFinanceira\Teste\bin\Debug\Teste.pdb
+C:\Users\Felipe\Desktop\tcc\Redes\PrevisaoFinanceira\Teste\bin\Debug\PrevisaoFinanceira.dll
+C:\Users\Felipe\Desktop\tcc\Redes\PrevisaoFinanceira\Teste\bin\Debug\DataBaseUtils.dll
+C:\Users\Felipe\Desktop\tcc\Redes\PrevisaoFinanceira\Teste\bin\Debug\CaptacaoMelhoresRedes.dll
+C:\Users\Felipe\Desktop\tcc\Redes\PrevisaoFinanceira\Teste\bin\Debug\RedeNeural_PrevisaoFinanceira.dll
+C:\Users\Felipe\Desktop\tcc\Redes\PrevisaoFinanceira\Teste\bin\Debug\NeuronDotNet.Core.dll
+C:\Users\Felipe\Desktop\tcc\Redes\PrevisaoFinanceira\Teste\bin\Debug\PrevisaoFinanceira.pdb
+C:\Users\Felipe\Desktop\tcc\Redes\PrevisaoFinanceira\Teste\bin\Debug\DataBaseUtils.pdb
+C:\Users\Felipe\Desktop\tcc\Redes\PrevisaoFinanceira\Teste\bin\Debug\CaptacaoMelhoresRedes.pdb
+C:\Users\Felipe\Desktop\tcc\Redes\PrevisaoFinanceira\Teste\bin\Debug\RedeNeural_PrevisaoFinanceira.pdb
+C:\Users\Felipe\Desktop\tcc\Redes\PrevisaoFinanceira\Teste\bin\Debug\NeuronDotNet.Core.xml

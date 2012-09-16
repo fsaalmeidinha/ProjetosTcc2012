@@ -20,8 +20,8 @@ namespace RedeNeuralPrevisaoFinanceira_v3
         {
             get
             {
-                if (!String.IsNullOrEmpty(ConfigurationManager.AppSettings["DiretorioRedes"]))
-                    return ConfigurationManager.AppSettings["DiretorioRedes"];
+                if (!String.IsNullOrEmpty(ConfigurationManager.AppSettings["DiretorioRedes_V3"]))
+                    return ConfigurationManager.AppSettings["DiretorioRedes_V3"];
                 else
                     return System.IO.Directory.GetCurrentDirectory();
             }

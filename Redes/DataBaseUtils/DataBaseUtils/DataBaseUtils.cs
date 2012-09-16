@@ -686,12 +686,14 @@ namespace DataBaseUtils
         /// </summary>
         /// <param name="listCotacoes"></param>
         /// <returns></returns>
-        public static void PreencherPercentualCrescimentoValorAtivo(List<DadosBE> listCotacoes)
+        public static void PreencherPercentualCrescimentoValorAtivo(List<DadosBE> listCotacoes, double versao = 3)
         {
             if (listCotacoes.Count == 0)
                 return;
 
             int qtdPercentuaisAtivo = 4;
+            if (versao == 3.6)
+                qtdPercentuaisAtivo = 10;
 
             //Valor máximo que a cotação do ativo pode destoar do dia anterior, 1.5 vezes maior ou 1.3 vezes menor
             double maxCrescimento = 0.5;
@@ -704,18 +706,18 @@ namespace DataBaseUtils
 
             for (int indAtivo = 1; indAtivo < listCotacoes.Count; indAtivo++)
             {
-                if (listCotacoes[indAtivo].PrecoFechamentoNormalizado == 0 || listCotacoes[indAtivo - 1].PrecoFechamentoNormalizado == 0)
+                if (listCotacoes[indAtivo].ValorNormalizado == 0 || listCotacoes[indAtivo - 1].ValorNormalizado == 0)
                     continue;
 
-                if (listCotacoes[indAtivo].PrecoFechamentoNormalizado > listCotacoes[indAtivo - 1].PrecoFechamentoNormalizado)
+                if (listCotacoes[indAtivo].ValorNormalizado > listCotacoes[indAtivo - 1].ValorNormalizado)
                 {
-                    double valCresc = Convert.ToDouble(listCotacoes[indAtivo].PrecoFechamentoNormalizado / listCotacoes[indAtivo - 1].PrecoFechamentoNormalizado);
+                    double valCresc = Convert.ToDouble(listCotacoes[indAtivo].ValorNormalizado / listCotacoes[indAtivo - 1].ValorNormalizado);
                     valCresc -= 1;
                     listCotacoes[indAtivo].PercentualCrescimentoValorAtivo[qtdPercentuaisAtivo - 1] = 0.5 + (valCresc / maxCrescimento * 0.5);
                 }
                 else
                 {
-                    double valCresc = Convert.ToDouble(listCotacoes[indAtivo - 1].PrecoFechamentoNormalizado / listCotacoes[indAtivo].PrecoFechamentoNormalizado);
+                    double valCresc = Convert.ToDouble(listCotacoes[indAtivo - 1].ValorNormalizado / listCotacoes[indAtivo].ValorNormalizado);
                     valCresc -= 1;
                     listCotacoes[indAtivo].PercentualCrescimentoValorAtivo[qtdPercentuaisAtivo - 1] = 0.5 - (valCresc / maxCrescimento * 0.5);
                 }
@@ -760,13 +762,13 @@ namespace DataBaseUtils
                 double desvioPadrao = 0;
                 for (int indCotAtual = 1; indCotAtual < cotacoesAnaliseAtual.Count; indCotAtual++)
                 {
-                    desvioPadrao += Convert.ToDouble(Math.Abs(cotacoesAnaliseAtual[indCotAtual].PrecoFechamentoNormalizado - cotacoesAnaliseAtual[indCotAtual - 1].PrecoFechamentoNormalizado));
+                    desvioPadrao += Convert.ToDouble(Math.Abs(cotacoesAnaliseAtual[indCotAtual].ValorNormalizado - cotacoesAnaliseAtual[indCotAtual - 1].ValorNormalizado));
                 }
 
                 //Divide por 'nDiasAnaliseDesvio -1' pq só conseguimos calcular o desvio de n-1 dias ('d2' - 'd1', 'd3' - 'd2',...'dn' - 'dn-1')
                 desvioPadrao /= (nDiasAnaliseDesvio - 1);
 
-                double desvioHoje_Relacao_Ontem = Convert.ToDouble(Math.Abs(cotacoesAnaliseAtual[nDiasAnaliseDesvio - 1].PrecoFechamentoNormalizado - cotacoesAnaliseAtual[nDiasAnaliseDesvio - 2].PrecoFechamentoNormalizado));
+                double desvioHoje_Relacao_Ontem = Convert.ToDouble(Math.Abs(cotacoesAnaliseAtual[nDiasAnaliseDesvio - 1].ValorNormalizado - cotacoesAnaliseAtual[nDiasAnaliseDesvio - 2].ValorNormalizado));
                 if (desvioHoje_Relacao_Ontem == 0)
                 {
                     cotacoesAnaliseAtual.Last().PercentualDesviosPadroesEmRelacaoNDias = 0.5;
@@ -842,14 +844,14 @@ namespace DataBaseUtils
         /// Preenche os indices que alimentarão a RN_V3
         /// </summary>
         /// <param name="listCotacoes"></param>
-        public static void PreencherIndicesRN_V3(List<DadosBE> listCotacoes)
+        public static void PreencherIndicesRN_V3(List<DadosBE> listCotacoes, double versao)
         {
             PreencherPontuacao3MediasMoveis(listCotacoes);
             PreencherPercentualTotalNegociacoesMediaNDias(listCotacoes);
             PreencherPercentualTotalNegociacoes(listCotacoes);
             PreencherPercentualCrescimentoDolar(listCotacoes);
             PreencherPercentualCrescimentoValorAtivoMediaNDias(listCotacoes);
-            PreencherPercentualCrescimentoValorAtivo(listCotacoes);
+            PreencherPercentualCrescimentoValorAtivo(listCotacoes, versao);
             PreencherPercentualDesviosPadroesEmRelacaoNDias(listCotacoes);
             PreencherDiaSemana(listCotacoes);
             PreencherPercentualValorAtivo_Max_Min_Med(listCotacoes);
@@ -868,7 +870,7 @@ namespace DataBaseUtils
                 return null;
 
             //Preenche os indices da RN_V3
-            PreencherIndicesRN_V3(dadosBE);
+            PreencherIndicesRN_V3(dadosBE, versao);
 
             List<Treinamento> treinamentos = new List<Treinamento>();
             //A cada 'qtdRegistrosPorDivisao' registros, o numero do cross validation deve ser incrementado de 1
@@ -899,10 +901,10 @@ namespace DataBaseUtils
             Treinamento treinamento = new Treinamento();
             treinamento.Input = new List<double>();
 
+            //Adiciona cada um dos percentuais dos n dias anteriores e do dia da cotação
+            dadoBE.PercentualCrescimentoValorAtivo.ForEach(percent => treinamento.Input.Add(percent));
             if (versao == 3)
             {
-                //Adiciona cada um dos percentuais dos n dias anteriores e do dia da cotação
-                dadoBE.PercentualCrescimentoValorAtivo.ForEach(percent => treinamento.Input.Add(percent));
                 treinamento.Input.Add(dadoBE.PrecoFechamentoNormalizado);
                 treinamento.Input.Add(dadoBE.ValorBollinger);
                 treinamento.Input.Add(dadoBE.Pontuacao3MediasMoveis);
@@ -916,8 +918,6 @@ namespace DataBaseUtils
             }
             if (versao == 3.2)
             {
-                //Adiciona cada um dos percentuais dos n dias anteriores e do dia da cotação
-                dadoBE.PercentualCrescimentoValorAtivo.ForEach(percent => treinamento.Input.Add(percent));
                 treinamento.Input.Add(dadoBE.PrecoFechamentoNormalizado);
                 treinamento.Input.Add(dadoBE.ValorBollinger);
                 //treinamento.Input.Add(dadoBE.Pontuacao3MediasMoveis);
@@ -931,8 +931,6 @@ namespace DataBaseUtils
             }
             if (versao == 3.3)
             {
-                //Adiciona cada um dos percentuais dos n dias anteriores e do dia da cotação
-                dadoBE.PercentualCrescimentoValorAtivo.ForEach(percent => treinamento.Input.Add(percent));
                 treinamento.Input.Add(dadoBE.PrecoFechamentoNormalizado);
                 treinamento.Input.Add(dadoBE.ValorBollinger);
                 ////treinamento.Input.Add(dadoBE.Pontuacao3MediasMoveis);
@@ -943,6 +941,45 @@ namespace DataBaseUtils
                 treinamento.Input.Add(dadoBE.PercentualDesviosPadroesEmRelacaoNDias);
                 ////treinamento.Input.Add(dadoBE.DiaSemana);
                 treinamento.Input.Add(dadoBE.PercentualValorAtivo_Max_Min_Med);
+            }
+            if (versao == 3.4)
+            {
+                treinamento.Input.Add(dadoBE.PrecoFechamentoNormalizado);
+                treinamento.Input.Add(dadoBE.ValorBollinger);
+                ////treinamento.Input.Add(dadoBE.Pontuacao3MediasMoveis);
+                ////treinamento.Input.Add(dadoBE.PercentualTotalNegociacoesMediaNDias);
+                //treinamento.Input.Add(dadoBE.PercentualTotalNegociacoes);
+                //treinamento.Input.Add(dadoBE.PercentualCrescimentoDolar);
+                ////treinamento.Input.Add(dadoBE.PercentualCrescimentoValorAtivoMediaNDias);
+                treinamento.Input.Add(dadoBE.PercentualDesviosPadroesEmRelacaoNDias);
+                ////treinamento.Input.Add(dadoBE.DiaSemana);
+                treinamento.Input.Add(dadoBE.PercentualValorAtivo_Max_Min_Med);
+            }
+            if (versao == 3.5)
+            {
+                treinamento.Input.Add(dadoBE.ValorNormalizado);
+                //treinamento.Input.Add(dadoBE.ValorBollinger);
+                ////treinamento.Input.Add(dadoBE.Pontuacao3MediasMoveis);
+                ////treinamento.Input.Add(dadoBE.PercentualTotalNegociacoesMediaNDias);
+                //treinamento.Input.Add(dadoBE.PercentualTotalNegociacoes);
+                //treinamento.Input.Add(dadoBE.PercentualCrescimentoDolar);
+                //treinamento.Input.Add(dadoBE.PercentualCrescimentoValorAtivoMediaNDias);
+                treinamento.Input.Add(dadoBE.PercentualDesviosPadroesEmRelacaoNDias);
+                ////treinamento.Input.Add(dadoBE.DiaSemana);
+                //treinamento.Input.Add(dadoBE.PercentualValorAtivo_Max_Min_Med);
+            }
+            if (versao == 3.6)
+            {
+                treinamento.Input.Add(dadoBE.ValorNormalizado);
+                //treinamento.Input.Add(dadoBE.ValorBollinger);
+                ////treinamento.Input.Add(dadoBE.Pontuacao3MediasMoveis);
+                ////treinamento.Input.Add(dadoBE.PercentualTotalNegociacoesMediaNDias);
+                //treinamento.Input.Add(dadoBE.PercentualTotalNegociacoes);
+                //treinamento.Input.Add(dadoBE.PercentualCrescimentoDolar);
+                //treinamento.Input.Add(dadoBE.PercentualCrescimentoValorAtivoMediaNDias);
+                treinamento.Input.Add(dadoBE.PercentualDesviosPadroesEmRelacaoNDias);
+                ////treinamento.Input.Add(dadoBE.DiaSemana);
+                //treinamento.Input.Add(dadoBE.PercentualValorAtivo_Max_Min_Med);
             }
             treinamento.Output = new List<double>() { dadoBE.PrecoFechamentoNormalizadoDiaSeguinte };
 

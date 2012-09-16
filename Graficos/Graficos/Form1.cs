@@ -14,7 +14,14 @@ namespace Graficos
     {
         //De quantos em quantos reais o gráfico será gerado em Y
         int janelaVerticalEmReais = 1;
+
+        //Previsoes por RN
+        Dictionary<string, List<double>> previsoesPorRN = new Dictionary<string, List<double>>();
+        Dictionary<string, Color> previsoesEscolhidasPorRN = new Dictionary<string, Color>();
+
         List<double[]> previsao;
+        DateTime dtInicialPrevisao = new DateTime(2011, 10, 1);
+        int qtdDiasPrever = 30;
 
         public Form1()
         {
@@ -23,19 +30,53 @@ namespace Graficos
             InitializeComponent();
 
             //V1
-            previsao = PrevisaoFinanceiraHelper.PrevisaoFinanceira.PreverCotacaoAtivo("PETR4", 240);
+            previsao = PrevisaoFinanceiraHelper.PrevisaoFinanceira.PreverCotacaoAtivo("PETR4", dtInicialPrevisao, qtdDiasPrever);
+
+            //Utiliza a previsao da RN1 para popular os valores reais
+            previsoesPorRN.Add("Real", previsao.Select(prev => prev[0]).ToList());
+
+            //Preenche as previsoes da RN_V1
+            previsoesPorRN.Add("RN_V1", previsao.Select(prev => prev[1]).ToList());
 
             //V2
-            previsao = RedeNeuralPrevisaoFinanceira_v2.RNAssessor.PreverCotacao(new DateTime(2011, 10, 1), 10);
+            previsao = RedeNeuralPrevisaoFinanceira_v2.RNAssessor.PreverCotacao(dtInicialPrevisao, qtdDiasPrever);
+            previsoesPorRN.Add("RN_V2", previsao.Select(prev => prev[1]).ToList());
+
+            //V3
+            previsao = RedeNeuralPrevisaoFinanceira_v3.RNAssessor.PreverCotacao(dtInicialPrevisao, 3, qtdDiasPrever);
+            previsoesPorRN.Add("RN_V3", previsao.Select(prev => prev[1]).ToList());
+
+            //V3.2
+            previsao = RedeNeuralPrevisaoFinanceira_v3.RNAssessor.PreverCotacao(dtInicialPrevisao, 3.2, qtdDiasPrever);
+            previsoesPorRN.Add("RN_V3_2", previsao.Select(prev => prev[1]).ToList());
+
+            //V3.3
+            previsao = RedeNeuralPrevisaoFinanceira_v3.RNAssessor.PreverCotacao(dtInicialPrevisao, 3.3, qtdDiasPrever);
+            previsoesPorRN.Add("RN_V3_3", previsao.Select(prev => prev[1]).ToList());
+
+            //V3.4
+            previsao = RedeNeuralPrevisaoFinanceira_v3.RNAssessor.PreverCotacao(dtInicialPrevisao, 3.4, qtdDiasPrever);
+            previsoesPorRN.Add("RN_V3_4", previsao.Select(prev => prev[1]).ToList());
+
+            //V3.5
+            previsao = RedeNeuralPrevisaoFinanceira_v3.RNAssessor.PreverCotacao(dtInicialPrevisao, 3.5, qtdDiasPrever);
+            previsoesPorRN.Add("RN_V3_5", previsao.Select(prev => prev[1]).ToList());
+
+            //V3.6
+            previsao = RedeNeuralPrevisaoFinanceira_v3.RNAssessor.PreverCotacao(dtInicialPrevisao, 3.6, qtdDiasPrever);
+            previsoesPorRN.Add("RN_V3_6", previsao.Select(prev => prev[1]).ToList());
 
             //Media ponderada
-            //previsao = MediaPonderada.MetodoMediaPonderada.PreverMediasPonderada("PETR4", new DateTime(2011, 7, 1), new DateTime(2011, 8, 1));
+            previsao = MediaPonderada.MetodoMediaPonderada.PreverMediasPonderada("PETR4", dtInicialPrevisao, qtdDiasPrever);
+            previsoesPorRN.Add("Med_Ponderada", previsao.Select(prev => prev[1]).ToList());
 
             //Media aritmetica
-            //previsao = MediaAritmetica.MetodoMediaAritmetica.PreverMediasAritmetica("PETR4", new DateTime(2011, 7, 1), new DateTime(2011, 8, 1));
+            previsao = MediaAritmetica.MetodoMediaAritmetica.PreverMediasAritmetica("PETR4", dtInicialPrevisao, qtdDiasPrever);
+            previsoesPorRN.Add("Med_Aritmetica", previsao.Select(prev => prev[1]).ToList());
 
             //AlisamentoExponencialSimples
-            //previsao = AlisamentoExponencialSimples.MetodoAlisamentoExpSimples.PreverAlisamentoExponencialSimples("PETR4", new DateTime(2011, 7, 1), new DateTime(2011, 8, 1));
+            previsao = AlisamentoExponencialSimples.MetodoAlisamentoExpSimples.PreverAlisamentoExponencialSimples("PETR4", dtInicialPrevisao, qtdDiasPrever);
+            previsoesPorRN.Add("Med_Exp_Simpl", previsao.Select(prev => prev[1]).ToList());
 
             DesenharGrafico();
             AlimentarGridTaxasAcerto();
@@ -46,69 +87,93 @@ namespace Graficos
             DataTable dt = new DataTable();
             DataRow drReal = dt.NewRow();
             dt.Rows.Add(drReal);
-            DataRow drPrevisto = dt.NewRow();
-            dt.Rows.Add(drPrevisto);
-            DataRow drTaxaAcerto = dt.NewRow();
-            dt.Rows.Add(drTaxaAcerto);
             DataColumn dcDescricao = new DataColumn("Descrição");
             dt.Columns.Add(dcDescricao);
             drReal[0] = "Real";
-            drPrevisto[0] = "Previsto";
-            drTaxaAcerto[0] = "Taxa Acerto";
 
-            for (int dia = 1; dia <= previsao.Count; dia++)
+            List<double> valoresReais = previsoesPorRN["Real"];
+            //Preenche os valores reais
+            for (int dia = 1; dia <= qtdDiasPrever; dia++)
             {
                 DataColumn dc = new DataColumn("D+" + dia);
                 dt.Columns.Add(dc);
-                double ta = Math.Min(previsao[dia - 1][0], previsao[dia - 1][1]) / Math.Max(previsao[dia - 1][0], previsao[dia - 1][1]);
-                drReal[dc] = previsao[dia - 1][0];
-                drPrevisto[dc] = previsao[dia - 1][1];
-                drTaxaAcerto[dc] = ta;
+                drReal[dc] = valoresReais[dia - 1];
+            }
+
+            foreach (KeyValuePair<string, Color> previsaoSelecionada in previsoesEscolhidasPorRN.Where(prev => prev.Key != "Real"))
+            {
+                DataRow drPrevisto = dt.NewRow();
+                dt.Rows.Add(drPrevisto);
+                drPrevisto[0] = previsaoSelecionada.Key;
+                List<double> previsoes = previsoesPorRN[previsaoSelecionada.Key];
+
+                for (int dia = 1; dia <= qtdDiasPrever; dia++)
+                {
+                    double ta = Math.Min(valoresReais[dia - 1], previsoes[dia - 1]) / Math.Max(valoresReais[dia - 1], previsoes[dia - 1]);
+                    drPrevisto[dia] = ta.ToString().Substring(0, 5) + "(" + previsoes[dia - 1].ToString().Substring(0, 4) + ")";
+                }
             }
 
             //gvTaxaAcerto.AutoGenerateColumns = true;
             BindingSource binding = new BindingSource();
             binding.DataSource = dt;// previsao.Select(prev => new { Real = prev[0], Previsto = prev[1] });
             gvTaxaAcerto.DataSource = binding;
-            gvTaxaAcerto.Rows[0].Tag = "Teste";
+            //gvTaxaAcerto.Rows[0].Tag = "Teste";
         }
 
         void DesenharGrafico()
         {
-            List<double> real = previsao.Select(prev => prev[0]).ToList();
-            List<double> previsto = previsao.Select(prev => prev[1]).ToList();
+            //List<double> real = previsao.Select(prev => prev[0]).ToList();
+            //List<double> previsto = previsao.Select(prev => prev[1]).ToList();
+            Dictionary<Color, List<double>> previsoesEscolhidas = RecuperarPrevisoesEscolhidas();
+            if (previsoesEscolhidas.Count == 0)
+                return;
 
             grafico.Image = new Bitmap(grafico.Width, grafico.Height);
             Graphics g = Graphics.FromImage(grafico.Image);
-            Pen pen1 = new Pen(Color.Red);
-            pen1.Width = 2;
-            Pen pen2 = new Pen(Color.Yellow);
-            pen2.Width = 2;
 
             //A cada 40 pixels, há alteração de 1 real 
             int multiplicadorY = 20;
             //A cada 10 pixels, há alteração de 1 dia da cotação
             int multiplicadorX = Convert.ToInt32(txtEscalaX.Text);
 
-            int minimoEntreOsDois = Convert.ToInt32(Math.Min(real.Min(), previsto.Min()));
+            int minimoEntreOsDois = Convert.ToInt32(previsoesEscolhidas.First().Value.Min());
+            int maximoEntreOsDois = Convert.ToInt32(previsoesEscolhidas.First().Value.Max());
+            foreach (List<double> previsao in previsoesEscolhidas.Select(prevEsc => prevEsc.Value).ToList())
+            {
+                minimoEntreOsDois = Convert.ToInt32(Math.Min(minimoEntreOsDois, previsao.Min()));
+                maximoEntreOsDois = Convert.ToInt32(Math.Min(maximoEntreOsDois, previsao.Max()));
+            }
 
             //Espacamento em reais antes do inicio do dado de menor valor
             int espacamentoAbaixo = 8;
-            DesenharLinharAuxiliaresDoGrafico(g, minimoEntreOsDois - espacamentoAbaixo, Convert.ToInt32(Math.Max(real.Max(), previsto.Max())), 1, multiplicadorY, multiplicadorX);
+            DesenharLinharAuxiliaresDoGrafico(g, minimoEntreOsDois - espacamentoAbaixo, maximoEntreOsDois, 1, multiplicadorY, multiplicadorX);
 
             minimoEntreOsDois *= multiplicadorY;
 
-            for (int i = 0; i < previsto.Count() - 1; i++)
+            foreach (KeyValuePair<Color, List<double>> previsao in previsoesEscolhidas)
             {
-                Point pontoReal1 = new Point(40 + (i * multiplicadorX), grafico.Height - Convert.ToInt32((real[i] + espacamentoAbaixo) * multiplicadorY) + minimoEntreOsDois);
-                Point pontoReal2 = new Point(40 + ((i + 1) * multiplicadorX), grafico.Height - Convert.ToInt32((real[i + 1] + espacamentoAbaixo) * multiplicadorY) + minimoEntreOsDois);
+                Pen pen1 = new Pen(previsao.Key);
+                pen1.Width = 2;
+                for (int i = 0; i < qtdDiasPrever - 1; i++)
+                {
+                    Point ponto1 = new Point(40 + (i * multiplicadorX), grafico.Height - Convert.ToInt32((previsao.Value[i] + espacamentoAbaixo) * multiplicadorY) + minimoEntreOsDois);
+                    Point ponto2 = new Point(40 + ((i + 1) * multiplicadorX), grafico.Height - Convert.ToInt32((previsao.Value[i + 1] + espacamentoAbaixo) * multiplicadorY) + minimoEntreOsDois);
 
-                Point pontoPrevisao1 = new Point(40 + (i * multiplicadorX), grafico.Height - Convert.ToInt32((previsto[i] + espacamentoAbaixo) * multiplicadorY) + minimoEntreOsDois);
-                Point pontoPrevisao2 = new Point(40 + ((i + 1) * multiplicadorX), grafico.Height - Convert.ToInt32((previsto[i + 1] + espacamentoAbaixo) * multiplicadorY) + minimoEntreOsDois);
-
-                g.DrawLine(pen1, pontoReal1, pontoReal2);
-                g.DrawLine(pen2, pontoPrevisao1, pontoPrevisao2);
+                    g.DrawLine(pen1, ponto1, ponto2);
+                }
             }
+            //for (int i = 0; i < qtdDiasPrever - 1; i++)
+            //{
+            //    Point pontoReal1 = new Point(40 + (i * multiplicadorX), grafico.Height - Convert.ToInt32((real[i] + espacamentoAbaixo) * multiplicadorY) + minimoEntreOsDois);
+            //    Point pontoReal2 = new Point(40 + ((i + 1) * multiplicadorX), grafico.Height - Convert.ToInt32((real[i + 1] + espacamentoAbaixo) * multiplicadorY) + minimoEntreOsDois);
+
+            //    Point pontoPrevisao1 = new Point(40 + (i * multiplicadorX), grafico.Height - Convert.ToInt32((previsto[i] + espacamentoAbaixo) * multiplicadorY) + minimoEntreOsDois);
+            //    Point pontoPrevisao2 = new Point(40 + ((i + 1) * multiplicadorX), grafico.Height - Convert.ToInt32((previsto[i + 1] + espacamentoAbaixo) * multiplicadorY) + minimoEntreOsDois);
+
+            //    g.DrawLine(pen1, pontoReal1, pontoReal2);
+            //    g.DrawLine(pen2, pontoPrevisao1, pontoPrevisao2);
+            //}
         }
 
         void DesenharLinharAuxiliaresDoGrafico(Graphics g, int minimo, int maximo, int unidade, int multiplicadorEscalaY, int multiplicadorEscalaX)
@@ -168,6 +233,36 @@ namespace Graficos
         private void button1_Click(object sender, EventArgs e)
         {
             DesenharGrafico();
+            AlimentarGridTaxasAcerto();
+        }
+
+        private void pbRns_Click(object sender, EventArgs e)
+        {
+            PictureBox pb = (PictureBox)sender;
+            string rnName = pb.Name.Substring(2);
+            SetarPrevisaoEscolhida(rnName, pb.BackColor);
+
+            DesenharGrafico();
+            AlimentarGridTaxasAcerto();
+        }
+
+        private void SetarPrevisaoEscolhida(string rnName, Color color)
+        {
+            if (previsoesEscolhidasPorRN.Keys.Contains(rnName))
+                previsoesEscolhidasPorRN.Remove(rnName);
+            else
+                previsoesEscolhidasPorRN.Add(rnName, color);
+        }
+
+        private Dictionary<Color, List<double>> RecuperarPrevisoesEscolhidas()
+        {
+            Dictionary<Color, List<double>> previsoesEscolhidas = new Dictionary<Color, List<double>>();
+            foreach (KeyValuePair<string, Color> rnEscolhida in previsoesEscolhidasPorRN)
+            {
+                previsoesEscolhidas.Add(rnEscolhida.Value, previsoesPorRN[rnEscolhida.Key]);
+            }
+
+            return previsoesEscolhidas;
         }
     }
 }
