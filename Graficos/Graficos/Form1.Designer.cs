@@ -42,6 +42,9 @@
             this.pbMed_Exp_Simpl = new System.Windows.Forms.PictureBox();
             this.pbMed_Aritmetica = new System.Windows.Forms.PictureBox();
             this.pbMed_Ponderada = new System.Windows.Forms.PictureBox();
+            this.pbRN_V3_9 = new System.Windows.Forms.PictureBox();
+            this.pbRN_V3_8 = new System.Windows.Forms.PictureBox();
+            this.pbRN_V3_7 = new System.Windows.Forms.PictureBox();
             this.pbRN_V3_6 = new System.Windows.Forms.PictureBox();
             this.pbRN_V3_5 = new System.Windows.Forms.PictureBox();
             this.pbRN_V3_4 = new System.Windows.Forms.PictureBox();
@@ -51,6 +54,9 @@
             this.label10 = new System.Windows.Forms.Label();
             this.pbRN_V3 = new System.Windows.Forms.PictureBox();
             this.label9 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -59,12 +65,12 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.pbRN_V3_7 = new System.Windows.Forms.PictureBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.pbRN_V3_8 = new System.Windows.Forms.PictureBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.pbRN_V3_9 = new System.Windows.Forms.PictureBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.pbRN_V4_01 = new System.Windows.Forms.PictureBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.pbRN_V4_02 = new System.Windows.Forms.PictureBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.pbRN_V4_03 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.grafico)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvTaxaAcerto)).BeginInit();
@@ -74,6 +80,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbMed_Exp_Simpl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMed_Aritmetica)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMed_Ponderada)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbRN_V3_9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbRN_V3_8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbRN_V3_7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbRN_V3_6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbRN_V3_5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbRN_V3_4)).BeginInit();
@@ -81,9 +90,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbRN_V3_2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbRN_V3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbRN_V2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbRN_V3_7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbRN_V3_8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbRN_V3_9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbRN_V4_01)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbRN_V4_02)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbRN_V4_03)).BeginInit();
             this.SuspendLayout();
             // 
             // grafico
@@ -191,6 +200,9 @@
             this.pnlLegendas.Controls.Add(this.pbMed_Exp_Simpl);
             this.pnlLegendas.Controls.Add(this.pbMed_Aritmetica);
             this.pnlLegendas.Controls.Add(this.pbMed_Ponderada);
+            this.pnlLegendas.Controls.Add(this.pbRN_V4_03);
+            this.pnlLegendas.Controls.Add(this.pbRN_V4_02);
+            this.pnlLegendas.Controls.Add(this.pbRN_V4_01);
             this.pnlLegendas.Controls.Add(this.pbRN_V3_9);
             this.pnlLegendas.Controls.Add(this.pbRN_V3_8);
             this.pnlLegendas.Controls.Add(this.pbRN_V3_7);
@@ -203,6 +215,9 @@
             this.pnlLegendas.Controls.Add(this.label10);
             this.pnlLegendas.Controls.Add(this.pbRN_V3);
             this.pnlLegendas.Controls.Add(this.label9);
+            this.pnlLegendas.Controls.Add(this.label19);
+            this.pnlLegendas.Controls.Add(this.label18);
+            this.pnlLegendas.Controls.Add(this.label17);
             this.pnlLegendas.Controls.Add(this.label16);
             this.pnlLegendas.Controls.Add(this.label15);
             this.pnlLegendas.Controls.Add(this.label14);
@@ -224,7 +239,7 @@
             // pbMed_Exp_Simpl
             // 
             this.pbMed_Exp_Simpl.BackColor = System.Drawing.Color.Goldenrod;
-            this.pbMed_Exp_Simpl.Location = new System.Drawing.Point(380, 32);
+            this.pbMed_Exp_Simpl.Location = new System.Drawing.Point(638, 31);
             this.pbMed_Exp_Simpl.Name = "pbMed_Exp_Simpl";
             this.pbMed_Exp_Simpl.Size = new System.Drawing.Size(15, 15);
             this.pbMed_Exp_Simpl.TabIndex = 2;
@@ -234,7 +249,7 @@
             // pbMed_Aritmetica
             // 
             this.pbMed_Aritmetica.BackColor = System.Drawing.Color.White;
-            this.pbMed_Aritmetica.Location = new System.Drawing.Point(276, 32);
+            this.pbMed_Aritmetica.Location = new System.Drawing.Point(534, 31);
             this.pbMed_Aritmetica.Name = "pbMed_Aritmetica";
             this.pbMed_Aritmetica.Size = new System.Drawing.Size(15, 15);
             this.pbMed_Aritmetica.TabIndex = 2;
@@ -244,12 +259,42 @@
             // pbMed_Ponderada
             // 
             this.pbMed_Ponderada.BackColor = System.Drawing.Color.Pink;
-            this.pbMed_Ponderada.Location = new System.Drawing.Point(166, 31);
+            this.pbMed_Ponderada.Location = new System.Drawing.Point(424, 30);
             this.pbMed_Ponderada.Name = "pbMed_Ponderada";
             this.pbMed_Ponderada.Size = new System.Drawing.Size(15, 15);
             this.pbMed_Ponderada.TabIndex = 2;
             this.pbMed_Ponderada.TabStop = false;
             this.pbMed_Ponderada.Click += new System.EventHandler(this.pbRns_Click);
+            // 
+            // pbRN_V3_9
+            // 
+            this.pbRN_V3_9.BackColor = System.Drawing.Color.Crimson;
+            this.pbRN_V3_9.Location = new System.Drawing.Point(83, 32);
+            this.pbRN_V3_9.Name = "pbRN_V3_9";
+            this.pbRN_V3_9.Size = new System.Drawing.Size(15, 15);
+            this.pbRN_V3_9.TabIndex = 2;
+            this.pbRN_V3_9.TabStop = false;
+            this.pbRN_V3_9.Click += new System.EventHandler(this.pbRns_Click);
+            // 
+            // pbRN_V3_8
+            // 
+            this.pbRN_V3_8.BackColor = System.Drawing.Color.Black;
+            this.pbRN_V3_8.Location = new System.Drawing.Point(3, 32);
+            this.pbRN_V3_8.Name = "pbRN_V3_8";
+            this.pbRN_V3_8.Size = new System.Drawing.Size(15, 15);
+            this.pbRN_V3_8.TabIndex = 2;
+            this.pbRN_V3_8.TabStop = false;
+            this.pbRN_V3_8.Click += new System.EventHandler(this.pbRns_Click);
+            // 
+            // pbRN_V3_7
+            // 
+            this.pbRN_V3_7.BackColor = System.Drawing.Color.Maroon;
+            this.pbRN_V3_7.Location = new System.Drawing.Point(623, 11);
+            this.pbRN_V3_7.Name = "pbRN_V3_7";
+            this.pbRN_V3_7.Size = new System.Drawing.Size(15, 15);
+            this.pbRN_V3_7.TabIndex = 2;
+            this.pbRN_V3_7.TabStop = false;
+            this.pbRN_V3_7.Click += new System.EventHandler(this.pbRns_Click);
             // 
             // pbRN_V3_6
             // 
@@ -294,7 +339,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(398, 32);
+            this.label11.Location = new System.Drawing.Point(656, 31);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(83, 13);
             this.label11.TabIndex = 3;
@@ -313,7 +358,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(294, 32);
+            this.label10.Location = new System.Drawing.Point(552, 31);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(80, 13);
             this.label10.TabIndex = 3;
@@ -332,11 +377,38 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(184, 31);
+            this.label9.Location = new System.Drawing.Point(442, 30);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(86, 13);
             this.label9.TabIndex = 3;
             this.label9.Text = "Med_Ponderada";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(101, 32);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(54, 13);
+            this.label16.TabIndex = 3;
+            this.label16.Text = "RN_V3_9";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(21, 32);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(54, 13);
+            this.label15.TabIndex = 3;
+            this.label15.Text = "RN_V3_8";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(641, 11);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(54, 13);
+            this.label14.TabIndex = 3;
+            this.label14.Text = "RN_V3_7";
             // 
             // label13
             // 
@@ -411,62 +483,62 @@
             this.label4.TabIndex = 3;
             this.label4.Text = "RN_V2";
             // 
-            // label14
+            // label17
             // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(641, 11);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(54, 13);
-            this.label14.TabIndex = 3;
-            this.label14.Text = "RN_V3_7";
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(184, 32);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(60, 13);
+            this.label17.TabIndex = 3;
+            this.label17.Text = "RN_V4_01";
             // 
-            // pbRN_V3_7
+            // pbRN_V4_01
             // 
-            this.pbRN_V3_7.BackColor = System.Drawing.Color.Maroon;
-            this.pbRN_V3_7.Location = new System.Drawing.Point(623, 11);
-            this.pbRN_V3_7.Name = "pbRN_V3_7";
-            this.pbRN_V3_7.Size = new System.Drawing.Size(15, 15);
-            this.pbRN_V3_7.TabIndex = 2;
-            this.pbRN_V3_7.TabStop = false;
-            this.pbRN_V3_7.Click += new System.EventHandler(this.pbRns_Click);
+            this.pbRN_V4_01.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.pbRN_V4_01.Location = new System.Drawing.Point(166, 32);
+            this.pbRN_V4_01.Name = "pbRN_V4_01";
+            this.pbRN_V4_01.Size = new System.Drawing.Size(15, 15);
+            this.pbRN_V4_01.TabIndex = 2;
+            this.pbRN_V4_01.TabStop = false;
+            this.pbRN_V4_01.Click += new System.EventHandler(this.pbRns_Click);
             // 
-            // label15
+            // label18
             // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(21, 32);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(54, 13);
-            this.label15.TabIndex = 3;
-            this.label15.Text = "RN_V3_8";
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(267, 32);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(60, 13);
+            this.label18.TabIndex = 3;
+            this.label18.Text = "RN_V4_02";
             // 
-            // pbRN_V3_8
+            // pbRN_V4_02
             // 
-            this.pbRN_V3_8.BackColor = System.Drawing.Color.Black;
-            this.pbRN_V3_8.Location = new System.Drawing.Point(3, 32);
-            this.pbRN_V3_8.Name = "pbRN_V3_8";
-            this.pbRN_V3_8.Size = new System.Drawing.Size(15, 15);
-            this.pbRN_V3_8.TabIndex = 2;
-            this.pbRN_V3_8.TabStop = false;
-            this.pbRN_V3_8.Click += new System.EventHandler(this.pbRns_Click);
+            this.pbRN_V4_02.BackColor = System.Drawing.Color.Navy;
+            this.pbRN_V4_02.Location = new System.Drawing.Point(249, 32);
+            this.pbRN_V4_02.Name = "pbRN_V4_02";
+            this.pbRN_V4_02.Size = new System.Drawing.Size(15, 15);
+            this.pbRN_V4_02.TabIndex = 2;
+            this.pbRN_V4_02.TabStop = false;
+            this.pbRN_V4_02.Click += new System.EventHandler(this.pbRns_Click);
             // 
-            // label16
+            // label19
             // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(101, 32);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(54, 13);
-            this.label16.TabIndex = 3;
-            this.label16.Text = "RN_V3_9";
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(353, 32);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(60, 13);
+            this.label19.TabIndex = 3;
+            this.label19.Text = "RN_V4_03";
             // 
-            // pbRN_V3_9
+            // pbRN_V4_03
             // 
-            this.pbRN_V3_9.BackColor = System.Drawing.Color.Crimson;
-            this.pbRN_V3_9.Location = new System.Drawing.Point(83, 32);
-            this.pbRN_V3_9.Name = "pbRN_V3_9";
-            this.pbRN_V3_9.Size = new System.Drawing.Size(15, 15);
-            this.pbRN_V3_9.TabIndex = 2;
-            this.pbRN_V3_9.TabStop = false;
-            this.pbRN_V3_9.Click += new System.EventHandler(this.pbRns_Click);
+            this.pbRN_V4_03.BackColor = System.Drawing.Color.DodgerBlue;
+            this.pbRN_V4_03.Location = new System.Drawing.Point(335, 32);
+            this.pbRN_V4_03.Name = "pbRN_V4_03";
+            this.pbRN_V4_03.Size = new System.Drawing.Size(15, 15);
+            this.pbRN_V4_03.TabIndex = 2;
+            this.pbRN_V4_03.TabStop = false;
+            this.pbRN_V4_03.Click += new System.EventHandler(this.pbRns_Click);
             // 
             // Form1
             // 
@@ -491,6 +563,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbMed_Exp_Simpl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMed_Aritmetica)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMed_Ponderada)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbRN_V3_9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbRN_V3_8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbRN_V3_7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbRN_V3_6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbRN_V3_5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbRN_V3_4)).EndInit();
@@ -498,9 +573,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbRN_V3_2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbRN_V3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbRN_V2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbRN_V3_7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbRN_V3_8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbRN_V3_9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbRN_V4_01)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbRN_V4_02)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbRN_V4_03)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -545,6 +620,12 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.PictureBox pbRN_V3_9;
         private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.PictureBox pbRN_V4_01;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.PictureBox pbRN_V4_03;
+        private System.Windows.Forms.PictureBox pbRN_V4_02;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label18;
     }
 }
 

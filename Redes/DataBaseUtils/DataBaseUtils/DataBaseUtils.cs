@@ -470,7 +470,7 @@ namespace DataBaseUtils
         /// <returns></returns>
         public static void PreencherPontuacao3MediasMoveis(List<DadosBE> listCotacoes)
         {
-            List<double> cotacoes = listCotacoes.Select(cot => cot.PrecoFechamentoNormalizado).ToList();
+            List<double> cotacoes = listCotacoes.Select(cot => cot.ValorNormalizado).ToList();
             int m20 = 20;
             int m10 = 10;
             int m5 = 5;
@@ -659,10 +659,10 @@ namespace DataBaseUtils
             {
                 List<DadosBE> cotacoesAnaliseAtual = listCotacoes.Skip(i).Take(nDiasAnalisePercentual).ToList();
 
-                double min = Convert.ToDouble(cotacoesAnaliseAtual.OrderBy(cot => cot.PrecoFechamentoNormalizado).Take(3).Average(cot => cot.PrecoFechamentoNormalizado));
-                double max = Convert.ToDouble(cotacoesAnaliseAtual.OrderByDescending(cot => cot.PrecoFechamentoNormalizado).Take(3).Average(cot => cot.PrecoFechamentoNormalizado));
-                double med = Convert.ToDouble(cotacoesAnaliseAtual.Average(cot => cot.PrecoFechamentoNormalizado));
-                double hoje = Convert.ToDouble(cotacoesAnaliseAtual.Last().PrecoFechamentoNormalizado);
+                double min = Convert.ToDouble(cotacoesAnaliseAtual.OrderBy(cot => cot.ValorNormalizado).Take(3).Average(cot => cot.ValorNormalizado));
+                double max = Convert.ToDouble(cotacoesAnaliseAtual.OrderByDescending(cot => cot.ValorNormalizado).Take(3).Average(cot => cot.ValorNormalizado));
+                double med = Convert.ToDouble(cotacoesAnaliseAtual.Average(cot => cot.ValorNormalizado));
+                double hoje = Convert.ToDouble(cotacoesAnaliseAtual.Last().ValorNormalizado);
 
                 if (hoje < med)
                 {
@@ -696,6 +696,8 @@ namespace DataBaseUtils
                 qtdPercentuaisAtivo = 2;
             if (versao == 3.8)
                 qtdPercentuaisAtivo = 10;
+            if (versao == 4.01)
+                qtdPercentuaisAtivo = 1;
 
             //Valor máximo que a cotação do ativo pode destoar do dia anterior, 1.5 vezes maior ou 1.3 vezes menor
             double maxCrescimento = 0.5;
@@ -858,7 +860,7 @@ namespace DataBaseUtils
             PreencherDiaSemana(listCotacoes);
             PreencherPercentualValorAtivo_Max_Min_Med(listCotacoes);
             //Já está sendo preenchido na recuperação dos dados
-            //PreencherValorBollinger(listCotacoes);
+            PreencherValorBollinger(listCotacoes);
         }
 
         /// <summary>
@@ -1003,7 +1005,7 @@ namespace DataBaseUtils
                 //treinamento.Input.Add(dadoBE.PercentualValorAtivo_Max_Min_Med);
             }
             if (versao == 3.9)
-            {//Com todos os índices possíveis para previsao em cima de previsao, mas agora com 10 percentuais em relação aos dias anteriores ao invés de 4
+            {
                 treinamento.Input.Add(dadoBE.ValorBollinger);
                 ////treinamento.Input.Add(dadoBE.Pontuacao3MediasMoveis);
                 ////treinamento.Input.Add(dadoBE.PercentualTotalNegociacoesMediaNDias);
@@ -1013,6 +1015,42 @@ namespace DataBaseUtils
                 //treinamento.Input.Add(dadoBE.PercentualDesviosPadroesEmRelacaoNDias);
                 ////treinamento.Input.Add(dadoBE.DiaSemana);
                 //treinamento.Input.Add(dadoBE.PercentualValorAtivo_Max_Min_Med);
+            }
+            if (versao == 4.01)
+            {
+                treinamento.Input.Add(dadoBE.ValorBollinger);
+                ////treinamento.Input.Add(dadoBE.Pontuacao3MediasMoveis);
+                ////treinamento.Input.Add(dadoBE.PercentualTotalNegociacoesMediaNDias);
+                //treinamento.Input.Add(dadoBE.PercentualTotalNegociacoes);
+                //treinamento.Input.Add(dadoBE.PercentualCrescimentoDolar);
+                treinamento.Input.Add(dadoBE.PercentualCrescimentoValorAtivoMediaNDias);
+                //treinamento.Input.Add(dadoBE.PercentualDesviosPadroesEmRelacaoNDias);
+                ////treinamento.Input.Add(dadoBE.DiaSemana);
+                //treinamento.Input.Add(dadoBE.PercentualValorAtivo_Max_Min_Med);
+            }
+            if (versao == 4.02)
+            {
+                treinamento.Input.Add(dadoBE.ValorBollinger);
+                treinamento.Input.Add(dadoBE.Pontuacao3MediasMoveis);
+                ////treinamento.Input.Add(dadoBE.PercentualTotalNegociacoesMediaNDias);
+                //treinamento.Input.Add(dadoBE.PercentualTotalNegociacoes);
+                //treinamento.Input.Add(dadoBE.PercentualCrescimentoDolar);
+                //treinamento.Input.Add(dadoBE.PercentualCrescimentoValorAtivoMediaNDias);
+                treinamento.Input.Add(dadoBE.PercentualDesviosPadroesEmRelacaoNDias);
+                treinamento.Input.Add(dadoBE.DiaSemana);
+                //treinamento.Input.Add(dadoBE.PercentualValorAtivo_Max_Min_Med);
+            }
+            if (versao == 4.03)
+            {
+                treinamento.Input.Add(dadoBE.ValorBollinger);
+                ////treinamento.Input.Add(dadoBE.Pontuacao3MediasMoveis);
+                ////treinamento.Input.Add(dadoBE.PercentualTotalNegociacoesMediaNDias);
+                //treinamento.Input.Add(dadoBE.PercentualTotalNegociacoes);
+                //treinamento.Input.Add(dadoBE.PercentualCrescimentoDolar);
+                ////treinamento.Input.Add(dadoBE.PercentualCrescimentoValorAtivoMediaNDias);
+                treinamento.Input.Add(dadoBE.PercentualDesviosPadroesEmRelacaoNDias);
+                ////treinamento.Input.Add(dadoBE.DiaSemana);
+                treinamento.Input.Add(dadoBE.PercentualValorAtivo_Max_Min_Med);
             }
             treinamento.Output = new List<double>() { dadoBE.ValorNormalizadoDiaSeguinte };
 

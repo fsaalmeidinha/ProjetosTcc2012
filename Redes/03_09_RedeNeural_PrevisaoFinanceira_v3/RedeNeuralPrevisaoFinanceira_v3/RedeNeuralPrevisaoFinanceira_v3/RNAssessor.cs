@@ -36,7 +36,10 @@ namespace RedeNeuralPrevisaoFinanceira_v3
         //private static double versao = 3.6;
         //private static double versao = 3.7;
         //private static double versao = 3.8;
-        private static double versao = 3.9;
+        //private static double versao = 3.9;
+        //private static double versao = 4.01;
+        //private static double versao = 4.02;
+        private static double versao = 4.03;
         static int numeroDivisoesCrossValidation = 8;
         private static string diretorioRedes
         {
@@ -125,7 +128,7 @@ namespace RedeNeuralPrevisaoFinanceira_v3
                 //DadoBE com os dados do dia anterior a previsao
                 DadosBE dadoBE = dadosBE.Skip(dadoBEPrevisoesSkip + indPrevisao).First();
                 //////////////////PREVISAO EM CIMA DE PREVISAO////////////
-                //////////////////if ((versaoRN == 3.5 || versaoRN == 3.6 || versaoRN == 3.7 || versaoRN == 3.8 || versaoRN == 3.9) && previsoes.Count > 0)
+                //////////////////if ((versaoRN == 3.5 || versaoRN == 3.6 || versaoRN == 3.7 || versaoRN == 3.8 || versaoRN == 3.9 || versaoRN = 4.01|| versaoRN = 4.02) && previsoes.Count > 0)
                 //////////////////{
                 //////////////////    //Utiliza os dados previstos para a nova previsao
                 //////////////////    dadoBE.ValorNormalizado = previsoes.Last()[1];
