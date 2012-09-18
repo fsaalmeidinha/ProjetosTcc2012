@@ -66,6 +66,18 @@ namespace Graficos
             previsao = RedeNeuralPrevisaoFinanceira_v3.RNAssessor.PreverCotacao(dtInicialPrevisao, 3.6, qtdDiasPrever);
             previsoesPorRN.Add("RN_V3_6", previsao.Select(prev => prev[1]).ToList());
 
+            //V3.7
+            previsao = RedeNeuralPrevisaoFinanceira_v3.RNAssessor.PreverCotacao(dtInicialPrevisao, 3.7, qtdDiasPrever);
+            previsoesPorRN.Add("RN_V3_7", previsao.Select(prev => prev[1]).ToList());
+
+            //V3.8
+            previsao = RedeNeuralPrevisaoFinanceira_v3.RNAssessor.PreverCotacao(dtInicialPrevisao, 3.8, qtdDiasPrever);
+            previsoesPorRN.Add("RN_V3_8", previsao.Select(prev => prev[1]).ToList());
+
+            //V3.9
+            previsao = RedeNeuralPrevisaoFinanceira_v3.RNAssessor.PreverCotacao(dtInicialPrevisao, 3.9, qtdDiasPrever);
+            previsoesPorRN.Add("RN_V3_9", previsao.Select(prev => prev[1]).ToList());
+
             //Media ponderada
             previsao = MediaPonderada.MetodoMediaPonderada.PreverMediasPonderada("PETR4", dtInicialPrevisao, qtdDiasPrever);
             previsoesPorRN.Add("Med_Ponderada", previsao.Select(prev => prev[1]).ToList());

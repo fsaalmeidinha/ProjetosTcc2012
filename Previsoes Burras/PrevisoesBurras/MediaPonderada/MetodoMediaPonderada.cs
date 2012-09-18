@@ -10,7 +10,7 @@ namespace MediaPonderada
     {
         public static List<double[]> PreverMediasPonderada(string nomeAtivo, DateTime dataInicio, int quantDiasPrevisao)
         {
-            int quantMedia = 5;
+            int quantMedia = 30;
             double peso = 0.2, pesoAux = 1;
             double divisor = 0;
 

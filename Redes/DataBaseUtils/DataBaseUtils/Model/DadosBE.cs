@@ -11,7 +11,7 @@ namespace DataBaseUtils
 
         public int Id { get; set; }
         public string NomeReduzido { get; set; }
-        public double PrecoFechamentoDiaSeguinte { get; set; }
+        public double ValorDiaSeguinte { get; set; }
         public decimal PrecoAbertura { get; set; }
         public double PrecoFechamento { get; set; }
         public DateTime DataGeracao { get; set; }
@@ -30,7 +30,7 @@ namespace DataBaseUtils
 
         //A partir da versao 2
         public double ValorNormalizado { get; set; }
-        public double PrecoFechamentoNormalizadoDiaSeguinte { get; set; }
+        public double ValorNormalizadoDiaSeguinte { get; set; }
         public double PrecoFechamentoNormalizado { get; set; }
         public double ValorBollinger { get; set; }
         public decimal CotacaoDolarNormalizado { get; set; }

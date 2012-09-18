@@ -33,7 +33,10 @@ namespace RedeNeuralPrevisaoFinanceira_v3
         //private static double versao = 3.3;
         //private static double versao = 3.4;
         //private static double versao = 3.5;
-        private static double versao = 3.6;
+        //private static double versao = 3.6;
+        //private static double versao = 3.7;
+        //private static double versao = 3.8;
+        private static double versao = 3.9;
         static int numeroDivisoesCrossValidation = 8;
         private static string diretorioRedes
         {
@@ -115,14 +118,14 @@ namespace RedeNeuralPrevisaoFinanceira_v3
             List<double[]> previsoes = new List<double[]>();
             for (int indPrevisao = 0; indPrevisao < qtdDiasPrevisao; indPrevisao++)
             {
-                //A versão 3.5 é a unica que permite previsao em cima de previsao, pois não utiliza nenhum dado que não é previsto
-                //3, 3.2, 3.3, 3.4, 
+                //A versão 3.5, 3.6, 3.7, 3.8 é a unica que permite previsao em cima de previsao, pois não utiliza nenhum dado que não é previsto
+                //3, 3.2, 3.3, 3.4,
                 //3.5
 
                 //DadoBE com os dados do dia anterior a previsao
                 DadosBE dadoBE = dadosBE.Skip(dadoBEPrevisoesSkip + indPrevisao).First();
                 //////////////////PREVISAO EM CIMA DE PREVISAO////////////
-                //////////////////if ((versaoRN == 3.5 || versaoRN == 3.6) && previsoes.Count > 0)
+                //////////////////if ((versaoRN == 3.5 || versaoRN == 3.6 || versaoRN == 3.7 || versaoRN == 3.8 || versaoRN == 3.9) && previsoes.Count > 0)
                 //////////////////{
                 //////////////////    //Utiliza os dados previstos para a nova previsao
                 //////////////////    dadoBE.ValorNormalizado = previsoes.Last()[1];

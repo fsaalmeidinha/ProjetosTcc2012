@@ -118,8 +118,8 @@ namespace DataBaseUtils
                 //Preenche os valores dos dias seguintes
                 for (int i = 0; i < listCotacoes.Count - 1; i++)
                 {
-                    listCotacoes[i].PrecoFechamentoDiaSeguinte = Convert.ToDouble(listCotacoes[i + 1].PrecoFechamento);
-                    listCotacoes[i].PrecoFechamentoNormalizadoDiaSeguinte = Convert.ToDouble(listCotacoes[i + 1].PrecoFechamentoNormalizado);
+                    listCotacoes[i].ValorDiaSeguinte = Convert.ToDouble(listCotacoes[i + 1].PrecoAbertura);
+                    listCotacoes[i].ValorNormalizadoDiaSeguinte = Convert.ToDouble(listCotacoes[i + 1].ValorNormalizado);
                 }
 
                 //Atribui um valor bollinger de 0 a 1 para a cotação
@@ -692,7 +692,9 @@ namespace DataBaseUtils
                 return;
 
             int qtdPercentuaisAtivo = 4;
-            if (versao == 3.6)
+            if (versao == 3.7)
+                qtdPercentuaisAtivo = 2;
+            if (versao == 3.8)
                 qtdPercentuaisAtivo = 10;
 
             //Valor máximo que a cotação do ativo pode destoar do dia anterior, 1.5 vezes maior ou 1.3 vezes menor
@@ -903,9 +905,9 @@ namespace DataBaseUtils
 
             //Adiciona cada um dos percentuais dos n dias anteriores e do dia da cotação
             dadoBE.PercentualCrescimentoValorAtivo.ForEach(percent => treinamento.Input.Add(percent));
+            treinamento.Input.Add(dadoBE.ValorNormalizado);
             if (versao == 3)
             {
-                treinamento.Input.Add(dadoBE.PrecoFechamentoNormalizado);
                 treinamento.Input.Add(dadoBE.ValorBollinger);
                 treinamento.Input.Add(dadoBE.Pontuacao3MediasMoveis);
                 treinamento.Input.Add(dadoBE.PercentualTotalNegociacoesMediaNDias);
@@ -918,7 +920,6 @@ namespace DataBaseUtils
             }
             if (versao == 3.2)
             {
-                treinamento.Input.Add(dadoBE.PrecoFechamentoNormalizado);
                 treinamento.Input.Add(dadoBE.ValorBollinger);
                 //treinamento.Input.Add(dadoBE.Pontuacao3MediasMoveis);
                 //treinamento.Input.Add(dadoBE.PercentualTotalNegociacoesMediaNDias);
@@ -931,7 +932,6 @@ namespace DataBaseUtils
             }
             if (versao == 3.3)
             {
-                treinamento.Input.Add(dadoBE.PrecoFechamentoNormalizado);
                 treinamento.Input.Add(dadoBE.ValorBollinger);
                 ////treinamento.Input.Add(dadoBE.Pontuacao3MediasMoveis);
                 ////treinamento.Input.Add(dadoBE.PercentualTotalNegociacoesMediaNDias);
@@ -944,7 +944,6 @@ namespace DataBaseUtils
             }
             if (versao == 3.4)
             {
-                treinamento.Input.Add(dadoBE.PrecoFechamentoNormalizado);
                 treinamento.Input.Add(dadoBE.ValorBollinger);
                 ////treinamento.Input.Add(dadoBE.Pontuacao3MediasMoveis);
                 ////treinamento.Input.Add(dadoBE.PercentualTotalNegociacoesMediaNDias);
@@ -957,8 +956,7 @@ namespace DataBaseUtils
             }
             if (versao == 3.5)
             {
-                treinamento.Input.Add(dadoBE.ValorNormalizado);
-                //treinamento.Input.Add(dadoBE.ValorBollinger);
+                treinamento.Input.Add(dadoBE.ValorBollinger);
                 ////treinamento.Input.Add(dadoBE.Pontuacao3MediasMoveis);
                 ////treinamento.Input.Add(dadoBE.PercentualTotalNegociacoesMediaNDias);
                 //treinamento.Input.Add(dadoBE.PercentualTotalNegociacoes);
@@ -969,8 +967,7 @@ namespace DataBaseUtils
                 //treinamento.Input.Add(dadoBE.PercentualValorAtivo_Max_Min_Med);
             }
             if (versao == 3.6)
-            {
-                treinamento.Input.Add(dadoBE.ValorNormalizado);
+            {//Apenas tiramos o ValorBollinger para ver se houve alguma diferença
                 //treinamento.Input.Add(dadoBE.ValorBollinger);
                 ////treinamento.Input.Add(dadoBE.Pontuacao3MediasMoveis);
                 ////treinamento.Input.Add(dadoBE.PercentualTotalNegociacoesMediaNDias);
@@ -981,7 +978,43 @@ namespace DataBaseUtils
                 ////treinamento.Input.Add(dadoBE.DiaSemana);
                 //treinamento.Input.Add(dadoBE.PercentualValorAtivo_Max_Min_Med);
             }
-            treinamento.Output = new List<double>() { dadoBE.PrecoFechamentoNormalizadoDiaSeguinte };
+            if (versao == 3.7)
+            {//Com todos os índices possíveis para previsao em cima de previsao, mas agora com 2 percentuais em relação aos dias anteriores ao invés de 4
+                treinamento.Input.Add(dadoBE.ValorBollinger);
+                ////treinamento.Input.Add(dadoBE.Pontuacao3MediasMoveis);
+                ////treinamento.Input.Add(dadoBE.PercentualTotalNegociacoesMediaNDias);
+                //treinamento.Input.Add(dadoBE.PercentualTotalNegociacoes);
+                //treinamento.Input.Add(dadoBE.PercentualCrescimentoDolar);
+                treinamento.Input.Add(dadoBE.PercentualCrescimentoValorAtivoMediaNDias);
+                treinamento.Input.Add(dadoBE.PercentualDesviosPadroesEmRelacaoNDias);
+                ////treinamento.Input.Add(dadoBE.DiaSemana);
+                //treinamento.Input.Add(dadoBE.PercentualValorAtivo_Max_Min_Med);
+            }
+            if (versao == 3.8)
+            {//Com todos os índices possíveis para previsao em cima de previsao, mas agora com 10 percentuais em relação aos dias anteriores ao invés de 4
+                treinamento.Input.Add(dadoBE.ValorBollinger);
+                ////treinamento.Input.Add(dadoBE.Pontuacao3MediasMoveis);
+                ////treinamento.Input.Add(dadoBE.PercentualTotalNegociacoesMediaNDias);
+                //treinamento.Input.Add(dadoBE.PercentualTotalNegociacoes);
+                //treinamento.Input.Add(dadoBE.PercentualCrescimentoDolar);
+                treinamento.Input.Add(dadoBE.PercentualCrescimentoValorAtivoMediaNDias);
+                treinamento.Input.Add(dadoBE.PercentualDesviosPadroesEmRelacaoNDias);
+                ////treinamento.Input.Add(dadoBE.DiaSemana);
+                //treinamento.Input.Add(dadoBE.PercentualValorAtivo_Max_Min_Med);
+            }
+            if (versao == 3.9)
+            {//Com todos os índices possíveis para previsao em cima de previsao, mas agora com 10 percentuais em relação aos dias anteriores ao invés de 4
+                treinamento.Input.Add(dadoBE.ValorBollinger);
+                ////treinamento.Input.Add(dadoBE.Pontuacao3MediasMoveis);
+                ////treinamento.Input.Add(dadoBE.PercentualTotalNegociacoesMediaNDias);
+                //treinamento.Input.Add(dadoBE.PercentualTotalNegociacoes);
+                //treinamento.Input.Add(dadoBE.PercentualCrescimentoDolar);
+                treinamento.Input.Add(dadoBE.PercentualCrescimentoValorAtivoMediaNDias);
+                //treinamento.Input.Add(dadoBE.PercentualDesviosPadroesEmRelacaoNDias);
+                ////treinamento.Input.Add(dadoBE.DiaSemana);
+                //treinamento.Input.Add(dadoBE.PercentualValorAtivo_Max_Min_Med);
+            }
+            treinamento.Output = new List<double>() { dadoBE.ValorNormalizadoDiaSeguinte };
 
             return treinamento;
         }
