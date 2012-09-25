@@ -50,6 +50,7 @@ namespace RedeNeuralPrevisaoFinanceira_v3
             network = new BackpropagationNetwork(inputLayer, outputLayer);
             network.SetLearningRate(taxaAprendizado);
 
+
             TrainingSet trainingSet = new TrainingSet(inputLayerCount, outputLayerCount);
             //foreach (KeyValuePair<double[], double[]> kvp in dadosPorJanelamento)
             //{
@@ -72,6 +73,7 @@ namespace RedeNeuralPrevisaoFinanceira_v3
             while (erroAceito == false && cicloAtual <= ciclos)
             {
                 erroAceito = true;
+                cicloAtual = 5000;
                 network.Learn(trainingSet, cicloAtual);
                 double erroGeralRede = 0;
                 foreach (Treinamento treinamento in treinamentos)

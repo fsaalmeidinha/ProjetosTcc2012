@@ -145,3 +145,5 @@ C:\Users\Felipe\Desktop\tcc\Graficos\Graficos\bin\Debug\MediaPonderada.dll
 C:\Users\Felipe\Desktop\tcc\Graficos\Graficos\bin\Debug\AlisamentoExponencialSimples.pdb
 C:\Users\Felipe\Desktop\tcc\Graficos\Graficos\bin\Debug\MediaAritmetica.pdb
 C:\Users\Felipe\Desktop\tcc\Graficos\Graficos\bin\Debug\MediaPonderada.pdb
+C:\Users\Felipe\Desktop\tcc\Graficos\Graficos\bin\Debug\RedeNeuralPrevisaoFinanceira_v5.dll
+C:\Users\Felipe\Desktop\tcc\Graficos\Graficos\bin\Debug\RedeNeuralPrevisaoFinanceira_v5.pdb

@@ -1,0 +1,5 @@
+C:\Users\Felipe\Desktop\tcc\Redes\03_09_RedeNeural_PrevisaoFinanceira_v3\TesteCasos\TesteCasos\bin\Debug\TesteCasos.exe
+C:\Users\Felipe\Desktop\tcc\Redes\03_09_RedeNeural_PrevisaoFinanceira_v3\TesteCasos\TesteCasos\bin\Debug\TesteCasos.pdb
+C:\Users\Felipe\Desktop\tcc\Redes\03_09_RedeNeural_PrevisaoFinanceira_v3\TesteCasos\TesteCasos\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Felipe\Desktop\tcc\Redes\03_09_RedeNeural_PrevisaoFinanceira_v3\TesteCasos\TesteCasos\obj\x86\Debug\TesteCasos.exe
+C:\Users\Felipe\Desktop\tcc\Redes\03_09_RedeNeural_PrevisaoFinanceira_v3\TesteCasos\TesteCasos\obj\x86\Debug\TesteCasos.pdb

@@ -1,0 +1,5 @@
+C:\Users\Felipe\Desktop\tcc\Redes\24_09_RedeNeural_PrevisaoFinanceira_v5\RedeNeuralPrevisaoFinanceira_v5\RedeNeuralPrevisaoFinanceira_v5\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Felipe\Desktop\tcc\Redes\Lib-Geral\RedeNeuralPrevisaoFinanceira_v5.dll
+C:\Users\Felipe\Desktop\tcc\Redes\Lib-Geral\RedeNeuralPrevisaoFinanceira_v5.pdb
+C:\Users\Felipe\Desktop\tcc\Redes\24_09_RedeNeural_PrevisaoFinanceira_v5\RedeNeuralPrevisaoFinanceira_v5\RedeNeuralPrevisaoFinanceira_v5\obj\Debug\RedeNeuralPrevisaoFinanceira_v5.dll
+C:\Users\Felipe\Desktop\tcc\Redes\24_09_RedeNeural_PrevisaoFinanceira_v5\RedeNeuralPrevisaoFinanceira_v5\RedeNeuralPrevisaoFinanceira_v5\obj\Debug\RedeNeuralPrevisaoFinanceira_v5.pdb

@@ -49,6 +49,9 @@
     <Reference Include="RedeNeuralPrevisaoFinanceira_v3">
       <HintPath>..\..\Redes\Lib-Geral\RedeNeuralPrevisaoFinanceira_v3.dll</HintPath>
     </Reference>
+    <Reference Include="RedeNeuralPrevisaoFinanceira_v5">
+      <HintPath>..\..\Redes\Lib-Geral\RedeNeuralPrevisaoFinanceira_v5.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Windows.Forms.DataVisualization" />

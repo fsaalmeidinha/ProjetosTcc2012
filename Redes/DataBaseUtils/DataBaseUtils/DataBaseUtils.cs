@@ -12,6 +12,22 @@ namespace DataBaseUtils
 {
     public class DataBaseUtils
     {
+        //Número de treinamentos que devem ser ignorados pois não tem todos os índices calculados
+        static int _treinamentosIniciaisIgnorar;
+        static int treinamentosIniciaisIgnorar
+        {
+            get { return _treinamentosIniciaisIgnorar; }
+            set
+            {
+                if (value > _treinamentosIniciaisIgnorar)
+                    _treinamentosIniciaisIgnorar = value;
+            }
+        }
+
+        public DataBaseUtils()
+        {
+            //"PercentualCrescimentoValorAtivo", "ValorNormalizado", "ValorBollinger", "Pontuacao3MediasMoveis", "PercentualTotalNegociacoesMediaNDias", "PercentualTotalNegociacoes", "PercentualCrescimentoDolar", "PercentualCrescimentoValorAtivoMediaNDias", "PercentualDesviosPadroesEmRelacaoNDias", "DiaSemana", "PercentualValorAtivo_Max_Min_Med"
+        }
         static int numeroDivisoesCrossValidation = 8;
 
         /*
@@ -1052,11 +1068,211 @@ namespace DataBaseUtils
                 ////treinamento.Input.Add(dadoBE.DiaSemana);
                 treinamento.Input.Add(dadoBE.PercentualValorAtivo_Max_Min_Med);
             }
+            if (versao == 4.04)
+            {
+                treinamento.Input.Add(dadoBE.ValorBollinger);
+                ////treinamento.Input.Add(dadoBE.Pontuacao3MediasMoveis);
+                ////treinamento.Input.Add(dadoBE.PercentualTotalNegociacoesMediaNDias);
+                //treinamento.Input.Add(dadoBE.PercentualTotalNegociacoes);
+                //treinamento.Input.Add(dadoBE.PercentualCrescimentoDolar);
+                ////treinamento.Input.Add(dadoBE.PercentualCrescimentoValorAtivoMediaNDias);
+                treinamento.Input.Add(dadoBE.PercentualDesviosPadroesEmRelacaoNDias);
+                ////treinamento.Input.Add(dadoBE.DiaSemana);
+                treinamento.Input.Add(dadoBE.PercentualValorAtivo_Max_Min_Med);
+                treinamento.Input.Add(1);//Valor Bias
+            }
+
             treinamento.Output = new List<double>() { dadoBE.ValorNormalizadoDiaSeguinte };
 
             return treinamento;
         }
 
         #endregion RN_V3
+
+        #region RN_V5
+
+        //dicIndicesRN.Add(5.01, new List<string>() { "PercentualCrescimentoValorAtivo" });
+        //dicIndicesRN.Add(5.02, new List<string>() { "ValorNormalizado" });
+        //dicIndicesRN.Add(5.03, new List<string>() { "ValorBollinger" });
+        //dicIndicesRN.Add(5.04, new List<string>() { "Pontuacao3MediasMoveis" });
+        //dicIndicesRN.Add(5.05, new List<string>() { "PercentualTotalNegociacoesMediaNDias" });
+        //dicIndicesRN.Add(5.06, new List<string>() { "PercentualTotalNegociacoes" });
+        //dicIndicesRN.Add(5.07, new List<string>() { "PercentualCrescimentoDolar" });
+        //dicIndicesRN.Add(5.08, new List<string>() { "PercentualCrescimentoValorAtivoMediaNDias" });
+        //dicIndicesRN.Add(5.09, new List<string>() { "PercentualDesviosPadroesEmRelacaoNDias" });
+        //dicIndicesRN.Add(5.10, new List<string>() { "DiaSemana", "PercentualValorAtivo_Max_Min_Med" });
+        //dicIndicesRN.Add(5.11, new List<string>() { "PercentualValorAtivo_Max_Min_Med" });
+        static Dictionary<double, List<string>> _dicIndicesRN;
+        static Dictionary<double, List<string>> dicIndicesRN
+        {
+            get
+            {
+                if (_dicIndicesRN == null)
+                {
+                    _dicIndicesRN = new Dictionary<double, List<string>>();
+                    _dicIndicesRN.Add(5.01, new List<string>() { "PercentualCrescimentoValorAtivo" });
+                    _dicIndicesRN.Add(5.02, new List<string>() { "ValorBollinger" });
+                    _dicIndicesRN.Add(5.03, new List<string>() { "Pontuacao3MediasMoveis" });
+                    _dicIndicesRN.Add(5.04, new List<string>() { "PercentualTotalNegociacoesMediaNDias" });
+                    _dicIndicesRN.Add(5.05, new List<string>() { "PercentualTotalNegociacoes" });
+                    _dicIndicesRN.Add(5.06, new List<string>() { "PercentualCrescimentoDolar" });
+                    _dicIndicesRN.Add(5.07, new List<string>() { "PercentualCrescimentoValorAtivoMediaNDias" });
+                    _dicIndicesRN.Add(5.08, new List<string>() { "PercentualDesviosPadroesEmRelacaoNDias" });
+                    _dicIndicesRN.Add(5.09, new List<string>() { "DiaSemana" });
+                    _dicIndicesRN.Add(5.10, new List<string>() { "PercentualValorAtivo_Max_Min_Med" });
+                    _dicIndicesRN.Add(5.11, new List<string>() { "DN_Maior_D0" });
+                }
+                return _dicIndicesRN;
+            }
+        }
+
+        public static void Preencher_DN_Maior_D0(List<DadosBE> listCotacoes, double versao)
+        {
+            int n = 4;
+            treinamentosIniciaisIgnorar = n - 1;
+
+            for (int indCot = n - 1; indCot < listCotacoes.Count; indCot++)
+            {
+                List<double> valores = new List<double>();
+                for (int indN = indCot - 3; indN <= indCot; indN++)
+                {
+                    valores.Add(Convert.ToDouble(listCotacoes[indN].PrecoAbertura));
+                }
+                List<bool> valoresBool = RecuperaValoresBooleanos(valores);
+                List<int> arrayValores = RecuperarArrayTransformacaoBoolInt(valoresBool);
+                listCotacoes[indCot].DN_Maior_D0 = arrayValores;
+            }
+        }
+        static List<bool> RecuperaValoresBooleanos(List<double> valores)
+        {
+            List<bool> valoresBool = new List<bool>();
+            for (int indValX = valores.Count - 1; indValX > 0; indValX--)
+            {
+                for (int indValY = indValX - 1; indValY >= 0; indValY--)
+                {
+                    valoresBool.Add(valores[indValX] > valores[indValY]);
+                }
+            }
+            return valoresBool;
+        }
+        static List<int> RecuperarArrayTransformacaoBoolInt(List<bool> valoresBool)
+        {
+            Func<int, int> getIntFromBoolInd = ind => Convert.ToInt32(Math.Pow(2, ind));
+            int valor = 0;
+            for (int i = 0; i < valoresBool.Count; i++)
+            {
+                if (valoresBool[i])
+                    valor += getIntFromBoolInd(i);
+            }
+
+            int numComb = Convert.ToInt32(Math.Pow(2, valoresBool.Count));
+            List<int> arrayRetorno = new List<int>();
+            for (int i = 0; i < numComb; i++)
+            {
+                if (i == valor)
+                    arrayRetorno.Add(1);
+                else
+                    arrayRetorno.Add(0);
+            }
+
+            return arrayRetorno;
+        }
+
+        /// <summary>
+        /// Preenche os indices que alimentarão a RN_V5
+        /// </summary>
+        /// <param name="listCotacoes"></param>
+        public static void PreencherIndicesRN_V5(List<DadosBE> listCotacoes, double versao)
+        {
+            PreencherIndicesRN_V3(listCotacoes, versao);
+            Preencher_DN_Maior_D0(listCotacoes, versao);
+        }
+
+        /// <summary>
+        /// Seleciona os treinamentos da versão 5
+        /// </summary>
+        /// <param name="dadosBE"></param>
+        /// <returns></returns>
+        public static List<Treinamento> SelecionarTreinamentos_V5(List<DadosBE> dadosBE, double versao)
+        {
+            if (dadosBE.Count == 0)
+                return null;
+
+            //Reinicializa a variável para descobrir quantos treinamentos iniciais devem ser ignorados
+            _treinamentosIniciaisIgnorar = 0;
+            //Preenche os indices da RN_V5
+            PreencherIndicesRN_V5(dadosBE, versao);
+
+
+            List<Treinamento> treinamentos = new List<Treinamento>();
+            //A cada 'qtdRegistrosPorDivisao' registros, o numero do cross validation deve ser incrementado de 1
+            int qtdRegistrosPorDivisao = dadosBE.Count / numeroDivisoesCrossValidation;
+
+            for (int indDadoBE = _treinamentosIniciaisIgnorar; indDadoBE < dadosBE.Count; indDadoBE++)
+            {
+                int valCrossValidation = indDadoBE / qtdRegistrosPorDivisao;
+                //Corrige o numero da divisao cross validation pois os ultimos registros podem estar errados devido ao arredondamento
+                valCrossValidation = valCrossValidation == numeroDivisoesCrossValidation ? numeroDivisoesCrossValidation - 1 : valCrossValidation;
+
+                Treinamento treinamento = TransformarDadoBE_Em_Treinamento_RNV5(dadosBE[indDadoBE], versao);
+                treinamento.DivisaoCrossValidation = valCrossValidation;
+
+                treinamentos.Add(treinamento);
+            }
+            int ind = 0;
+            List<double> inputs = treinamentos.Select(trein => trein.Input[ind]).ToList();
+            List<double> acimas = inputs.Where(inp => inp > 1).ToList();
+            List<double> abaixos = inputs.Where(inp => inp < 0).ToList();
+            ind++;
+
+            return treinamentos.Skip(treinamentosIniciaisIgnorar).ToList();
+        }
+
+        public static Treinamento TransformarDadoBE_Em_Treinamento_RNV5(DadosBE dadoBE, double versao)
+        {
+            Treinamento treinamento = new Treinamento();
+            treinamento.Input = new List<double>();
+            treinamento.Input.Add(dadoBE.ValorNormalizado);
+
+            if (dicIndicesRN[versao].Contains("PercentualCrescimentoValorAtivo"))
+                //Adiciona cada um dos percentuais dos n dias anteriores e do dia da cotação
+                dadoBE.PercentualCrescimentoValorAtivo.ForEach(percent => treinamento.Input.Add(percent));
+
+            if (dicIndicesRN[versao].Contains("ValorBollinger"))
+                treinamento.Input.Add(dadoBE.ValorBollinger);
+
+            if (dicIndicesRN[versao].Contains("Pontuacao3MediasMoveis"))
+                treinamento.Input.Add(dadoBE.Pontuacao3MediasMoveis);
+
+            if (dicIndicesRN[versao].Contains("PercentualTotalNegociacoesMediaNDias"))
+                treinamento.Input.Add(dadoBE.PercentualTotalNegociacoesMediaNDias);
+
+            if (dicIndicesRN[versao].Contains("PercentualTotalNegociacoes"))
+                treinamento.Input.Add(dadoBE.PercentualTotalNegociacoes);
+
+            if (dicIndicesRN[versao].Contains("PercentualCrescimentoDolar"))
+                treinamento.Input.Add(dadoBE.PercentualCrescimentoDolar);
+
+            if (dicIndicesRN[versao].Contains("PercentualCrescimentoValorAtivoMediaNDias"))
+                treinamento.Input.Add(dadoBE.PercentualCrescimentoValorAtivoMediaNDias);
+
+            if (dicIndicesRN[versao].Contains("PercentualDesviosPadroesEmRelacaoNDias"))
+                treinamento.Input.Add(dadoBE.PercentualDesviosPadroesEmRelacaoNDias);
+
+            if (dicIndicesRN[versao].Contains("DiaSemana"))
+                treinamento.Input.Add(dadoBE.DiaSemana);
+
+            if (dicIndicesRN[versao].Contains("PercentualValorAtivo_Max_Min_Med"))
+                treinamento.Input.Add(dadoBE.PercentualValorAtivo_Max_Min_Med);
+
+            if (dicIndicesRN[versao].Contains("DN_Maior_D0"))
+                dadoBE.DN_Maior_D0.ForEach(val => treinamento.Input.Add(val));
+
+            treinamento.Output = new List<double>() { dadoBE.ValorNormalizadoDiaSeguinte };
+
+            return treinamento;
+        }
+
+        #endregion RN_V5
     }
 }

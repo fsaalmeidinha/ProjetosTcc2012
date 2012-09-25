@@ -82,5 +82,9 @@ namespace DataBaseUtils
         /// INDICE- RN_V3, Explicação em: Redes\03_09_RedeNeural_PrevisaoFinanceira_v3\Metodos_Indices\PercentualValorAtivo_Max_Min_Med.doc
         /// </summary>
         public double PercentualValorAtivo_Max_Min_Med { get; set; }
+
+
+
+        public List<int> DN_Maior_D0 { get; set; }
     }
 }

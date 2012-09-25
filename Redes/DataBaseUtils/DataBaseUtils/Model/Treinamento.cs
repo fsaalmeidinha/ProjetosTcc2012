@@ -11,6 +11,7 @@ namespace DataBaseUtils.Model
         {
             Input = new List<double>();
             Output = new List<double>();
+
         }
         public List<double> Input { get; set; }
         public List<double> Output { get; set; }
