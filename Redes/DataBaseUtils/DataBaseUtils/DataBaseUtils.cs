@@ -486,6 +486,8 @@ namespace DataBaseUtils
         /// <returns></returns>
         public static void PreencherPontuacao3MediasMoveis(List<DadosBE> listCotacoes)
         {
+            treinamentosIniciaisIgnorar = 20;
+
             List<double> cotacoes = listCotacoes.Select(cot => cot.ValorNormalizado).ToList();
             int m20 = 20;
             int m10 = 10;
@@ -560,6 +562,9 @@ namespace DataBaseUtils
         {
             //Deve ser maior do que 10
             int nDiasAnalisePercentual = 15;
+
+            treinamentosIniciaisIgnorar = nDiasAnalisePercentual;
+
             //Alimenta os 14 primeiro dias com o valor intermediário, que não deve influenciar muito a rede neural (os 14 primeiros dias não podem ser calculados)
             listCotacoes.Take(nDiasAnalisePercentual - 1).ToList().ForEach(cot => cot.PercentualTotalNegociacoesMediaNDias = 0.5);
             for (int i = 0; i < listCotacoes.Count - nDiasAnalisePercentual; i++)
@@ -669,6 +674,9 @@ namespace DataBaseUtils
         {
             //Deve ser maior do que 10
             int nDiasAnalisePercentual = 15;
+
+            treinamentosIniciaisIgnorar = nDiasAnalisePercentual;
+
             //Alimenta os n-1 primeiro dias com o valor intermediário, que não deve influenciar muito a rede neural (os n-1 primeiros dias não podem ser calculados)
             listCotacoes.Take(nDiasAnalisePercentual - 1).ToList().ForEach(cot => cot.PercentualCrescimentoValorAtivoMediaNDias = 0.5);
             for (int i = 0; i < listCotacoes.Count - nDiasAnalisePercentual; i++)
@@ -695,6 +703,17 @@ namespace DataBaseUtils
                 else
                     cotacoesAnaliseAtual.Last().PercentualCrescimentoValorAtivoMediaNDias = 0.5;
             }
+        }
+
+        /// <summary>
+        /// Preenche os 2 índices, pois o percentual2Indices depende do percentual simples
+        /// </summary>
+        /// <param name="listCotacoes"></param>
+        /// <param name="versao"></param>
+        public static void PreencherPercCrescValAtivo_E_PercCrescValAtivo2Indices(List<DadosBE> listCotacoes, double versao = 3)
+        {
+            PreencherPercentualCrescimentoValorAtivo(listCotacoes, versao);
+            Preencher_PercentualCrescimentoAtivoEm2Indices(listCotacoes, versao);
         }
 
         /// <summary>
@@ -770,6 +789,9 @@ namespace DataBaseUtils
         {
             //Deve ser maior do que 10
             int nDiasAnaliseDesvio = 15;
+
+            treinamentosIniciaisIgnorar = nDiasAnaliseDesvio;
+
             //Quantidade de vezes que o desvio de ontem para hoje pode ser maior do que o desvio padrao dos N dias
             int maxDiferencaDesvio = 15;
 
@@ -871,7 +893,10 @@ namespace DataBaseUtils
             PreencherPercentualTotalNegociacoes(listCotacoes);
             PreencherPercentualCrescimentoDolar(listCotacoes);
             PreencherPercentualCrescimentoValorAtivoMediaNDias(listCotacoes);
-            PreencherPercentualCrescimentoValorAtivo(listCotacoes, versao);
+
+            PreencherPercCrescValAtivo_E_PercCrescValAtivo2Indices(listCotacoes, versao);
+
+            //PreencherPercentualCrescimentoValorAtivo(listCotacoes, versao);
             PreencherPercentualDesviosPadroesEmRelacaoNDias(listCotacoes);
             PreencherDiaSemana(listCotacoes);
             PreencherPercentualValorAtivo_Max_Min_Med(listCotacoes);
@@ -1120,62 +1145,40 @@ namespace DataBaseUtils
                     _dicIndicesRN.Add(5.08, new List<string>() { "PercentualDesviosPadroesEmRelacaoNDias" });
                     _dicIndicesRN.Add(5.09, new List<string>() { "DiaSemana" });
                     _dicIndicesRN.Add(5.10, new List<string>() { "PercentualValorAtivo_Max_Min_Med" });
-                    _dicIndicesRN.Add(5.11, new List<string>() { "DN_Maior_D0" });
+                    _dicIndicesRN.Add(5.11, new List<string>() { "PercentualCrescimentoAtivoEm2Indices" });
                 }
                 return _dicIndicesRN;
             }
         }
 
-        public static void Preencher_DN_Maior_D0(List<DadosBE> listCotacoes, double versao)
+        /// <summary>
+        /// Calcula o percentual de crescimento em 2 índices, onde sempre um deles é zero.
+        /// </summary>
+        /// <param name="listCotacoes"></param>
+        /// <param name="versao"></param>
+        public static void Preencher_PercentualCrescimentoAtivoEm2Indices(List<DadosBE> listCotacoes, double versao)
         {
-            int n = 4;
-            treinamentosIniciaisIgnorar = n - 1;
-
-            for (int indCot = n - 1; indCot < listCotacoes.Count; indCot++)
+            foreach (DadosBE dadoBE in listCotacoes)
             {
-                List<double> valores = new List<double>();
-                for (int indN = indCot - 3; indN <= indCot; indN++)
+                List<double> valoresPercentuais2Indices = new List<double>();
+                foreach (double valPercent in dadoBE.PercentualCrescimentoValorAtivo)
                 {
-                    valores.Add(Convert.ToDouble(listCotacoes[indN].PrecoAbertura));
+                    double valNegativo = 0;
+                    double valPositivo = 0;
+                    if (valPercent > 0.5)
+                    {
+                        valPositivo = valPercent - 0.5;
+                    }
+                    else if (valPercent < 0.5)
+                    {
+                        valNegativo = 0.5 - valPercent;
+                    }
+                    valoresPercentuais2Indices.Add(valNegativo);
+                    valoresPercentuais2Indices.Add(valPositivo);
                 }
-                List<bool> valoresBool = RecuperaValoresBooleanos(valores);
-                List<int> arrayValores = RecuperarArrayTransformacaoBoolInt(valoresBool);
-                listCotacoes[indCot].DN_Maior_D0 = arrayValores;
+                //atribui o array ao dadoBE
+                dadoBE.PercentualCrescimentoAtivoEm2Indices = valoresPercentuais2Indices;
             }
-        }
-        static List<bool> RecuperaValoresBooleanos(List<double> valores)
-        {
-            List<bool> valoresBool = new List<bool>();
-            for (int indValX = valores.Count - 1; indValX > 0; indValX--)
-            {
-                for (int indValY = indValX - 1; indValY >= 0; indValY--)
-                {
-                    valoresBool.Add(valores[indValX] > valores[indValY]);
-                }
-            }
-            return valoresBool;
-        }
-        static List<int> RecuperarArrayTransformacaoBoolInt(List<bool> valoresBool)
-        {
-            Func<int, int> getIntFromBoolInd = ind => Convert.ToInt32(Math.Pow(2, ind));
-            int valor = 0;
-            for (int i = 0; i < valoresBool.Count; i++)
-            {
-                if (valoresBool[i])
-                    valor += getIntFromBoolInd(i);
-            }
-
-            int numComb = Convert.ToInt32(Math.Pow(2, valoresBool.Count));
-            List<int> arrayRetorno = new List<int>();
-            for (int i = 0; i < numComb; i++)
-            {
-                if (i == valor)
-                    arrayRetorno.Add(1);
-                else
-                    arrayRetorno.Add(0);
-            }
-
-            return arrayRetorno;
         }
 
         /// <summary>
@@ -1185,7 +1188,7 @@ namespace DataBaseUtils
         public static void PreencherIndicesRN_V5(List<DadosBE> listCotacoes, double versao)
         {
             PreencherIndicesRN_V3(listCotacoes, versao);
-            Preencher_DN_Maior_D0(listCotacoes, versao);
+            //Preencher_DN_Maior_D0(listCotacoes, versao);
         }
 
         /// <summary>
@@ -1203,6 +1206,8 @@ namespace DataBaseUtils
             //Preenche os indices da RN_V5
             PreencherIndicesRN_V5(dadosBE, versao);
 
+            //Ignora os primeiros elementos que não tem todos os índices preenchidos
+            dadosBE = IgnorarPrimeirosElementosSemIndices(dadosBE);
 
             List<Treinamento> treinamentos = new List<Treinamento>();
             //A cada 'qtdRegistrosPorDivisao' registros, o numero do cross validation deve ser incrementado de 1
@@ -1265,8 +1270,8 @@ namespace DataBaseUtils
             if (dicIndicesRN[versao].Contains("PercentualValorAtivo_Max_Min_Med"))
                 treinamento.Input.Add(dadoBE.PercentualValorAtivo_Max_Min_Med);
 
-            if (dicIndicesRN[versao].Contains("DN_Maior_D0"))
-                dadoBE.DN_Maior_D0.ForEach(val => treinamento.Input.Add(val));
+            if (dicIndicesRN[versao].Contains("PercentualCrescimentoAtivoEm2Indices"))
+                dadoBE.PercentualCrescimentoAtivoEm2Indices.ForEach(val => treinamento.Input.Add(val));
 
             treinamento.Output = new List<double>() { dadoBE.ValorNormalizadoDiaSeguinte };
 
@@ -1274,5 +1279,10 @@ namespace DataBaseUtils
         }
 
         #endregion RN_V5
+
+        private static List<DadosBE> IgnorarPrimeirosElementosSemIndices(List<DadosBE> dadosBE)
+        {
+            return dadosBE.Skip(treinamentosIniciaisIgnorar).ToList();
+        }
     }
 }

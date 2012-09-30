@@ -85,6 +85,6 @@ namespace DataBaseUtils
 
 
 
-        public List<int> DN_Maior_D0 { get; set; }
+        public List<double> PercentualCrescimentoAtivoEm2Indices { get; set; }
     }
 }

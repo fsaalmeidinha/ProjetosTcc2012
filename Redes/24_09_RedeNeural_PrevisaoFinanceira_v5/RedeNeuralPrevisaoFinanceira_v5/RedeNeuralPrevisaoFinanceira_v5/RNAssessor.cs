@@ -36,7 +36,7 @@ namespace RedeNeuralPrevisaoFinanceira_v5
         //private static double versao = 5.06;
         //private static double versao = 5.07;
         //private static double versao = 5.08;
-        //RECALCULAR//////private static double versao = 5.09;
+        //private static double versao = 5.09;
         //private static double versao = 5.10;
         private static double versao = 5.11;
         static int numeroDivisoesCrossValidation = 8;
