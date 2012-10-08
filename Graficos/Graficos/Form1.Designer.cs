@@ -42,6 +42,7 @@
             this.pbMed_Exp_Simpl = new System.Windows.Forms.PictureBox();
             this.pbMed_Aritmetica = new System.Windows.Forms.PictureBox();
             this.pbMed_Ponderada = new System.Windows.Forms.PictureBox();
+            this.pbRN_V5_11 = new System.Windows.Forms.PictureBox();
             this.pbRN_V5_10 = new System.Windows.Forms.PictureBox();
             this.pbRN_V5_09 = new System.Windows.Forms.PictureBox();
             this.pbRN_V5_08 = new System.Windows.Forms.PictureBox();
@@ -67,6 +68,7 @@
             this.pbRN_V3_2 = new System.Windows.Forms.PictureBox();
             this.label10 = new System.Windows.Forms.Label();
             this.pbRN_V3 = new System.Windows.Forms.PictureBox();
+            this.label31 = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
@@ -93,8 +95,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.label31 = new System.Windows.Forms.Label();
-            this.pbRN_V5_11 = new System.Windows.Forms.PictureBox();
+            this.cbAtivo = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.grafico)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvTaxaAcerto)).BeginInit();
@@ -104,6 +105,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbMed_Exp_Simpl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMed_Aritmetica)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMed_Ponderada)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbRN_V5_11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbRN_V5_10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbRN_V5_09)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbRN_V5_08)).BeginInit();
@@ -128,7 +130,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbRN_V3_2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbRN_V3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbRN_V2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbRN_V5_11)).BeginInit();
             this.SuspendLayout();
             // 
             // grafico
@@ -221,7 +222,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(17, 35);
+            this.button1.Location = new System.Drawing.Point(12, 26);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(86, 19);
             this.button1.TabIndex = 8;
@@ -325,6 +326,16 @@
             this.pbMed_Ponderada.TabIndex = 2;
             this.pbMed_Ponderada.TabStop = false;
             this.pbMed_Ponderada.Click += new System.EventHandler(this.pbRns_Click);
+            // 
+            // pbRN_V5_11
+            // 
+            this.pbRN_V5_11.BackColor = System.Drawing.Color.NavajoWhite;
+            this.pbRN_V5_11.Location = new System.Drawing.Point(330, 54);
+            this.pbRN_V5_11.Name = "pbRN_V5_11";
+            this.pbRN_V5_11.Size = new System.Drawing.Size(15, 15);
+            this.pbRN_V5_11.TabIndex = 2;
+            this.pbRN_V5_11.TabStop = false;
+            this.pbRN_V5_11.Click += new System.EventHandler(this.pbRns_Click);
             // 
             // pbRN_V5_10
             // 
@@ -574,6 +585,15 @@
             this.pbRN_V3.TabStop = false;
             this.pbRN_V3.Click += new System.EventHandler(this.pbRns_Click);
             // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(348, 54);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(60, 13);
+            this.label31.TabIndex = 3;
+            this.label31.Text = "RN_V5_11";
+            // 
             // label30
             // 
             this.label30.AutoSize = true;
@@ -809,30 +829,28 @@
             this.label4.TabIndex = 3;
             this.label4.Text = "RN_V2";
             // 
-            // label31
+            // cbAtivo
             // 
-            this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(348, 54);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(60, 13);
-            this.label31.TabIndex = 3;
-            this.label31.Text = "RN_V5_11";
-            // 
-            // pbRN_V5_11
-            // 
-            this.pbRN_V5_11.BackColor = System.Drawing.Color.NavajoWhite;
-            this.pbRN_V5_11.Location = new System.Drawing.Point(330, 54);
-            this.pbRN_V5_11.Name = "pbRN_V5_11";
-            this.pbRN_V5_11.Size = new System.Drawing.Size(15, 15);
-            this.pbRN_V5_11.TabIndex = 2;
-            this.pbRN_V5_11.TabStop = false;
-            this.pbRN_V5_11.Click += new System.EventHandler(this.pbRns_Click);
+            this.cbAtivo.FormattingEnabled = true;
+            this.cbAtivo.Items.AddRange(new object[] {
+            "PETR4",
+            "ETER3",
+            "GOLL4",
+            "NATU3",
+            "VALE5"});
+            this.cbAtivo.Location = new System.Drawing.Point(12, 53);
+            this.cbAtivo.Name = "cbAtivo";
+            this.cbAtivo.Size = new System.Drawing.Size(86, 21);
+            this.cbAtivo.TabIndex = 9;
+            this.cbAtivo.Text = "PETR4";
+            this.cbAtivo.SelectedIndexChanged += new System.EventHandler(this.cbAtivo_SelectedIndexChanged);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(965, 753);
+            this.Controls.Add(this.cbAtivo);
             this.Controls.Add(this.pnlLegendas);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label3);
@@ -851,6 +869,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbMed_Exp_Simpl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMed_Aritmetica)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMed_Ponderada)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbRN_V5_11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbRN_V5_10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbRN_V5_09)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbRN_V5_08)).EndInit();
@@ -875,7 +894,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbRN_V3_2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbRN_V3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbRN_V2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbRN_V5_11)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -950,6 +968,7 @@
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.PictureBox pbRN_V5_11;
         private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.ComboBox cbAtivo;
     }
 }
 

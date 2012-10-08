@@ -121,16 +121,48 @@
     <value>3.000</value>
     <comment>Valor maximo para normalização do dólar</comment>
   </data>
+  <data name="ValorMaximoETER3" xml:space="preserve">
+    <value>40.000</value>
+    <comment>Valor máximo para normalização da ETER3</comment>
+  </data>
+  <data name="ValorMaximoGOLL4" xml:space="preserve">
+    <value>120.000</value>
+    <comment>Valor máximo para normalização da GOLL4</comment>
+  </data>
+  <data name="ValorMaximoNATU3" xml:space="preserve">
+    <value>350.000</value>
+    <comment>Valor máximo para normalização da NATU3</comment>
+  </data>
   <data name="ValorMaximoPETR4" xml:space="preserve">
     <value>207.45514325974636</value>
     <comment>Valor máximo para normalização da PETR4</comment>
+  </data>
+  <data name="ValorMaximoVALE5" xml:space="preserve">
+    <value>350.000</value>
+    <comment>Valor máximo para normalização da VALE5</comment>
   </data>
   <data name="ValorMinimoDOLAR" xml:space="preserve">
     <value>1.000</value>
     <comment>Valor minimo para normalização do dólar</comment>
   </data>
+  <data name="ValorMinimoETER3" xml:space="preserve">
+    <value>1.000</value>
+    <comment>Valor minimo para normalização da ETER3</comment>
+  </data>
+  <data name="ValorMinimoGOLL4" xml:space="preserve">
+    <value>1.000</value>
+    <comment>Valor minimo para normalização da GOLL4</comment>
+  </data>
+  <data name="ValorMinimoNATU3" xml:space="preserve">
+    <value>35.000</value>
+    <comment>Valor minimo para normalização da NATU3</comment>
+  </data>
   <data name="ValorMinimoPETR4" xml:space="preserve">
     <value>17.034758102395489</value>
     <comment>Valor minimo para normalização da PETR4</comment>
+  </data>
+  <data name="ValorMinimoVALE5" xml:space="preserve">
+    <value>35.000</value>
+    <comment>Valor minimo para normalização da VALE5</comment>
   </data>
 </root>

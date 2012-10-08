@@ -86,5 +86,13 @@ namespace DataBaseUtils
 
 
         public List<double> PercentualCrescimentoAtivoEm2Indices { get; set; }
+
+        public double ValorAtivoDMenos7 { get; set; }
+        public double ValorAtivoDMenos8 { get; set; }
+        public double PercentualAtivoSemanaPassadaD_7_D_8 { get; set; }
+
+        public double ValorAtivoDMenos30 { get; set; }
+        public double ValorAtivoDMenos31 { get; set; }
+        public double PercentualAtivoMesPassadoD_30_D_31 { get; set; }
     }
 }

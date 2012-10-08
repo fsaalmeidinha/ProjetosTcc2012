@@ -68,29 +68,15 @@ namespace RedeNeuralPrevisaoFinanceira_v3
                     //Application.DoEvents();
                 });
 
-            bool erroAceito = false;
-            int cicloAtual = ciclos / 2;
-            while (erroAceito == false && cicloAtual <= ciclos)
+            network.Learn(trainingSet, ciclos);
+            double erroGeralRede = 0;
+            foreach (Treinamento treinamento in treinamentos)
             {
-                erroAceito = true;
-                cicloAtual = 5000;
-                network.Learn(trainingSet, cicloAtual);
-                double erroGeralRede = 0;
-                foreach (Treinamento treinamento in treinamentos)
-                {
-                    double[] previsao = network.Run(treinamento.Input.ToArray());
-                    double erroRede = 1 - Math.Min(previsao.First(), treinamento.Output.First()) / Math.Max(previsao.First(), treinamento.Output.First());
-                    erroGeralRede += erroRede;
-                    if (erroRede > 0.01)//Verifica se houve mais de 1% de erro
-                    {
-                        trainingSet.Add(new TrainingSample(treinamento.Input.ToArray(), treinamento.Output.ToArray()));
-                    }
-                }
-                erroGeralRede = erroGeralRede / treinamentos.Count;
-                if (erroGeralRede > 0.01)
-                    erroAceito = false;
-                cicloAtual += ciclos / 2;
+                double[] previsao = network.Run(treinamento.Input.ToArray());
+                double erroRede = 1 - Math.Min(previsao.First(), treinamento.Output.First()) / Math.Max(previsao.First(), treinamento.Output.First());
+                erroGeralRede += erroRede;
             }
+            erroGeralRede = erroGeralRede / treinamentos.Count;
 
             using (Stream stream = File.Open(diretorioRedes + "\\RedesPrevisaoFinanceira\\" + nomeRedeNeural + ".ndn", FileMode.Create))
             {

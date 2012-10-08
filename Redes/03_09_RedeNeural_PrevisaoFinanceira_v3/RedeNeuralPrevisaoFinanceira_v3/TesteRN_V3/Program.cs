@@ -10,7 +10,8 @@ namespace TesteRN_V3
     {
         static void Main(string[] args)
         {
-            new RNAssessor().TreinarRedes();
+            //ETER3,GOLL4,NATU3,PETR4,VALE5
+            new RNAssessor().TreinarRedes("VALE5");
         }
     }
 }

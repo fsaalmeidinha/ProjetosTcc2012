@@ -109,7 +109,7 @@ namespace DataBaseUtils
 
                     //Removido
                     //cotacao.PrecoAberturaNormalizado = (decimal)dtr["precoaberturaNormalizado"];
-                    cotacao.CotacaoDolarNormalizado = (decimal)NormalizarDado(Convert.ToDouble(cotacao.CotacaoDolar), "Dolar");
+                    //shuah9sdsifladsçoljilgaylachs//////////////cotacao.CotacaoDolarNormalizado = (decimal)NormalizarDado(Convert.ToDouble(cotacao.CotacaoDolar), "Dolar");
                     cotacao.EstacaoDoAno = RecuperarEstacaoDoAno(cotacao.DataGeracao);
 
                     listCotacoes.Add(cotacao);
@@ -117,6 +117,9 @@ namespace DataBaseUtils
                 //Ordena pela data
                 listCotacoes = listCotacoes.OrderBy(cot => cot.DataGeracao).ToList();
                 TratarDesdobramento(listCotacoes);
+
+                decimal max = listCotacoes.Max(cot => cot.PrecoAbertura);
+                decimal min = listCotacoes.Min(cot => cot.PrecoAbertura);
 
                 //Adiciona os valores normalizados
                 listCotacoes.ForEach(cot => cot.ValorNormalizado = NormalizarDado(Convert.ToDouble(cot.PrecoAbertura), papel));
@@ -1146,6 +1149,11 @@ namespace DataBaseUtils
                     _dicIndicesRN.Add(5.09, new List<string>() { "DiaSemana" });
                     _dicIndicesRN.Add(5.10, new List<string>() { "PercentualValorAtivo_Max_Min_Med" });
                     _dicIndicesRN.Add(5.11, new List<string>() { "PercentualCrescimentoAtivoEm2Indices" });
+
+                    _dicIndicesRN.Add(5.12, new List<string>() { "ValoresAtivoSemanaPassada" });
+                    _dicIndicesRN.Add(5.13, new List<string>() { "ValoresAtivoSemanaPassada_PERCENTUAL" });
+                    _dicIndicesRN.Add(5.14, new List<string>() { "ValoresAtivoMesPassado" });
+                    _dicIndicesRN.Add(5.15, new List<string>() { "ValoresAtivoMesPassado_PERCENTUAL" });
                 }
                 return _dicIndicesRN;
             }
@@ -1182,12 +1190,113 @@ namespace DataBaseUtils
         }
 
         /// <summary>
+        /// Preenche o valor do ativo da semana passada d-7 e d-8
+        /// </summary>
+        /// <param name="listCotacoes"></param>
+        /// <param name="versao"></param>
+        public static void Preencher_ValoresAtivoSemanaPassada(List<DadosBE> listCotacoes, double versao, bool percentual)
+        {
+            //Pula os 5 primeiros dados para pular uma "semana"
+            foreach (DadosBE dadoBE in listCotacoes.Skip(5))
+            {
+                DateTime dataDMenos8 = dadoBE.DataGeracao.AddDays(-8).Date;
+                DadosBE dadoBE_DMenos8 = listCotacoes.FirstOrDefault(cot => cot.DataGeracao >= dataDMenos8 && cot.DataGeracao < cot.DataGeracao);
+                if (dadoBE_DMenos8 != null && dadoBE_DMenos8.ValorNormalizado != 0)
+                {
+                    DateTime dataDMenos7 = dataDMenos8.AddDays(1);
+                    DadosBE dadoBE_DMenos7 = listCotacoes.FirstOrDefault(cot => cot.DataGeracao >= dataDMenos7 && cot.DataGeracao < cot.DataGeracao);
+                    if (dadoBE_DMenos7 != null && dadoBE_DMenos7.ValorNormalizado != 0)
+                    {
+                        if (percentual)
+                        {
+                            //Valor máximo que o ativo pode destoar do dia anterior, 1.3 vezes maior ou 1.3 vezes menor
+                            double maxCrescimento = 0.3;
+
+                            if (dadoBE_DMenos8.ValorNormalizado > dadoBE_DMenos7.ValorNormalizado)
+                            {
+                                double valCresc = Convert.ToDouble(dadoBE_DMenos8.ValorNormalizado / dadoBE_DMenos7.ValorNormalizado);
+                                valCresc -= 1;
+                                dadoBE.PercentualAtivoSemanaPassadaD_7_D_8 = 0.5 + (valCresc / maxCrescimento * 0.5);
+                            }
+                            else
+                            {
+                                double valCresc = Convert.ToDouble(dadoBE_DMenos7.ValorNormalizado / dadoBE_DMenos8.ValorNormalizado);
+                                valCresc -= 1;
+                                dadoBE.PercentualAtivoSemanaPassadaD_7_D_8 = 0.5 - (valCresc / maxCrescimento * 0.5);
+                            }
+
+                        }
+                        else
+                        {
+                            dadoBE.ValorAtivoDMenos8 = dadoBE_DMenos8.ValorNormalizado;
+                            dadoBE.ValorAtivoDMenos7 = dadoBE_DMenos7.ValorNormalizado;
+                        }
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Preenche o valor do ativo da semana passada d-30 e d-31
+        /// </summary>
+        /// <param name="listCotacoes"></param>
+        /// <param name="versao"></param>
+        public static void Preencher_ValoresAtivoMesPassado(List<DadosBE> listCotacoes, double versao, bool percentual)
+        {
+            treinamentosIniciaisIgnorar = 25;
+
+            //Pula os 30 primeiros dados para pular um "mes"
+            foreach (DadosBE dadoBE in listCotacoes.Skip(25))
+            {
+                DateTime dataDMenos31 = dadoBE.DataGeracao.AddMonths(-1).AddDays(-1).Date;
+                DadosBE dadoBE_DMenos31 = listCotacoes.FirstOrDefault(cot => cot.DataGeracao >= dataDMenos31 && cot.DataGeracao < cot.DataGeracao);
+                if (dadoBE_DMenos31 != null && dadoBE_DMenos31.ValorNormalizado != 0)
+                {
+                    DateTime dataDMenos30 = dataDMenos31.AddDays(1);
+                    DadosBE dadoBE_DMenos30 = listCotacoes.FirstOrDefault(cot => cot.DataGeracao >= dataDMenos30 && cot.DataGeracao < cot.DataGeracao);
+                    if (dadoBE_DMenos30 != null && dadoBE_DMenos30.ValorNormalizado != 0)
+                    {
+                        if (percentual)
+                        {
+                            //Valor máximo que o ativo pode destoar do dia anterior, 1.3 vezes maior ou 1.3 vezes menor
+                            double maxCrescimento = 0.3;
+
+                            if (dadoBE_DMenos31.ValorNormalizado > dadoBE_DMenos30.ValorNormalizado)
+                            {
+                                double valCresc = Convert.ToDouble(dadoBE_DMenos31.ValorNormalizado / dadoBE_DMenos30.ValorNormalizado);
+                                valCresc -= 1;
+                                dadoBE.PercentualAtivoMesPassadoD_30_D_31 = 0.5 + (valCresc / maxCrescimento * 0.5);
+                            }
+                            else
+                            {
+                                double valCresc = Convert.ToDouble(dadoBE_DMenos30.ValorNormalizado / dadoBE_DMenos31.ValorNormalizado);
+                                valCresc -= 1;
+                                dadoBE.PercentualAtivoMesPassadoD_30_D_31 = 0.5 - (valCresc / maxCrescimento * 0.5);
+                            }
+
+                        }
+                        else
+                        {
+                            dadoBE.ValorAtivoDMenos31 = dadoBE_DMenos31.ValorNormalizado;
+                            dadoBE.ValorAtivoDMenos30 = dadoBE_DMenos30.ValorNormalizado;
+                        }
+                    }
+                }
+            }
+        }
+
+        /// <summary>
         /// Preenche os indices que alimentarão a RN_V5
         /// </summary>
         /// <param name="listCotacoes"></param>
         public static void PreencherIndicesRN_V5(List<DadosBE> listCotacoes, double versao)
         {
             PreencherIndicesRN_V3(listCotacoes, versao);
+            Preencher_ValoresAtivoSemanaPassada(listCotacoes, versao, false);
+            Preencher_ValoresAtivoSemanaPassada(listCotacoes, versao, true);
+            Preencher_ValoresAtivoMesPassado(listCotacoes, versao, false);
+            Preencher_ValoresAtivoMesPassado(listCotacoes, versao, true);
+
             //Preencher_DN_Maior_D0(listCotacoes, versao);
         }
 
@@ -1272,6 +1381,24 @@ namespace DataBaseUtils
 
             if (dicIndicesRN[versao].Contains("PercentualCrescimentoAtivoEm2Indices"))
                 dadoBE.PercentualCrescimentoAtivoEm2Indices.ForEach(val => treinamento.Input.Add(val));
+
+            if (dicIndicesRN[versao].Contains("ValoresAtivoSemanaPassada"))
+            {
+                treinamento.Input.Add(dadoBE.ValorAtivoDMenos7);
+                treinamento.Input.Add(dadoBE.ValorAtivoDMenos8);
+            }
+
+            if (dicIndicesRN[versao].Contains("ValoresAtivoSemanaPassada_PERCENTUAL"))
+                treinamento.Input.Add(dadoBE.PercentualAtivoSemanaPassadaD_7_D_8);
+
+            if (dicIndicesRN[versao].Contains("ValoresAtivoMesPassado"))
+            {
+                treinamento.Input.Add(dadoBE.ValorAtivoDMenos30);
+                treinamento.Input.Add(dadoBE.ValorAtivoDMenos31);
+            }
+
+            if (dicIndicesRN[versao].Contains("ValoresAtivoMesPassado_PERCENTUAL"))
+                treinamento.Input.Add(dadoBE.PercentualAtivoMesPassadoD_30_D_31);
 
             treinamento.Output = new List<double>() { dadoBE.ValorNormalizadoDiaSeguinte };
 

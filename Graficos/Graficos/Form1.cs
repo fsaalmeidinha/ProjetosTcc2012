@@ -33,66 +33,82 @@ namespace Graficos
             previsao = PrevisaoFinanceiraHelper.PrevisaoFinanceira.PreverCotacaoAtivo("PETR4", dtInicialPrevisao, qtdDiasPrever);
 
             //Utiliza a previsao da RN1 para popular os valores reais
-            previsoesPorRN.Add("Real", previsao.Select(prev => prev[0]).ToList());
+            previsoesPorRN.Add("PETR4_Real", previsao.Select(prev => prev[0]).ToList());
 
             //Preenche as previsoes da RN_V1
-            previsoesPorRN.Add("RN_V1", previsao.Select(prev => prev[1]).ToList());
+            previsoesPorRN.Add("PETR4_RN_V1", previsao.Select(prev => prev[1]).ToList());
 
             //V2
             previsao = RedeNeuralPrevisaoFinanceira_v2.RNAssessor.PreverCotacao(dtInicialPrevisao, qtdDiasPrever);
-            previsoesPorRN.Add("RN_V2", previsao.Select(prev => prev[1]).ToList());
+            previsoesPorRN.Add("PETR4_RN_V2", previsao.Select(prev => prev[1]).ToList());
 
             //V3
             previsao = RedeNeuralPrevisaoFinanceira_v3.RNAssessor.PreverCotacao(dtInicialPrevisao, 3, qtdDiasPrever);
-            previsoesPorRN.Add("RN_V3", previsao.Select(prev => prev[1]).ToList());
+            previsoesPorRN.Add("PETR4_RN_V3", previsao.Select(prev => prev[1]).ToList());
 
             //V3.2
             previsao = RedeNeuralPrevisaoFinanceira_v3.RNAssessor.PreverCotacao(dtInicialPrevisao, 3.2, qtdDiasPrever);
-            previsoesPorRN.Add("RN_V3_2", previsao.Select(prev => prev[1]).ToList());
+            previsoesPorRN.Add("PETR4_RN_V3_2", previsao.Select(prev => prev[1]).ToList());
 
             //V3.3
             previsao = RedeNeuralPrevisaoFinanceira_v3.RNAssessor.PreverCotacao(dtInicialPrevisao, 3.3, qtdDiasPrever);
-            previsoesPorRN.Add("RN_V3_3", previsao.Select(prev => prev[1]).ToList());
+            previsoesPorRN.Add("PETR4_RN_V3_3", previsao.Select(prev => prev[1]).ToList());
 
             //V3.4
             previsao = RedeNeuralPrevisaoFinanceira_v3.RNAssessor.PreverCotacao(dtInicialPrevisao, 3.4, qtdDiasPrever);
-            previsoesPorRN.Add("RN_V3_4", previsao.Select(prev => prev[1]).ToList());
+            previsoesPorRN.Add("PETR4_RN_V3_4", previsao.Select(prev => prev[1]).ToList());
+
+            previsao = RedeNeuralPrevisaoFinanceira_v3.RNAssessor.PreverCotacao(dtInicialPrevisao, 3.4, qtdDiasPrever, "ETER3");
+            previsoesPorRN.Add("ETER3_Real", previsao.Select(prev => prev[0]).ToList());
+            previsoesPorRN.Add("ETER3_RN_V3_4", previsao.Select(prev => prev[1]).ToList());
+
+            previsao = RedeNeuralPrevisaoFinanceira_v3.RNAssessor.PreverCotacao(dtInicialPrevisao, 3.4, qtdDiasPrever, "GOLL4");
+            previsoesPorRN.Add("GOLL4_Real", previsao.Select(prev => prev[0]).ToList());
+            previsoesPorRN.Add("GOLL4_RN_V3_4", previsao.Select(prev => prev[1]).ToList());
+
+            previsao = RedeNeuralPrevisaoFinanceira_v3.RNAssessor.PreverCotacao(dtInicialPrevisao, 3.4, qtdDiasPrever, "NATU3");
+            previsoesPorRN.Add("NATU3_Real", previsao.Select(prev => prev[0]).ToList());
+            previsoesPorRN.Add("NATU3_RN_V3_4", previsao.Select(prev => prev[1]).ToList());
+
+            previsao = RedeNeuralPrevisaoFinanceira_v3.RNAssessor.PreverCotacao(dtInicialPrevisao, 3.4, qtdDiasPrever, "VALE5");
+            previsoesPorRN.Add("VALE5_Real", previsao.Select(prev => prev[0]).ToList());
+            previsoesPorRN.Add("VALE5_RN_V3_4", previsao.Select(prev => prev[1]).ToList());
 
             //V3.5
             previsao = RedeNeuralPrevisaoFinanceira_v3.RNAssessor.PreverCotacao(dtInicialPrevisao, 3.5, qtdDiasPrever);
-            previsoesPorRN.Add("RN_V3_5", previsao.Select(prev => prev[1]).ToList());
+            previsoesPorRN.Add("PETR4_RN_V3_5", previsao.Select(prev => prev[1]).ToList());
 
             //V3.6
             previsao = RedeNeuralPrevisaoFinanceira_v3.RNAssessor.PreverCotacao(dtInicialPrevisao, 3.6, qtdDiasPrever);
-            previsoesPorRN.Add("RN_V3_6", previsao.Select(prev => prev[1]).ToList());
+            previsoesPorRN.Add("PETR4_RN_V3_6", previsao.Select(prev => prev[1]).ToList());
 
             //V3.7
             previsao = RedeNeuralPrevisaoFinanceira_v3.RNAssessor.PreverCotacao(dtInicialPrevisao, 3.7, qtdDiasPrever);
-            previsoesPorRN.Add("RN_V3_7", previsao.Select(prev => prev[1]).ToList());
+            previsoesPorRN.Add("PETR4_RN_V3_7", previsao.Select(prev => prev[1]).ToList());
 
             //V3.8
             previsao = RedeNeuralPrevisaoFinanceira_v3.RNAssessor.PreverCotacao(dtInicialPrevisao, 3.8, qtdDiasPrever);
-            previsoesPorRN.Add("RN_V3_8", previsao.Select(prev => prev[1]).ToList());
+            previsoesPorRN.Add("PETR4_RN_V3_8", previsao.Select(prev => prev[1]).ToList());
 
             //V3.9
             previsao = RedeNeuralPrevisaoFinanceira_v3.RNAssessor.PreverCotacao(dtInicialPrevisao, 3.9, qtdDiasPrever);
-            previsoesPorRN.Add("RN_V3_9", previsao.Select(prev => prev[1]).ToList());
+            previsoesPorRN.Add("PETR4_RN_V3_9", previsao.Select(prev => prev[1]).ToList());
 
             //V4.01
             previsao = RedeNeuralPrevisaoFinanceira_v3.RNAssessor.PreverCotacao(dtInicialPrevisao, 4.01, qtdDiasPrever);
-            previsoesPorRN.Add("RN_V4_01", previsao.Select(prev => prev[1]).ToList());
+            previsoesPorRN.Add("PETR4_RN_V4_01", previsao.Select(prev => prev[1]).ToList());
 
             //V4.02
             previsao = RedeNeuralPrevisaoFinanceira_v3.RNAssessor.PreverCotacao(dtInicialPrevisao, 4.02, qtdDiasPrever);
-            previsoesPorRN.Add("RN_V4_02", previsao.Select(prev => prev[1]).ToList());
+            previsoesPorRN.Add("PETR4_RN_V4_02", previsao.Select(prev => prev[1]).ToList());
 
             //V4.03
             previsao = RedeNeuralPrevisaoFinanceira_v3.RNAssessor.PreverCotacao(dtInicialPrevisao, 4.03, qtdDiasPrever);
-            previsoesPorRN.Add("RN_V4_03", previsao.Select(prev => prev[1]).ToList());
+            previsoesPorRN.Add("PETR4_RN_V4_03", previsao.Select(prev => prev[1]).ToList());
 
             //V4.04
             previsao = RedeNeuralPrevisaoFinanceira_v3.RNAssessor.PreverCotacao(dtInicialPrevisao, 4.04, qtdDiasPrever);
-            previsoesPorRN.Add("RN_V4_04", previsao.Select(prev => prev[1]).ToList());
+            previsoesPorRN.Add("PETR4_RN_V4_04", previsao.Select(prev => prev[1]).ToList());
 
             #region V5
             //for (double v = 5.01; v <= 5.10; v = v + 0.01)
@@ -103,60 +119,60 @@ namespace Graficos
             //}
             //V5.01
             previsao = RedeNeuralPrevisaoFinanceira_v5.RNAssessor.PreverCotacao(dtInicialPrevisao, 5.01, qtdDiasPrever);
-            previsoesPorRN.Add("RN_V5_01", previsao.Select(prev => prev[1]).ToList());
+            previsoesPorRN.Add("PETR4_RN_V5_01", previsao.Select(prev => prev[1]).ToList());
 
             //V5.02
             previsao = RedeNeuralPrevisaoFinanceira_v5.RNAssessor.PreverCotacao(dtInicialPrevisao, 5.02, qtdDiasPrever);
-            previsoesPorRN.Add("RN_V5_02", previsao.Select(prev => prev[1]).ToList());
+            previsoesPorRN.Add("PETR4_RN_V5_02", previsao.Select(prev => prev[1]).ToList());
 
             //V5.03
             previsao = RedeNeuralPrevisaoFinanceira_v5.RNAssessor.PreverCotacao(dtInicialPrevisao, 5.03, qtdDiasPrever);
-            previsoesPorRN.Add("RN_V5_03", previsao.Select(prev => prev[1]).ToList());
+            previsoesPorRN.Add("PETR4_RN_V5_03", previsao.Select(prev => prev[1]).ToList());
 
             //V5.04
             previsao = RedeNeuralPrevisaoFinanceira_v5.RNAssessor.PreverCotacao(dtInicialPrevisao, 5.04, qtdDiasPrever);
-            previsoesPorRN.Add("RN_V5_04", previsao.Select(prev => prev[1]).ToList());
+            previsoesPorRN.Add("PETR4_RN_V5_04", previsao.Select(prev => prev[1]).ToList());
 
             //V5.05
             previsao = RedeNeuralPrevisaoFinanceira_v5.RNAssessor.PreverCotacao(dtInicialPrevisao, 5.05, qtdDiasPrever);
-            previsoesPorRN.Add("RN_V5_05", previsao.Select(prev => prev[1]).ToList());
+            previsoesPorRN.Add("PETR4_RN_V5_05", previsao.Select(prev => prev[1]).ToList());
 
             //V5.06
             previsao = RedeNeuralPrevisaoFinanceira_v5.RNAssessor.PreverCotacao(dtInicialPrevisao, 5.06, qtdDiasPrever);
-            previsoesPorRN.Add("RN_V5_06", previsao.Select(prev => prev[1]).ToList());
+            previsoesPorRN.Add("PETR4_RN_V5_06", previsao.Select(prev => prev[1]).ToList());
 
             //V5.07
             previsao = RedeNeuralPrevisaoFinanceira_v5.RNAssessor.PreverCotacao(dtInicialPrevisao, 5.07, qtdDiasPrever);
-            previsoesPorRN.Add("RN_V5_07", previsao.Select(prev => prev[1]).ToList());
+            previsoesPorRN.Add("PETR4_RN_V5_07", previsao.Select(prev => prev[1]).ToList());
 
             //V5.08
             previsao = RedeNeuralPrevisaoFinanceira_v5.RNAssessor.PreverCotacao(dtInicialPrevisao, 5.08, qtdDiasPrever);
-            previsoesPorRN.Add("RN_V5_08", previsao.Select(prev => prev[1]).ToList());
+            previsoesPorRN.Add("PETR4_RN_V5_08", previsao.Select(prev => prev[1]).ToList());
 
             //V5.09
             previsao = RedeNeuralPrevisaoFinanceira_v5.RNAssessor.PreverCotacao(dtInicialPrevisao, 5.09, qtdDiasPrever);
-            previsoesPorRN.Add("RN_V5_09", previsao.Select(prev => prev[1]).ToList());
+            previsoesPorRN.Add("PETR4_RN_V5_09", previsao.Select(prev => prev[1]).ToList());
 
             //V5.10
             previsao = RedeNeuralPrevisaoFinanceira_v5.RNAssessor.PreverCotacao(dtInicialPrevisao, 5.10, qtdDiasPrever);
-            previsoesPorRN.Add("RN_V5_10", previsao.Select(prev => prev[1]).ToList());
+            previsoesPorRN.Add("PETR4_RN_V5_10", previsao.Select(prev => prev[1]).ToList());
 
             //V5.11
             previsao = RedeNeuralPrevisaoFinanceira_v5.RNAssessor.PreverCotacao(dtInicialPrevisao, 5.11, qtdDiasPrever);
-            previsoesPorRN.Add("RN_V5_11", previsao.Select(prev => prev[1]).ToList());
+            previsoesPorRN.Add("PETR4_RN_V5_11", previsao.Select(prev => prev[1]).ToList());
             #endregion V5
 
             //Media ponderada
             previsao = MediaPonderada.MetodoMediaPonderada.PreverMediasPonderada("PETR4", dtInicialPrevisao, qtdDiasPrever);
-            previsoesPorRN.Add("Med_Ponderada", previsao.Select(prev => prev[1]).ToList());
+            previsoesPorRN.Add("PETR4_Med_Ponderada", previsao.Select(prev => prev[1]).ToList());
 
             //Media aritmetica
             previsao = MediaAritmetica.MetodoMediaAritmetica.PreverMediasAritmetica("PETR4", dtInicialPrevisao, qtdDiasPrever);
-            previsoesPorRN.Add("Med_Aritmetica", previsao.Select(prev => prev[1]).ToList());
+            previsoesPorRN.Add("PETR4_Med_Aritmetica", previsao.Select(prev => prev[1]).ToList());
 
             //AlisamentoExponencialSimples
             previsao = AlisamentoExponencialSimples.MetodoAlisamentoExpSimples.PreverAlisamentoExponencialSimples("PETR4", dtInicialPrevisao, qtdDiasPrever);
-            previsoesPorRN.Add("Med_Exp_Simpl", previsao.Select(prev => prev[1]).ToList());
+            previsoesPorRN.Add("PETR4_Med_Exp_Simpl", previsao.Select(prev => prev[1]).ToList());
 
             DesenharGrafico();
             AlimentarGridTaxasAcerto();
@@ -170,8 +186,9 @@ namespace Graficos
             DataColumn dcDescricao = new DataColumn("Descrição");
             dt.Columns.Add(dcDescricao);
             drReal[0] = "Real";
+            string nomeAtivoEscolhido = cbAtivo.SelectedItem.ToString();
 
-            List<double> valoresReais = previsoesPorRN["Real"];
+            List<double> valoresReais = previsoesPorRN[nomeAtivoEscolhido + "_Real"];
             //Preenche os valores reais
             for (int dia = 1; dia <= qtdDiasPrever; dia++)
             {
@@ -180,7 +197,7 @@ namespace Graficos
                 drReal[dc] = valoresReais[dia - 1];
             }
 
-            foreach (KeyValuePair<string, Color> previsaoSelecionada in previsoesEscolhidasPorRN.Where(prev => prev.Key != "Real"))
+            foreach (KeyValuePair<string, Color> previsaoSelecionada in previsoesEscolhidasPorRN.Where(prev => prev.Key != nomeAtivoEscolhido + "_Real"))
             {
                 DataRow drPrevisto = dt.NewRow();
                 dt.Rows.Add(drPrevisto);
@@ -319,8 +336,9 @@ namespace Graficos
         private void pbRns_Click(object sender, EventArgs e)
         {
             PictureBox pb = (PictureBox)sender;
+            string nomeAtivo = cbAtivo.SelectedItem.ToString();
             string rnName = pb.Name.Substring(2);
-            SetarPrevisaoEscolhida(rnName, pb.BackColor);
+            SetarPrevisaoEscolhida(nomeAtivo + "_" + rnName, pb.BackColor);
 
             DesenharGrafico();
             AlimentarGridTaxasAcerto();
@@ -343,6 +361,15 @@ namespace Graficos
             }
 
             return previsoesEscolhidas;
+        }
+
+        private void cbAtivo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            grafico.Image = new Bitmap(grafico.Width, grafico.Height);
+            gvTaxaAcerto.DataSource = new BindingSource();
+            previsoesEscolhidasPorRN.Clear();
+            DesenharGrafico();
+            AlimentarGridTaxasAcerto();
         }
     }
 }
