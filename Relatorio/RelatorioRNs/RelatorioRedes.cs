@@ -86,28 +86,30 @@ namespace RelatorioRNs
             Relatorio relatorioPETR4_V5_10 = RecuperarAnalisesRelatorio("PETR4", "Rede Neural versão 5.10", false, previsao);
             relatorios.Add(relatorioPETR4_V5_10);
 
-            //ETER3 - V5.04
-            previsao = RedeNeuralPrevisaoFinanceira_v5.RNAssessor.PreverCotacao(dtInicialPrevisao, 5.04, qtdDiasPrever, "ETER3");
-            Relatorio relatorioETER3_V5_04 = RecuperarAnalisesRelatorio("ETER3", "Rede Neural versão 5.04", false, previsao);
-            relatorios.Add(relatorioETER3_V5_04);
+            //ETER3 - V3.4
+            previsao = RedeNeuralPrevisaoFinanceira_v3.RNAssessor.PreverCotacao(dtInicialPrevisao, 3.4, qtdDiasPrever, "ETER3");
+            Relatorio relatorioETER3_V3_4 = RecuperarAnalisesRelatorio("ETER3", "Rede Neural versão 3.4", false, previsao);
+            relatorios.Add(relatorioETER3_V3_4);
 
-            //GOLL4 - V5.04
-            previsao = RedeNeuralPrevisaoFinanceira_v5.RNAssessor.PreverCotacao(dtInicialPrevisao, 5.04, qtdDiasPrever, "GOLL4");
-            Relatorio relatorioGOLL4_V5_04 = RecuperarAnalisesRelatorio("GOLL4", "Rede Neural versão 5.04", false, previsao);
-            relatorios.Add(relatorioGOLL4_V5_04);
+            //GOLL4 - V3.4
+            previsao = RedeNeuralPrevisaoFinanceira_v3.RNAssessor.PreverCotacao(dtInicialPrevisao, 3.4, qtdDiasPrever, "GOLL4");
+            Relatorio relatorioGOLL4_V3_4 = RecuperarAnalisesRelatorio("GOLL4", "Rede Neural versão 3.4", false, previsao);
+            relatorios.Add(relatorioGOLL4_V3_4);
 
-            //NATU3 - V5.04
-            previsao = RedeNeuralPrevisaoFinanceira_v5.RNAssessor.PreverCotacao(dtInicialPrevisao, 5.04, qtdDiasPrever, "NATU3");
-            Relatorio relatorioNATU3_V5_04 = RecuperarAnalisesRelatorio("NATU3", "Rede Neural versão 5.04", false, previsao);
-            relatorios.Add(relatorioNATU3_V5_04);
+            //NATU3 - V3.4
+            previsao = RedeNeuralPrevisaoFinanceira_v3.RNAssessor.PreverCotacao(dtInicialPrevisao, 3.4, qtdDiasPrever, "NATU3");
+            Relatorio relatorioNATU3_V3_4 = RecuperarAnalisesRelatorio("NATU3", "Rede Neural versão 3.4", false, previsao);
+            relatorios.Add(relatorioNATU3_V3_4);
 
-            //VALE5 - V5.04
-            previsao = RedeNeuralPrevisaoFinanceira_v5.RNAssessor.PreverCotacao(dtInicialPrevisao, 5.04, qtdDiasPrever, "VALE5");
-            Relatorio relatorioVALE5_V5_04 = RecuperarAnalisesRelatorio("VALE5", "Rede Neural versão 5.04", false, previsao);
-            relatorios.Add(relatorioVALE5_V5_04);
+            //VALE5 - V3.4
+            previsao = RedeNeuralPrevisaoFinanceira_v3.RNAssessor.PreverCotacao(dtInicialPrevisao, 3.4, qtdDiasPrever, "VALE5");
+            Relatorio relatorioVALE5_V3_4 = RecuperarAnalisesRelatorio("VALE5", "Rede Neural versão 3.4", false, previsao);
+            relatorios.Add(relatorioVALE5_V3_4);
+
+            GerarRelatorioExcel(relatorios);
         }
 
-        public static Relatorio RecuperarAnalisesRelatorio(string papel, string nomeRN, bool previsaoSobrePrevisao, List<double[]> previsoes)
+        private static Relatorio RecuperarAnalisesRelatorio(string papel, string nomeRN, bool previsaoSobrePrevisao, List<double[]> previsoes)
         {
             Relatorio relatorio = new Relatorio() { NomeRN = nomeRN, Papel = papel };
 
@@ -139,11 +141,51 @@ namespace RelatorioRNs
             relatorio.ErroMedio = relatorio.ErroAcumulado / previsoes.Count;
 
             int qtdAcompanhouTendencia = relatorio.RelatoriosDia.Count(rel => rel.AcompanhouTendencia);
-            relatorio.AcompanhouTendencia = String.Format("{0} de {1} ({2}% de acompanhamento de tendêndia)", qtdAcompanhouTendencia, previsoes.Count, qtdAcompanhouTendencia / (previsoes.Count - 1) * 100);
+            relatorio.AcompanhouTendencia = String.Format("{0} de {1} ({2}% de acompanhamento de tendêndia)", qtdAcompanhouTendencia, previsoes.Count - 1, qtdAcompanhouTendencia / (double)(previsoes.Count - 1) * 100);
 
             return relatorio;
         }
 
+        private static void GerarRelatorioExcel(List<Relatorio> relatorios)
+        {
+            //Cria o arquivo do excel
+            Microsoft.Office.Interop.Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();
+            excelApp.Workbooks.Add(1);
+            Microsoft.Office.Interop.Excel.Workbook arq_de_trab = (Microsoft.Office.Interop.Excel.Workbook)excelApp.Workbooks.Add(1);
+            Microsoft.Office.Interop.Excel.Worksheet planilha = (Microsoft.Office.Interop.Excel.Worksheet)excelApp.Worksheets.Add(Type.Missing, Type.Missing, Type.Missing, Type.Missing);
 
+            int linha = 1;
+            foreach (Relatorio relatorio in relatorios)
+            {
+                planilha.Cells[linha++, 1] = String.Format("{0} ({1})", relatorio.Papel, relatorio.NomeRN, relatorio.AcompanhouTendencia);
+                planilha.Cells[linha++, 1] = String.Format("Tendencias:{0}", relatorio.AcompanhouTendencia);
+                planilha.Cells[linha++, 1] = String.Format("Erro Médio:{0}%", relatorio.ErroMedio);
+                planilha.Cells[linha, 1] = "Real";
+                for (int indCol = 0; indCol < relatorio.RelatoriosDia.Count; indCol++)
+                {
+                    planilha.Cells[linha, indCol + 2] = relatorio.RelatoriosDia[indCol].Real;
+                }
+
+                linha++;
+                planilha.Cells[linha, 1] = "Previsto";
+                for (int indCol = 0; indCol < relatorio.RelatoriosDia.Count; indCol++)
+                {
+                    planilha.Cells[linha, indCol + 2] = relatorio.RelatoriosDia[indCol].Previsto;
+                }
+
+                linha++;
+                planilha.Cells[linha, 1] = "Erro";
+                for (int indCol = 0; indCol < relatorio.RelatoriosDia.Count; indCol++)
+                {
+                    planilha.Cells[linha, indCol + 2] = relatorio.RelatoriosDia[indCol].Erro;
+                }
+                linha += 3;
+            }
+
+            arq_de_trab.SaveAs("C:\\Users\\Felipe\\Desktop\\tcc\\Relatorio\\RelatorioRNs\\RelatoriosExcel\\RelatorioRedes.xls", Microsoft.Office.Interop.Excel.XlFileFormat.xlExcel7, Type.Missing,
+                Type.Missing, false, false, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlNoChange, Type.Missing,
+                Type.Missing, Type.Missing, Type.Missing, Type.Missing);
+            arq_de_trab.Close();
+        }
     }
 }
