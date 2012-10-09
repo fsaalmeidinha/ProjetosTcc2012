@@ -34,6 +34,36 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CaptacaoMelhoresRedes">
+      <HintPath>..\..\Redes\Lib-Geral\CaptacaoMelhoresRedes.dll</HintPath>
+    </Reference>
+    <Reference Include="ConverterTabela">
+      <HintPath>..\..\Redes\Lib-Geral\ConverterTabela.dll</HintPath>
+    </Reference>
+    <Reference Include="DataBaseUtils">
+      <HintPath>..\..\Redes\Lib-Geral\DataBaseUtils.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelPackage">
+      <HintPath>..\..\Redes\Lib-Geral\ExcelPackage.dll</HintPath>
+    </Reference>
+    <Reference Include="NeuronDotNet.Core">
+      <HintPath>..\..\Redes\Lib-Geral\NeuronDotNet.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="PrevisaoFinanceira">
+      <HintPath>..\..\Redes\Lib-Geral\PrevisaoFinanceira.dll</HintPath>
+    </Reference>
+    <Reference Include="RedeNeuralPrevisaoFinanceira_v2">
+      <HintPath>..\..\Redes\Lib-Geral\RedeNeuralPrevisaoFinanceira_v2.dll</HintPath>
+    </Reference>
+    <Reference Include="RedeNeuralPrevisaoFinanceira_v3">
+      <HintPath>..\..\Redes\Lib-Geral\RedeNeuralPrevisaoFinanceira_v3.dll</HintPath>
+    </Reference>
+    <Reference Include="RedeNeuralPrevisaoFinanceira_v5">
+      <HintPath>..\..\Redes\Lib-Geral\RedeNeuralPrevisaoFinanceira_v5.dll</HintPath>
+    </Reference>
+    <Reference Include="RedeNeural_PrevisaoFinanceira">
+      <HintPath>..\..\Redes\Lib-Geral\RedeNeural_PrevisaoFinanceira.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -43,8 +73,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\Relatorio.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RelatorioRedes.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

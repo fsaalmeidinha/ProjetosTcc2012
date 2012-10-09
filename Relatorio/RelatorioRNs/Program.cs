@@ -9,6 +9,7 @@ namespace RelatorioRNs
     {
         static void Main(string[] args)
         {
+            RelatorioRedes.GerarRelatorio();
         }
     }
 }

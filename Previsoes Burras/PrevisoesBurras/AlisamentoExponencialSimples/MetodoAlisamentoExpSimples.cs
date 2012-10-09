@@ -8,7 +8,7 @@ namespace AlisamentoExponencialSimples
 {
     public class MetodoAlisamentoExpSimples
     {
-        public static List<double[]> PreverAlisamentoExponencialSimples(string nomeAtivo, DateTime dataInicio, int quantDiasPrevisao, double coeficiente = 0.9)
+        public static List<double[]> PreverAlisamentoExponencialSimples(string nomeAtivo, DateTime dataInicio, int quantDiasPrevisao, bool previsaoSobrePrevisao = true, double coeficiente = 0.9)
         {
             double previsao, alfa, valorReal, previsaoAnterior;
 
@@ -24,7 +24,12 @@ namespace AlisamentoExponencialSimples
             for (int i = quant; i < quantDiasPrevisao + quant; i++)
             {
                 valorReal = previsoes[i - 1][1];
-                previsaoAnterior = previsoes[i - 2][1];
+
+                if (previsaoSobrePrevisao)
+                    previsaoAnterior = previsoes[i - 2][1];
+                else
+                    previsaoAnterior = previsoes[i - 2][0];
+
                 previsao = alfa * valorReal + (1 - alfa) * previsaoAnterior;
 
                 previsoes[i][1] = previsao;

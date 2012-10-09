@@ -8,7 +8,7 @@ namespace MediaPonderada
 {
     public class MetodoMediaPonderada
     {
-        public static List<double[]> PreverMediasPonderada(string nomeAtivo, DateTime dataInicio, int quantDiasPrevisao)
+        public static List<double[]> PreverMediasPonderada(string nomeAtivo, DateTime dataInicio, int quantDiasPrevisao, bool previsaoSobrePrevisao = true)
         {
             int quantMedia = 30;
             double peso = 0.2, pesoAux = 1;
@@ -26,7 +26,10 @@ namespace MediaPonderada
 
             for (int i = quantMedia; i < quantDiasPrevisao + quantMedia; i++)
             {
-                previsao[i][1] = previsao.Skip(i - quantMedia).Take(quantMedia).Select(cot => cot[1] * (pesoAux += peso)).Sum() / divisor;
+                if (previsaoSobrePrevisao)
+                    previsao[i][1] = previsao.Skip(i - quantMedia).Take(quantMedia).Select(cot => cot[1] * (pesoAux += peso)).Sum() / divisor;
+                else
+                    previsao[i][1] = previsao.Skip(i - quantMedia).Take(quantMedia).Select(cot => cot[0] * (pesoAux += peso)).Sum() / divisor;
                 pesoAux = 1;
             }
 

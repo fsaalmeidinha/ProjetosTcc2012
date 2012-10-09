@@ -163,17 +163,18 @@ namespace Graficos
             #endregion V5
 
             //Media ponderada
-            previsao = MediaPonderada.MetodoMediaPonderada.PreverMediasPonderada("PETR4", dtInicialPrevisao, qtdDiasPrever);
+            previsao = MediaPonderada.MetodoMediaPonderada.PreverMediasPonderada("PETR4", dtInicialPrevisao, qtdDiasPrever, false);
             previsoesPorRN.Add("PETR4_Med_Ponderada", previsao.Select(prev => prev[1]).ToList());
 
             //Media aritmetica
-            previsao = MediaAritmetica.MetodoMediaAritmetica.PreverMediasAritmetica("PETR4", dtInicialPrevisao, qtdDiasPrever);
+            previsao = MediaAritmetica.MetodoMediaAritmetica.PreverMediasAritmetica("PETR4", dtInicialPrevisao, qtdDiasPrever, false);
             previsoesPorRN.Add("PETR4_Med_Aritmetica", previsao.Select(prev => prev[1]).ToList());
 
             //AlisamentoExponencialSimples
-            previsao = AlisamentoExponencialSimples.MetodoAlisamentoExpSimples.PreverAlisamentoExponencialSimples("PETR4", dtInicialPrevisao, qtdDiasPrever);
+            previsao = AlisamentoExponencialSimples.MetodoAlisamentoExpSimples.PreverAlisamentoExponencialSimples("PETR4", dtInicialPrevisao, qtdDiasPrever, false);
             previsoesPorRN.Add("PETR4_Med_Exp_Simpl", previsao.Select(prev => prev[1]).ToList());
 
+            previsoesEscolhidasPorRN.Add(cbAtivo.SelectedItem.ToString() + "_" + pbReal.Name.Substring(2), pbReal.BackColor);
             DesenharGrafico();
             AlimentarGridTaxasAcerto();
         }
@@ -229,13 +230,15 @@ namespace Graficos
             grafico.Image = new Bitmap(grafico.Width, grafico.Height);
             Graphics g = Graphics.FromImage(grafico.Image);
 
+            int minimoEntreOsDois = Convert.ToInt32(previsoesEscolhidas.First().Value.Min());
+            int maximoEntreOsDois = Convert.ToInt32(previsoesEscolhidas.First().Value.Max());
+
             //A cada 40 pixels, há alteração de 1 real 
-            int multiplicadorY = 20;
+            int multiplicadorY = grafico.Height / (maximoEntreOsDois - minimoEntreOsDois) / 3;//15;
+            if (multiplicadorY < 15) multiplicadorY = 15;
             //A cada 10 pixels, há alteração de 1 dia da cotação
             int multiplicadorX = Convert.ToInt32(txtEscalaX.Text);
 
-            int minimoEntreOsDois = Convert.ToInt32(previsoesEscolhidas.First().Value.Min());
-            int maximoEntreOsDois = Convert.ToInt32(previsoesEscolhidas.First().Value.Max());
             foreach (List<double> previsao in previsoesEscolhidas.Select(prevEsc => prevEsc.Value).ToList())
             {
                 minimoEntreOsDois = Convert.ToInt32(Math.Min(minimoEntreOsDois, previsao.Min()));
@@ -243,7 +246,7 @@ namespace Graficos
             }
 
             //Espacamento em reais antes do inicio do dado de menor valor
-            int espacamentoAbaixo = 8;
+            int espacamentoAbaixo = 2;//8;
             DesenharLinharAuxiliaresDoGrafico(g, minimoEntreOsDois - espacamentoAbaixo, maximoEntreOsDois, 1, multiplicadorY, multiplicadorX);
 
             minimoEntreOsDois *= multiplicadorY;
@@ -368,6 +371,8 @@ namespace Graficos
             grafico.Image = new Bitmap(grafico.Width, grafico.Height);
             gvTaxaAcerto.DataSource = new BindingSource();
             previsoesEscolhidasPorRN.Clear();
+            previsoesEscolhidasPorRN.Add(cbAtivo.SelectedItem.ToString() + "_" + pbReal.Name.Substring(2), pbReal.BackColor);
+
             DesenharGrafico();
             AlimentarGridTaxasAcerto();
         }

@@ -8,7 +8,7 @@ namespace MediaAritmetica
 {
     public class MetodoMediaAritmetica
     {
-        public static List<double[]> PreverMediasAritmetica(string nomeAtivo, DateTime dataInicio, int qtdDiasPrever)
+        public static List<double[]> PreverMediasAritmetica(string nomeAtivo, DateTime dataInicio, int qtdDiasPrever, bool previsaoSobrePrevisao = true)
         {
             int quantMedia = 5;
 
@@ -24,7 +24,10 @@ namespace MediaAritmetica
 
             for (int i = quantMedia; i < qtdDiasPrever + quantMedia; i++)
             {
-                previsoes[i][1] = (previsoes.Skip(i - quantMedia).Take(quantMedia).Select(cot => cot[1]).Sum()) / quantMedia;
+                if (previsaoSobrePrevisao)
+                    previsoes[i][1] = (previsoes.Skip(i - quantMedia).Take(quantMedia).Select(cot => cot[1]).Sum()) / quantMedia;
+                else
+                    previsoes[i][1] = (previsoes.Skip(i - quantMedia).Take(quantMedia).Select(cot => cot[0]).Sum()) / quantMedia;
             }
 
             return previsoes.Skip(quantMedia).ToList();

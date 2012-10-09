@@ -137,7 +137,7 @@
             this.grafico.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.grafico.Location = new System.Drawing.Point(14, 3);
             this.grafico.Name = "grafico";
-            this.grafico.Size = new System.Drawing.Size(20089, 492);
+            this.grafico.Size = new System.Drawing.Size(20089, 560);
             this.grafico.TabIndex = 0;
             this.grafico.TabStop = false;
             // 
@@ -158,11 +158,11 @@
             this.gvTaxaAcerto.AllowUserToAddRows = false;
             this.gvTaxaAcerto.AllowUserToDeleteRows = false;
             this.gvTaxaAcerto.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gvTaxaAcerto.Location = new System.Drawing.Point(14, 501);
+            this.gvTaxaAcerto.Location = new System.Drawing.Point(14, 569);
             this.gvTaxaAcerto.Name = "gvTaxaAcerto";
             this.gvTaxaAcerto.ReadOnly = true;
             this.gvTaxaAcerto.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
-            this.gvTaxaAcerto.Size = new System.Drawing.Size(1356, 177);
+            this.gvTaxaAcerto.Size = new System.Drawing.Size(1356, 109);
             this.gvTaxaAcerto.TabIndex = 1;
             // 
             // pbRN_V1

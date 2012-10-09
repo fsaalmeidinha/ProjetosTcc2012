@@ -15,7 +15,7 @@ namespace TestePrevisaoBurra
         {
             DateTime inicio = new DateTime(2011, 10, 1);
             int qtdDiasPrever = 30;
-            List<double[]> listaAritmetica = MetodoMediaAritmetica.PreverMediasAritmetica("PETR4", inicio, qtdDiasPrever);
+            List<double[]> listaAritmetica = MetodoMediaAritmetica.PreverMediasAritmetica("PETR4", inicio, qtdDiasPrever, true);
             /*
             //List<double[]> listaPonderada = MetodoMediaPonderada.PreverMediasPonderada("PETR4", inicio, termino);
             //List<double[]> listaPonderadaAleatoria = MetodoMediaPonderada.PreverMediasPonderadaAleatoria("PETR4", inicio, termino);
