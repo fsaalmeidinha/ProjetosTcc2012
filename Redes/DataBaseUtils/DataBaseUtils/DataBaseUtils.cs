@@ -1154,6 +1154,8 @@ namespace DataBaseUtils
                     _dicIndicesRN.Add(5.13, new List<string>() { "ValoresAtivoSemanaPassada_PERCENTUAL" });
                     _dicIndicesRN.Add(5.14, new List<string>() { "ValoresAtivoMesPassado" });
                     _dicIndicesRN.Add(5.15, new List<string>() { "ValoresAtivoMesPassado_PERCENTUAL" });
+                    _dicIndicesRN.Add(5.16, new List<string>() { "ValoresAtivoSemanaPassada", "ValoresAtivoSemanaPassada_PERCENTUAL" });
+                    _dicIndicesRN.Add(5.17, new List<string>() { "PercentualValorAtivo_Max_Min_Med" });//teste com menos dados
                 }
                 return _dicIndicesRN;
             }
@@ -1200,11 +1202,11 @@ namespace DataBaseUtils
             foreach (DadosBE dadoBE in listCotacoes.Skip(5))
             {
                 DateTime dataDMenos8 = dadoBE.DataGeracao.AddDays(-8).Date;
-                DadosBE dadoBE_DMenos8 = listCotacoes.FirstOrDefault(cot => cot.DataGeracao >= dataDMenos8 && cot.DataGeracao < cot.DataGeracao);
+                DadosBE dadoBE_DMenos8 = listCotacoes.FirstOrDefault(cot => cot.DataGeracao >= dataDMenos8 && cot.DataGeracao < dadoBE.DataGeracao);
                 if (dadoBE_DMenos8 != null && dadoBE_DMenos8.ValorNormalizado != 0)
                 {
-                    DateTime dataDMenos7 = dataDMenos8.AddDays(1);
-                    DadosBE dadoBE_DMenos7 = listCotacoes.FirstOrDefault(cot => cot.DataGeracao >= dataDMenos7 && cot.DataGeracao < cot.DataGeracao);
+                    DateTime dataDMenos7 = dadoBE_DMenos8.DataGeracao.AddDays(1);
+                    DadosBE dadoBE_DMenos7 = listCotacoes.FirstOrDefault(cot => cot.DataGeracao >= dataDMenos7 && cot.DataGeracao < dadoBE.DataGeracao);
                     if (dadoBE_DMenos7 != null && dadoBE_DMenos7.ValorNormalizado != 0)
                     {
                         if (percentual)
@@ -1249,11 +1251,11 @@ namespace DataBaseUtils
             foreach (DadosBE dadoBE in listCotacoes.Skip(25))
             {
                 DateTime dataDMenos31 = dadoBE.DataGeracao.AddMonths(-1).AddDays(-1).Date;
-                DadosBE dadoBE_DMenos31 = listCotacoes.FirstOrDefault(cot => cot.DataGeracao >= dataDMenos31 && cot.DataGeracao < cot.DataGeracao);
+                DadosBE dadoBE_DMenos31 = listCotacoes.FirstOrDefault(cot => cot.DataGeracao >= dataDMenos31 && cot.DataGeracao < dadoBE.DataGeracao);
                 if (dadoBE_DMenos31 != null && dadoBE_DMenos31.ValorNormalizado != 0)
                 {
-                    DateTime dataDMenos30 = dataDMenos31.AddDays(1);
-                    DadosBE dadoBE_DMenos30 = listCotacoes.FirstOrDefault(cot => cot.DataGeracao >= dataDMenos30 && cot.DataGeracao < cot.DataGeracao);
+                    DateTime dataDMenos30 = dadoBE_DMenos31.DataGeracao.AddDays(1);
+                    DadosBE dadoBE_DMenos30 = listCotacoes.FirstOrDefault(cot => cot.DataGeracao >= dataDMenos30 && cot.DataGeracao < dadoBE.DataGeracao);
                     if (dadoBE_DMenos30 != null && dadoBE_DMenos30.ValorNormalizado != 0)
                     {
                         if (percentual)
@@ -1339,6 +1341,11 @@ namespace DataBaseUtils
             List<double> abaixos = inputs.Where(inp => inp < 0).ToList();
             ind++;
 
+            //Ignora uma parcela dos elementos
+            if (versao == 5.17)
+            {
+                treinamentosIniciaisIgnorar = ((dadosBE.Count / 10) * 7);
+            }
             return treinamentos.Skip(treinamentosIniciaisIgnorar).ToList();
         }
 

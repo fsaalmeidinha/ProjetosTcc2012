@@ -38,7 +38,13 @@ namespace RedeNeuralPrevisaoFinanceira_v5
         //private static double versao = 5.08;
         //private static double versao = 5.09;
         //private static double versao = 5.10;
-        private static double versao = 5.11;
+        //private static double versao = 5.11;
+        //private static double versao = 5.12;
+        //private static double versao = 5.13;
+        //private static double versao = 5.14;
+        //private static double versao = 5.15;
+        //private static double versao = 5.16;
+        private static double versao = 5.17;
         static int numeroDivisoesCrossValidation = 8;
         private static string diretorioRedes
         {

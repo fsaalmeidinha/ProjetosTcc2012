@@ -96,6 +96,18 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.cbAtivo = new System.Windows.Forms.ComboBox();
+            this.txtRN_V5_12 = new System.Windows.Forms.Label();
+            this.txtRN_V5_13 = new System.Windows.Forms.Label();
+            this.txtRN_V5_14 = new System.Windows.Forms.Label();
+            this.txtRN_V5_15 = new System.Windows.Forms.Label();
+            this.txtRN_V5_16 = new System.Windows.Forms.Label();
+            this.pbRN_V5_12 = new System.Windows.Forms.PictureBox();
+            this.pbRN_V5_13 = new System.Windows.Forms.PictureBox();
+            this.pbRN_V5_14 = new System.Windows.Forms.PictureBox();
+            this.pbRN_V5_15 = new System.Windows.Forms.PictureBox();
+            this.pbRN_V5_16 = new System.Windows.Forms.PictureBox();
+            this.label32 = new System.Windows.Forms.Label();
+            this.pbRN_V5_17 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.grafico)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvTaxaAcerto)).BeginInit();
@@ -130,6 +142,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbRN_V3_2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbRN_V3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbRN_V2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbRN_V5_12)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbRN_V5_13)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbRN_V5_14)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbRN_V5_15)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbRN_V5_16)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbRN_V5_17)).BeginInit();
             this.SuspendLayout();
             // 
             // grafico
@@ -168,7 +186,7 @@
             // pbRN_V1
             // 
             this.pbRN_V1.BackColor = System.Drawing.Color.Yellow;
-            this.pbRN_V1.Location = new System.Drawing.Point(50, 12);
+            this.pbRN_V1.Location = new System.Drawing.Point(50, 4);
             this.pbRN_V1.Name = "pbRN_V1";
             this.pbRN_V1.Size = new System.Drawing.Size(15, 15);
             this.pbRN_V1.TabIndex = 2;
@@ -178,7 +196,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(68, 12);
+            this.label1.Location = new System.Drawing.Point(68, 4);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(42, 13);
             this.label1.TabIndex = 3;
@@ -187,7 +205,7 @@
             // pbReal
             // 
             this.pbReal.BackColor = System.Drawing.Color.Red;
-            this.pbReal.Location = new System.Drawing.Point(3, 11);
+            this.pbReal.Location = new System.Drawing.Point(3, 3);
             this.pbReal.Name = "pbReal";
             this.pbReal.Size = new System.Drawing.Size(15, 15);
             this.pbReal.TabIndex = 4;
@@ -197,7 +215,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(21, 12);
+            this.label2.Location = new System.Drawing.Point(21, 4);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(29, 13);
             this.label2.TabIndex = 5;
@@ -237,9 +255,15 @@
             this.pnlLegendas.Controls.Add(this.pbMed_Exp_Simpl);
             this.pnlLegendas.Controls.Add(this.pbMed_Aritmetica);
             this.pnlLegendas.Controls.Add(this.pbMed_Ponderada);
+            this.pnlLegendas.Controls.Add(this.pbRN_V5_17);
+            this.pnlLegendas.Controls.Add(this.pbRN_V5_16);
             this.pnlLegendas.Controls.Add(this.pbRN_V5_11);
+            this.pnlLegendas.Controls.Add(this.pbRN_V5_15);
+            this.pnlLegendas.Controls.Add(this.pbRN_V5_14);
             this.pnlLegendas.Controls.Add(this.pbRN_V5_10);
+            this.pnlLegendas.Controls.Add(this.pbRN_V5_13);
             this.pnlLegendas.Controls.Add(this.pbRN_V5_09);
+            this.pnlLegendas.Controls.Add(this.pbRN_V5_12);
             this.pnlLegendas.Controls.Add(this.pbRN_V5_08);
             this.pnlLegendas.Controls.Add(this.pbRN_V5_07);
             this.pnlLegendas.Controls.Add(this.pbRN_V5_06);
@@ -262,10 +286,16 @@
             this.pnlLegendas.Controls.Add(this.label11);
             this.pnlLegendas.Controls.Add(this.pbRN_V3_2);
             this.pnlLegendas.Controls.Add(this.label10);
+            this.pnlLegendas.Controls.Add(this.label32);
+            this.pnlLegendas.Controls.Add(this.txtRN_V5_16);
             this.pnlLegendas.Controls.Add(this.pbRN_V3);
+            this.pnlLegendas.Controls.Add(this.txtRN_V5_15);
             this.pnlLegendas.Controls.Add(this.label31);
+            this.pnlLegendas.Controls.Add(this.txtRN_V5_14);
             this.pnlLegendas.Controls.Add(this.label30);
+            this.pnlLegendas.Controls.Add(this.txtRN_V5_13);
             this.pnlLegendas.Controls.Add(this.label29);
+            this.pnlLegendas.Controls.Add(this.txtRN_V5_12);
             this.pnlLegendas.Controls.Add(this.label28);
             this.pnlLegendas.Controls.Add(this.label27);
             this.pnlLegendas.Controls.Add(this.label26);
@@ -300,7 +330,7 @@
             // pbMed_Exp_Simpl
             // 
             this.pbMed_Exp_Simpl.BackColor = System.Drawing.Color.Goldenrod;
-            this.pbMed_Exp_Simpl.Location = new System.Drawing.Point(638, 55);
+            this.pbMed_Exp_Simpl.Location = new System.Drawing.Point(302, 62);
             this.pbMed_Exp_Simpl.Name = "pbMed_Exp_Simpl";
             this.pbMed_Exp_Simpl.Size = new System.Drawing.Size(15, 15);
             this.pbMed_Exp_Simpl.TabIndex = 2;
@@ -310,7 +340,7 @@
             // pbMed_Aritmetica
             // 
             this.pbMed_Aritmetica.BackColor = System.Drawing.Color.White;
-            this.pbMed_Aritmetica.Location = new System.Drawing.Point(534, 55);
+            this.pbMed_Aritmetica.Location = new System.Drawing.Point(198, 62);
             this.pbMed_Aritmetica.Name = "pbMed_Aritmetica";
             this.pbMed_Aritmetica.Size = new System.Drawing.Size(15, 15);
             this.pbMed_Aritmetica.TabIndex = 2;
@@ -320,7 +350,7 @@
             // pbMed_Ponderada
             // 
             this.pbMed_Ponderada.BackColor = System.Drawing.Color.Pink;
-            this.pbMed_Ponderada.Location = new System.Drawing.Point(424, 54);
+            this.pbMed_Ponderada.Location = new System.Drawing.Point(88, 61);
             this.pbMed_Ponderada.Name = "pbMed_Ponderada";
             this.pbMed_Ponderada.Size = new System.Drawing.Size(15, 15);
             this.pbMed_Ponderada.TabIndex = 2;
@@ -330,7 +360,7 @@
             // pbRN_V5_11
             // 
             this.pbRN_V5_11.BackColor = System.Drawing.Color.NavajoWhite;
-            this.pbRN_V5_11.Location = new System.Drawing.Point(330, 54);
+            this.pbRN_V5_11.Location = new System.Drawing.Point(330, 40);
             this.pbRN_V5_11.Name = "pbRN_V5_11";
             this.pbRN_V5_11.Size = new System.Drawing.Size(15, 15);
             this.pbRN_V5_11.TabIndex = 2;
@@ -340,7 +370,7 @@
             // pbRN_V5_10
             // 
             this.pbRN_V5_10.BackColor = System.Drawing.Color.Gold;
-            this.pbRN_V5_10.Location = new System.Drawing.Point(253, 55);
+            this.pbRN_V5_10.Location = new System.Drawing.Point(253, 41);
             this.pbRN_V5_10.Name = "pbRN_V5_10";
             this.pbRN_V5_10.Size = new System.Drawing.Size(15, 15);
             this.pbRN_V5_10.TabIndex = 2;
@@ -350,7 +380,7 @@
             // pbRN_V5_09
             // 
             this.pbRN_V5_09.BackColor = System.Drawing.Color.Olive;
-            this.pbRN_V5_09.Location = new System.Drawing.Point(172, 56);
+            this.pbRN_V5_09.Location = new System.Drawing.Point(172, 42);
             this.pbRN_V5_09.Name = "pbRN_V5_09";
             this.pbRN_V5_09.Size = new System.Drawing.Size(15, 15);
             this.pbRN_V5_09.TabIndex = 2;
@@ -360,7 +390,7 @@
             // pbRN_V5_08
             // 
             this.pbRN_V5_08.BackColor = System.Drawing.Color.Chartreuse;
-            this.pbRN_V5_08.Location = new System.Drawing.Point(87, 56);
+            this.pbRN_V5_08.Location = new System.Drawing.Point(87, 42);
             this.pbRN_V5_08.Name = "pbRN_V5_08";
             this.pbRN_V5_08.Size = new System.Drawing.Size(15, 15);
             this.pbRN_V5_08.TabIndex = 2;
@@ -370,7 +400,7 @@
             // pbRN_V5_07
             // 
             this.pbRN_V5_07.BackColor = System.Drawing.Color.DarkTurquoise;
-            this.pbRN_V5_07.Location = new System.Drawing.Point(3, 57);
+            this.pbRN_V5_07.Location = new System.Drawing.Point(3, 43);
             this.pbRN_V5_07.Name = "pbRN_V5_07";
             this.pbRN_V5_07.Size = new System.Drawing.Size(15, 15);
             this.pbRN_V5_07.TabIndex = 2;
@@ -380,7 +410,7 @@
             // pbRN_V5_06
             // 
             this.pbRN_V5_06.BackColor = System.Drawing.Color.LightCyan;
-            this.pbRN_V5_06.Location = new System.Drawing.Point(751, 32);
+            this.pbRN_V5_06.Location = new System.Drawing.Point(751, 21);
             this.pbRN_V5_06.Name = "pbRN_V5_06";
             this.pbRN_V5_06.Size = new System.Drawing.Size(15, 15);
             this.pbRN_V5_06.TabIndex = 2;
@@ -390,7 +420,7 @@
             // pbRN_V5_05
             // 
             this.pbRN_V5_05.BackColor = System.Drawing.Color.MediumBlue;
-            this.pbRN_V5_05.Location = new System.Drawing.Point(669, 32);
+            this.pbRN_V5_05.Location = new System.Drawing.Point(669, 21);
             this.pbRN_V5_05.Name = "pbRN_V5_05";
             this.pbRN_V5_05.Size = new System.Drawing.Size(15, 15);
             this.pbRN_V5_05.TabIndex = 2;
@@ -400,7 +430,7 @@
             // pbRN_V5_04
             // 
             this.pbRN_V5_04.BackColor = System.Drawing.Color.Orchid;
-            this.pbRN_V5_04.Location = new System.Drawing.Point(589, 32);
+            this.pbRN_V5_04.Location = new System.Drawing.Point(589, 21);
             this.pbRN_V5_04.Name = "pbRN_V5_04";
             this.pbRN_V5_04.Size = new System.Drawing.Size(15, 15);
             this.pbRN_V5_04.TabIndex = 2;
@@ -410,7 +440,7 @@
             // pbRN_V5_03
             // 
             this.pbRN_V5_03.BackColor = System.Drawing.Color.BlueViolet;
-            this.pbRN_V5_03.Location = new System.Drawing.Point(510, 32);
+            this.pbRN_V5_03.Location = new System.Drawing.Point(510, 21);
             this.pbRN_V5_03.Name = "pbRN_V5_03";
             this.pbRN_V5_03.Size = new System.Drawing.Size(15, 15);
             this.pbRN_V5_03.TabIndex = 2;
@@ -420,7 +450,7 @@
             // pbRN_V5_02
             // 
             this.pbRN_V5_02.BackColor = System.Drawing.Color.Brown;
-            this.pbRN_V5_02.Location = new System.Drawing.Point(428, 33);
+            this.pbRN_V5_02.Location = new System.Drawing.Point(428, 22);
             this.pbRN_V5_02.Name = "pbRN_V5_02";
             this.pbRN_V5_02.Size = new System.Drawing.Size(15, 15);
             this.pbRN_V5_02.TabIndex = 2;
@@ -430,7 +460,7 @@
             // pbRN_V5_01
             // 
             this.pbRN_V5_01.BackColor = System.Drawing.Color.LightGreen;
-            this.pbRN_V5_01.Location = new System.Drawing.Point(346, 32);
+            this.pbRN_V5_01.Location = new System.Drawing.Point(346, 21);
             this.pbRN_V5_01.Name = "pbRN_V5_01";
             this.pbRN_V5_01.Size = new System.Drawing.Size(15, 15);
             this.pbRN_V5_01.TabIndex = 2;
@@ -440,7 +470,7 @@
             // pbRN_V4_04
             // 
             this.pbRN_V4_04.BackColor = System.Drawing.Color.Lime;
-            this.pbRN_V4_04.Location = new System.Drawing.Point(261, 33);
+            this.pbRN_V4_04.Location = new System.Drawing.Point(261, 22);
             this.pbRN_V4_04.Name = "pbRN_V4_04";
             this.pbRN_V4_04.Size = new System.Drawing.Size(15, 15);
             this.pbRN_V4_04.TabIndex = 2;
@@ -450,7 +480,7 @@
             // pbRN_V4_03
             // 
             this.pbRN_V4_03.BackColor = System.Drawing.Color.DodgerBlue;
-            this.pbRN_V4_03.Location = new System.Drawing.Point(172, 34);
+            this.pbRN_V4_03.Location = new System.Drawing.Point(172, 23);
             this.pbRN_V4_03.Name = "pbRN_V4_03";
             this.pbRN_V4_03.Size = new System.Drawing.Size(15, 15);
             this.pbRN_V4_03.TabIndex = 2;
@@ -460,7 +490,7 @@
             // pbRN_V4_02
             // 
             this.pbRN_V4_02.BackColor = System.Drawing.Color.Navy;
-            this.pbRN_V4_02.Location = new System.Drawing.Point(86, 34);
+            this.pbRN_V4_02.Location = new System.Drawing.Point(86, 23);
             this.pbRN_V4_02.Name = "pbRN_V4_02";
             this.pbRN_V4_02.Size = new System.Drawing.Size(15, 15);
             this.pbRN_V4_02.TabIndex = 2;
@@ -470,7 +500,7 @@
             // pbRN_V4_01
             // 
             this.pbRN_V4_01.BackColor = System.Drawing.Color.LightSeaGreen;
-            this.pbRN_V4_01.Location = new System.Drawing.Point(3, 34);
+            this.pbRN_V4_01.Location = new System.Drawing.Point(3, 23);
             this.pbRN_V4_01.Name = "pbRN_V4_01";
             this.pbRN_V4_01.Size = new System.Drawing.Size(15, 15);
             this.pbRN_V4_01.TabIndex = 2;
@@ -480,7 +510,7 @@
             // pbRN_V3_9
             // 
             this.pbRN_V3_9.BackColor = System.Drawing.Color.Crimson;
-            this.pbRN_V3_9.Location = new System.Drawing.Point(772, 11);
+            this.pbRN_V3_9.Location = new System.Drawing.Point(772, 3);
             this.pbRN_V3_9.Name = "pbRN_V3_9";
             this.pbRN_V3_9.Size = new System.Drawing.Size(15, 15);
             this.pbRN_V3_9.TabIndex = 2;
@@ -490,7 +520,7 @@
             // pbRN_V3_8
             // 
             this.pbRN_V3_8.BackColor = System.Drawing.Color.Black;
-            this.pbRN_V3_8.Location = new System.Drawing.Point(700, 11);
+            this.pbRN_V3_8.Location = new System.Drawing.Point(700, 3);
             this.pbRN_V3_8.Name = "pbRN_V3_8";
             this.pbRN_V3_8.Size = new System.Drawing.Size(15, 15);
             this.pbRN_V3_8.TabIndex = 2;
@@ -500,7 +530,7 @@
             // pbRN_V3_7
             // 
             this.pbRN_V3_7.BackColor = System.Drawing.Color.Maroon;
-            this.pbRN_V3_7.Location = new System.Drawing.Point(623, 11);
+            this.pbRN_V3_7.Location = new System.Drawing.Point(623, 3);
             this.pbRN_V3_7.Name = "pbRN_V3_7";
             this.pbRN_V3_7.Size = new System.Drawing.Size(15, 15);
             this.pbRN_V3_7.TabIndex = 2;
@@ -510,7 +540,7 @@
             // pbRN_V3_6
             // 
             this.pbRN_V3_6.BackColor = System.Drawing.Color.SpringGreen;
-            this.pbRN_V3_6.Location = new System.Drawing.Point(546, 11);
+            this.pbRN_V3_6.Location = new System.Drawing.Point(546, 3);
             this.pbRN_V3_6.Name = "pbRN_V3_6";
             this.pbRN_V3_6.Size = new System.Drawing.Size(15, 15);
             this.pbRN_V3_6.TabIndex = 2;
@@ -520,7 +550,7 @@
             // pbRN_V3_5
             // 
             this.pbRN_V3_5.BackColor = System.Drawing.Color.MediumSlateBlue;
-            this.pbRN_V3_5.Location = new System.Drawing.Point(469, 12);
+            this.pbRN_V3_5.Location = new System.Drawing.Point(469, 4);
             this.pbRN_V3_5.Name = "pbRN_V3_5";
             this.pbRN_V3_5.Size = new System.Drawing.Size(15, 15);
             this.pbRN_V3_5.TabIndex = 2;
@@ -530,7 +560,7 @@
             // pbRN_V3_4
             // 
             this.pbRN_V3_4.BackColor = System.Drawing.Color.Purple;
-            this.pbRN_V3_4.Location = new System.Drawing.Point(393, 13);
+            this.pbRN_V3_4.Location = new System.Drawing.Point(393, 2);
             this.pbRN_V3_4.Name = "pbRN_V3_4";
             this.pbRN_V3_4.Size = new System.Drawing.Size(15, 15);
             this.pbRN_V3_4.TabIndex = 2;
@@ -540,7 +570,7 @@
             // pbRN_V3_3
             // 
             this.pbRN_V3_3.BackColor = System.Drawing.Color.Blue;
-            this.pbRN_V3_3.Location = new System.Drawing.Point(316, 12);
+            this.pbRN_V3_3.Location = new System.Drawing.Point(316, 2);
             this.pbRN_V3_3.Name = "pbRN_V3_3";
             this.pbRN_V3_3.Size = new System.Drawing.Size(15, 15);
             this.pbRN_V3_3.TabIndex = 2;
@@ -550,7 +580,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(656, 55);
+            this.label11.Location = new System.Drawing.Point(320, 62);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(83, 13);
             this.label11.TabIndex = 3;
@@ -559,7 +589,7 @@
             // pbRN_V3_2
             // 
             this.pbRN_V3_2.BackColor = System.Drawing.Color.Aqua;
-            this.pbRN_V3_2.Location = new System.Drawing.Point(243, 12);
+            this.pbRN_V3_2.Location = new System.Drawing.Point(243, 3);
             this.pbRN_V3_2.Name = "pbRN_V3_2";
             this.pbRN_V3_2.Size = new System.Drawing.Size(15, 15);
             this.pbRN_V3_2.TabIndex = 2;
@@ -569,7 +599,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(552, 55);
+            this.label10.Location = new System.Drawing.Point(216, 62);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(80, 13);
             this.label10.TabIndex = 3;
@@ -578,7 +608,7 @@
             // pbRN_V3
             // 
             this.pbRN_V3.BackColor = System.Drawing.Color.Orange;
-            this.pbRN_V3.Location = new System.Drawing.Point(178, 12);
+            this.pbRN_V3.Location = new System.Drawing.Point(178, 3);
             this.pbRN_V3.Name = "pbRN_V3";
             this.pbRN_V3.Size = new System.Drawing.Size(15, 15);
             this.pbRN_V3.TabIndex = 2;
@@ -588,7 +618,7 @@
             // label31
             // 
             this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(348, 54);
+            this.label31.Location = new System.Drawing.Point(348, 40);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(60, 13);
             this.label31.TabIndex = 3;
@@ -597,7 +627,7 @@
             // label30
             // 
             this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(271, 55);
+            this.label30.Location = new System.Drawing.Point(271, 41);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(60, 13);
             this.label30.TabIndex = 3;
@@ -606,7 +636,7 @@
             // label29
             // 
             this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(190, 56);
+            this.label29.Location = new System.Drawing.Point(190, 42);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(60, 13);
             this.label29.TabIndex = 3;
@@ -615,7 +645,7 @@
             // label28
             // 
             this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(105, 56);
+            this.label28.Location = new System.Drawing.Point(105, 42);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(60, 13);
             this.label28.TabIndex = 3;
@@ -624,7 +654,7 @@
             // label27
             // 
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(21, 57);
+            this.label27.Location = new System.Drawing.Point(21, 43);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(60, 13);
             this.label27.TabIndex = 3;
@@ -633,7 +663,7 @@
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(769, 32);
+            this.label26.Location = new System.Drawing.Point(769, 21);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(60, 13);
             this.label26.TabIndex = 3;
@@ -642,7 +672,7 @@
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(687, 32);
+            this.label25.Location = new System.Drawing.Point(687, 21);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(60, 13);
             this.label25.TabIndex = 3;
@@ -651,7 +681,7 @@
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(607, 32);
+            this.label24.Location = new System.Drawing.Point(607, 21);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(60, 13);
             this.label24.TabIndex = 3;
@@ -660,7 +690,7 @@
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(528, 32);
+            this.label23.Location = new System.Drawing.Point(528, 21);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(60, 13);
             this.label23.TabIndex = 3;
@@ -669,7 +699,7 @@
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(446, 33);
+            this.label22.Location = new System.Drawing.Point(446, 22);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(60, 13);
             this.label22.TabIndex = 3;
@@ -678,7 +708,7 @@
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(364, 32);
+            this.label21.Location = new System.Drawing.Point(364, 21);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(60, 13);
             this.label21.TabIndex = 3;
@@ -687,7 +717,7 @@
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(279, 33);
+            this.label20.Location = new System.Drawing.Point(279, 22);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(60, 13);
             this.label20.TabIndex = 3;
@@ -696,7 +726,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(442, 54);
+            this.label9.Location = new System.Drawing.Point(106, 61);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(86, 13);
             this.label9.TabIndex = 3;
@@ -705,7 +735,7 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(190, 34);
+            this.label19.Location = new System.Drawing.Point(190, 23);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(60, 13);
             this.label19.TabIndex = 3;
@@ -714,7 +744,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(104, 34);
+            this.label18.Location = new System.Drawing.Point(104, 23);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(60, 13);
             this.label18.TabIndex = 3;
@@ -723,7 +753,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(21, 34);
+            this.label17.Location = new System.Drawing.Point(21, 23);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(60, 13);
             this.label17.TabIndex = 3;
@@ -732,7 +762,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(790, 11);
+            this.label16.Location = new System.Drawing.Point(790, 3);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(54, 13);
             this.label16.TabIndex = 3;
@@ -741,7 +771,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(718, 11);
+            this.label15.Location = new System.Drawing.Point(718, 3);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(54, 13);
             this.label15.TabIndex = 3;
@@ -750,7 +780,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(641, 11);
+            this.label14.Location = new System.Drawing.Point(641, 3);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(54, 13);
             this.label14.TabIndex = 3;
@@ -759,7 +789,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(564, 11);
+            this.label13.Location = new System.Drawing.Point(564, 3);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(54, 13);
             this.label13.TabIndex = 3;
@@ -768,7 +798,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(487, 12);
+            this.label12.Location = new System.Drawing.Point(487, 4);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(54, 13);
             this.label12.TabIndex = 3;
@@ -777,7 +807,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(411, 13);
+            this.label8.Location = new System.Drawing.Point(411, 4);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(54, 13);
             this.label8.TabIndex = 3;
@@ -786,7 +816,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(333, 13);
+            this.label7.Location = new System.Drawing.Point(333, 4);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(54, 13);
             this.label7.TabIndex = 3;
@@ -795,7 +825,7 @@
             // pbRN_V2
             // 
             this.pbRN_V2.BackColor = System.Drawing.Color.Green;
-            this.pbRN_V2.Location = new System.Drawing.Point(112, 11);
+            this.pbRN_V2.Location = new System.Drawing.Point(112, 3);
             this.pbRN_V2.Name = "pbRN_V2";
             this.pbRN_V2.Size = new System.Drawing.Size(15, 15);
             this.pbRN_V2.TabIndex = 2;
@@ -805,7 +835,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(260, 13);
+            this.label6.Location = new System.Drawing.Point(260, 4);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(54, 13);
             this.label6.TabIndex = 3;
@@ -814,7 +844,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(196, 12);
+            this.label5.Location = new System.Drawing.Point(196, 4);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(42, 13);
             this.label5.TabIndex = 3;
@@ -823,7 +853,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(130, 11);
+            this.label4.Location = new System.Drawing.Point(130, 3);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(42, 13);
             this.label4.TabIndex = 3;
@@ -844,6 +874,120 @@
             this.cbAtivo.TabIndex = 9;
             this.cbAtivo.Text = "PETR4";
             this.cbAtivo.SelectedIndexChanged += new System.EventHandler(this.cbAtivo_SelectedIndexChanged);
+            // 
+            // txtRN_V5_12
+            // 
+            this.txtRN_V5_12.AutoSize = true;
+            this.txtRN_V5_12.Location = new System.Drawing.Point(432, 41);
+            this.txtRN_V5_12.Name = "txtRN_V5_12";
+            this.txtRN_V5_12.Size = new System.Drawing.Size(60, 13);
+            this.txtRN_V5_12.TabIndex = 3;
+            this.txtRN_V5_12.Text = "RN_V5_12";
+            // 
+            // txtRN_V5_13
+            // 
+            this.txtRN_V5_13.AutoSize = true;
+            this.txtRN_V5_13.Location = new System.Drawing.Point(516, 40);
+            this.txtRN_V5_13.Name = "txtRN_V5_13";
+            this.txtRN_V5_13.Size = new System.Drawing.Size(60, 13);
+            this.txtRN_V5_13.TabIndex = 3;
+            this.txtRN_V5_13.Text = "RN_V5_13";
+            // 
+            // txtRN_V5_14
+            // 
+            this.txtRN_V5_14.AutoSize = true;
+            this.txtRN_V5_14.Location = new System.Drawing.Point(601, 40);
+            this.txtRN_V5_14.Name = "txtRN_V5_14";
+            this.txtRN_V5_14.Size = new System.Drawing.Size(60, 13);
+            this.txtRN_V5_14.TabIndex = 3;
+            this.txtRN_V5_14.Text = "RN_V5_14";
+            // 
+            // txtRN_V5_15
+            // 
+            this.txtRN_V5_15.AutoSize = true;
+            this.txtRN_V5_15.Location = new System.Drawing.Point(682, 39);
+            this.txtRN_V5_15.Name = "txtRN_V5_15";
+            this.txtRN_V5_15.Size = new System.Drawing.Size(60, 13);
+            this.txtRN_V5_15.TabIndex = 3;
+            this.txtRN_V5_15.Text = "RN_V5_15";
+            // 
+            // txtRN_V5_16
+            // 
+            this.txtRN_V5_16.AutoSize = true;
+            this.txtRN_V5_16.Location = new System.Drawing.Point(759, 38);
+            this.txtRN_V5_16.Name = "txtRN_V5_16";
+            this.txtRN_V5_16.Size = new System.Drawing.Size(60, 13);
+            this.txtRN_V5_16.TabIndex = 3;
+            this.txtRN_V5_16.Text = "RN_V5_16";
+            // 
+            // pbRN_V5_12
+            // 
+            this.pbRN_V5_12.BackColor = System.Drawing.Color.Salmon;
+            this.pbRN_V5_12.Location = new System.Drawing.Point(414, 41);
+            this.pbRN_V5_12.Name = "pbRN_V5_12";
+            this.pbRN_V5_12.Size = new System.Drawing.Size(15, 15);
+            this.pbRN_V5_12.TabIndex = 2;
+            this.pbRN_V5_12.TabStop = false;
+            this.pbRN_V5_12.Click += new System.EventHandler(this.pbRns_Click);
+            // 
+            // pbRN_V5_13
+            // 
+            this.pbRN_V5_13.BackColor = System.Drawing.Color.LightBlue;
+            this.pbRN_V5_13.Location = new System.Drawing.Point(498, 40);
+            this.pbRN_V5_13.Name = "pbRN_V5_13";
+            this.pbRN_V5_13.Size = new System.Drawing.Size(15, 15);
+            this.pbRN_V5_13.TabIndex = 2;
+            this.pbRN_V5_13.TabStop = false;
+            this.pbRN_V5_13.Click += new System.EventHandler(this.pbRns_Click);
+            // 
+            // pbRN_V5_14
+            // 
+            this.pbRN_V5_14.BackColor = System.Drawing.Color.DarkRed;
+            this.pbRN_V5_14.Location = new System.Drawing.Point(583, 40);
+            this.pbRN_V5_14.Name = "pbRN_V5_14";
+            this.pbRN_V5_14.Size = new System.Drawing.Size(15, 15);
+            this.pbRN_V5_14.TabIndex = 2;
+            this.pbRN_V5_14.TabStop = false;
+            this.pbRN_V5_14.Click += new System.EventHandler(this.pbRns_Click);
+            // 
+            // pbRN_V5_15
+            // 
+            this.pbRN_V5_15.BackColor = System.Drawing.Color.Crimson;
+            this.pbRN_V5_15.Location = new System.Drawing.Point(664, 39);
+            this.pbRN_V5_15.Name = "pbRN_V5_15";
+            this.pbRN_V5_15.Size = new System.Drawing.Size(15, 15);
+            this.pbRN_V5_15.TabIndex = 2;
+            this.pbRN_V5_15.TabStop = false;
+            this.pbRN_V5_15.Click += new System.EventHandler(this.pbRns_Click);
+            // 
+            // pbRN_V5_16
+            // 
+            this.pbRN_V5_16.BackColor = System.Drawing.Color.Orange;
+            this.pbRN_V5_16.Location = new System.Drawing.Point(741, 38);
+            this.pbRN_V5_16.Name = "pbRN_V5_16";
+            this.pbRN_V5_16.Size = new System.Drawing.Size(15, 15);
+            this.pbRN_V5_16.TabIndex = 2;
+            this.pbRN_V5_16.TabStop = false;
+            this.pbRN_V5_16.Click += new System.EventHandler(this.pbRns_Click);
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(21, 60);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(60, 13);
+            this.label32.TabIndex = 3;
+            this.label32.Text = "RN_V5_17";
+            // 
+            // pbRN_V5_17
+            // 
+            this.pbRN_V5_17.BackColor = System.Drawing.Color.Black;
+            this.pbRN_V5_17.Location = new System.Drawing.Point(3, 60);
+            this.pbRN_V5_17.Name = "pbRN_V5_17";
+            this.pbRN_V5_17.Size = new System.Drawing.Size(15, 15);
+            this.pbRN_V5_17.TabIndex = 2;
+            this.pbRN_V5_17.TabStop = false;
+            this.pbRN_V5_17.Click += new System.EventHandler(this.pbRns_Click);
             // 
             // Form1
             // 
@@ -894,6 +1038,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbRN_V3_2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbRN_V3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbRN_V2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbRN_V5_12)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbRN_V5_13)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbRN_V5_14)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbRN_V5_15)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbRN_V5_16)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbRN_V5_17)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -969,6 +1119,18 @@
         private System.Windows.Forms.PictureBox pbRN_V5_11;
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.ComboBox cbAtivo;
+        private System.Windows.Forms.PictureBox pbRN_V5_16;
+        private System.Windows.Forms.PictureBox pbRN_V5_15;
+        private System.Windows.Forms.PictureBox pbRN_V5_14;
+        private System.Windows.Forms.PictureBox pbRN_V5_13;
+        private System.Windows.Forms.PictureBox pbRN_V5_12;
+        private System.Windows.Forms.Label txtRN_V5_16;
+        private System.Windows.Forms.Label txtRN_V5_15;
+        private System.Windows.Forms.Label txtRN_V5_14;
+        private System.Windows.Forms.Label txtRN_V5_13;
+        private System.Windows.Forms.Label txtRN_V5_12;
+        private System.Windows.Forms.PictureBox pbRN_V5_17;
+        private System.Windows.Forms.Label label32;
     }
 }
 

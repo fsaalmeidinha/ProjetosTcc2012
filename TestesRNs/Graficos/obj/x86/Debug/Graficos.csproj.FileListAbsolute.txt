@@ -1,0 +1,14 @@
+C:\Users\Felipe\Desktop\TestesRNs\Graficos\bin\Debug\Graficos.exe
+C:\Users\Felipe\Desktop\TestesRNs\Graficos\bin\Debug\Graficos.pdb
+C:\Users\Felipe\Desktop\TestesRNs\Graficos\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Felipe\Desktop\TestesRNs\Graficos\obj\x86\Debug\Graficos.Properties.Resources.resources
+C:\Users\Felipe\Desktop\TestesRNs\Graficos\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\Felipe\Desktop\TestesRNs\Graficos\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\Felipe\Desktop\TestesRNs\Graficos\obj\x86\Debug\Graficos.exe
+C:\Users\Felipe\Desktop\TestesRNs\Graficos\obj\x86\Debug\Graficos.pdb
+C:\Users\Felipe\Desktop\TestesRNs\Graficos\bin\Debug\NeuronDotNet.Core.dll
+C:\Users\Felipe\Desktop\TestesRNs\Graficos\bin\Debug\TestesRNs.pdb
+C:\Users\Felipe\Desktop\TestesRNs\Graficos\bin\Debug\NeuronDotNet.Core.xml
+C:\Users\Felipe\Desktop\TestesRNs\Graficos\obj\x86\Debug\Graficos.Form1.resources
+C:\Users\Felipe\Desktop\TestesRNs\Graficos\bin\Debug\Graficos.exe.config
+C:\Users\Felipe\Desktop\TestesRNs\Graficos\bin\Debug\TestesRNs.exe

@@ -96,6 +96,5 @@ namespace RedeNeuralPrevisaoFinanceira_v5
                 formatter.Serialize(stream, network);
             }
         }
-
     }
 }

@@ -1,0 +1,10 @@
+C:\Users\Felipe\Desktop\TestesRNs\Relatorios\Relatorios\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Felipe\Desktop\TestesRNs\Relatorios\Relatorios\bin\Debug\Relatorios.exe
+C:\Users\Felipe\Desktop\TestesRNs\Relatorios\Relatorios\bin\Debug\Relatorios.pdb
+C:\Users\Felipe\Desktop\TestesRNs\Relatorios\Relatorios\bin\Debug\NeuronDotNet.Core.dll
+C:\Users\Felipe\Desktop\TestesRNs\Relatorios\Relatorios\bin\Debug\NeuronDotNet.Core.xml
+C:\Users\Felipe\Desktop\TestesRNs\Relatorios\Relatorios\bin\Debug\TestesRNs.pdb
+C:\Users\Felipe\Desktop\TestesRNs\Relatorios\Relatorios\obj\x86\Debug\Relatorios.exe
+C:\Users\Felipe\Desktop\TestesRNs\Relatorios\Relatorios\obj\x86\Debug\Relatorios.pdb
+C:\Users\Felipe\Desktop\TestesRNs\Relatorios\Relatorios\bin\Debug\Relatorios.exe.config
+C:\Users\Felipe\Desktop\TestesRNs\Relatorios\Relatorios\bin\Debug\TestesRNs.dll

@@ -1,0 +1,10 @@
+A- Inclusão do valor real como parâmetro de entrada, esperando como saída, o valor real do dia seguinte
+
+B- Não inclui o valor real como entrada, esperando como saída, a um valor de variação positivo ou negativo em relação ao dia atual.
+
+
+v601(A) -> Bollinger com todos os treinamentos
+v602(B) -> Tendencias com todos os treinamentos
+v603(B) -> Tendencias com 3/10 dos treinamentos
+v604(B) -> Bollinger com todos os treinamentos
+v605(B) -> Bollinger com 3/10 dos treinamentos

@@ -1,0 +1,13 @@
+C:\Users\Felipe\Desktop\TestesRNs\TestesRNs\bin\Debug\TestesRNs.exe
+C:\Users\Felipe\Desktop\TestesRNs\TestesRNs\bin\Debug\TestesRNs.pdb
+C:\Users\Felipe\Desktop\TestesRNs\TestesRNs\bin\Debug\NeuronDotNet.Core.xml
+C:\Users\Felipe\Desktop\TestesRNs\TestesRNs\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Felipe\Desktop\TestesRNs\TestesRNs\obj\x86\Debug\TestesRNs.Resources.resources
+C:\Users\Felipe\Desktop\TestesRNs\TestesRNs\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\Felipe\Desktop\TestesRNs\TestesRNs\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\Felipe\Desktop\TestesRNs\TestesRNs\obj\x86\Debug\TestesRNs.pdb
+C:\Users\Felipe\Desktop\TestesRNs\TestesRNs\bin\Debug\TestesRNs.exe.config
+C:\Users\Felipe\Desktop\TestesRNs\lib-geral\TestesRNs.pdb
+C:\Users\Felipe\Desktop\TestesRNs\lib-geral\TestesRNs.exe.config
+C:\Users\Felipe\Desktop\TestesRNs\lib-geral\TestesRNs.exe
+C:\Users\Felipe\Desktop\TestesRNs\TestesRNs\obj\x86\Debug\TestesRNs.exe

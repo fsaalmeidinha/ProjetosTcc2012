@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestesRNs", "TestesRNs\TestesRNs.csproj", "{C82F4512-56AE-47E9-9775-535C767ED569}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graficos", "Graficos\Graficos.csproj", "{7A28B4D5-3E36-47E7-B31A-B504599FC8C9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C82F4512-56AE-47E9-9775-535C767ED569}.Debug|x86.ActiveCfg = Debug|x86
+		{C82F4512-56AE-47E9-9775-535C767ED569}.Debug|x86.Build.0 = Debug|x86
+		{C82F4512-56AE-47E9-9775-535C767ED569}.Release|x86.ActiveCfg = Release|x86
+		{C82F4512-56AE-47E9-9775-535C767ED569}.Release|x86.Build.0 = Release|x86
+		{7A28B4D5-3E36-47E7-B31A-B504599FC8C9}.Debug|x86.ActiveCfg = Debug|x86
+		{7A28B4D5-3E36-47E7-B31A-B504599FC8C9}.Debug|x86.Build.0 = Debug|x86
+		{7A28B4D5-3E36-47E7-B31A-B504599FC8C9}.Release|x86.ActiveCfg = Release|x86
+		{7A28B4D5-3E36-47E7-B31A-B504599FC8C9}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
