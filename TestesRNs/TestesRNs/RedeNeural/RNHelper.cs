@@ -44,14 +44,13 @@ namespace TestesRNs.RedeNeural
             }
 
             //Recupera os treinamentos
-            List<Treinamento> treinamentos = Treinamento.RecuperarTreinamentoRN(dadosBEPrever, versao);
+            List<Treinamento> treinamentos = Treinamento.RecuperarTreinamentoRN(dadosBEPrever, versao).Normalizar(papel, versao);
             Network redeNeural = RecuperarRedeNeural(papel, versao);
             List<double[]> resultado = new List<double[]>();
             foreach (Treinamento treinamento in treinamentos)
             {
                 List<double> outputPrevistoNormalizado = redeNeural.Run(treinamento.Input.ToArray()).ToList();
                 List<double> outputPrevistoDesnormalizado = Treinamento.DesnormalizarSaidas(outputPrevistoNormalizado, papel, versao);
-                if (outputPrevistoDesnormalizado[0] > outputPrevistoDesnormalizado[1])
                 //double outputPrevisto = DadoBE.DesnormalizarDado(outputPrevistoNormalizado[0], papel);
                 //double outputEsperado = DadoBE.DesnormalizarDado(treinamento.Output[0], papel);
                 //resultado.Add(new double[] { outputEsperado, outputPrevisto });
@@ -102,7 +101,7 @@ namespace TestesRNs.RedeNeural
             string nomeRedeNeural = RecuperarNomeRedeNeural(papel, versao);
             int numeroNeuronios = 1;
             double taxaAprendizado = 0.1d;//0.25
-            int ciclos = 1000;//2000
+            int ciclos = 10000000;//2000
             double erroMedio = RNCore.Treinar(nomeRedeNeural, treinamentos, numeroNeuronios, taxaAprendizado, ciclos);
 
             return erroMedio;

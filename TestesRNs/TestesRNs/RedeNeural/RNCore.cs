@@ -52,9 +52,20 @@ namespace TestesRNs.RedeNeural
                 trainingSet.Add(new TrainingSample(treinamento.Input.ToArray(), treinamento.Output.ToArray()));
             }
 
+            double lastMeanSquareError = 1;
             network.EndEpochEvent += new TrainingEpochEventHandler(
                 delegate(object senderNetwork, TrainingEpochEventArgs argsNw)
                 {
+                    if (argsNw.TrainingIteration > 0 && argsNw.TrainingIteration % 100 == 0)
+                    {
+                        double erroAt = Convert.ToDouble(senderNetwork.GetType().GetProperty("MeanSquaredError").GetValue(senderNetwork, null));
+                        if (erroAt > lastMeanSquareError && Math.Abs(lastMeanSquareError - erroAt) < 0.01)
+                        {
+                            network.StopLearning();
+                        }
+                        else
+                            lastMeanSquareError = erroAt;
+                    }
                 });
 
             network.Learn(trainingSet, ciclos);

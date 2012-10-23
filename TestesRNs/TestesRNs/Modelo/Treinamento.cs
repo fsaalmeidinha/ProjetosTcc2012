@@ -176,8 +176,8 @@ namespace TestesRNs.Modelo
                 }
                 else
                 {
-                    maxVal = treinamentosClone.Max(trein => trein.Input[indOutput]);
-                    minVal = treinamentosClone.Min(trein => trein.Input[indOutput]);
+                    maxVal = treinamentosClone.Max(trein => trein.Output[indOutput]);
+                    minVal = treinamentosClone.Min(trein => trein.Output[indOutput]);
                     minVal = minVal < 0 ? 0 : minVal;
                 }
 
