@@ -51,6 +51,7 @@ namespace TestesRNs.RedeNeural
             {
                 List<double> outputPrevistoNormalizado = redeNeural.Run(treinamento.Input.ToArray()).ToList();
                 List<double> outputPrevistoDesnormalizado = Treinamento.DesnormalizarSaidas(outputPrevistoNormalizado, papel, versao);
+                if (outputPrevistoDesnormalizado[0] > outputPrevistoDesnormalizado[1])
                 //double outputPrevisto = DadoBE.DesnormalizarDado(outputPrevistoNormalizado[0], papel);
                 //double outputEsperado = DadoBE.DesnormalizarDado(treinamento.Output[0], papel);
                 //resultado.Add(new double[] { outputEsperado, outputPrevisto });

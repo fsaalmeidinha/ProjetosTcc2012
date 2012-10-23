@@ -15,8 +15,8 @@ namespace Graficos
     {
         private int janelaVerticalEmReais = 1;
         string papel = "PETR4";//PETR4,ETER3
-        int qtdDiasPrever = 55;//30/03/2012
-        DateTime dataInicialPrevisao = new DateTime(2012, 1, 10);
+        int qtdDiasPrever = 100;
+        DateTime dataInicialPrevisao = new DateTime(2011, 09, 1);
         Versao versao = Versao.V602;
 
         public Form1()

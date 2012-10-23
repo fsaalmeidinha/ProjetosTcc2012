@@ -12,7 +12,7 @@ namespace TestesRNs
         static void Main(string[] args)
         {
             string papel = "PETR4";//PETR4,ETER3,NATU3
-            Versao versao = Versao.V604;
+            Versao versao = Versao.V601;
             //DateTime dataInicialPrevisao = new DateTime(2011, 09, 10);
             //int qtdDiasPrever = 60;
 
