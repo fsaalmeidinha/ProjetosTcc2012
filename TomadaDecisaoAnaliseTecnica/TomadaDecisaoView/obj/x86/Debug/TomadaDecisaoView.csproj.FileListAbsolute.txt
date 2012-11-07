@@ -1,0 +1,12 @@
+C:\Users\Felipe\Desktop\TomadaDecisaoAnaliseTecnica\TomadaDecisaoView\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Felipe\Desktop\TomadaDecisaoAnaliseTecnica\TomadaDecisaoView\obj\x86\Debug\TomadaDecisaoView.Properties.Resources.resources
+C:\Users\Felipe\Desktop\TomadaDecisaoAnaliseTecnica\TomadaDecisaoView\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\Felipe\Desktop\TomadaDecisaoAnaliseTecnica\TomadaDecisaoView\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\Felipe\Desktop\TomadaDecisaoAnaliseTecnica\TomadaDecisaoView\bin\Debug\TomadaDecisaoView.exe
+C:\Users\Felipe\Desktop\TomadaDecisaoAnaliseTecnica\TomadaDecisaoView\bin\Debug\TomadaDecisaoView.pdb
+C:\Users\Felipe\Desktop\TomadaDecisaoAnaliseTecnica\TomadaDecisaoView\bin\Debug\AnaliseTecnica.dll
+C:\Users\Felipe\Desktop\TomadaDecisaoAnaliseTecnica\TomadaDecisaoView\bin\Debug\AnaliseTecnica.pdb
+C:\Users\Felipe\Desktop\TomadaDecisaoAnaliseTecnica\TomadaDecisaoView\obj\x86\Debug\TomadaDecisaoView.exe
+C:\Users\Felipe\Desktop\TomadaDecisaoAnaliseTecnica\TomadaDecisaoView\obj\x86\Debug\TomadaDecisaoView.pdb
+C:\Users\Felipe\Desktop\TomadaDecisaoAnaliseTecnica\TomadaDecisaoView\bin\Debug\TomadaDecisaoView.exe.config
+C:\Users\Felipe\Desktop\TomadaDecisaoAnaliseTecnica\TomadaDecisaoView\obj\x86\Debug\TomadaDecisaoView.Form1.resources

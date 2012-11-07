@@ -1,0 +1,6 @@
+C:\Users\Felipe\Desktop\TomadaDecisaoAnaliseTecnica\AnaliseTecnica\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Felipe\Desktop\TomadaDecisaoAnaliseTecnica\AnaliseTecnica\bin\Debug\AnaliseTecnica.dll.config
+C:\Users\Felipe\Desktop\TomadaDecisaoAnaliseTecnica\AnaliseTecnica\bin\Debug\AnaliseTecnica.dll
+C:\Users\Felipe\Desktop\TomadaDecisaoAnaliseTecnica\AnaliseTecnica\bin\Debug\AnaliseTecnica.pdb
+C:\Users\Felipe\Desktop\TomadaDecisaoAnaliseTecnica\AnaliseTecnica\obj\Debug\AnaliseTecnica.dll
+C:\Users\Felipe\Desktop\TomadaDecisaoAnaliseTecnica\AnaliseTecnica\obj\Debug\AnaliseTecnica.pdb
