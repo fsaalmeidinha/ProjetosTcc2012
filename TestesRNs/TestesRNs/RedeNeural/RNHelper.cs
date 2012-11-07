@@ -13,6 +13,7 @@ namespace TestesRNs.RedeNeural
 {
     public class RNHelper
     {
+        private static int numeroValidacoes = 8;
         private static string diretorioRedes
         {
             get
@@ -24,14 +25,7 @@ namespace TestesRNs.RedeNeural
             }
         }
 
-        public static List<double[]> PreverAtivo(DateTime dataInicial, int dias, string nomeRN, out string papel, out Versao versao)
-        {
-            KeyValuePair<string, Versao> rn = RecuperarPapel_VersaoRedePorNome(nomeRN);
-            papel = rn.Key;
-            versao = rn.Value;
-            return PreverAtivo(dataInicial, dias, rn.Key, rn.Value);
-        }
-        public static List<double[]> PreverAtivo(DateTime dataInicial, int dias, string papel, Versao versao)
+        public static List<double[]> PreverAtivo(DateTime dataInicial, int dias, string papel, List<Versao> versoes, int tamanhoTendencia)
         {
             List<DadoBE> dadosBE = DadoBE.PegarTodos(papel);
             DadoBE primeiroDadoPrever = dadosBE.Last(dado => dado.DataGeracao <= dataInicial);
@@ -44,77 +38,111 @@ namespace TestesRNs.RedeNeural
             }
 
             //Recupera os treinamentos
-            List<Treinamento> treinamentos = Treinamento.RecuperarTreinamentoRN(dadosBEPrever, versao).Normalizar(papel, versao);
-            Network redeNeural = RecuperarRedeNeural(papel, versao);
+            List<Treinamento> treinamentos = Treinamento.RecuperarTreinamentoRN(dadosBEPrever, versoes, tamanhoTendencia).Normalizar(papel, versoes, tamanhoTendencia);
+            Network redeNeural = RecuperarRedeNeural(papel, versoes, tamanhoTendencia);
             List<double[]> resultado = new List<double[]>();
             foreach (Treinamento treinamento in treinamentos)
             {
                 List<double> outputPrevistoNormalizado = redeNeural.Run(treinamento.Input.ToArray()).ToList();
-                List<double> outputPrevistoDesnormalizado = Treinamento.DesnormalizarSaidas(outputPrevistoNormalizado, papel, versao);
+                List<double> outputPrevistoDesnormalizado = Treinamento.DesnormalizarSaidas(outputPrevistoNormalizado, papel, versoes, tamanhoTendencia);
                 //double outputPrevisto = DadoBE.DesnormalizarDado(outputPrevistoNormalizado[0], papel);
                 //double outputEsperado = DadoBE.DesnormalizarDado(treinamento.Output[0], papel);
                 //resultado.Add(new double[] { outputEsperado, outputPrevisto });
-                resultado.Add(new double[] { Treinamento.DesnormalizarSaidas(treinamento.Output, papel, versao)[0], outputPrevistoDesnormalizado[0] });
-            }
-
-            //Func<double, double, double> tratarPercentual = (percent, valorDiaAnterior) => percent > 0.5 ?
-            //    (valorDiaAnterior * (1 + Math.Abs(0.5 - percent))) :
-            //    (valorDiaAnterior * (1 - Math.Abs(0.5 - percent)));
-            Func<double, double, double> tratarPercentual = (percent, valorDiaAnterior) => valorDiaAnterior * (
-                percent > 0.5 ? (1 + Math.Abs(0.5 - percent)) : (1 - Math.Abs(0.5 - percent))
-                );
-
-            switch (versao)
-            {
-                case Versao.V601:
-
-                    break;
-                default:
-                    /*Tratar output percentual*/
-                    DadoBE dadoBEPrevisao = primeiroDadoPrever;
-                    for (int indPrevisao = 0; indPrevisao < dias; indPrevisao++)
-                    {
-                        resultado[indPrevisao][0] = tratarPercentual(resultado[indPrevisao][0], dadoBEPrevisao.Anterior.PrecoFechamento);
-                        resultado[indPrevisao][1] = tratarPercentual(resultado[indPrevisao][1], dadoBEPrevisao.Anterior.PrecoFechamento);
-                        dadoBEPrevisao = dadoBEPrevisao.Proximo;
-                    }
-                    /*Tratar output percentual*/
-                    break;
+                resultado.Add(new double[] { Treinamento.DesnormalizarSaidas(treinamento.Output, papel, versoes, tamanhoTendencia)[0], outputPrevistoDesnormalizado[0] });
             }
 
             return resultado;
         }
 
-        internal static double TreinarRedeNeural(string papel, Versao versao)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="papel"></param>
+        /// <param name="versoes"></param>
+        /// <param name="tamanhoTendencia">Quantos dias após a compra, iremos revender o ativo</param>
+        /// <returns></returns>
+        internal static Relatorio TreinarRedeNeural(string papel, List<Versao> versoes, int tamanhoTendencia)
         {
             List<DadoBE> dadosBE = DadoBE.PegarTodos(papel);
-            if (versao == Versao.V603 || versao == Versao.V605)
+            List<Treinamento> treinamentos = Treinamento.RecuperarTreinamentoRN(dadosBE, versoes, tamanhoTendencia).Normalizar(papel, versoes, tamanhoTendencia, true);
+            Relatorio relatorio = new Relatorio(papel, versoes, tamanhoTendencia, dadosBE.Min(dado => dado.DataGeracao), dadosBE.Max(dado => dado.DataGeracao), dadosBE.Count);
+            for (int divCrossValidation = 0; divCrossValidation < numeroValidacoes; divCrossValidation++)
             {
-                dadosBE = dadosBE.Skip(dadosBE.Count / 10 * 7).ToList();
+                List<Treinamento> dadosTeste = treinamentos.Skip(treinamentos.Count / 8 * divCrossValidation).Take(treinamentos.Count / 8).ToList();
+                List<Treinamento> dadosTreinamento = treinamentos.Where(trein => !dadosTeste.Any(teste => teste.Data.Equals(trein.Data))).ToList();
+
+                string nomeRedeNeural = RecuperarNomeRedeNeural(papel, versoes, tamanhoTendencia);
+                int numeroNeuronios = 0;//30;
+                double taxaAprendizado = 0.25d;//0.25
+                int ciclos = 10000000;//2000
+                double acertoTreinamento = RNCore.Treinar(nomeRedeNeural, treinamentos, numeroNeuronios, taxaAprendizado, ciclos);
+
+                double percentualAcerto = RecuperarErroTendencias(papel, versoes, dadosTeste, tamanhoTendencia);
+                relatorio.AdicionarAoRelatorio(dadosTeste, percentualAcerto, tamanhoTendencia);
+                //double percentual = SimularTomadasDeDecisoes(dadosBE, treinamentosTendencias, papel, versao);
+            }
+            return relatorio;
+        }
+        public static double RecuperarErroTendencias(string papel, List<Versao> Versoes, List<Treinamento> treinamentosTendencias, int tamanhoTendencia)
+        {
+            Network redeNeural = RecuperarRedeNeural(papel, Versoes, tamanhoTendencia);
+            int numeroAcertos = 0;
+            foreach (Treinamento treinamento in treinamentosTendencias)
+            {
+                double[] previsao = redeNeural.Run(treinamento.Input.ToArray());
+
+                if (RNCore.ValoresMaximosNoMesmoIndice(previsao, treinamento.Output.ToArray()))
+                {
+                    numeroAcertos++;
+                }
+                //if (RNCore.ValoresMaximosNoMesmoIndice(treinamento.Input.ToArray(), treinamento.Output.ToArray()))
+                //{
+                //    numeroAcertos++;
+                //}
             }
 
+            return 100.00 / treinamentosTendencias.Count * numeroAcertos;
+        }
+        /*public static double SimularTomadasDeDecisoes(List<DadoBE> dadosBE, List<Treinamento> treinamentos, string papel, Versao versao)
+        {
+            Network redeNeural = RecuperarRedeNeural(papel, versao);
+            double percentualGanhoPerda = 0;
+            int numCompras = 0;
+            foreach (Treinamento treinamento in treinamentos)
+            {
+                //double[] previsao = redeNeural.Run(treinamento.Input.ToArray());
+                //if (previsao[0] > previsao[1])
+                //{
+                numCompras++;
+                DadoBE dadoBEComprar = dadosBE.First(dado => dado.DataGeracao == treinamento.Data);
+                DadoBE dadoBEVender = dadoBEComprar;
+                //Será vendido daqui 5 dias
+                for (int i = 0; i < 5; i++)
+                {
+                    if (dadoBEVender.Proximo == null)
+                        break;
+                    dadoBEVender = dadoBEVender.Proximo;
+                }
 
-            List<Treinamento> treinamentos = Treinamento.RecuperarTreinamentoRN(dadosBE, versao).Normalizar(papel, versao, true);
-            //ignorar elementos finais, permitindo testes
-            treinamentos = treinamentos.Take(treinamentos.Count / 8 * 7).ToList();
+                double variacaoEmReais = Math.Abs(dadoBEComprar.PrecoFechamento - dadoBEVender.PrecoFechamento);
+                double percentualVariacao_G_P = variacaoEmReais / dadoBEComprar.PrecoFechamento;
+                if (dadoBEComprar.PrecoFechamento < dadoBEVender.PrecoFechamento)
+                    percentualGanhoPerda += variacaoEmReais;
+                else
+                    percentualGanhoPerda -= variacaoEmReais;
+                //}
+            }
+            return percentualGanhoPerda;
+        }*/
 
-            string nomeRedeNeural = RecuperarNomeRedeNeural(papel, versao);
-            int numeroNeuronios = 1;
-            double taxaAprendizado = 0.1d;//0.25
-            int ciclos = 10000000;//2000
-            double erroMedio = RNCore.Treinar(nomeRedeNeural, treinamentos, numeroNeuronios, taxaAprendizado, ciclos);
-
-            return erroMedio;
+        internal static string RecuperarNomeRedeNeural(string papel, List<Versao> versoes, int tamanhoTendencia)
+        {
+            return String.Format("{0}_{1}_tamtend{2}", papel, versoes.Sum(ver => Convert.ToInt32(ver)), tamanhoTendencia);
         }
 
-        internal static string RecuperarNomeRedeNeural(string papel, Versao versao)
+        internal static Network RecuperarRedeNeural(string papel, List<Versao> versoes, int tamanhoTendencia)
         {
-            return String.Format("{0}_{1}", papel, Convert.ToInt32(versao));
-        }
-
-        private static Network RecuperarRedeNeural(string papel, Versao versao)
-        {
-            string nomeRede = RecuperarNomeRedeNeural(papel, versao);
+            string nomeRede = RecuperarNomeRedeNeural(papel, versoes, tamanhoTendencia);
             using (Stream stream = File.Open(diretorioRedes + nomeRede + ".ndn", FileMode.Open))
             {
                 IFormatter formatter = new BinaryFormatter();

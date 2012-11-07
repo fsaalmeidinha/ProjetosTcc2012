@@ -39,10 +39,12 @@ namespace TestesRNs.RedeNeural
             //double taxaAprendizado = 0.25d;
 
             ActivationLayer inputLayer = new LinearLayer(inputLayerCount);
-            ActivationLayer hiddenLayer = new SigmoidLayer(numeroNeuronios);
+            //ActivationLayer hiddenLayer = new SigmoidLayer(numeroNeuronios);
             ActivationLayer outputLayer = new LinearLayer(outputLayerCount);
-            new BackpropagationConnector(inputLayer, hiddenLayer).Initializer = new RandomFunction(0, 0.3d);
-            new BackpropagationConnector(hiddenLayer, outputLayer).Initializer = new RandomFunction(0, 0.3d);
+            outputLayer.UseFixedBiasValues = true;
+
+            new BackpropagationConnector(inputLayer, outputLayer).Initializer = new RandomFunction(0, 0.3d);
+            //new BackpropagationConnector(hiddenLayer, outputLayer).Initializer = new RandomFunction(0, 0.3d);
             network = new BackpropagationNetwork(inputLayer, outputLayer);
             network.SetLearningRate(taxaAprendizado);
 
@@ -59,7 +61,8 @@ namespace TestesRNs.RedeNeural
                     if (argsNw.TrainingIteration > 0 && argsNw.TrainingIteration % 100 == 0)
                     {
                         double erroAt = Convert.ToDouble(senderNetwork.GetType().GetProperty("MeanSquaredError").GetValue(senderNetwork, null));
-                        if (erroAt > lastMeanSquareError && Math.Abs(lastMeanSquareError - erroAt) < 0.01)
+                        //Se o erro cresceu ou se o erro melhorou menos do que 0.05%, parar o aprendizado
+                        if (erroAt > lastMeanSquareError || Math.Abs(lastMeanSquareError - erroAt) < (lastMeanSquareError / 100))//0.1% de melhora..
                         {
                             network.StopLearning();
                         }
@@ -69,15 +72,18 @@ namespace TestesRNs.RedeNeural
                 });
 
             network.Learn(trainingSet, ciclos);
-            double erroGeralRede = 0;
+
+            int numeroAcertos = 0;
             foreach (Treinamento treinamento in treinamentos)
             {
                 double[] previsao = network.Run(treinamento.Input.ToArray());
                 //double erroRede = 1 - Math.Min(previsao.First(), treinamento.Output.First()) / Math.Max(previsao.First(), treinamento.Output.First());
-                double erroRede = Math.Abs(previsao.First() - treinamento.Output.First()) / treinamento.Output.First();
-                erroGeralRede += erroRede;
+                if (ValoresMaximosNoMesmoIndice(previsao, treinamento.Output.ToArray()))
+                {
+                    numeroAcertos++;
+                }
             }
-            erroGeralRede = erroGeralRede / treinamentos.Count;
+            double acertoRede = numeroAcertos / treinamentos.Count * 100;
 
             using (Stream stream = File.Open(diretorioRedes + nomeRedeNeural + ".ndn", FileMode.Create))
             {
@@ -85,7 +91,13 @@ namespace TestesRNs.RedeNeural
                 formatter.Serialize(stream, network);
             }
 
-            return erroGeralRede;
+            return acertoRede;
+        }
+        public static bool ValoresMaximosNoMesmoIndice(double[] inp, double[] outp)
+        {
+            int indInp = inp.ToList().IndexOf(inp.Max());
+            int indOutp = outp.ToList().IndexOf(outp.Max());
+            return indInp == indOutp;
         }
     }
 }

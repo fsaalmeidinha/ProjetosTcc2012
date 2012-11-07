@@ -21,9 +21,9 @@ namespace TestesRNs.Modelo
             }
         }
         static Dictionary<string, List<double>> ValoresMaxMinGlobal = new Dictionary<string, List<double>>();
-        internal static List<double> RecuperarValoresMaxMin(string papel, Versao versao)
+        internal static List<double> RecuperarValoresMaxMin(string papel, List<Versao> versoes, int tamanhoTendencia)
         {
-            string nomeRede = RNHelper.RecuperarNomeRedeNeural(papel, versao);
+            string nomeRede = RNHelper.RecuperarNomeRedeNeural(papel, versoes, tamanhoTendencia);
             if (ValoresMaxMinGlobal.ContainsKey(nomeRede))
             {
                 return ValoresMaxMinGlobal[nomeRede];
@@ -63,45 +63,80 @@ namespace TestesRNs.Modelo
         }
         public List<double> Input { get; set; }
         public List<double> Output { get; set; }
+        public DateTime Data { get; set; }
 
-        public static List<Treinamento> RecuperarTreinamentoRN(List<DadoBE> dadosBE, Versao versao)
+        public static List<Treinamento> RecuperarTreinamentoRN(List<DadoBE> dadosBE, List<Versao> versoes, int tamanhoTendencia)
         {
             List<Treinamento> treinamentos = new List<Treinamento>();
             for (int i = 0; i < dadosBE.Count - 1; i++)
             {
-                Treinamento treinamento = new Treinamento();
-                if (versao == Versao.V601)
-                    treinamento.Input.Add(dadosBE[i].PrecoFechamento);
+                Treinamento treinamento = new Treinamento()
+                    {
+                        Data = dadosBE[i].DataGeracao
+                    };
 
-                if (versao == Versao.V601 || versao == Versao.V604 || versao == Versao.V605)
+                foreach (Versao versao in versoes)
                 {
-                    treinamento.Input.Add(dadosBE[i].ValorBollinger);
+                    switch (versao)
+                    {
+                        case Versao.V6001:
+                            treinamento.Input.AddRange(dadosBE[i].ValorBollinger);
+                            break;
+                        case Versao.V6002:
+                            treinamento.Input.AddRange(dadosBE[i].AnaliseMediaMovelSimples5Dias);
+                            break;
+                        case Versao.V6004:
+                            treinamento.Input.AddRange(dadosBE[i].AnaliseWilliams_Percent_R_14P);
+                            break;
+                        case Versao.V6008:
+                            treinamento.Input.AddRange(dadosBE[i].AnaliseWilliams_Percent_R_28P);
+                            break;
+                        case Versao.V6016:
+                            treinamento.Input.AddRange(dadosBE[i].AnaliseArron_Up_Down);
+                            break;
+                        case Versao.V6032:
+                            treinamento.Input.AddRange(dadosBE[i].DuracaoTendencias);
+                            break;
+                        default:
+                            throw new Exception();
+                            break;
+                    }
                 }
 
-                if (versao == Versao.V602 || versao == Versao.V603)
+                //double variacao = Math.Abs(dadosBE[i].Anterior.PrecoFechamento - dadosBE[i].PrecoFechamento) / dadosBE[i].Anterior.PrecoFechamento;
+                //if (dadosBE[i].Anterior.PrecoFechamento > dadosBE[i].PrecoFechamento)
+                //    treinamento.Output.Add(0.5 - variacao);
+                //else
+                //    treinamento.Output.Add(0.5 + variacao);
+
+
+                //if (dadosBE[i].Anterior.PrecoFechamento > dadosBE[i].PrecoFechamento)
+                //    treinamento.Output.AddRange(new List<double>() { 0, 1 });
+                //else
+                //    treinamento.Output.AddRange(new List<double>() { 1, 0 });
+
+                double variacao = 0;
+                for (int j = i; j < i + tamanhoTendencia && j < dadosBE.Count; j++)
                 {
-                    treinamento.Input.AddRange(dadosBE[i].DuracaoTendencias);
+                    if (dadosBE[j].Proximo != null)
+                        variacao += dadosBE[j].Proximo.PrecoFechamento - dadosBE[j].PrecoFechamento;
                 }
 
-                if (versao == Versao.V601)
-                    treinamento.Output.Add(dadosBE[i].Proximo.PrecoFechamento);
+                //Tendencia de alta
+                if (variacao > 0)
+                {
+                    treinamento.Output.AddRange(new List<double>() { 1, 0 });
+                }
+                //Tendencia de baixa
                 else
                 {
-                    double variacao = Math.Abs(dadosBE[i].Anterior.PrecoFechamento - dadosBE[i].PrecoFechamento) / dadosBE[i].Anterior.PrecoFechamento;
-                    if (dadosBE[i].Anterior.PrecoFechamento > dadosBE[i].PrecoFechamento)
-                        treinamento.Output.Add(0.5 - variacao);
-                    else
-                        treinamento.Output.Add(0.5 + variacao);
-                    //if (dadosBE[i].Anterior.PrecoFechamento > dadosBE[i].PrecoFechamento)
-                    //    treinamento.Output.AddRange(new List<double>() { 0, 1 });
-                    //else
-                    //    treinamento.Output.AddRange(new List<double>() { 1, 0 });
+                    treinamento.Output.AddRange(new List<double>() { 0, 1 });
                 }
 
                 treinamentos.Add(treinamento);
             }
 
-            return treinamentos;
+            return treinamentos.Where(trein => trein.Input.Any(inp => inp > 0)).ToList();
         }
 
         internal static List<Treinamento> ClonarTreinamentos(List<Treinamento> treinamentos)
@@ -119,6 +154,7 @@ namespace TestesRNs.Modelo
                     treinamentoClone.Output.Add(valOutput);
                 }
 
+                treinamentoClone.Data = treinamento.Data;
                 treinamentosRetornar.Add(treinamentoClone);
             }
             return treinamentosRetornar;
@@ -127,10 +163,10 @@ namespace TestesRNs.Modelo
         static Func<double, double, double, double> normalizar = (max, min, valor) => (valor - min) / (max - min);
         static Func<double, double, double, double> desnormalizar = (max, min, valor) => valor * (max - min) + min;
 
-        public static List<Treinamento> NormalizarEntradasESaidas(List<Treinamento> treinamentos, string papel, Versao versao, bool sobreescreverConfTexto = false)
+        public static List<Treinamento> NormalizarEntradasESaidas(List<Treinamento> treinamentos, string papel, List<Versao> versoes, int tamanhoTendencia, bool sobreescreverConfTexto = false)
         {
             List<Treinamento> treinamentosClone = Treinamento.ClonarTreinamentos(treinamentos);
-            List<double> valoresNormalizacao = sobreescreverConfTexto ? null : RecuperarValoresMaxMin(papel, versao);
+            List<double> valoresNormalizacao = sobreescreverConfTexto ? null : RecuperarValoresMaxMin(papel, versoes, tamanhoTendencia);
             List<string> valoresNormalizacaoInputStr = new List<string>();
             List<string> valoresNormalizacaoOutputStr = new List<string>();
 
@@ -151,11 +187,11 @@ namespace TestesRNs.Modelo
                     double media = treinamentosClone.Average(trein => trein.Input[indInput]);
 
                     maxVal = treinamentosClone.Max(trein => trein.Input[indInput]);
-                    maxVal = maxVal > 3 * media ? media * 3 : maxVal;
+                    //maxVal = maxVal > 3 * media ? media * 3 : maxVal;
 
                     minVal = treinamentosClone.Min(trein => trein.Input[indInput]);
                     minVal = minVal < 0 ? 0 : minVal;
-                    minVal = minVal < media / 3 ? media / 3 : minVal;
+                    //minVal = minVal < media / 3 ? media / 3 : minVal;
                 }
 
                 treinamentosClone.ForEach(trein => trein.Input[indInput] = normalizar(maxVal, minVal, trein.Input[indInput]));
@@ -190,7 +226,7 @@ namespace TestesRNs.Modelo
             string valoresOutput = String.Join("&", valoresNormalizacaoOutputStr);
             if (sobreescreverConfTexto)
             {
-                StreamWriter sw = new StreamWriter(diretorioRedes + "\\" + RNHelper.RecuperarNomeRedeNeural(papel, versao) + "_ValoresMinMax.txt");
+                StreamWriter sw = new StreamWriter(diretorioRedes + "\\" + RNHelper.RecuperarNomeRedeNeural(papel, versoes, tamanhoTendencia) + "_ValoresMinMax.txt");
                 sw.WriteLine(valoresInput);
                 sw.WriteLine(valoresOutput);
                 sw.Close();
@@ -199,10 +235,10 @@ namespace TestesRNs.Modelo
             return treinamentosClone;
         }
 
-        public static List<Treinamento> DesnormalizarEntradasESaidas(List<Treinamento> treinamentos, string papel, Versao versao)
+        public static List<Treinamento> DesnormalizarEntradasESaidas(List<Treinamento> treinamentos, string papel, List<Versao> versoes, int tamanhoTendencia)
         {
             List<Treinamento> treinamentosClone = Treinamento.ClonarTreinamentos(treinamentos);
-            List<double> valoresMinMaxDesnormalizacao = RecuperarValoresMaxMin(papel, versao);
+            List<double> valoresMinMaxDesnormalizacao = RecuperarValoresMaxMin(papel, versoes, tamanhoTendencia);
 
             //return dado * (max - min) + min;
 
@@ -228,10 +264,10 @@ namespace TestesRNs.Modelo
             return treinamentosClone;
         }
 
-        public static List<double> DesnormalizarSaidas(List<double> saidas, string papel, Versao versao)
+        public static List<double> DesnormalizarSaidas(List<double> saidas, string papel, List<Versao> versoes, int tamanhoTendencia)
         {
             List<double> retorno = new List<double>();
-            List<double> valoresMinMaxDesnormalizacao = RecuperarValoresMaxMin(papel, versao);
+            List<double> valoresMinMaxDesnormalizacao = RecuperarValoresMaxMin(papel, versoes, tamanhoTendencia);
             valoresMinMaxDesnormalizacao = valoresMinMaxDesnormalizacao.Skip(valoresMinMaxDesnormalizacao.Count - (saidas.Count * 2)).ToList();
 
             for (int indOutput = 0; indOutput < saidas.Count; indOutput++)
@@ -251,13 +287,13 @@ namespace TestesRNs.Modelo
 
     public static class Extensao
     {
-        public static List<Treinamento> Normalizar(this List<Treinamento> treinamentos, string papel, Versao versao, bool sobreescreverConfTexto = false)
+        public static List<Treinamento> Normalizar(this List<Treinamento> treinamentos, string papel, List<Versao> versoes, int tamanhoTendencia, bool sobreescreverConfTexto = false)
         {
-            return Treinamento.NormalizarEntradasESaidas(treinamentos, papel, versao, sobreescreverConfTexto);
+            return Treinamento.NormalizarEntradasESaidas(treinamentos, papel, versoes, tamanhoTendencia, sobreescreverConfTexto);
         }
-        public static List<Treinamento> Desnormalizar(this List<Treinamento> treinamentos, string papel, Versao versao)
+        public static List<Treinamento> Desnormalizar(this List<Treinamento> treinamentos, string papel, List<Versao> versoes, int tamanhoTendencia)
         {
-            return Treinamento.DesnormalizarEntradasESaidas(treinamentos, papel, versao);
+            return Treinamento.DesnormalizarEntradasESaidas(treinamentos, papel, versoes, tamanhoTendencia);
         }
     }
 }

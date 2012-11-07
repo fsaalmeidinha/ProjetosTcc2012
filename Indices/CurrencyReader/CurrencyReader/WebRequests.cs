@@ -11,7 +11,8 @@ namespace CurrencyReader
         public static string LerCotacao(string moeda = "usd")
         {
             StringBuilder sb = new StringBuilder();
-            for (DateTime dtAtual = new DateTime(2006, 01, 01); dtAtual <= new DateTime(2012, 04, 01); dtAtual = dtAtual.AddMonths(1))
+            //                      new DateTime(2000, 01, 01)
+            for (DateTime dtAtual = new DateTime(2009, 02, 01); dtAtual <= new DateTime(2012, 10, 22); dtAtual = dtAtual.AddMonths(1))
             {
                 Uri uri = new Uri(String.Format("http://currencies.apps.grandtrunk.net/getrange/{0}/{1}/{2}/brl",
                     dtAtual.ToString("yyyy-MM-dd"),
@@ -33,7 +34,7 @@ namespace CurrencyReader
 
             try
             {
-                conn = new SqlConnection(@"Data Source=WAGNER-PC\SQLEXPRESS;Initial Catalog=FinanceInvest;Integrated Security=True");
+                conn = new SqlConnection(@"Data Source=Felipe-PC\SQLEXPRESS;Initial Catalog=YahooFinance;Integrated Security=True");
                 conn.Open();
 
                 sqlComan = new SqlCommand("Insert into CotacaoDolar(data, valor) values(@data, @valor)", conn);

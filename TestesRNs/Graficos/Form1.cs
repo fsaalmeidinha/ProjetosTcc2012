@@ -34,11 +34,12 @@ namespace Graficos
             Graphics g = Graphics.FromImage(grafico.Image);
 
             int minimoEntreOsDois = Convert.ToInt32(Math.Min(previsao.Min(prev => prev[0]), previsao.Min(prev => prev[1])));
-            int maximoEntreOsDois = Convert.ToInt32(Math.Min(previsao.Max(prev => prev[0]), previsao.Max(prev => prev[1])));
+            int maximoEntreOsDois = Convert.ToInt32(Math.Max(previsao.Max(prev => prev[0]), previsao.Max(prev => prev[1])));
 
             //A cada 40 pixels, há alteração de 1 real 
-            int multiplicadorY = grafico.Height / (maximoEntreOsDois - minimoEntreOsDois) / 3;//15;
-            if (multiplicadorY < 15) multiplicadorY = 15;
+            int multiplicadorY = grafico.Height / (maximoEntreOsDois - minimoEntreOsDois);//15;
+            //if (multiplicadorY < 10) multiplicadorY = 10;
+            if (multiplicadorY > 50) multiplicadorY = multiplicadorY / 2;
             //A cada 10 pixels, há alteração de 1 dia da cotação
             int multiplicadorX = Convert.ToInt32(txtEscalaX.Text);
 
@@ -71,6 +72,59 @@ namespace Graficos
                     g.DrawLine(pen3, ponto1Real, ponto2Previsto);
                 else//Não seguiu a tendencia
                     g.DrawLine(pen4, ponto1Real, ponto2Previsto);
+            }
+        }
+
+        void DesenharBollinger()
+        {
+            List<DadoBE> dadosBE = DadoBE.PegarTodos(papel).Where(cot => cot.DataGeracao >= new DateTime(2012, 4, 1) && cot.DataGeracao <= new DateTime(2012, 10, 1)).ToList();
+
+            grafico.Image = new Bitmap(grafico.Width, grafico.Height);
+            Graphics g = Graphics.FromImage(grafico.Image);
+
+            int minimoEntreOsDois = Convert.ToInt32(Math.Min(dadosBE.Min(prev => prev.PrecoFechamento), dadosBE.Min(prev => prev.BandaInferior)));
+            int maximoEntreOsDois = Convert.ToInt32(Math.Max(dadosBE.Max(prev => prev.PrecoFechamento), dadosBE.Max(prev => prev.BandaSuperior)));
+
+            //A cada 40 pixels, há alteração de 1 real 
+            int multiplicadorY = grafico.Height / (maximoEntreOsDois - minimoEntreOsDois);//15;
+            //if (multiplicadorY < 10) multiplicadorY = 10;
+            if (multiplicadorY > 50) multiplicadorY = multiplicadorY / 2;
+            //A cada 10 pixels, há alteração de 1 dia da cotação
+            int multiplicadorX = Convert.ToInt32(txtEscalaX.Text);
+
+            //Espacamento em reais antes do inicio do dado de menor valor
+            int espacamentoAbaixo = 1;//8;
+            DesenharLinharAuxiliaresDoGrafico(g, minimoEntreOsDois - espacamentoAbaixo, maximoEntreOsDois, 1, multiplicadorY, multiplicadorX);
+
+            minimoEntreOsDois *= multiplicadorY;
+
+            Pen pen1 = new Pen(Color.Red) { Width = 3f };
+            Pen pen2 = new Pen(Color.DarkBlue) { Width = 2f };
+            Pen pen3 = new Pen(Color.DarkGreen) { Width = 2f };
+            Pen pen4 = new Pen(Color.DarkOrange) { Width = 2f };
+            for (int i = 0; i < qtdDiasPrever - 1; i++)
+            {
+                Point ponto1Real = new Point(40 + (i * multiplicadorX), grafico.Height - Convert.ToInt32((dadosBE[i].PrecoFechamento + espacamentoAbaixo) * multiplicadorY) + minimoEntreOsDois);
+                Point ponto2Real = new Point(40 + ((i + 1) * multiplicadorX), grafico.Height - Convert.ToInt32((dadosBE[i + 1].PrecoFechamento + espacamentoAbaixo) * multiplicadorY) + minimoEntreOsDois);
+
+                Point ponto1Central = new Point(40 + (i * multiplicadorX), grafico.Height - Convert.ToInt32((dadosBE[i].BandaCentral + espacamentoAbaixo) * multiplicadorY) + minimoEntreOsDois);
+                Point ponto2Central = new Point(40 + ((i + 1) * multiplicadorX), grafico.Height - Convert.ToInt32((dadosBE[i + 1].BandaCentral + espacamentoAbaixo) * multiplicadorY) + minimoEntreOsDois);
+
+                Point ponto1Inferior = new Point(40 + (i * multiplicadorX), grafico.Height - Convert.ToInt32((dadosBE[i].BandaInferior + espacamentoAbaixo) * multiplicadorY) + minimoEntreOsDois);
+                Point ponto2Inferior = new Point(40 + ((i + 1) * multiplicadorX), grafico.Height - Convert.ToInt32((dadosBE[i + 1].BandaInferior + espacamentoAbaixo) * multiplicadorY) + minimoEntreOsDois);
+
+                Point ponto1Superior = new Point(40 + (i * multiplicadorX), grafico.Height - Convert.ToInt32((dadosBE[i].BandaSuperior + espacamentoAbaixo) * multiplicadorY) + minimoEntreOsDois);
+                Point ponto2Superior = new Point(40 + ((i + 1) * multiplicadorX), grafico.Height - Convert.ToInt32((dadosBE[i + 1].BandaSuperior + espacamentoAbaixo) * multiplicadorY) + minimoEntreOsDois);
+
+
+
+                g.DrawLine(pen1, ponto1Real, ponto2Real);
+                //g.DrawLine(pen2, ponto1Previsto, ponto2Previsto);
+
+
+                g.DrawLine(pen3, ponto1Central, ponto2Central);
+                g.DrawLine(pen2, ponto1Inferior, ponto2Inferior);
+                g.DrawLine(pen2, ponto1Superior, ponto2Superior);
             }
         }
 
@@ -118,7 +172,8 @@ namespace Graficos
 
         private void button1_Click(object sender, EventArgs e)
         {
-            DesenharGrafico();
+            DesenharBollinger();
+            //DesenharGrafico();
         }
 
         private void ddlPapel_SelectedIndexChanged(object sender, EventArgs e)

@@ -8,3 +8,6 @@ C:\Users\Felipe\Desktop\TestesRNs\Relatorios\Relatorios\obj\x86\Debug\Relatorios
 C:\Users\Felipe\Desktop\TestesRNs\Relatorios\Relatorios\obj\x86\Debug\Relatorios.pdb
 C:\Users\Felipe\Desktop\TestesRNs\Relatorios\Relatorios\bin\Debug\Relatorios.exe.config
 C:\Users\Felipe\Desktop\TestesRNs\Relatorios\Relatorios\bin\Debug\TestesRNs.dll
+C:\Users\Felipe\Desktop\tcc\TestesRNs\Relatorios\Relatorios\bin\Debug\Relatorios.exe.config
+C:\Users\Felipe\Desktop\tcc\TestesRNs\Relatorios\Relatorios\obj\x86\Debug\Relatorios.exe
+C:\Users\Felipe\Desktop\tcc\TestesRNs\Relatorios\Relatorios\obj\x86\Debug\Relatorios.pdb
