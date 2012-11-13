@@ -14,7 +14,7 @@ namespace TestesRNs
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("pt-br");
             System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("pt-br");
 
-            List<string> papeis = new List<string>() { "BVSP", "ETER3", "GOLL4", "NATU3", "PETR4", "VALE5" };
+            List<string> papeis = new List<string>() { /*"BVSP", "ETER3", "GOLL4", "NATU3", "PETR4", */"VALE5" };
             List<Versao> versoes = new List<Versao>() { Versao.V6001, Versao.V6002, Versao.V6004, Versao.V6008, Versao.V6016, Versao.V6032 };
             List<List<Versao>> versoesTreinar = new List<List<Versao>>();
 

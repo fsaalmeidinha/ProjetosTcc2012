@@ -8,14 +8,14 @@ namespace AnaliseTecnica.RN
 {
     public class AnaliseAtivo
     {
-        public static List<DadoBE> AtivosComprar(string papel, out DateTime dtInicial, out DateTime dtFinal, out int totalDados)
+        public static List<DadoBE> AtivosComprar(string papel, int tamanhoTendencia, out DateTime dtInicial, out DateTime dtFinal, out int totalDados)
         {
             List<DadoBE> dadosBE = DadoBE.PegarTodos(papel);
             dtInicial = dadosBE.First().DataGeracao;
-            dtFinal = dadosBE.Last().PegarNAntes(5).DataGeracao;
-            totalDados = dadosBE.Count - 5;
+            dtFinal = dadosBE.Last().PegarNAntes(tamanhoTendencia).DataGeracao;
+            totalDados = dadosBE.Count - tamanhoTendencia;
 
-            return dadosBE.Take(dadosBE.Count - 5).Where(dado => dado.ValorBollinger[0] == 1).ToList();
+            return dadosBE.Take(dadosBE.Count - tamanhoTendencia).Where(dado => dado.ValorBollinger[0] == 1).ToList();
         }
     }
 }

@@ -14,33 +14,39 @@ namespace AnaliseTecnica.RN
             List<ResultadoTomadaDecisao> resultados = new List<ResultadoTomadaDecisao>();
             foreach (string papel in papeis)
             {
-                DateTime dtInicial;
-                DateTime dtFinal;
-                int totalDados;
-                List<DadoBE> compras = AnaliseAtivo.AtivosComprar(papel, out dtInicial, out dtFinal, out totalDados);
-                ResultadoTomadaDecisao resultado = new ResultadoTomadaDecisao() { Papel = papel, DataInicial = dtInicial, DataFinal = dtFinal, TotalDados = totalDados };
-                resultado.TotalNegociacoesDeCompra = compras.Count;
-
-                foreach (DadoBE dadoBEComprar in compras)
+                Dictionary<int, ResultadoTomadaDecisao> resultadosPorTamanhoTendencia = new Dictionary<int, ResultadoTomadaDecisao>();
+                for (int tamanhoTendencia = 1; tamanhoTendencia <= 10; tamanhoTendencia++)
                 {
-                    DadoBE dadoBEVender = dadoBEComprar.PegarNApos(5);
+                    DateTime dtInicial;
+                    DateTime dtFinal;
+                    int totalDados;
+                    List<DadoBE> compras = AnaliseAtivo.AtivosComprar(papel, tamanhoTendencia, out dtInicial, out dtFinal, out totalDados);
+                    ResultadoTomadaDecisao resultado = new ResultadoTomadaDecisao() { Papel = papel, TamanhoTendencia = tamanhoTendencia, DataInicial = dtInicial, DataFinal = dtFinal, TotalDados = totalDados };
+                    resultado.TotalNegociacoesDeCompra = compras.Count;
 
-                    double variacaoEmReais = Math.Abs(dadoBEComprar.PrecoFechamento - dadoBEVender.PrecoFechamento);
-                    double percentualVariacao_G_P = variacaoEmReais / dadoBEComprar.PrecoFechamento;
-                    if (dadoBEComprar.PrecoFechamento < dadoBEVender.PrecoFechamento)
+                    foreach (DadoBE dadoBEComprar in compras)
                     {
-                        resultado.PercentualGanhoPerda += percentualVariacao_G_P;
-                        resultado.TotalAcertos++;
+                        DadoBE dadoBEVender = dadoBEComprar.PegarNApos(tamanhoTendencia);
+
+                        double variacaoEmReais = Math.Abs(dadoBEComprar.PrecoFechamento - dadoBEVender.PrecoFechamento);
+                        double percentualVariacao_G_P = variacaoEmReais / dadoBEComprar.PrecoFechamento;
+                        if (dadoBEComprar.PrecoFechamento < dadoBEVender.PrecoFechamento)
+                        {
+                            resultado.PercentualGanhoPerda += percentualVariacao_G_P;
+                            resultado.TotalAcertos++;
+                        }
+                        else
+                            resultado.PercentualGanhoPerda -= percentualVariacao_G_P;
                     }
-                    else
-                        resultado.PercentualGanhoPerda -= percentualVariacao_G_P;
+
+                    resultado.PercentualGanhoPerda *= 100;
+                    resultado.PercentualAcerto = 100.00 / resultado.TotalNegociacoesDeCompra * resultado.TotalAcertos;
+                    resultado.PercentualMedioGanhoPerda = resultado.PercentualGanhoPerda / resultado.TotalNegociacoesDeCompra;
+                    resultadosPorTamanhoTendencia.Add(tamanhoTendencia, resultado);
                 }
 
-                resultado.PercentualGanhoPerda *= 100;
-                resultado.PercentualAcerto = 100.00 / resultado.TotalNegociacoesDeCompra * resultado.TotalAcertos;
-                resultado.PercentualMedioGanhoPerda = resultado.PercentualGanhoPerda / resultado.TotalNegociacoesDeCompra;
-
-                resultados.Add(resultado);
+                //Adiciona o resultado com maior percentual de acerto para cada papel..
+                resultados.Add(resultadosPorTamanhoTendencia.OrderByDescending(res => res.Value.PercentualAcerto).First().Value);
             }
 
             return resultados;

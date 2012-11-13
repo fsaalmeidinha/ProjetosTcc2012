@@ -26,7 +26,7 @@ namespace TomadaDecisaoView
             {
                 ((Label)this.Controls.Find("lblTotalNeg" + resultado.Papel, true).First()).Text = resultado.TotalNegociacoesDeCompra.ToString();
                 ((Label)this.Controls.Find("lblTotalAcertos" + resultado.Papel, true).First()).Text = resultado.TotalAcertos.ToString();
-                ((GroupBox)this.Controls.Find("gb" + resultado.Papel, true).First()).Text = String.Format("{0} ({1} - {2}) - {3} dados", resultado.Papel, resultado.DataInicial.ToShortDateString(), resultado.DataFinal.ToShortDateString(), resultado.TotalDados);
+                ((GroupBox)this.Controls.Find("gb" + resultado.Papel, true).First()).Text = String.Format("{0} ({1} - {2}) - {3} dados - Tam.Tend:{4}", resultado.Papel, resultado.DataInicial.ToShortDateString(), resultado.DataFinal.ToShortDateString(), resultado.TotalDados, resultado.TamanhoTendencia);
 
                 Label percentAcerto = ((Label)this.Controls.Find("lblPercentualAcerto" + resultado.Papel, true).First());
                 percentAcerto.Text = resultado.PercentualAcerto.ToString("N2") + "%";

@@ -10,6 +10,7 @@ namespace AnaliseTecnica.Modelo
         public string Papel { get; set; }
         public DateTime DataInicial { get; set; }
         public DateTime DataFinal { get; set; }
+        public int TamanhoTendencia { get; set; }
         public int TotalDados { get; set; }
         public int TotalNegociacoesDeCompra { get; set; }
         public int TotalAcertos { get; set; }
