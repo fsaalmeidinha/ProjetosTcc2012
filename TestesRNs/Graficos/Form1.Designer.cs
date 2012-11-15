@@ -34,8 +34,6 @@
             this.button1 = new System.Windows.Forms.Button();
             this.ddlPapel = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.ddlVersao = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.grafico)).BeginInit();
             this.SuspendLayout();
             // 
@@ -79,6 +77,7 @@
             // 
             this.ddlPapel.FormattingEnabled = true;
             this.ddlPapel.Items.AddRange(new object[] {
+            "BVSP",
             "ETER3",
             "GOLL4",
             "NATU3",
@@ -100,31 +99,11 @@
             this.label1.TabIndex = 12;
             this.label1.Text = "Papel";
             // 
-            // ddlVersao
-            // 
-            this.ddlVersao.FormattingEnabled = true;
-            this.ddlVersao.Location = new System.Drawing.Point(199, 23);
-            this.ddlVersao.Name = "ddlVersao";
-            this.ddlVersao.Size = new System.Drawing.Size(61, 21);
-            this.ddlVersao.TabIndex = 103;
-            this.ddlVersao.SelectedIndexChanged += new System.EventHandler(this.ddlVersao_SelectedIndexChanged);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(196, 5);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(40, 13);
-            this.label2.TabIndex = 12;
-            this.label2.Text = "Versão";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1264, 573);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.ddlVersao);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.ddlPapel);
             this.Controls.Add(this.button1);
@@ -147,8 +126,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ComboBox ddlPapel;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox ddlVersao;
-        private System.Windows.Forms.Label label2;
 
 
     }
