@@ -21,4 +21,13 @@ namespace TestesRNs.Modelo
         [DescriptionAttribute("DuracaoTendencias")]
         V6032 = 6032
     }
+
+    public enum ResultadoPrevisao
+    {
+        Nenhuma = 0,
+        SubirOK = 1,
+        SubirNOK = 2,
+        DescerOK = 3,
+        DescerNOK = 4
+    }
 }

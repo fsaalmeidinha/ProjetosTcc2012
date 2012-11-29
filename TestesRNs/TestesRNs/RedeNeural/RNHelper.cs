@@ -37,34 +37,51 @@ namespace TestesRNs.RedeNeural
             configuracaoPorPapel.Add("ETER3", new KeyValuePair<List<Versao>, int>(new List<Versao>() { Versao.V6001 }, 9));
             //GOLL4 - Tam.Tend:6-ValorBollinger; Arron_Up_Down; DuracaoTendencias
             configuracaoPorPapel.Add("GOLL4", new KeyValuePair<List<Versao>, int>(new List<Versao>() { Versao.V6001, Versao.V6016, Versao.V6032 }, 6));
-            //NATU3 - Tam.Tend:8-Arron_Up_Down
-            configuracaoPorPapel.Add("NATU3", new KeyValuePair<List<Versao>, int>(new List<Versao>() { Versao.V6016 }, 8));
+
+            //SEGUNDA..//NATU3 - Tam.Tend:6-ValorBollinger; MediaMovelSimples5Dias; Williams_Percent_R_28P; DuracaoTendencias
+            configuracaoPorPapel.Add("NATU3", new KeyValuePair<List<Versao>, int>(new List<Versao>() { Versao.V6001, Versao.V6002, Versao.V6008, /*Versao.V6016,*/ Versao.V6032 }, 6));
+            ////NATU3 - Tam.Tend:8-Arron_Up_Down
+            //configuracaoPorPapel.Add("NATU3", new KeyValuePair<List<Versao>, int>(new List<Versao>() { Versao.V6016 }, 8));
+
             //PETR4 - Tam.Tend:10-ValorBollinger; Williams_Percent_R_28P
             configuracaoPorPapel.Add("PETR4", new KeyValuePair<List<Versao>, int>(new List<Versao>() { Versao.V6001, Versao.V6008 }, 10));
-            //VALE5 - Tam.Tend:7-Arron_Up_Down
-            configuracaoPorPapel.Add("VALE5", new KeyValuePair<List<Versao>, int>(new List<Versao>() { Versao.V6016 }, 7));
+
+            //SEGUNDA..//VALE5 - Tam.Tend:7-Arron_Up_Down
+            configuracaoPorPapel.Add("VALE5", new KeyValuePair<List<Versao>, int>(new List<Versao>() { Versao.V6008 }, 10));
+            ////VALE5 - Tam.Tend:7-Arron_Up_Down
+            //configuracaoPorPapel.Add("VALE5", new KeyValuePair<List<Versao>, int>(new List<Versao>() { Versao.V6016 }, 7));
         }
 
-        public static List<double[]> PreverAtivo(out DateTime dtInicial, out DateTime dtFinal, out int tamanhoTendencia, string papel)
+        public static ResumoPrevisao PreverAtivo(string papel)
         {
             PreencherConfiguracoes();
 
+
             List<Versao> versoesPapel = configuracaoPorPapel[papel].Key;
-            tamanhoTendencia = configuracaoPorPapel[papel].Value;
+            int tamanhoTendencia = configuracaoPorPapel[papel].Value;
 
             List<DadoBE> dadosBE = DadoBE.PegarTodos(papel);
             dadosBE = dadosBE.Skip(dadosBE.Count / 8 * 7).ToList();
-            dtInicial = dadosBE.First().DataGeracao;
-            dtFinal = dadosBE.Last().DataGeracao;
+            DateTime dtInicial = dadosBE.First().DataGeracao;
+            DateTime dtFinal = dadosBE.Last().DataGeracao;
+
+            ResumoPrevisao resumoPrevisao = new ResumoPrevisao()
+            {
+                Papel = papel,
+                TamanhoTendencia = configuracaoPorPapel[papel].Value,
+                Versoes = configuracaoPorPapel[papel].Key,
+                DataInicial = dadosBE.First().DataGeracao,
+                DataFinal = dadosBE.Last().DataGeracao
+            };
 
             //Recupera os treinamentos
             List<Treinamento> treinamentos = Treinamento.RecuperarTreinamentoRN(dadosBE, versoesPapel, tamanhoTendencia).Normalizar(papel, versoesPapel, tamanhoTendencia);
             Network redeNeural = RecuperarRedeNeural(papel, versoesPapel, tamanhoTendencia);
-            List<double[]> resultado = new List<double[]>();
+
             foreach (DadoBE dadoBE in dadosBE)
             {
                 Treinamento treinamento = treinamentos.FirstOrDefault(trein => trein.Data == dadoBE.DataGeracao);
-                double acao = 0;
+                ResultadoPrevisao resultadoPrevisao = ResultadoPrevisao.Nenhuma;
                 if (treinamento != null)
                 {
                     double[] output = redeNeural.Run(treinamento.Input.ToArray());
@@ -73,21 +90,21 @@ namespace TestesRNs.RedeNeural
                     if (output[0] > output[1])
                     {
                         if (treinamento.Output[0] > treinamento.Output[1])
-                            acao = 1;
+                            resultadoPrevisao = ResultadoPrevisao.SubirOK;
                         else
-                            acao = 2;
+                            resultadoPrevisao = ResultadoPrevisao.SubirNOK;
                     }
                     //Rede diz que o valor vai subir..
                     else
                     {
                         if (treinamento.Output[0] < treinamento.Output[1])
-                            acao = 3;
+                            resultadoPrevisao = ResultadoPrevisao.DescerOK;
                         else
-                            acao = 4;
+                            resultadoPrevisao = ResultadoPrevisao.DescerNOK;
                     }
                 }
 
-                resultado.Add(new double[] { dadoBE.PrecoFechamento, (double)acao });
+                resumoPrevisao.Previsoes.Add(new TestesRNs.Modelo.ResumoPrevisao.Previsao() { ValorAtivo = dadoBE.PrecoFechamento, ResultadoPrevisao = resultadoPrevisao, Data = dadoBE.DataGeracao });
             }
             //foreach (Treinamento treinamento in treinamentos)
             //{
@@ -99,7 +116,7 @@ namespace TestesRNs.RedeNeural
             //    resultado.Add(new double[] { Treinamento.DesnormalizarSaidas(treinamento.Output, papel, versoesPapel, tamanhoTendencia)[0], outputPrevistoDesnormalizado[0] });
             //}
 
-            return resultado;
+            return resumoPrevisao;
         }
 
         /// <summary>

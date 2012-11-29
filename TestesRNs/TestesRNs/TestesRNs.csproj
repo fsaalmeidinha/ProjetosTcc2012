@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="Modelo\DadoBE.cs" />
     <Compile Include="Modelo\Enumeradores.cs" />
+    <Compile Include="Modelo\ResumoPrevisao.cs" />
     <Compile Include="Modelo\Relatorio.cs" />
     <Compile Include="Modelo\Treinamento.cs" />
     <Compile Include="Program.cs" />
