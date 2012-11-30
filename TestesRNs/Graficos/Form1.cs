@@ -18,6 +18,7 @@ namespace Graficos
         public int espacoAbaixo = 0;
         public int espacoAcima = 0;
         public int shiftItens = 0;
+        public bool versao1 = false;
         Dictionary<string, ResumoPrevisao> resumosPrevisao = new Dictionary<string, ResumoPrevisao>();
         //int qtdDiasPrever = 100;
         //DateTime dataInicialPrevisao = new DateTime(2011, 09, 1);
@@ -28,11 +29,18 @@ namespace Graficos
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("pt-BR");
             System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("pt-BR");
 
+
             InitializeComponent();
             trackBar1.Minimum = 2;
             trackBar1.Maximum = 100;
             trackBar1.Value = 30;
             //PreencherComboBoxVersao();
+
+            pnlSubirOK.BackColor = Color.Green;
+            pnlSubirNOK.BackColor = Color.Yellow;
+            pnlDescerOK.BackColor = Color.Orange;
+            pnlDescerNOK.BackColor = Color.Blue;
+
             DesenharGrafico();
         }
 
@@ -95,6 +103,7 @@ namespace Graficos
 
             grafico.Image = new Bitmap(grafico.Width, grafico.Height);
             Graphics g = Graphics.FromImage(grafico.Image);
+            //DesenharSeta(g, 100, 100, true, true);
 
             int minimoEntreOsDois = Convert.ToInt32(previsoes.Min(prev => prev.ValorAtivo)) - espacoAbaixo;
             int maximoEntreOsDois = Convert.ToInt32(previsoes.Max(prev => prev.ValorAtivo)) + espacoAcima;
@@ -135,23 +144,37 @@ namespace Graficos
 
                 g.DrawLine(pen1, ponto1Real, ponto2Real);
 
-
                 if (previsoes[i].ResultadoPrevisao != 0 && i + resumoPrevisao.TamanhoTendencia < previsoes.Count)
                 {
                     Point ponto1Tendencia = new Point(40 + (i * multiplicadorX), grafico.Height - Convert.ToInt32((previsoes[i].ValorAtivo + espacamentoAbaixo) * multiplicadorY) + minimoEntreOsDois);
                     Point ponto2Tendencia = new Point(40 + ((i + resumoPrevisao.TamanhoTendencia) * multiplicadorX), grafico.Height - Convert.ToInt32((previsoes[i + resumoPrevisao.TamanhoTendencia].ValorAtivo + espacamentoAbaixo) * multiplicadorY) + minimoEntreOsDois);
 
-                    Pen pen2 = null;
-                    if (previsoes[i].ResultadoPrevisao == ResultadoPrevisao.SubirOK)//OK - A Rede preveu que iria subir o valor do ativo e subiu..
-                        pen2 = new Pen(Color.Green) { Width = 2f };
-                    if (previsoes[i].ResultadoPrevisao == ResultadoPrevisao.SubirNOK)//NOK - A Rede preveu que iria subir o valor do ativo e caiu..
-                        pen2 = new Pen(Color.Yellow) { Width = 2f };
-                    if (previsoes[i].ResultadoPrevisao == ResultadoPrevisao.DescerOK)//OK - A Rede preveu que iria descer o valor do ativo e desceu..
-                        pen2 = new Pen(Color.Orange) { Width = 2f };
-                    if (previsoes[i].ResultadoPrevisao == ResultadoPrevisao.DescerNOK)//NOK - A Rede preveu que iria descer o valor do ativo e subiu..
-                        pen2 = new Pen(Color.Blue) { Width = 2f };
+                    if (versao1 == false)
+                    {
+                        Pen pen2 = null;
+                        if (previsoes[i].ResultadoPrevisao == ResultadoPrevisao.SubirOK)//OK - A Rede preveu que iria subir o valor do ativo e subiu..
+                            DesenharSeta(g, ponto1Real.X, ponto1Real.Y, true, true);
+                        if (previsoes[i].ResultadoPrevisao == ResultadoPrevisao.SubirNOK)//NOK - A Rede preveu que iria subir o valor do ativo e caiu..
+                            DesenharSeta(g, ponto1Real.X, ponto1Real.Y, true, false);
+                        if (previsoes[i].ResultadoPrevisao == ResultadoPrevisao.DescerOK)//OK - A Rede preveu que iria descer o valor do ativo e desceu..
+                            DesenharSeta(g, ponto1Real.X, ponto1Real.Y, false, true);
+                        if (previsoes[i].ResultadoPrevisao == ResultadoPrevisao.DescerNOK)//NOK - A Rede preveu que iria descer o valor do ativo e subiu..
+                            DesenharSeta(g, ponto1Real.X, ponto1Real.Y, false, false);
+                    }
+                    else
+                    {
+                        Pen pen2 = null;
+                        if (previsoes[i].ResultadoPrevisao == ResultadoPrevisao.SubirOK)//OK - A Rede preveu que iria subir o valor do ativo e subiu..
+                            pen2 = new Pen(Color.Green) { Width = 2f };
+                        if (previsoes[i].ResultadoPrevisao == ResultadoPrevisao.SubirNOK)//NOK - A Rede preveu que iria subir o valor do ativo e caiu..
+                            pen2 = new Pen(Color.Yellow) { Width = 2f };
+                        if (previsoes[i].ResultadoPrevisao == ResultadoPrevisao.DescerOK)//OK - A Rede preveu que iria descer o valor do ativo e desceu..
+                            pen2 = new Pen(Color.Orange) { Width = 2f };
+                        if (previsoes[i].ResultadoPrevisao == ResultadoPrevisao.DescerNOK)//NOK - A Rede preveu que iria descer o valor do ativo e subiu..
+                            pen2 = new Pen(Color.Blue) { Width = 2f };
 
-                    g.DrawLine(pen2, ponto1Tendencia, ponto2Tendencia);
+                        g.DrawLine(pen2, ponto1Tendencia, ponto2Tendencia);
+                    }
                 }
                 //g.DrawLine(pen2, ponto1Previsto, ponto2Previsto);
 
@@ -162,6 +185,35 @@ namespace Graficos
                 //else//Não seguiu a tendencia
                 //    g.DrawLine(pen4, ponto1Real, ponto2Previsto);
             }
+        }
+
+        private void DesenharSeta(Graphics g, int x, int y, bool subir, bool acertou)
+        {
+            Pen pen = new Pen(Color.Green) { Width = 3f };
+            if (subir && !acertou)
+                pen.Color = Color.Yellow;
+            else if (!subir && acertou)
+                pen.Color = Color.Orange;
+            else if (!subir && !acertou)
+                pen.Color = Color.Blue;
+
+            double escalaX = 0.5;
+            double escalaY = 1;
+
+            int valVertical = Convert.ToInt32(30 * escalaY) * (subir ? 1 : -1);
+            int valHorizontal = Convert.ToInt32(10 * escalaX) * (subir ? 1 : -1);
+
+            Point p1 = new Point(x, y);
+            Point p2 = new Point(x, y - valVertical);
+
+            Point p3 = new Point(x, y - valVertical);
+            Point p4 = new Point(x - valHorizontal, y - Convert.ToInt32(valVertical * 0.7));
+
+            Point p5 = new Point(x, y - valVertical);
+            Point p6 = new Point(x + valHorizontal, y - Convert.ToInt32(valVertical * 0.7));
+            g.DrawLine(pen, p1, p2);
+            g.DrawLine(pen, p3, p4);
+            g.DrawLine(pen, p5, p6);
         }
 
         /*
@@ -336,6 +388,22 @@ namespace Graficos
         private void trackBar1_ValueChanged(object sender, EventArgs e)
         {
             lblQtdDias.Text = trackBar1.Value.ToString();
+            DesenharGrafico();
+        }
+
+        private void btnV1_Click(object sender, EventArgs e)
+        {
+            versao1 = true;
+            btnV1.BackColor = Color.White;
+            btnV2.BackColor = Color.FromArgb(255, 212, 208, 200);
+            DesenharGrafico();
+        }
+
+        private void btnV2_Click(object sender, EventArgs e)
+        {
+            versao1 = false;
+            btnV1.BackColor = Color.FromArgb(255, 212, 208, 200);
+            btnV2.BackColor = Color.White;
             DesenharGrafico();
         }
 

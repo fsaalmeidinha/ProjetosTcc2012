@@ -44,17 +44,17 @@
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.lblQtdDias = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblAcertosbaixa = new System.Windows.Forms.Label();
+            this.lblAcertosAlta = new System.Windows.Forms.Label();
+            this.lblTotalDados = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.lblVersoes = new System.Windows.Forms.Label();
             this.lblDataFinalResumo = new System.Windows.Forms.Label();
             this.lblDataInicialResumo = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.lblTotalDados = new System.Windows.Forms.Label();
-            this.lblAcertosAlta = new System.Windows.Forms.Label();
-            this.lblAcertosbaixa = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lblAcertosBaixaParcial = new System.Windows.Forms.Label();
             this.lblAcertosAltaParcial = new System.Windows.Forms.Label();
@@ -64,6 +64,17 @@
             this.lblDataInicialParcial = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
+            this.pnlSubirOK = new System.Windows.Forms.Panel();
+            this.pnlDescerOK = new System.Windows.Forms.Panel();
+            this.pnlSubirNOK = new System.Windows.Forms.Panel();
+            this.pnlDescerNOK = new System.Windows.Forms.Panel();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.btnV1 = new System.Windows.Forms.Button();
+            this.btnV2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grafico)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -82,7 +93,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(635, 8);
+            this.label3.Location = new System.Drawing.Point(488, 8);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(102, 13);
             this.label3.TabIndex = 9;
@@ -215,16 +226,16 @@
             // 
             // trackBar1
             // 
-            this.trackBar1.Location = new System.Drawing.Point(298, 24);
+            this.trackBar1.Location = new System.Drawing.Point(204, 24);
             this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(818, 42);
+            this.trackBar1.Size = new System.Drawing.Size(632, 42);
             this.trackBar1.TabIndex = 113;
             this.trackBar1.ValueChanged += new System.EventHandler(this.trackBar1_ValueChanged);
             // 
             // lblQtdDias
             // 
             this.lblQtdDias.AutoSize = true;
-            this.lblQtdDias.Location = new System.Drawing.Point(732, 9);
+            this.lblQtdDias.Location = new System.Drawing.Point(633, 9);
             this.lblQtdDias.Name = "lblQtdDias";
             this.lblQtdDias.Size = new System.Drawing.Size(19, 13);
             this.lblQtdDias.TabIndex = 114;
@@ -249,6 +260,60 @@
             this.groupBox1.TabIndex = 115;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Resumo";
+            // 
+            // lblAcertosbaixa
+            // 
+            this.lblAcertosbaixa.AutoSize = true;
+            this.lblAcertosbaixa.Location = new System.Drawing.Point(359, 44);
+            this.lblAcertosbaixa.Name = "lblAcertosbaixa";
+            this.lblAcertosbaixa.Size = new System.Drawing.Size(35, 13);
+            this.lblAcertosbaixa.TabIndex = 7;
+            this.lblAcertosbaixa.Text = "label8";
+            // 
+            // lblAcertosAlta
+            // 
+            this.lblAcertosAlta.AutoSize = true;
+            this.lblAcertosAlta.Location = new System.Drawing.Point(254, 44);
+            this.lblAcertosAlta.Name = "lblAcertosAlta";
+            this.lblAcertosAlta.Size = new System.Drawing.Size(35, 13);
+            this.lblAcertosAlta.TabIndex = 7;
+            this.lblAcertosAlta.Text = "label8";
+            // 
+            // lblTotalDados
+            // 
+            this.lblTotalDados.AutoSize = true;
+            this.lblTotalDados.Location = new System.Drawing.Point(176, 43);
+            this.lblTotalDados.Name = "lblTotalDados";
+            this.lblTotalDados.Size = new System.Drawing.Size(35, 13);
+            this.lblTotalDados.TabIndex = 7;
+            this.lblTotalDados.Text = "label8";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(161, 29);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(65, 13);
+            this.label7.TabIndex = 6;
+            this.label7.Text = "Total Dados";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(349, 29);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(100, 13);
+            this.label6.TabIndex = 5;
+            this.label6.Text = "Acertos Tend.Baixa";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(243, 29);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(92, 13);
+            this.label5.TabIndex = 5;
+            this.label5.Text = "Acertos Tend.Alta";
             // 
             // lblVersoes
             // 
@@ -294,60 +359,6 @@
             this.label2.Size = new System.Drawing.Size(59, 13);
             this.label2.TabIndex = 0;
             this.label2.Text = "Data inicial";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(243, 29);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(92, 13);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "Acertos Tend.Alta";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(349, 29);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(100, 13);
-            this.label6.TabIndex = 5;
-            this.label6.Text = "Acertos Tend.Baixa";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(161, 29);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(65, 13);
-            this.label7.TabIndex = 6;
-            this.label7.Text = "Total Dados";
-            // 
-            // lblTotalDados
-            // 
-            this.lblTotalDados.AutoSize = true;
-            this.lblTotalDados.Location = new System.Drawing.Point(176, 43);
-            this.lblTotalDados.Name = "lblTotalDados";
-            this.lblTotalDados.Size = new System.Drawing.Size(35, 13);
-            this.lblTotalDados.TabIndex = 7;
-            this.lblTotalDados.Text = "label8";
-            // 
-            // lblAcertosAlta
-            // 
-            this.lblAcertosAlta.AutoSize = true;
-            this.lblAcertosAlta.Location = new System.Drawing.Point(254, 44);
-            this.lblAcertosAlta.Name = "lblAcertosAlta";
-            this.lblAcertosAlta.Size = new System.Drawing.Size(35, 13);
-            this.lblAcertosAlta.TabIndex = 7;
-            this.lblAcertosAlta.Text = "label8";
-            // 
-            // lblAcertosbaixa
-            // 
-            this.lblAcertosbaixa.AutoSize = true;
-            this.lblAcertosbaixa.Location = new System.Drawing.Point(359, 44);
-            this.lblAcertosbaixa.Name = "lblAcertosbaixa";
-            this.lblAcertosbaixa.Size = new System.Drawing.Size(35, 13);
-            this.lblAcertosbaixa.TabIndex = 7;
-            this.lblAcertosbaixa.Text = "label8";
             // 
             // groupBox2
             // 
@@ -438,11 +449,116 @@
             this.label18.TabIndex = 0;
             this.label18.Text = "Data inicial";
             // 
+            // pnlSubirOK
+            // 
+            this.pnlSubirOK.Location = new System.Drawing.Point(907, 20);
+            this.pnlSubirOK.Name = "pnlSubirOK";
+            this.pnlSubirOK.Size = new System.Drawing.Size(20, 18);
+            this.pnlSubirOK.TabIndex = 117;
+            // 
+            // pnlDescerOK
+            // 
+            this.pnlDescerOK.Location = new System.Drawing.Point(1063, 20);
+            this.pnlDescerOK.Name = "pnlDescerOK";
+            this.pnlDescerOK.Size = new System.Drawing.Size(20, 18);
+            this.pnlDescerOK.TabIndex = 117;
+            // 
+            // pnlSubirNOK
+            // 
+            this.pnlSubirNOK.Location = new System.Drawing.Point(907, 45);
+            this.pnlSubirNOK.Name = "pnlSubirNOK";
+            this.pnlSubirNOK.Size = new System.Drawing.Size(20, 18);
+            this.pnlSubirNOK.TabIndex = 117;
+            // 
+            // pnlDescerNOK
+            // 
+            this.pnlDescerNOK.Location = new System.Drawing.Point(1063, 45);
+            this.pnlDescerNOK.Name = "pnlDescerNOK";
+            this.pnlDescerNOK.Size = new System.Drawing.Size(20, 18);
+            this.pnlDescerNOK.TabIndex = 117;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(991, 4);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(49, 13);
+            this.label8.TabIndex = 118;
+            this.label8.Text = "Legenda";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(929, 22);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(119, 13);
+            this.label9.TabIndex = 118;
+            this.label9.Text = "Acertou tendência subir";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(929, 47);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(107, 13);
+            this.label10.TabIndex = 118;
+            this.label10.Text = "Errou tendência subir";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(1085, 22);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(129, 13);
+            this.label11.TabIndex = 118;
+            this.label11.Text = "Acertou tendência descer";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(1085, 47);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(117, 13);
+            this.label14.TabIndex = 118;
+            this.label14.Text = "Errou tendência descer";
+            // 
+            // btnV1
+            // 
+            this.btnV1.Location = new System.Drawing.Point(1257, 9);
+            this.btnV1.Name = "btnV1";
+            this.btnV1.Size = new System.Drawing.Size(28, 25);
+            this.btnV1.TabIndex = 119;
+            this.btnV1.Text = "V1";
+            this.btnV1.UseVisualStyleBackColor = true;
+            this.btnV1.Click += new System.EventHandler(this.btnV1_Click);
+            // 
+            // btnV2
+            // 
+            this.btnV2.BackColor = System.Drawing.Color.White;
+            this.btnV2.Location = new System.Drawing.Point(1257, 34);
+            this.btnV2.Name = "btnV2";
+            this.btnV2.Size = new System.Drawing.Size(28, 24);
+            this.btnV2.TabIndex = 119;
+            this.btnV2.Text = "V2";
+            this.btnV2.UseVisualStyleBackColor = false;
+            this.btnV2.Click += new System.EventHandler(this.btnV2_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1325, 728);
+            this.Controls.Add(this.btnV2);
+            this.Controls.Add(this.btnV1);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.label14);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.pnlDescerNOK);
+            this.Controls.Add(this.pnlSubirNOK);
+            this.Controls.Add(this.pnlDescerOK);
+            this.Controls.Add(this.pnlSubirOK);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.lblQtdDias);
@@ -461,7 +577,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.grafico);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Gráfico de Têndencias";
             ((System.ComponentModel.ISupportInitialize)(this.grafico)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.groupBox1.ResumeLayout(false);
@@ -511,6 +627,17 @@
         private System.Windows.Forms.Label lblDataInicialParcial;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Panel pnlSubirOK;
+        private System.Windows.Forms.Panel pnlDescerOK;
+        private System.Windows.Forms.Panel pnlSubirNOK;
+        private System.Windows.Forms.Panel pnlDescerNOK;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Button btnV1;
+        private System.Windows.Forms.Button btnV2;
 
 
     }
